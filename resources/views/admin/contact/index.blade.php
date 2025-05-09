@@ -179,6 +179,6 @@
     </div>
 @endsection
 @section('js')
-    {{-- @include('admin.contact.js.datatable') --}}
+    @include('admin.contact.js.datatable')
     @include('admin.contact.js.script')
 @endsection
