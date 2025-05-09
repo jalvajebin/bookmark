@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
+            $table->string('page_name')->default('about-us');
+            $table->string('title')->nullable();
+            $table->string('alt')->nullable();     
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
