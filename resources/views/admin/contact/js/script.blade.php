@@ -2,7 +2,7 @@
     $(document).ready(function() {
         dataTable();
         dataTable1();
- 
+
         $('#tabs-nav li:first-child').addClass('active');
         $('.tab-content').hide();
         $('.tab-content:first').show();
@@ -14,77 +14,12 @@
             $(activeTab).fadeIn();
             return false;
         });
- 
-        let cropper;
-        let uploadedImageURL;
- 
- 
-        $('#upload-image').on('change', function(e) {
-            const file = e.target.files[0];
- 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const uploadedImageURL = event.target.result;
-                    $('#cropper-image').attr('src', uploadedImageURL);
- 
-                    $('#crop-modal').show();
- 
-                    if (cropper) {
-                        cropper.destroy();
-                    }
- 
-                    // Initialize Cropper
-                    cropper = new Cropper($('#cropper-image')[0], { // jQuery [0] to DOM element
-                        aspectRatio: 1, // Default square crop
-                        viewMode: 1,
-                        movable: true,
-                        zoomable: true,
-                        rotatable: true,
-                        scalable: true
-                    });
-                };
-                reader.readAsDataURL(file);
-            }
-        });
- 
-        // Button controls for cropping modes
-        $('#square').on('click', function() {
-            if (cropper) {
-                cropper.setAspectRatio(1); // 1:1 square
-                $('.cropper-crop-box, .cropper-view-box').css('border-radius', '0');
-            }
-        });
- 
-        $('#rectangle').on('click', function() {
-            if (cropper) {
-                cropper.setAspectRatio(16 / 9); // 16:9 rectangle
-                $('.cropper-crop-box, .cropper-view-box').css('border-radius', '0');
-            }
-        });
- 
-        $('#circle').on('click', function() {
-            if (cropper) {
-                cropper.setAspectRatio(1); // 1:1 aspect, but show as circle
-                $('.cropper-crop-box, .cropper-view-box').css('border-radius', '50%');
-            }
-        });
- 
-        $('#custom').on('click', function() {
-            if (cropper) {
-                cropper.setAspectRatio(NaN); // Free crop
-                $('.cropper-crop-box, .cropper-view-box').css('border-radius', '0');
-            }
-        });
- 
- 
     });
- 
- 
+
     function triggerBanner1FileInput() {
         document.getElementById('banner1-input').click();
     }
- 
+
     function previewBanner1(event) {
         const reader = new FileReader();
         reader.onload = function() {
@@ -93,11 +28,11 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
- 
+
     function triggerLogoFileInput() {
         document.getElementById('logo-input').click();
     }
- 
+
     function previewLogo(event) {
         const reader = new FileReader();
         reader.onload = function() {
@@ -106,15 +41,15 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
- 
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
- 
+
     var noImage = 'admin/images/no-image.png';
- 
+
     $('#bannerFormSubmit').submit(function(e) {
         e.preventDefault();
         $("#loader").show();
@@ -141,13 +76,13 @@
                 $("#loader").hide();
                 var banner_title = data.responseJSON.errors.banner_title;
                 var banner_image = data.responseJSON.errors.banner_image;
- 
+
                 $('.banner_title-validation').html(banner_title);
                 $('.banner_image-validation').html(banner_image);
             }
         });
     });
- 
+
     $('#contactFormSubmit').submit(function(e) {
         e.preventDefault();
         $("#loader").show();
@@ -161,7 +96,7 @@
             cache: false,
             contentType: false,
             processData: false,
- 
+
             success: function(data) {
                 $("#loader").hide();
                 var message = data.message;
@@ -183,7 +118,7 @@
                 var maplink = data.responseJSON.errors.maplink;
                 var logoalt = data.responseJSON.errors.logoalt;
                 var logoimage = data.responseJSON.errors.logo_image;
- 
+
                 $('.heading-validation').html(heading);
                 $('.title-validation').html(title);
                 $('.location-validation').html(location);
@@ -197,7 +132,7 @@
             }
         });
     });
- 
+
     $('#socialFormSubmit').submit(function(e) {
         e.preventDefault();
         $("#loader").show();
@@ -211,7 +146,7 @@
             cache: false,
             contentType: false,
             processData: false,
- 
+
             success: function(data) {
                 $("#loader").hide();
                 var message = data.message;
@@ -227,7 +162,7 @@
                 var titinstagramle = data.responseJSON.errors.instagram;
                 var twitter = data.responseJSON.errors.twitter;
                 var linkedin = data.responseJSON.errors.linkedin;
- 
+
                 $('.facebook-validation').html(facebook);
                 $('.instagram-validation').html(instagram);
                 $('.twitter-validation').html(twitter);
@@ -235,7 +170,7 @@
             }
         });
     });
- 
+
     function checkEmail(message_id) {
         $("#loader").show();
         $.ajax({
@@ -252,7 +187,7 @@
                 $("#deliveryContent").html(response.view);
                 $("#deliveryModal").modal('show');
                 $("#loader").hide();
- 
+
             },
             error: function(data) {
                 console.log(data);
@@ -260,7 +195,7 @@
             }
         });
     }
- 
+
     function deleteContactEnquiry(e, id = '') {
         e.preventDefault();
         let ids = '';
@@ -268,7 +203,7 @@
             ids = $("input:checkbox[class=contactIds]:checked").map(function() {
                 return this.value;
             }).get();
- 
+
             if (ids.length < 1) {
                 alertMessage('warning', 'Please select row', );
                 return;
@@ -276,7 +211,7 @@
         } else {
             ids = [id];
         }
- 
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -296,7 +231,7 @@
                         ids: ids
                     },
                     dataType: "json",
- 
+
                     beforeSend: function() {
                         $("#loader").show();
                     },
@@ -321,7 +256,7 @@
                                 'warning'
                             )
                         }
- 
+
                     },
                     error: function(data) {
                         $("#loader").hide();
@@ -330,8 +265,8 @@
             }
         })
     }
- 
- 
+
+
     function deleteQuoteRequest(e, id = '') {
         e.preventDefault();
         let ids = '';
@@ -339,7 +274,7 @@
             ids = $("input:checkbox[class=quoteIds]:checked").map(function() {
                 return this.value;
             }).get();
- 
+
             if (ids.length < 1) {
                 alertMessage('warning', 'Please select row', );
                 return;
@@ -347,7 +282,7 @@
         } else {
             ids = [id];
         }
- 
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -367,7 +302,7 @@
                         ids: ids
                     },
                     dataType: "json",
- 
+
                     beforeSend: function() {
                         $("#loader").show();
                     },
@@ -392,7 +327,7 @@
                                 'warning'
                             )
                         }
- 
+
                     },
                     error: function(data) {
                         $("#loader").hide();
@@ -401,7 +336,7 @@
             }
         })
     }
- 
+
     function exportSelect(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -412,7 +347,7 @@
             alertMessage('warning', 'Please select row', );
             return;
         }
- 
+
         $.ajax({
             url: "{{ route('contacts.export') }}",
             type: 'post',
@@ -437,17 +372,17 @@
                 $('.quoteIds').prop('checked', false);
                 $(".mulltiCheckBox").prop('checked', false);
                 // $('.sub_chk').prop('checked', false);
- 
+
             },
             error: function(data) {
                 console.log(data);
- 
+
             }
         });
- 
- 
+
+
     }
- 
+
     function exportQuoteSelect(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -458,7 +393,7 @@
             alertMessage('warning', 'Please select row', );
             return;
         }
- 
+
         $.ajax({
             url: "{{ route('quote.export') }}",
             type: 'post',
@@ -483,22 +418,22 @@
                 $('.quoteIds').prop('checked', false);
                 $(".mulltiCheckBox").prop('checked', false);
                 // $('.sub_chk').prop('checked', false);
- 
+
             },
             error: function(data) {
                 console.log(data);
- 
+
             }
         });
     }
- 
+
     function viewRequestQuote(value, id) {
         $(".error-validation").html('');
         if (value == 1) {
             $("#id").val('');
             $("#quoteModal").modal('show');
             $("#quoteModal .heading").text("Request Details");
- 
+
             let route = "{{ route('admin.quote.getbyid', ':id') }}";
             route = route.replace(':id', id);
             $.ajax({
@@ -521,16 +456,6 @@
         } else {
             $("#quoteModal").modal('hide');
         }
- 
-    }
- 
-    function cropImage(value) {
-        $(".error-validation").html('');
-        if (value == 1) {
-            $("#id").val('');
-            $("#crop-modal").modal('show');
-            $("#crop-modal .heading").text("Crop Image");
-        }
+
     }
 </script>
- 

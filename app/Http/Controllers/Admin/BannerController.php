@@ -12,6 +12,7 @@ class BannerController extends Controller
 {
     public function updateBanner(Request $request)
     {
+       
         $request->validate([
             'banner_title' => 'required',
             'banner_image' => $request->banner_id ? 'image|max:2048' : 'required|image|max:2048',
