@@ -10,10 +10,10 @@
     <meta content="Flyoverind" name="author" />
 
     <link rel="shortcut icon" href="{{ asset('assets/images/flat-fav.png') }}">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/mainstyle.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/mainstyle.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <!--loader CSS -->
     <link rel="stylesheet" href="{{ asset('admin/loader/cover-spin.css') }}">
     <!--data table CSS -->
@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- -------------------------------cs date time picker-------------------------------------->
-    <link href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
         rel="stylesheet">
@@ -193,25 +193,25 @@
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ----------------------------js-date time------------------------------------------------- -->
-    <script src="{{ asset('/assets/js/moment.js') }}"></script>
-    <script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/bootstrap-timepicker.js') }}"></script>
+    <script src="{{ asset('admin//assets/js/moment.js') }}"></script>
+    <script src="{{ asset('admin//assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('admin//assets/js/bootstrap-timepicker.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/select2/js/select2.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/pages/datatables.init.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
     </script>
 
     {{-- <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places" type="text/javascript"></script> --}}
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
     @yield('js')
     <script>
         $(".select2").select2();
