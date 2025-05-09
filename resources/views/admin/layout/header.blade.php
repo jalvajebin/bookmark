@@ -4,10 +4,10 @@
         <div class="navbar-brand-box">
                 <a href="{{ url('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/fav.png') }}" alt="" height="30">
+                        <img src="{{ asset('admin/assets/images/fav.png') }}" alt="" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/fitlogo.png') }}" alt="" height="50">
+                        <img src="{{ asset('admin/assets/images/fitlogo.png') }}" alt="" height="50">
                     </span>
                 </a>
             </div>
@@ -162,7 +162,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ userImage()}}"
+                    <img class="rounded-circle header-profile-user" src=""
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
