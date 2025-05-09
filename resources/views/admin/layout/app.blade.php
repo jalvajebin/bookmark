@@ -167,11 +167,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            {{ date('Y') }} © Fit Solutions.
+                            {{ date('Y') }} © Bookmark .
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Fit Solutions.
+                                Design & Develop by Bookmark .
                             </div>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
     </div>
     <div class="rightbar-overlay"></div>
 
-    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
     <script>
         var base_url = '{!! url('/') !!}/';
     </script>
