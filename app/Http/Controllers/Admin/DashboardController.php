@@ -37,8 +37,10 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
+        $logedUserData = auth()->user(); 
+       
         // $blogs = Blog::where('status', 1)->count();
         // $filterType = $request->input('filter', 'week');
-        return view('admin.dashboard.index');
+        return view('admin.dashboard.index', compact('logedUserData'));
     }
 }
