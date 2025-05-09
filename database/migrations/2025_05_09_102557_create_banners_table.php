@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('page_name')->default('about-us');
             $table->string('title')->nullable();
-            $table->string('banner')->nullable(); // Image path
-            $table->string('alt')->nullable();     // Alt text
+            $table->string('alt')->nullable();     
             $table->timestamps();
         });
     }

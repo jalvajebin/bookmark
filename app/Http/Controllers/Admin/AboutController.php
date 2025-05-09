@@ -20,12 +20,14 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $banner = Banner::where('page', 'about')->first();
-        $whyChooseUs = WhyChooseUs::first();
-        $missionVision = MisionVision::first();
-        $aboutUs = AboutUs::first();
-        $seo = Seo::where('page', 'about')->first();
-        return view('admin.about.index', compact('banner', 'whyChooseUs', 'missionVision', 'aboutUs', 'seo'));
+        $banner = Banner::where('page_name', 'about-us')->first();
+        // $whyChooseUs = WhyChooseUs::first();
+        // $missionVision = MisionVision::first();
+        // $aboutUs = AboutUs::first();
+        // $seo = Seo::where('page', 'about')->first();
+        // return view('admin.about.index', compact('banner', 'whyChooseUs', 'missionVision', 'aboutUs', 'seo'));
+        return view('admin.about.index', compact('banner'));
+
     }
 
     public function getContactEnquiry()

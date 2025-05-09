@@ -24,7 +24,7 @@ class BannerController extends Controller
             ], [
                 'title' => $request->banner_title,
                 'alt' => $request->banner_alt,
-                'page'=> $request->banner_page,
+                'page_name'=> $request->banner_page,
             ]);
             if ($request->hasFile('banner_image')) {
                 $banner->clearMediaCollection('images');

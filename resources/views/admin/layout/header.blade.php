@@ -1,7 +1,7 @@
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
-        <div class="navbar-brand-box">
+            <div class="navbar-brand-box">
                 <a href="{{ url('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('admin/assets/images/fav.png') }}" alt="" height="30">
@@ -12,8 +12,7 @@
                 </a>
             </div>
 
-            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect"
-                id="vertical-menu-btn">
+            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
 
@@ -30,9 +29,8 @@
         <div class="d-flex">
 
             <div class="dropdown d-inline-block d-lg-none ms-2">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                    id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="mdi mdi-magnify"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
@@ -56,8 +54,7 @@
             </div>
 
             <div class="dropdown  d-lg-inline-block ms-1">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                    data-bs-toggle="fullscreen">
+                <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
                     <i class="bx bx-fullscreen"></i>
                 </button>
             </div>
@@ -161,11 +158,14 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <img class="rounded-circle header-profile-user" 
-         src="https://ui-avatars.com/api/?name={{ urlencode($logedUserData->name) }}&background=random&color=fff" 
-         alt="Header Avatar">
-    <span class="d-xl-inline-block ms-1">{{ $logedUserData->name }}</span>
+
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{-- <img class="rounded-circle header-profile-user"
+                        src="https://ui-avatars.com/api/?name={{ urlencode($logedUserData->name) }}&background=random&color=fff"
+                        alt="Header Avatar">
+                    <span class="d-xl-inline-block ms-1">{{ $logedUserData->name }}</span> --}}
+                    <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                </button>
     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
 </button>
 
