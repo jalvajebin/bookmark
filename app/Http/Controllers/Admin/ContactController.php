@@ -23,12 +23,14 @@ class ContactController extends Controller
 {
     public function index()
     {
+        $logedUserData = auth()->user(); 
+       
         // $banner = Banner::where('page', 'contact')->first();
         $contact = Contact::first();
         // $social = Social::first();
         // $seo = Seo::where('page', 'contact')->first();
         // return view('admin.contact.index', compact('banner', 'contact', 'social', 'seo'));
-        return view('admin.contact.index', compact('contact'));
+        return view('admin.contact.index', compact('contact', 'logedUserData'));
 
     }
 
