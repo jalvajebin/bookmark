@@ -23,11 +23,13 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $banner = Banner::where('page', 'contact')->first();
+        // $banner = Banner::where('page', 'contact')->first();
         $contact = Contact::first();
-        $social = Social::first();
-        $seo = Seo::where('page', 'contact')->first();
-        return view('admin.contact.index', compact('banner', 'contact', 'social', 'seo'));
+        // $social = Social::first();
+        // $seo = Seo::where('page', 'contact')->first();
+        // return view('admin.contact.index', compact('banner', 'contact', 'social', 'seo'));
+        return view('admin.contact.index', compact('contact'));
+
     }
 
     public function getContactEnquiry()
