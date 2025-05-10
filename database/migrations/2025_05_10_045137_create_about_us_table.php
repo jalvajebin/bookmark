@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->longText('description')->nullable();
             $table->string('online_support_number')->nullable();
-            $table->string('imag1_alt')->nullable();
-            $table->string('imag2_alt')->nullable();
-            $table->string('imag3_alt')->nullable();
-            $table->string('imag4_alt')->nullable();
+            $table->string('image1_alt')->nullable();
             $table->timestamps();
         });
     }
