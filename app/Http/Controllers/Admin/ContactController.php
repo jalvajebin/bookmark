@@ -19,6 +19,7 @@ use Yajra\DataTables\Facades\DataTables;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
+
 class ContactController extends Controller
 {
     public function index()
@@ -38,7 +39,9 @@ class ContactController extends Controller
 
     public function getContactEnquiry()
     {
+       
         $quote = ContactEnquiry::query()->orderBy('id', 'desc');
+    
 
         return DataTables::of($quote)
             ->addIndexColumn()
@@ -62,32 +65,34 @@ class ContactController extends Controller
 
     public function updateContact(Request $request)
     {
+       
+      
         $request->validate([
-            'heading' => 'required',
+            // 'heading' => 'required',
             'title' => 'required',
-            'location' => 'required',
+          
             'phone' => 'required',
             'email' => 'required|email:rfc,dns',
             'description' => 'required',
             'address' => 'required',
-            'maplink' => 'required',
-            'logo_image' => $request->id ? 'image|max:2048' : 'required|image|max:2048',
+            'map_link' => 'required',
+            'logo_image' => $request->contact_id ? 'image|max:2048' : 'required|image|max:2048',
         ]);
 
         DB::beginTransaction();
         try {
             $contact = Contact::updateOrCreate([
-                'id' => $request->id
+                'id' => $request->contact_id
             ], [
-                'heading' => $request->heading,
+              
                 'title' => $request->title,
-                'location' => $request->location,
+               
                 'phone' => $request->phone,
                 'email' => $request->email,
                 'description' => $request->description,
                 'address' => $request->address,
-                'maplink' => $request->maplink,
-                'logoalt' => $request->logoalt,
+                'map_link' => $request->map_link,
+                'alt' => $request->alt,
             ]);
             if ($request->hasFile('logo_image')) {
                 $contact->clearMediaCollection('logo');

@@ -1,4 +1,4 @@
-<div id="tab6" class="tab-content">
+<div id="tab3" class="tab-content">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -34,13 +34,17 @@
                             <table id="enquiryTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="10px" style="text-align: left; ">No</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email Address</th>
-                                        <th scope="col">Phone Number</th>
-                                        <th scope="col">Message </th>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Message</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <!-- Data Rows -->
+                                </tbody>
                             </table>
                         </div>
 

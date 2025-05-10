@@ -19,6 +19,21 @@
     function triggerBanner1FileInput() {
         document.getElementById('banner1-input').click();
     }
+    
+    // // contact 
+    function logo1InputTrigger() {
+        document.getElementById('contact1_input').click();
+    }
+
+    function previewContact1(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('logo1');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
 
     function previewBanner1(event) {
         const reader = new FileReader();
