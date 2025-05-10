@@ -24,7 +24,6 @@ class ContactController extends Controller
     public function index()
     {
         $logedUserData = auth()->user(); 
-       
         // $banner = Banner::where('page', 'contact')->first();
         $contact = Contact::first();
         // $social = Social::first();
