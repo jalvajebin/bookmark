@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('about_us', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name')->default('about-us');
             $table->string('title')->nullable();
-            $table->string('banner')->nullable(); 
-            $table->string('alt')->nullable();   
+            $table->longText('description')->nullable();
+            $table->string('online_support_number')->nullable();
+            $table->string('imag1_alt')->nullable();
+            $table->string('imag2_alt')->nullable();
+            $table->string('imag3_alt')->nullable();
+            $table->string('imag4_alt')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('about_us');
     }
 };

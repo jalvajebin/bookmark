@@ -129,10 +129,10 @@
                                 <li class="tab-list">
                                     <a href="#tab1" class="m-2">Banner</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab2" class="m-2">Why Choose Us</a>
-                                </li>
                                 <li class="tab-list">
+                                    <a href="#tab2" class="m-2">About Us</a>
+                                </li>
+                                {{-- <li class="tab-list">
                                     <a href="#tab3" class="m-2">Mission & vision</a>
                                 </li>
                                 <li class="tab-list">

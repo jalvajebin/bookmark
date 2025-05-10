@@ -20,7 +20,7 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $banner = Banner::where('page_name', 'about-us')->first();
+        $banner = Banner::where('page', 'about')->first();
         // $whyChooseUs = WhyChooseUs::first();
         // $missionVision = MisionVision::first();
         // $aboutUs = AboutUs::first();
