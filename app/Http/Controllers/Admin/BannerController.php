@@ -7,6 +7,7 @@ use App\Models\Banner;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class BannerController extends Controller
 {
@@ -16,6 +17,7 @@ class BannerController extends Controller
         $request->validate([
             'banner_title' => 'required',
             'banner_image' => $request->banner_id ? 'image|max:2048' : 'required|image|max:2048',
+            'banner_alt' => 'required'
         ]);
 
         DB::beginTransaction();
