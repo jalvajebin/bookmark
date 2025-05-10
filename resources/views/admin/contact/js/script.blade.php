@@ -78,7 +78,7 @@
                 $("#loader").hide();
                 var banner_title = data.responseJSON.errors.banner_title;
                 var banner_image = data.responseJSON.errors.banner_image;
-                var image_alt = data.responseJSON.errors.banner_alt;
+
 
                 $('.banner_title-validation').html(banner_title);
                 $('.banner_image-validation').html(banner_image);
