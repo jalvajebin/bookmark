@@ -128,12 +128,12 @@
                                 <li class="tab-list">
                                     <a href="#tab1" class="m-2">Banner</a>
                                 </li>
-                                <li class="tab-list">
+                                {{-- <li class="tab-list">
                                     <a href="#tab2" class="m-2">Contact Us</a>
                                 </li>
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">Contact Enquiries</a>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="tab-list">
                                     <a href="#tab3" class="m-2">Social Media</a>
                                 </li>
@@ -154,9 +154,9 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.contact.banner')
-                @include('admin.contact.contact')
-                @include('admin.contact.enquiry')
+                @include('admin.services.banner')
+                {{-- @include('admin.contact.contact')
+                @include('admin.contact.enquiry') --}}
                 {{-- @include('admin.contact.social')
                 @include('admin.contact.enquiry')
                 @include('admin.contact.quote')

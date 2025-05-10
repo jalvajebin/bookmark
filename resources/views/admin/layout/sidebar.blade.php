@@ -38,6 +38,12 @@
                         <span key="t-dollar">Contact</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('services*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('services.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Services</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
                     <a href="{{ route('email.index') }}" class="waves-effect">
                         <i class="fas fa-envelope"></i>

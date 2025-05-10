@@ -5,7 +5,8 @@
 
     function dataTable() {
         $(function() {
-            datatable = $('#contactEnquiryTable').DataTable({
+            datatable = $('#enquiryTable').DataTable({
+                
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
@@ -32,22 +33,20 @@
                         }
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'first_name',
+                        name: 'first_name'
                     },
-
+                    {
+                        data: 'last_name',
+                        name: 'last_name'
+                    },
                     {
                         data: 'email',
                         name: "email"
                     },
-                    {
-                        data: 'phone',
-                        name: "phone"
-                    },
-                    {
-                        data: 'subject',
-                        name: "subject"
-                    },
+                    
+                  
+                    
                     {
                         data: 'message',
                         name: "message",

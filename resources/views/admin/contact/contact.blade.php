@@ -20,7 +20,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form id="contactForm">
+                    <form id="contactFormSubmit">
                         @csrf
                         <input type="hidden" name="contact_id" id="contact_id" value="{{ $contact->id ?? '' }}">
                         <div class="row">
@@ -52,28 +52,34 @@
                                 </div>
                             </div>
 
+                          
+                            <div class="col-sm-6">
+                                <div class="mb-4">
+                                    <label for="address">Address</label>
+                                    <textarea id="address" name="address" class="form-control" placeholder="Enter address">{{ $contact->address ?? '' }}</textarea>
+                                    <span class="address_validation error-validation" style="color:red;"></span>
+                                </div>
+                            </div>
+
                             <div class="col-sm-6">
                                 <div class="mb-4">
                                     <label for="discription">Discription</label>
-                                    <textarea id="discription" name="discription" class="form-control" placeholder="Enter discription">{{ $contact->discription ?? '' }}</textarea>
+                                    <textarea id="discription" name="description" class="form-control" placeholder="Enter discription">{{ $contact->description ?? '' }}</textarea>
                                     <span class="discription_validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
+
                             <div class="col-sm-6">
-                                <div class="mb-4">
-                                    <label for="hours">Assist Hours</label>
-                                    <textarea id="hours" name="hours" class="form-control" placeholder="Enter assist hours">{{ $contact->hours ?? '' }}</textarea>
-                                    <span class="hours_validation error-validation" style="color:red;"></span>
+                                <div class="mb-3">
+                                    <label for="email">Map link</label>
+                                    <input type="text" name="map_link" id="map_link" class="form-control"
+                                        value="{{ $contact->map_link ?? '' }}" placeholder="Enter Map link ">
+                                    <span class="map_link_validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-12">
-                                <div class="mb-4">
-                                    <label for="copyright">Copyright</label>
-                                    <input type="copyright" name="copyright" id="copyright" class="form-control"
-                                        value="{{ $contact->copyright ?? '' }}" placeholder="Enter copyright">
-                                    <span class="copyright_validation error-validation" style="color:red;"></span>
-                                </div>
-                            </div>
+
+                           
+                          
                             <div class="col-sm-6 col-md-6 col-6">
                                 <label for="formFile" class="form-label">Logo<span
                                         style="color:#ff0000">*</span></label>
@@ -81,16 +87,19 @@
                                 <small class="text-red"> Maximum File Size Limit is 2MB</small>
                                 <div class="logo-wrapper mb-3">
                                     <img alt="Logo"
-                                        src="{{ $contact->logos->url ?? asset('admin/images/no-image.png') }}"
-                                        class="logo-image avatar-md img-thumbnail image_class" id="logo1"
+                                        src="{{ $contact->logo->url ?? asset('admin/images/no-image.png') }}"
+                                        class="logo-image avatar-md img-thumbnail image_class logo1" id="logo1"
                                         style="object-fit: contain;">
                                     <div class="edit-icon" onclick="logo1InputTrigger()">
                                         <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
                                             alt="Edit">
                                     </div>
                                 </div>
-                                <input type="file" id="logo1Input" name="logo" class="file-input"
-                                    accept="image/*">
+                                <span class="banner_image-validation error-validation" style="color:red;"></span>
+                                <input type="file" id="contact1_input" name="logo_image" class="file-input"
+                                    accept="image/*" onchange="previewContact1(event)">
+                                {{-- <input type="file" id="logo1Input" name="logo" class="file-input"
+                                    accept="image/*"  onchange="previewContact1(event)"> --}}
                                 <span class="logo1_validation error-validation" style="color:red;"></span>
                             </div>
                             {{-- <div class="col-sm-6 col-md-6 col-6">

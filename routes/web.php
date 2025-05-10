@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +53,18 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/{id}', [ContactController::class, 'getQuoteById'])->name('admin.quote.getbyid');
             Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
+
+         // services
+
+        Route::group(['prefix' => 'services'], function () {
+           
+        Route::get('/', [ServiceController::class, 'index'])->name('services.index');
+
+         
+        });
+
+
+     
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
@@ -115,3 +129,12 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
     });
 
 });
+
+
+
+Route::post('/request-a-quote', [FormController::class, 'requestAQuote'])->name('request.quote')->middleware('throttle:3,1');
+Route::post('/contact-enquiry', [FormController::class, 'contactEnquiry'])->name('contact.enquiry')->middleware('throttle:3,1');
+Route::post('/applyNow', [FormController::class, 'applyNow'])->name('applyNow')->middleware('throttle:3,1');
+Route::post('/request-a-demo', [FormController::class, 'requestADemo'])->name('requestADemo')->middleware('throttle:3,1');
+Route::post('/leave-a-comment', [FormController::class, 'leaveAComment'])->name('leaveAComment');
+Route::post("submit-email",[FormController::class,'submitEmail'])->name('submit.email');
