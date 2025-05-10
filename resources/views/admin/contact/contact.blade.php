@@ -24,15 +24,7 @@
                         @csrf
                         <input type="hidden" name="contact_id" id="contact_id" value="{{ $contact->id ?? '' }}">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="heading_ar">Heading</label>
-                                    <input type="text" name="heading" id="heading"
-                                        value="{{ $contact->heading ?? '' }}" class="form-control heading"
-                                        placeholder="Enter heading">
-                                    <span class="heading_validation error-validation" style="color:red;"></span>
-                                </div>
-                            </div>
+                           
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label for="title">Title</label>

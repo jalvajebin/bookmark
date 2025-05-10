@@ -51,6 +51,7 @@
     var noImage = 'admin/images/no-image.png';
 
     $('#bannerFormSubmit').submit(function(e) {
+        
         e.preventDefault();
         $("#loader").show();
         var formData = new FormData(this);
@@ -63,6 +64,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
+                console.log(data, 'af');
                 $("#loader").hide();
                 var message = data.message;
                 if (data.status == true) {
@@ -76,6 +78,7 @@
                 $("#loader").hide();
                 var banner_title = data.responseJSON.errors.banner_title;
                 var banner_image = data.responseJSON.errors.banner_image;
+                var image_alt = data.responseJSON.errors.banner_alt;
 
                 $('.banner_title-validation').html(banner_title);
                 $('.banner_image-validation').html(banner_image);
