@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
         Route::group(['prefix' => 'about'], function () {
             Route::get('/', [AboutController::class, 'index'])->name('about.index');
-            Route::post('why-choose-us', [AboutController::class, 'addWhyChooseUs'])->name('admin.why-choose-us.add');
+            Route::post('learn-about-us', [AboutController::class, 'addLearnAboutUs'])->name('admin.learn-about-us.add');
             Route::post('mission-vision', [AboutController::class, 'addMissionVision'])->name('admin.mission-vision.add');
             Route::post('about-us', [AboutController::class, 'addAboutUs'])->name('admin.about-us.add');
         });

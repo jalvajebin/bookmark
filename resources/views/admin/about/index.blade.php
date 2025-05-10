@@ -132,10 +132,10 @@
                                 <li class="tab-list">
                                     <a href="#tab2" class="m-2">About Us</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Mission & vision</a>
-                                </li>
                                 <li class="tab-list">
+                                    <a href="#tab3" class="m-2">Learn About Agency</a>
+                                </li>
+                                {{-- <li class="tab-list">
                                     <a href="#tab4" class="m-2">About US</a>
                                 </li>
                                 <li class="tab-list">
@@ -149,10 +149,9 @@
             <!-- end page list -->
             <div id="tabs-content">
                 @include('admin.about.banner')
-                {{-- @include('admin.about.why-choose-us')
-                @include('admin.about.mission-vision')
+                @include('admin.about.learn-about-agency')
                 @include('admin.about.about-us')
-                @include('admin.about.seo') --}}
+                {{-- @include('admin.about.seo') --}}
             </div>
         </div>
     </div>
@@ -176,6 +175,6 @@
     </div>
 @endsection
 @section('js')
-    {{-- @include('admin.about.js.datatable') --}}
+    @include('admin.about.js.datatable')
     @include('admin.about.js.script')
 @endsection
