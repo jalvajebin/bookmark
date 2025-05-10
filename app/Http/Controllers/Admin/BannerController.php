@@ -7,15 +7,17 @@ use App\Models\Banner;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class BannerController extends Controller
 {
     public function updateBanner(Request $request)
     {
-       
+
         $request->validate([
             'banner_title' => 'required',
             'banner_image' => $request->banner_id ? 'image|max:2048' : 'required|image|max:2048',
+            'banner_alt' => 'required'
         ]);
 
         DB::beginTransaction();
@@ -25,7 +27,7 @@ class BannerController extends Controller
             ], [
                 'title' => $request->banner_title,
                 'alt' => $request->banner_alt,
-                'page_name'=> $request->banner_page,
+                'page' => $request->banner_page,
             ]);
             if ($request->hasFile('banner_image')) {
                 $banner->clearMediaCollection('images');

@@ -63,6 +63,7 @@
                                     <label for="name">Image Alt</label>
                                     <input name="banner_alt" type="text" value="{{ $banner->alt ?? '' }}"
                                         class="form-control" id="image_alt" placeholder="Enter Alt">
+
                                 </div>
                             </div>
                         </div>
