@@ -6,8 +6,9 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\FormController;
-use App\Http\Controllers\ServiceController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// s
+
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');

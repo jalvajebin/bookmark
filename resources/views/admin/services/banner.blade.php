@@ -30,7 +30,7 @@
                         @csrf
                         <input type="hidden" class="banner_id" name="banner_id" id="banner_id"
                             value="{{ $banner->id ?? '' }}">
-                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="contact">
+                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="services">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="mb-3">
