@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
@@ -12,6 +13,9 @@ class ServiceController extends Controller
         $logedUserData = auth()->user(); 
 
         $banner = Banner::where('page', 'services')->first();
+
+       
+        
     
         return view('admin.services.index', compact('logedUserData', 'banner'));
 
