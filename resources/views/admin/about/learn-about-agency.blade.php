@@ -47,7 +47,7 @@
                                     <label for="button_title">Button Title</label>
                                     <input id="button_title" name="button_title" type="text" class="form-control button_title"
                                         placeholder="Button Title" value="{{ $learnAboutUs->button_title ?? '' }}">
-                                    <span class="button_title-validation error-validation" style="color:red;"></span>
+                                    <span class="button_title_validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -55,7 +55,7 @@
                                     <label for="button_link">Button Link</label>
                                     <input id="button_link" name="button_link" type="text" class="form-control button_link"
                                         placeholder="Button Link" value="{{ $learnAboutUs->button_link ?? '' }}">
-                                    <span class="button_link-validation error-validation" style="color:red;"></span>
+                                    <span class="button_link_validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
     
@@ -83,7 +83,7 @@
                                 <label for="employee_description">Employee Description</label>
                                 <textarea id="employee_description" name="employee_description" rows="5" class="form-control employee_description"
                                     placeholder="Enter Employee Description">{{ $learnAboutUs->employee_description ?? '' }}</textarea>
-                                <span class="employee_description-validation error-validation" style="color:red;"></span>
+                                <span class="employee_description_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -98,7 +98,7 @@
                                 <label for="employee_content_1">Employee Content 1</label>
                                 <input id="employee_content_1" name="employee_content_1" type="text" class="form-control employee_content_1"
                                     placeholder="Employee Content 1" value="{{ $learnAboutUs->employee_content_1 ?? '' }}">
-                                <span class="employee_content_1-validation error-validation" style="color:red;"></span>
+                                <span class="employee_content_1_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -106,7 +106,7 @@
                                 <label for="employee_content_2">Employee Content 2</label>
                                 <input id="employee_content_2" name="employee_content_2" type="text" class="form-control employee_content_2"
                                     placeholder="Employee Content 2" value="{{ $learnAboutUs->employee_content_2 ?? '' }}">
-                                <span class="employee_content_2-validation error-validation" style="color:red;"></span>
+                                <span class="employee_content_2_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -114,7 +114,7 @@
                                 <label for="employee_content_3">Employee Content 3</label>
                                 <input id="employee_content_3" name="employee_content_3" type="text" class="form-control employee_content_3"
                                     placeholder="Employee Content 3" value="{{ $learnAboutUs->employee_content_3 ?? '' }}">
-                                <span class="employee_content_3-validation error-validation" style="color:red;"></span>
+                                <span class="employee_content_3_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
 
@@ -142,7 +142,7 @@
                             <label for="employer_description">Employer Description</label>
                             <textarea id="employer_description" name="employer_description" rows="5" class="form-control employer_description"
                                 placeholder="Enter Employer Description">{{ $learnAboutUs->employer_description ?? '' }}</textarea>
-                            <span class="employer_description-validation error-validation" style="color:red;"></span>
+                            <span class="employer_description_validation error-validation" style="color:red;"></span>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -157,7 +157,7 @@
                             <label for="employer_content_1">Employer Content 1</label>
                             <input id="employer_content_1" name="employer_content_1" type="text" class="form-control employer_content_1"
                                 placeholder="Employer Content 1" value="{{ $learnAboutUs->employer_content_1 ?? '' }}">
-                            <span class="employer_content_1-validation error-validation" style="color:red;"></span>
+                            <span class="employer_content_1_validation error-validation" style="color:red;"></span>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -165,7 +165,7 @@
                             <label for="employer_content_2">Employer Content 2</label>
                             <input id="employer_content_2" name="employer_content_2" type="text" class="form-control employer_content_2"
                                 placeholder="Employer Content 2" value="{{ $learnAboutUs->employer_content_2 ?? '' }}">
-                            <span class="employer_content_2-validation error-validation" style="color:red;"></span>
+                            <span class="employer_content_2_validation error-validation" style="color:red;"></span>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -173,7 +173,7 @@
                             <label for="employer_content_3">Employer Content 3</label>
                             <input id="employer_content_3" name="employer_content_3" type="text" class="form-control employer_content_3"
                                 placeholder="Employer Content 3" value="{{ $learnAboutUs->employer_content_3 ?? '' }}">
-                            <span class="employer_content_3-validation error-validation" style="color:red;"></span>
+                            <span class="employer_content_3_validation error-validation" style="color:red;"></span>
                         </div>
                     </div>
                     </div>

@@ -72,8 +72,14 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
         Route::group(['prefix' => 'about'], function () {
             Route::get('/', [AboutController::class, 'index'])->name('about.index');
             Route::post('learn-about-us', [AboutController::class, 'addLearnAboutUs'])->name('admin.learn-about-us.add');
-            Route::post('mission-vision', [AboutController::class, 'addMissionVision'])->name('admin.mission-vision.add');
+            Route::post('counter', [AboutController::class, 'addCounterData'])->name('admin.counter.add');
             Route::post('about-us', [AboutController::class, 'addAboutUs'])->name('admin.about-us.add');
+            Route::get('testimonials', [AboutController::class, 'getTestimonial'])->name('admin.about-us.getTestimonial');
+            Route::post('add-testimonial', [AboutController::class, 'addTestimonial'])->name('admin.testimonial.add');
+            Route::get('/{id}', [AboutController::class, 'getTestimonialById'])->name('admin.testimonial.getbyid');
+            Route::delete('/{id}', [AboutController::class, 'deleteTestimonial'])->name('admin.testimonial.delete');
+
+
         });
 
         Route::group(['prefix' => 'home'], function () {

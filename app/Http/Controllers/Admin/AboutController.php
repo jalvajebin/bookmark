@@ -8,9 +8,11 @@ use App\Exports\ContactExport;
 use App\Models\AboutUs;
 use App\Models\Banner;
 use App\Models\ContactEnquiry;
+use App\Models\Counter;
 use App\Models\LearnAboutUs;
 use App\Models\MisionVision;
 use App\Models\Seo;
+use App\Models\Testimonial;
 use App\Models\WhyChooseUs;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -22,63 +24,50 @@ class AboutController extends Controller
     public function index()
     {
         $banner = Banner::where('page', 'about')->first();
-        // $whyChooseUs = WhyChooseUs::first();
         $learnAboutUs = LearnAboutUs::first();
-
-
+        $counter = Counter::first();
         $aboutUs = AboutUs::first();
         // $seo = Seo::where('page', 'about')->first();
-        // return view('admin.about.index', compact('banner', 'whyChooseUs', 'missionVision', 'aboutUs', 'seo'));
-        return view('admin.about.index', compact('banner', 'aboutUs', 'learnAboutUs'));
+        return view('admin.about.index', compact('banner', 'aboutUs', 'learnAboutUs', 'counter'));
     }
 
-    public function getContactEnquiry()
+    public function getTestimonial()
     {
-        $quote = ContactEnquiry::query()->orderBy('id', 'desc');
+        $quote = Testimonial::query()->orderBy('id', 'desc');
+        // dd($quote);
 
         return DataTables::of($quote)
             ->addIndexColumn()
             ->make(true);
     }
 
-
-
-    public function addMissionVision(Request $request)
+    public function addTestimonial(Request $request)
     {
-
+        // dd($request->all());
         $request->validate([
-            'mission_title' => 'required',
-            'mission_description' => 'required',
-            'vision_title' => 'required',
-            'vision_description' => 'required',
-            'mission_image' => $request->mission_vision_id ? 'image|max:2048' : 'required|image|max:2048',
-            'vision_image' => $request->mission_vision_id ? 'image|max:2048' : 'required|image|max:2048',
+            'heading' => 'required',
+            'description' => 'required',
+            'image' => $request->testimonial_id ? 'image|max:2048' : 'required|image|max:2048',
+
         ]);
 
         DB::beginTransaction();
         try {
-            $missionVision  = MisionVision::updateOrCreate([
-                'id' => $request->mission_vision_id
+            $testimonial = Testimonial::updateOrCreate([
+                'id' => $request->testimonial_id
             ], [
-                'mission_title' => $request->mission_title,
-                'mission_description' => $request->mission_description,
-                'vision_title' => $request->vision_title,
-                'vision_description' => $request->vision_description,
-                'missionImageAlt' => $request->mission_image_alt,
-                'visionImageAlt' => $request->vision_image_alt,
+
+                'date' => \Carbon\Carbon::createFromFormat('d-m-Y', $request->date)->format('Y-m-d'),
+                'heading' => $request->heading,
+                'description' => $request->description,
+                'alt' => $request->alt,
             ]);
-
-            if ($request->hasFile('mission_image')) {
-                $missionVision->clearMediaCollection('missionImage');
-                $missionVision->addMediaFromRequest('mission_image')->toMediaCollection('missionImage');
+            if ($request->hasFile('image')) {
+                $testimonial->clearMediaCollection('images');
+                $testimonial->addMediaFromRequest('image')->toMediaCollection('images');
             }
-            if ($request->hasFile('vision_image')) {
-                $missionVision->clearMediaCollection('visionImage');
-                $missionVision->addMediaFromRequest('vision_image')->toMediaCollection('visionImage');
-            }
-
             DB::commit();
-            return response()->json(['status' => true, 'message' => $request->mission_vision_id ? "Successfully Updated" : "Successfully Added"]);
+            return response()->json(['status' => true, 'message' => $request->testimonial_id ? "Successfully Updated" : "Successfully Added"]);
         } catch (Exception $e) {
             DB::rollback();
             return  response()->json(['status' => false, 'message' => $e->getMessage()]);
@@ -87,16 +76,12 @@ class AboutController extends Controller
 
     public function addAboutUs(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'title' => 'required',
             'description' => 'required',
             'image1' => $request->about_us_id ? 'image|max:2048' : 'required|image|max:2048',
             'online_support_no' => 'required',
-
-
         ]);
-
 
         DB::beginTransaction();
         try {
@@ -121,7 +106,6 @@ class AboutController extends Controller
             return  response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
-
 
     public function addLearnAboutUs(Request $request)
     {
@@ -162,7 +146,7 @@ class AboutController extends Controller
                 'employee_alt' => $request->employee_alt,
                 'employer_alt' => $request->employer_alt,
             ]);
-            
+
             if ($request->hasFile('employee_image')) {
                 $learnAboutUs->clearMediaCollection('employee_image_name');
                 $learnAboutUs->addMediaFromRequest('employee_image')->toMediaCollection('employee_image_name');
@@ -179,35 +163,102 @@ class AboutController extends Controller
         }
     }
 
-    public function contactExport(Request $request)
+    public function addCounterData(Request $request)
     {
-        $ids = $request->ids ?? [];
+        $request->validate([
+            'counter_1_name' => 'required|string|max:255',
+            'count1' => 'required|numeric',
+            'counter1_image_name' => $request->counter_id ? 'image|max:2048' : 'required|image|max:2048',
+            'counter_2_name' => 'required|string|max:255',
+            'count2' => 'required|numeric',
+            'counter2_image_name' => $request->counter_id ? 'image|max:2048' : 'required|image|max:2048',
+            'counter_3_name' => 'required|string|max:255',
+            'count3' => 'required|numeric',
+            'counter3_image_name' => $request->counter_id ? 'image|max:2048' : 'required|image|max:2048',
+            'counter_4_name' => 'required|string|max:255',
+            'count4' => 'required|numeric',
+            'counter4_image_name' => $request->counter_id ? 'image|max:2048' : 'required|image|max:2048',
+            'counter_5_name' => 'required|string|max:255',
+            'count5' => 'required|numeric',
+            'counter_6_name' => 'required|string|max:255',
+            'count6' => 'required|numeric',
+            'counter_7_name' => 'required|string|max:255',
+            'count7' => 'required|numeric',
+            'counter_8_name' => 'required|string|max:255',
+            'count8' => 'required|numeric',
 
-        return Excel::download(new ContactExport($ids), 'contact-enquiries.xlsx');
-    }
+        ]);
 
-    public function deleteContactEnquiry(Request $request)
-    {
-        $contact  = ContactEnquiry::whereIn('id', $request->ids)->first();
+        DB::beginTransaction();
+        try {
+            $counter = Counter::updateOrCreate([
+                'id' => $request->counter_id
+            ], [
+                'counter_1_name' => $request->counter_1_name,
+                'count1' => $request->count1,
+                'counter_1_alt' => $request->counter_1_alt,
+                'counter_2_name' => $request->counter_2_name,
+                'count2' => $request->count2,
+                'counter_2_alt' => $request->counter_2_alt,
+                'counter_3_name' => $request->counter_3_name,
+                'count3' => $request->count3,
+                'counter_3_alt' => $request->counter_3_alt,
+                'counter_4_name' => $request->counter_4_name,
+                'count4' => $request->count4,
+                'counter_4_alt' => $request->counter_4_alt,
+                'counter_5_name' => $request->counter_5_name,
+                'count5' => $request->count5,
+                'counter_6_name' => $request->counter_6_name,
+                'count6' => $request->count6,
+                'counter_7_name' => $request->counter_7_name,
+                'count7' => $request->count7,
+                'counter_8_name' => $request->counter_8_name,
+                'count8' => $request->count8,
+            ]);
 
-        if (!isset($contact)) {
-            return response()->json(['success' => false, 'message' => "Not found!"]);
+            if ($request->hasFile('counter1_image_name')) {
+                $counter->clearMediaCollection('count1Image');
+                $counter->addMediaFromRequest('counter1_image_name')->toMediaCollection('count1Image');
+            }
+
+            if ($request->hasFile('counter2_image_name')) {
+                $counter->clearMediaCollection('count2Image');
+                $counter->addMediaFromRequest('counter2_image_name')->toMediaCollection('count2Image');
+            }
+
+
+            if ($request->hasFile('counter3_image_name')) {
+                $counter->clearMediaCollection('count3Image');
+                $counter->addMediaFromRequest('counter3_image_name')->toMediaCollection('count3Image');
+            }
+
+            if ($request->hasFile('counter4_image_name')) {
+                $counter->clearMediaCollection('count4Image');
+                $counter->addMediaFromRequest('counter4_image_name')->toMediaCollection('count4Image');
+            }
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->counter_id ? 'Successfully Updated' : 'Successfully Added']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
-        $contact->delete();
-        return response()->json(['success' => true, 'message' => "Deleted"]);
+    }
+ 
+
+    public function getTestimonialById($id){
+        $testimonial = Testimonial::findOrfail($id);
+        return $testimonial;
     }
 
-    public function getDeliveryDetails($message_id)
-    {
-        $messageurl = "https://api.postmarkapp.com/messages/outbound/$message_id/details";
-        $response = \Illuminate\Support\Facades\Http::withHeaders([
-            'X-Postmark-Server-Token' => env('POSTMARK_TOKEN'),
-            'Content-Type' => 'application/json',
-        ])->get($messageurl);
 
-        $results = $response['MessageEvents'];
-        $view = view('admin.email', ['results' => $results])->render();
+    public function deleteTestimonial($id){
+        $testimonial = Testimonial::findOrfail($id);
+        $testimonial->delete();
 
-        return response()->json(['view' => $view]);
+         return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
     }
 }
