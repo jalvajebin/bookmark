@@ -135,12 +135,12 @@
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">Learn About Agency</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab4" class="m-2">About US</a>
+                                <li class="tab-list">
+                                    <a href="#tab4" class="m-2">Counter Section</a>
                                 </li>
                                 <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
+                                    <a href="#tab5" class="m-2">Testimonials</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -151,7 +151,9 @@
                 @include('admin.about.banner')
                 @include('admin.about.learn-about-agency')
                 @include('admin.about.about-us')
-                {{-- @include('admin.about.seo') --}}
+                @include('admin.about.counters')
+                @include('admin.about.testimonials')
+
             </div>
         </div>
     </div>
