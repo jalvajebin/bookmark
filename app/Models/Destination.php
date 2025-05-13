@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Service extends Model implements HasMedia
+class Destination extends Model
 {
-    use HasFactory, InteractsWithMedia;
-
-    protected $fillable = ['title','title_two','discription','discription_two','read_more', 'read_more_two','link','link_two'];
-    // protected $guarded = [];
+    use HasFactory  ,InteractsWithMedia;
+  
+    // protected $fillable = ['title','title_two','discription','discription_two','read_more', 'read_more_two','link','link_two'];
+     protected $guarded = [];
     protected $appends = ['images'];
 
 
@@ -49,5 +48,3 @@ class Service extends Model implements HasMedia
         return $file;
     }
 }
-
-

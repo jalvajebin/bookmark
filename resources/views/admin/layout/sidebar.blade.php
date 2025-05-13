@@ -44,6 +44,23 @@
                         <span key="t-dollar">Services</span>
                     </a>
                 </li>
+
+                  <!-- Applicants Dropdown -->
+                  <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-users"></i>
+                        <span key="t-applicants">Applicants</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="#">Find a Job</a></li>
+                        <li><a href="#">Submit your CV</a></li>
+                        <li><a href="#">Career Hub</a></li>
+                        <li><a href="{{ route('destination.index') }}">Destinations</a></li>
+                    </ul>
+                </li>
+
+
+
                 <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
                     <a href="{{ route('email.index') }}" class="waves-effect">
                         <i class="fas fa-envelope"></i>

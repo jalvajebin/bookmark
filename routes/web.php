@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\FormController;
@@ -56,13 +57,27 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
         });
 
          // services
-
         Route::group(['prefix' => 'services'], function () {
            
         Route::get('/', [ServiceController::class, 'index'])->name('services.index');
+        Route::post('update-service', [ServiceController::class, 'updateService'])->name('admin.service.add');
+     
 
          
         });
+
+        // appliction destination
+        Route::group(['prefix' => 'destination'], function () {
+           
+            Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
+            Route::post('update-service', [DestinationController::class, 'updateService'])->name('admin.service.add');
+         
+    
+             
+            });
+
+        
+
 
 
      
