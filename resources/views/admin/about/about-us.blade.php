@@ -21,7 +21,6 @@
                     <form class="aboutUsFormSubmit" id="aboutUsFormSubmit">
                         @csrf
                         <input type="hidden" name="about_us_id" id="about_us_id" value="{{ $aboutUs->id ?? '' }}">
-
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-4">
@@ -31,7 +30,6 @@
                                     <span class="title-validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
                                 <div class="mb-4">
                                     <label for="description">Description</label>
@@ -58,7 +56,7 @@
                                 <input type="file" id="image1" name="image1" class="file-input" accept="image/*"
                                     onchange="previewImage1(event)">
                                 <span class="image1_validation error-validation" style="color:red;"></span>
-                            </div>    
+                            </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
@@ -76,13 +74,11 @@
                                 <span class="online_support_no_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
+                        <div class="d-flex flex-wrap left_side gap-2">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-flex flex-wrap left_side gap-2">
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
-</div>
