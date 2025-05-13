@@ -186,7 +186,7 @@
         var base_url = '{!! url('/') !!}/';
     </script>
     <!-- ........standard ck editor......... -->
-    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>       <!--data table JavaScript -->
     <!--data table JavaScript -->
     <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <!--alertify JavaScript -->
