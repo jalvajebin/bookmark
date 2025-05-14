@@ -107,9 +107,9 @@
                                 <li class="tab-list">
                                     <a href="#tab5" class="m-2">Blog Comments</a>
                                 </li>
-                                <li class="tab-list">
+                                {{-- <li class="tab-list">
                                     <a href="#tab4" class="m-2">Seo</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>

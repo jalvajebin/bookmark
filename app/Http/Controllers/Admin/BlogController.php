@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\LeaveComment;
 use App\Models\MultipleBlogCategory;
 use App\Models\MultipleBlogTag;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class BlogController extends Controller
 {
@@ -322,6 +324,169 @@ class BlogController extends Controller
         return response()->json([
             'message' => 'Data deleted successfully!'
         ]);
+    }
+
+
+    public function edit($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $tags = Tag::orderBy('id', 'DESC')->where('status', 1)->get();
+        $categories = BlogCategory::orderBy('id', 'DESC')->where('status', 1)->get();
+        $multipleTags = MultipleBlogTag ::orderBy('id', 'DESC')->get();
+        $multipleCategory = MultipleBlogCategory ::orderBy('id', 'DESC')->get();
+        return view('admin.blog.edit', compact('blog', 'tags', 'categories', 'multipleTags', 'multipleCategory'));
+    }
+
+
+    public function update(Request $request)
+    {
+        $message = "You Have Made No Changes To Save";
+        $status = false;
+
+        $request->validate([
+            'title' => 'required|max:100',
+            'main_image' => 'max:2048|image',
+            'inner_image' => 'max:2048|image',
+            'author' => 'required|max:100',
+            'tag_ids' => 'required',
+            'category_ids' => 'required',
+            'description' => 'required',
+        ],
+        [
+            'tag_ids.required' => 'The tag field is required.',
+            'category_ids.required' => 'The category field is required.',
+        ]);
+
+        $id = $request->blog_id;
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->input('title');
+        // $blog->priority = $request->input('priority');
+        $blog->author = $request->input('author');
+        $blog->date = Carbon::parse($request->input('date'))->format('Y-m-d');
+        $blog->description = $request->input('description');
+        $blog->status = 1;
+        $blog->meta_title = $request->input('meta_title');
+        $blog->meta_keyword = $request->input('meta_keyword');
+        $blog->meta_description = $request->input('meta_description');
+        $blog->alt = $request->input('alt');
+        if ($request->hasFile('main_image')) {
+            $blog->clearMediaCollection('main_images');
+            $blog->addMediaFromRequest('main_image')->toMediaCollection('main_images');
+            $message = "You Have Successfully Updated";
+            $status = true;
+            $title = "Added";
+            $icon = "success";
+        }
+        if ($request->hasFile('inner_image')) {
+            $blog->clearMediaCollection('inner_images');
+            $blog->addMediaFromRequest('inner_image')->toMediaCollection('inner_images');
+            $message = "You Have Successfully Updated";
+            $status = true;
+            $title = "Added";
+            $icon = "success";
+        }
+        $blog->save();
+
+        $tag_id = $request->tag_ids;
+        $category_id = $request->category_ids;
+
+        if ($tag_id) {
+            MultipleBlogTag::where('blog_id', $id)->delete();
+            foreach ($tag_id  as $key => $value) {
+                MultipleBlogTag::create([
+                    'tag_id' => $value,
+                    'blog_id' => $id,
+                ]);
+                $message = "you have successfully updated";
+                $status = true;
+                $title = "Added";
+                $icon = "success";
+            }
+        }
+
+        if ($category_id) {
+            MultipleBlogCategory::where('blog_id', $id)->delete();
+            foreach ($category_id  as $key => $category) {
+                MultipleBlogCategory::create([
+                    'category_id' => $category,
+                    'blog_id' => $id,
+                ]);
+                $message = "you have successfully updated";
+                $status = true;
+                $title = "Added";
+                $icon = "success";
+            }
+        }
+
+        if ($blog->wasChanged()) {
+            $message = "You Have Successfully Updated";
+            $status = true;
+            $title = "Added";
+            $icon = "success";
+        }
+
+        return response()->json([
+            'title' => $title,
+            'message' => $message,
+            'icon' => $icon,
+            'status' => $status,
+        ]);
+    }
+
+
+    public function destroy($id)
+    {
+        $blog = Blog::findOrFail($id);
+        MultipleBlogTag::where('blog_id', $id)->delete();
+        MultipleBlogCategory::where('blog_id', $id)->delete();
+        $blog->clearMediaCollection('main_images');
+        $blog->clearMediaCollection('inner_images');
+        $blog->delete();
+        return response()->json([
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+    public function getBlogComment()
+    {
+        $comment = LeaveComment::orderBy('id', 'DESC')->get();
+
+        return DataTables::of($comment)
+            ->addColumn('blog_title', function ($data) {
+                return optional($data->blog)->title; 
+            })
+            ->addIndexColumn()
+            ->make(true);
+        
+    }
+
+    public function changeCommentStatus(Request $request)
+    {
+        $comment  = LeaveComment::query()->where('id', $request->id)->first();
+
+        if (!isset($comment)) {
+            return response()->json(['success' => false, 'message' => "not found!"]);
+        }
+
+        $comment->status = $request->status == 1 ? 0 : 1;
+        $comment->save();
+
+        return response()->json(['success' => true, 'message' => "Status Changed"]);
+    }
+
+    public function blogCommentDelete(Request $request)
+    {
+        $comment  = LeaveComment::whereIn('id', $request->ids)->get();
+
+        if (!isset($comment)) {
+            return response()->json(['success' => false, 'message' => "not found!"]);
+        }
+
+        $comment->each(function ($data) {
+            $data->delete();
+        });
+
+        return response()->json(['success' => true, 'message' => "Deleted."]);
     }
 
 }
