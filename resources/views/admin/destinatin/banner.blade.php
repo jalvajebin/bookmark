@@ -10,7 +10,7 @@
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('services.index') }}">Service</a>
+                            <a href="{{ route('destination.index') }}">destination</a>
                         </li>
                         <li class="breadcrumb-item active">
                             Banner
@@ -30,7 +30,7 @@
                         @csrf
                         <input type="hidden" class="banner_id" name="banner_id" id="banner_id"
                             value="{{ $banner->id ?? '' }}">
-                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="contact">
+                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="destination">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="mb-3">

@@ -130,7 +130,7 @@
                                 </li>
                                 
                                  <li class="tab-list">
-                                    <a href="#tab2" class="m-2">Service Us</a>
+                                    <a href="#tab2" class="m-2">Top Destinations</a>
                                 </li>
                                 {{-- <li class="tab-list">
                                     <a href="#tab3" class="m-2">Contact Enquiries</a>
@@ -155,8 +155,10 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.services.banner')
-                @include('admin.services.service')
+                @include('admin.destinatin.banner')
+                @include('admin.destinatin.destination')
+             
+                {{-- @include('admin.services.service') --}}
                 {{-- @include('admin.contact.contact')
                 @include('admin.contact.enquiry') --}}
                 {{-- @include('admin.contact.social')
@@ -185,6 +187,6 @@
     </div>
 @endsection
 @section('js')
-@include('admin.services.js.datatable')
-@include('admin.services.js.script')
+@include('admin.destinatin.js.datatable')
+@include('admin.destinatin.js.script')
 @endsection
