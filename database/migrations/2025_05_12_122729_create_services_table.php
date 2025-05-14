@@ -19,7 +19,6 @@ return new class extends Migration
             $table->longText('discription_two');
             $table->string('read_more');
             $table->string('read_more_two');
-
             $table->string('link');
             $table->string('link_two');
             $table->timestamps();
