@@ -32,10 +32,10 @@
                         <span key="t-dollar">Blog</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('contact*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('contact.index') }}" class="waves-effect">
+                <li class="{{ Request::is('employer*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('employer.index') }}" class="waves-effect">
                         <i class="fas fa-address-book"></i>
-                        <span key="t-dollar">Contact</span>
+                        <span key="t-dollar">Employer</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('services*') ? 'mm-active' : '' }}">
@@ -44,6 +44,7 @@
                         <span key="t-dollar">Services</span>
                     </a>
                 </li>
+
 
                   <!-- Applicants Dropdown -->
                   <li>
@@ -60,6 +61,14 @@
                 </li>
 
 
+
+
+                <li class="{{ Request::is('contact*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('contact.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Contact</span>
+                    </a>
+                </li>
 
                 <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
                     <a href="{{ route('email.index') }}" class="waves-effect">

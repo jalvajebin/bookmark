@@ -18,12 +18,10 @@ class Blog extends Model implements HasMedia
         'inner_images'
     ];
 
-    
-
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->crop('crop-center', 70, 50)
+            // ->crop('crop-center', 70, 50)
             ->performOnCollections('main_images', 'inner_images')
             ->nonQueued()
             ->optimize()
@@ -31,7 +29,7 @@ class Blog extends Model implements HasMedia
             ->quality(100)
             ->sharpen(6);
         $this->addMediaConversion('preview')
-            ->crop('crop-center', 380, 250)
+            // ->crop('crop-center', 380, 250)
             ->performOnCollections('main_images')
             ->nonQueued()
             ->optimize()
@@ -40,7 +38,7 @@ class Blog extends Model implements HasMedia
             ->sharpen(6);
 
         $this->addMediaConversion('preview')
-            ->crop('crop-center', 1920, 1280)
+            // ->crop('crop-center', 1920, 1280)
             ->performOnCollections('inner_images')
             ->nonQueued()
             ->optimize()
@@ -49,7 +47,7 @@ class Blog extends Model implements HasMedia
             ->sharpen(6);
 
         $this->addMediaConversion('popular')
-            ->crop('crop-center', 90, 90)
+            // ->crop('crop-center', 90, 90)
             ->performOnCollections('inner_images')
             ->nonQueued()
             ->optimize()
@@ -92,7 +90,7 @@ class Blog extends Model implements HasMedia
 
     public function multipleTag($blogId, $tagId)
     {
-        return $this->hasMany(BlogMultipleTag::class, 'blog_id', 'id')->where([['blog_id', $blogId], ['tag_id', $tagId]])->first();
+        return $this->hasMany(MultipleBlogTag::class, 'blog_id', 'id')->where([['blog_id', $blogId], ['tag_id', $tagId]])->first();
     }
 
     public function tags()
@@ -102,17 +100,17 @@ class Blog extends Model implements HasMedia
 
     public function multipleCategory($blogId, $categoryId)
     {
-        return $this->hasMany(BlogMultipleCategory::class, 'blog_id', 'id')->where([['blog_id', $blogId], ['category_id', $categoryId]])->first();
+        return $this->hasMany(MultipleBlogCategory::class, 'blog_id', 'id')->where([['blog_id', $blogId], ['category_id', $categoryId]])->first();
     }
 
     public function categoryMultiple()
     {
         //   dd($blog_id);
-        return $this->hasMany(BlogMultipleCategory::class, 'blog_id', 'id');
+        return $this->hasMany(MultipleBlogCategory::class, 'blog_id', 'id');
     }
     public function tagMultiple()
     {
         //   dd($blog_id);
-        return $this->hasMany(BlogMultipleTag::class, 'blog_id', 'id');
+        return $this->hasMany(MultipleBlogTag::class, 'blog_id', 'id');
     }
 }

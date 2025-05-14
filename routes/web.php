@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\EmployerController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\FormController;
 
 use Illuminate\Support\Facades\Route;
@@ -56,14 +58,19 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
 
+
          // services
         Route::group(['prefix' => 'services'], function () {
            
         Route::get('/', [ServiceController::class, 'index'])->name('services.index');
         Route::post('update-service', [ServiceController::class, 'updateService'])->name('admin.service.add');
      
+        // services
 
-         
+        Route::group(['prefix' => 'services'], function () {
+
+
+            Route::get('/', [ServiceController::class, 'index'])->name('services.index');
         });
 
         // appliction destination
@@ -80,7 +87,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
 
 
-     
+
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
@@ -93,8 +100,52 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('add-testimonial', [AboutController::class, 'addTestimonial'])->name('admin.testimonial.add');
             Route::get('/{id}', [AboutController::class, 'getTestimonialById'])->name('admin.testimonial.getbyid');
             Route::delete('/{id}', [AboutController::class, 'deleteTestimonial'])->name('admin.testimonial.delete');
+        });
+
+        Route::prefix("blog")->group(function () {
+            Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+            Route::get('create', [BlogController::class, 'create']);
+            Route::post('store', [BlogController::class, 'store']);
+            Route::get('edit/{id}', [BlogController::class, 'edit']);
+            Route::post('update', [BlogController::class, 'update']);
+            Route::post('status-change', [BlogController::class, 'changeStatus']);
+            Route::get('delete/{id}', [BlogController::class, 'destroy']);
+
+            Route::prefix("category")->group(function () {
+                Route::post('create', [BlogController::class, 'storeCategory']);
+                Route::get('edit/{id}', [BlogController::class, 'editCategory']);
+                Route::post('update/{id}', [BlogController::class, 'updateCategory']);
+                Route::post('status-change', [BlogController::class, 'changeStatusCategory']);
+                Route::get('delete/{id}', [BlogController::class, 'destroyCategory']);
+            });
+
+            Route::prefix("tag")->group(function () {
+                Route::post('create', [BlogController::class, 'storeTag']);
+                Route::get('edit/{id}', [BlogController::class, 'editTag']);
+                Route::post('update/{id}', [BlogController::class, 'updateTag']);
+                Route::post('status-change', [BlogController::class, 'changeStatusTag']);
+                Route::get('delete/{id}', [BlogController::class, 'destroyTag']);
+            });
+
+            Route::get('/blog-comment', [BlogController::class, 'getBlogComment'])->name('get.blog.comment');
+            Route::post('/blog-comment-status', [BlogController::class, 'changeCommentStatus'])->name('blog.comment.status');
+            Route::post('/blog-comment-delete', [BlogController::class, 'blogCommentDelete'])->name('blog.comment.delete');
+        });
 
 
+        Route::group(['prefix' => 'employer'], function () {
+            Route::get('/', [EmployerController::class, 'index'])->name('employer.index');
+            Route::post('employer-contact-us', [EmployerController::class, 'addEmployerContactUs'])->name('admin.employer-contact.add');
+            Route::post('we-recruit-for', [EmployerController::class, 'addWeRecruitFor'])->name('admin.we-recruit-for.add');
+
+
+            // Route::post('learn-about-us', [AboutController::class, 'addLearnAboutUs'])->name('admin.learn-about-us.add');
+            // Route::post('counter', [AboutController::class, 'addCounterData'])->name('admin.counter.add');
+            // Route::post('about-us', [AboutController::class, 'addAboutUs'])->name('admin.about-us.add');
+            // Route::get('testimonials', [AboutController::class, 'getTestimonial'])->name('admin.about-us.getTestimonial');
+            // Route::post('add-testimonial', [AboutController::class, 'addTestimonial'])->name('admin.testimonial.add');
+            // Route::get('/{id}', [AboutController::class, 'getTestimonialById'])->name('admin.testimonial.getbyid');
+            // Route::delete('/{id}', [AboutController::class, 'deleteTestimonial'])->name('admin.testimonial.delete');
         });
 
         Route::group(['prefix' => 'home'], function () {
@@ -147,9 +198,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/{id}', [EmailSettingController::class, 'getMailConf'])->name('email.conf');
             Route::post('', [EmailSettingController::class, 'addEmail'])->name('email.add');
         });
-
     });
-
 });
 
 
@@ -159,4 +208,4 @@ Route::post('/contact-enquiry', [FormController::class, 'contactEnquiry'])->name
 Route::post('/applyNow', [FormController::class, 'applyNow'])->name('applyNow')->middleware('throttle:3,1');
 Route::post('/request-a-demo', [FormController::class, 'requestADemo'])->name('requestADemo')->middleware('throttle:3,1');
 Route::post('/leave-a-comment', [FormController::class, 'leaveAComment'])->name('leaveAComment');
-Route::post("submit-email",[FormController::class,'submitEmail'])->name('submit.email');
+Route::post("submit-email", [FormController::class, 'submitEmail'])->name('submit.email');
