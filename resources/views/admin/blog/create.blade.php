@@ -535,6 +535,9 @@
                 format: 'DD-MM-YYYY',
             });
 
+            CKEDITOR.replace('description');
+
+
             $('#formSubmit').submit(function(e) {
                 e.preventDefault();
                 $("#loader").show();
