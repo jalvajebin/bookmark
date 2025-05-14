@@ -65,23 +65,10 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('update-service', [ServiceController::class, 'updateService'])->name('admin.service.add');
         });
         Route::group(['prefix' => 'destination'], function () {
-
             Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
-<<<<<<< HEAD
             Route::post('update-service', [DestinationController::class, 'updateDestination'])->name('admin.destination.add');
-         
-    
-             
             });
 
-        
-
-
-
-=======
-            Route::post('update-service', [DestinationController::class, 'updateService'])->name('admin.service.add');
-        });
->>>>>>> 35d58517c4c57b3241ea0c239be44211c3c5606b
 
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
