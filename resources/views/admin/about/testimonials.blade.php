@@ -52,7 +52,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade bs-example-modal-xl" id="testimonialModal" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">

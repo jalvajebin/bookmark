@@ -5,9 +5,12 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Destination;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class DestinationController extends Controller
 {
@@ -19,63 +22,71 @@ class DestinationController extends Controller
 
         // $destination = Destination::first();
 
-        return view('admin.destinatin.index', compact('logedUserData', 'banner'));
+        return view('admin.destination.index', compact('logedUserData', 'banner'));
     }
 
-    public function updateDestination(Request $request)
+
+    public function create(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'description_one' => 'required',
-            'description_two' => 'required',
-            'alt_one' => 'required',
-            'alt_two' => 'required',
-            'alt_three' => 'required',
-            'alt_four' => 'required',
-            'alt_five' => 'required',
-            'alt_six' => 'required',
-            'destination_image' => $request->destination_id ? 'image|max:2048' : 'required|image|max:2048',
-        ]);
+        return view('admin.destination.create');
+    }
 
-        DB::beginTransaction();
-        try {
-            $destination = Destination::updateOrCreate([
-                'id' => $request->destination_id
-            ], [
-                'title' => $request->title,
-                'description_one' => $request->description_one,
-                'description_two' => $request->description_two,
-                'alt_one' => $request->alt_one,
-                'alt_two' => $request->alt_two,
-                'alt_three' => $request->alt_three,
-                'alt_four' => $request->alt_four,
-                'alt_five' => $request->alt_five,
-                'alt_six' => $request->alt_six,
-                'slug' => Str::slug($request->title)
-            ]);
+    public function store(Request $request)
+    {
+        // $request->validate(
+        //     [
+        //         'title' => 'required|max:100',
+        //         'main_image' => 'required|image|max:2048',
+        //         'inner_image' => 'required|image|max:2048',
+        //         'inner1_image' => 'required|image|max:2048',
+        //         'description' => 'required',
+        //         'description_1' => 'required',
 
-            $imageFields = [
-                'destination_image',
-                'destination_image_two',
-                'destination_image_three',
-                'destination_image_four',
-                'destination_image_five',
-                'destination_image_six',
-            ];
+        //     ]
+        // );
 
-            $destination->clearMediaCollection('images');
-            // Loop through each image field
-            foreach ($imageFields as $field) {
-                if ($request->hasFile($field)) {
-                    $destination->addMediaFromRequest($field)->toMediaCollection('images');
-                }
-            }
+        $destination = new Destination();
+        $destination->name = $request->input('title');
+        $destination->main_image_alt = $request->input('alt');
+        $destination->inner_image_1_alt = $request->input('inner_image_alt');
+        $destination->inner_image_2_alt = $request->input('inner1_image_alt');
+        $destination->description = $request->input('description');
+        $destination->description_1 = $request->input('description_1');
 
-            DB::commit();
-            return response()->json(['status' => true, 'message' => $request->destination_id ? "Successfully Updated" : "Successfully Added"]);
-        } catch (Exception $e) {
-            DB::rollback();
-            return  response()->json(['status' => false, 'message' => $e->getMessage()]);
+        $store = $destination->save();
+
+        if ($store == true) {
+            $title = "Added";
+            $message = "Added Successfully";
+            $icon = "success";
+            $status = true;
+            cache('destination_success', true);
+        } else {
+            $title = "Failed";
+            $message = "Something Went Wrong";
+            $icon = "danger";
+            $status = false;
         }
+
+        return response()->json([
+            'title' => $title,
+            'message' => $message,
+            'icon' => $icon,
+            'status' => $status,
+        ]);
+    }
+
+    public function getData()
+    {
+        $quote = Destination::query()->orderBy('id', 'desc');
+        // dd($quote);
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function edit(Request $request)
+    {
+        return view('admin.destination.edit');
     }
 }
