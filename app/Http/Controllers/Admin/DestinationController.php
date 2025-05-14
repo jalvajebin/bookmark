@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DestinationController extends Controller
 {
@@ -23,21 +24,17 @@ class DestinationController extends Controller
 
     public function updateDestination(Request $request)
     {
-
-      
         $request->validate([
             'title' => 'required',
-            'title_two' => 'required',
             'description_one' => 'required',
             'description_two' => 'required',
-            'destination_alt_one' => 'required',
-            'destination_alt_two' => 'required',
-            'destination_alt_three' => 'required',
-            'destination_alt_four' => 'required',
-            'destination_alt_five' => 'required',
-            'destination_alt_six' => 'required',
+            'alt_one' => 'required',
+            'alt_two' => 'required',
+            'alt_three' => 'required',
+            'alt_four' => 'required',
+            'alt_five' => 'required',
+            'alt_six' => 'required',
             'destination_image' => $request->destination_id ? 'image|max:2048' : 'required|image|max:2048',
-
         ]);
 
         DB::beginTransaction();
@@ -46,23 +43,15 @@ class DestinationController extends Controller
                 'id' => $request->destination_id
             ], [
                 'title' => $request->title,
-                'title_two' => $request->title_two,
                 'description_one' => $request->description_one,
                 'description_two' => $request->description_two,
-
-
                 'alt_one' => $request->alt_one,
-
                 'alt_two' => $request->alt_two,
                 'alt_three' => $request->alt_three,
-
                 'alt_four' => $request->alt_four,
                 'alt_five' => $request->alt_five,
                 'alt_six' => $request->alt_six,
-
-
-
-
+                'slug' => Str::slug($request->title)
             ]);
 
             $imageFields = [
@@ -75,17 +64,13 @@ class DestinationController extends Controller
             ];
 
             $destination->clearMediaCollection('images');
-
             // Loop through each image field
             foreach ($imageFields as $field) {
                 if ($request->hasFile($field)) {
                     $destination->addMediaFromRequest($field)->toMediaCollection('images');
                 }
             }
-            // if ($request->hasFile('destination_image')) {
-            //     $banner->clearMediaCollection('images');
-            //     $banner->addMediaFromRequest('destination_image')->toMediaCollection('images');
-            // }
+
             DB::commit();
             return response()->json(['status' => true, 'message' => $request->destination_id ? "Successfully Updated" : "Successfully Added"]);
         } catch (Exception $e) {

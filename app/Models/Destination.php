@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Destination extends Model
+class Destination extends Model implements HasMedia
 {
     use HasFactory  ,InteractsWithMedia;
   
@@ -36,17 +36,6 @@ class Destination extends Model
             ->quality(100)
             ->sharpen(7);
     }
-
-    // public function getImagesAttribute()
-    // {
-    //     $file = $this->getMedia('images')->last();
-    //     if ($file) {
-    //         $file->url       = $file->getUrl();
-    //         $file->thumbnail = $file->getUrl('thumb');
-    //         $file->preview   = $file->getUrl('preview');
-    //     }
-    //     return $file;
-    // }
 
     public function getImagesAttribute()
 {
