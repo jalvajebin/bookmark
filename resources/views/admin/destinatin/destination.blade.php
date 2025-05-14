@@ -41,16 +41,7 @@
                                 </div>
                             </div>
 
-                            <!-- Title 2 -->
-                            <div class="col-sm-6">
-                                <div class="mb-3">
-                                    <label for="title_two">Title 2</label>
-                                    <input id="title_two" name="title_two" type="text"
-                                           class="form-control title_two" placeholder="Title"
-                                           value="{{ $service->title_two ?? '' }}">
-                                    <span class="title_two-validation error-validation" style="color:red;"></span>
-                                </div>
-                            </div>
+                         
 
 
                             <div class="col-sm-6 col-6">
