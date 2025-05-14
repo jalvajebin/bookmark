@@ -24,8 +24,7 @@ class DestinationController extends Controller
     public function updateDestination(Request $request)
     {
 
-        dd($request->all());
-
+      
         $request->validate([
             'title' => 'required',
             'title_two' => 'required',
