@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('author')->nullable();
             $table->timestamp('date')->nullable();
             $table->longText('description')->nullable();
+            $table->string('alt')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->longText('meta_description')->nullable();

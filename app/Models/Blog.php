@@ -38,7 +38,7 @@ class Blog extends Model implements HasMedia
             ->sharpen(6);
 
         $this->addMediaConversion('preview')
-            ->crop('crop-center', 1920, 1280)
+            // ->crop('crop-center', 1920, 1280)
             ->performOnCollections('inner_images')
             ->nonQueued()
             ->optimize()
@@ -47,7 +47,7 @@ class Blog extends Model implements HasMedia
             ->sharpen(6);
 
         $this->addMediaConversion('popular')
-            ->crop('crop-center', 90, 90)
+            // ->crop('crop-center', 90, 90)
             ->performOnCollections('inner_images')
             ->nonQueued()
             ->optimize()
