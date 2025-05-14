@@ -37,14 +37,26 @@ class Destination extends Model
             ->sharpen(7);
     }
 
+    // public function getImagesAttribute()
+    // {
+    //     $file = $this->getMedia('images')->last();
+    //     if ($file) {
+    //         $file->url       = $file->getUrl();
+    //         $file->thumbnail = $file->getUrl('thumb');
+    //         $file->preview   = $file->getUrl('preview');
+    //     }
+    //     return $file;
+    // }
+
     public function getImagesAttribute()
-    {
-        $file = $this->getMedia('images')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
-        return $file;
-    }
+{
+    return $this->getMedia('images')->map(function ($file) {
+        return [
+            'url' => $file->getUrl(),
+            'thumbnail' => $file->getUrl('thumb'),
+            'preview' => $file->getUrl('preview'),
+        ];
+    });
+}
+
 }

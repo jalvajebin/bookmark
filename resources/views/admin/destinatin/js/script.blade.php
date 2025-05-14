@@ -25,8 +25,8 @@
         document.getElementById('contact1_input').click();
     }
 
-// service image
-    function previewServiceImage(event, previewId) {
+// destination image
+    function previewDestinationImage(event, previewId) {
         const input = event.target;
         const preview = document.getElementById(previewId);
 
@@ -108,7 +108,7 @@
         });
     });
 
-    $('#serviceFormSubmit').submit(function(e) {
+    $('#destinationFormSubmit').submit(function(e) {
         e.preventDefault();
         $("#loader").show();
         var dataContent = $(this).data('content');
@@ -117,7 +117,7 @@
         $('.error-validation').html('');
         $.ajax({
             type: 'POST',
-            url: "{{ route('admin.service.add') }}",
+            url: "{{ route('admin.destination.add') }}",
             data: formData,
             cache: false,
             contentType: false,
@@ -125,7 +125,7 @@
 
             success: function(data) {
 
-                console.log(data , "fucking data");
+               
                 $("#loader").hide();
                 var message = data.message;
                 if (data.status == true) {
