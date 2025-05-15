@@ -61,6 +61,15 @@
                 </li>
 
 
+                <li class="{{ Request::is('jobs*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('jobs.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Job</span>
+                    </a>
+                </li>
+
+
+
 
 
                 <li class="{{ Request::is('contact*') ? 'mm-active' : '' }}">

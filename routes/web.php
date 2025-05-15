@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 
 use Illuminate\Support\Facades\Route;
@@ -68,6 +69,15 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
             Route::post('update-destination', [DestinationController::class, 'updateDestination'])->name('admin.destination.add');
             });
+
+            Route::group(['prefix' => 'jobs'], function () {
+                Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
+                Route::get('create', [JobsController::class, 'create'])->name('jobs.create');
+            
+                // Route::post('update-jobs', [JobsController::class, 'updateService'])->name('admin.jobs.add');
+            });
+
+            
 
 
 
