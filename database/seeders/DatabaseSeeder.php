@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\JobTag;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -30,5 +32,10 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 0,
             'password' => Hash::make('password'), 
         ]);
+
+
+        // JobTag::create(['name' => 'Laravel', 'slug' => 'laravel']);
+        // JobTag::create(['name' => 'Vue JS', 'slug' => 'vue-js']);
+        // JobTag::create(['name' => 'Livewire', 'slug' => 'livewire']);
     }
 }

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
 use App\Http\Controllers\WebHomeController;
@@ -77,6 +77,22 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('update', [DestinationController::class, 'update']);
             Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
             });
+
+            Route::group(['prefix' => 'jobs'], function () {
+                Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
+                Route::get('create', [JobsController::class, 'create'])->name('jobs.create');
+                Route::post('store', [JobsController::class, 'store'])->name('job.store');
+                Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
+                Route::get('edit/{id}', [JobsController::class, 'edit']);
+                Route::put('update/{id}', [JobsController::class, 'update'])->name('job.update');
+                Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('job.destroy');
+
+
+            });
+
+            
+
+
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
