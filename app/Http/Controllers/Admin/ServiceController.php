@@ -21,6 +21,7 @@ class ServiceController extends Controller
 
     public function updateService(Request $request){
       
+       
 
         $request->validate([
             'title' => 'required',
@@ -58,6 +59,11 @@ class ServiceController extends Controller
                 $banner->clearMediaCollection('images');
                 $banner->addMediaFromRequest('service_image')->toMediaCollection('images');
             }
+            if ($request->hasFile('service_image_two')) {
+                $banner->clearMediaCollection('imagesTwo');
+                $banner->addMediaFromRequest('service_image_two')->toMediaCollection('imagesTwo');
+            }
+            
             DB::commit();
             return response()->json(['status' => true, 'message' => $request->service_id ? "Successfully Updated" : "Successfully Added"]);
         } catch (Exception $e) {

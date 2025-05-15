@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
+use App\Http\Controllers\Web\ServiceController as WebServiceController;
 use App\Http\Controllers\WebHomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +30,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [WebHomeController::class, 'index']);
+Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
+
 Route::get('destinations', [WebDestinationController::class, 'index'])->name('web.destination.index');
 // about
-Route::get('/about-us', [WebAboutController::class, 'index'])->name('web.about.index');
+Route::get('About-us', [WebAboutController::class, 'index'])->name('web.about.index');
+
+Route::get('Service', [WebServiceController::class, 'index'])->name('web.service.index');
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
