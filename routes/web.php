@@ -81,7 +81,8 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
                 Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
                 Route::get('edit/{id}', [JobsController::class, 'edit']);
                 Route::put('update/{id}', [JobsController::class, 'update'])->name('job.update');
-                Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('job.destroy');
+                Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('delete');
+
 
 
             });
