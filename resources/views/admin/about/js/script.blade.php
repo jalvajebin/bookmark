@@ -6,6 +6,7 @@
              format: 'DD-MM-YYYY',
          });
 
+
          $('#tabs-nav li:first-child').addClass('active');
          $('.tab-content').hide();
          $('.tab-content:first').show();
@@ -180,8 +181,6 @@
          });
      });
 
-
-
      $('#aboutUsFormSubmit').submit(function(e) {
          e.preventDefault();
          $("#loader").show();
@@ -217,7 +216,6 @@
                  $('.description-validation').html(description);
                  $('.image1_validation').html(image1);
                  $('.online_support_no_validation').html(onlinePhoneNo);
-
              }
          });
      });
@@ -270,7 +268,6 @@
              }
          });
      });
-
 
      $('#counterFormSubmit').submit(function(e) {
          e.preventDefault();
@@ -338,7 +335,6 @@
          }
 
      }
-
 
      function addTestimonial(e) {
          e.preventDefault();

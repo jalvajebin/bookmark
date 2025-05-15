@@ -202,7 +202,6 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 });
 
 
-
 Route::post('/request-a-quote', [FormController::class, 'requestAQuote'])->name('request.quote')->middleware('throttle:3,1');
 Route::post('/contact-enquiry', [FormController::class, 'contactEnquiry'])->name('contact.enquiry')->middleware('throttle:3,1');
 Route::post('/applyNow', [FormController::class, 'applyNow'])->name('applyNow')->middleware('throttle:3,1');

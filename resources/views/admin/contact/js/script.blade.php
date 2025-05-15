@@ -92,11 +92,12 @@
                 console.log(data);
                 $("#loader").hide();
                 var banner_title = data.responseJSON.errors.banner_title;
+                var description = data.responseJSON.errors.description;
                 var banner_image = data.responseJSON.errors.banner_image;
-
 
                 $('.banner_title-validation').html(banner_title);
                 $('.banner_image-validation').html(banner_image);
+                $('.description-validation').html(description);
             }
         });
     });

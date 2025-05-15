@@ -96,20 +96,18 @@
                         <div class="card-body">
                             <ul class="d-flex align-items-center m-0 p-0" id="tabs-nav">
                                 <li class="tab-list">
+                                    <a href="#tab1" class="m-2">Blog</a>
+                                </li>   
+                                <li class="tab-list">
                                     <a href="#tab2" class="m-2">Tag</a>
                                 </li>
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">Category</a>
-                                </li>
+                                </li>  
                                 <li class="tab-list">
-                                    <a href="#tab1" class="m-2">Blog</a>
-                                </li>    
-                                <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Blog Comments</a>
+                                    <a href="#tab4" class="m-2">Blog Comments</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Seo</a>
-                                </li> --}}
+                               
                             </ul>
                         </div>
                     </div>
@@ -285,7 +283,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tab4" class="tab-content">
+                {{-- <div id="tab4" class="tab-content">
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
@@ -302,7 +300,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- end page title -->
                     {{-- <div class="row">
                         <div class="col-12">
@@ -350,8 +348,8 @@
                             </div>
                         </div>
                     </div> --}}
-                </div>
-                <div id="tab5" class="tab-content">
+                {{-- </div> --}}
+                <div id="tab4" class="tab-content">
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">

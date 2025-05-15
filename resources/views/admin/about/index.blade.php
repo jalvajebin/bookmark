@@ -135,6 +135,7 @@
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">Learn About Agency</a>
                                 </li>
+                                
                                 <li class="tab-list">
                                     <a href="#tab4" class="m-2">Counter Section</a>
                                 </li>
@@ -148,12 +149,12 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.about.banner')
-                @include('admin.about.learn-about-agency')
-                @include('admin.about.about-us')
+                @include('admin.about.testimonials') 
                 @include('admin.about.counters')
-                @include('admin.about.testimonials')
-
+                @include('admin.about.banner')  
+                @include('admin.about.learn-about-agency')   
+                @include('admin.about.about-us')
+          
             </div>
         </div>
     </div>

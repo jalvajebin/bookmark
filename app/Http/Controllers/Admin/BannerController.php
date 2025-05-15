@@ -16,6 +16,7 @@ class BannerController extends Controller
         // dd($request->all());       
         $request->validate([
             'banner_title' => 'required',
+            'description' => 'required',
             'banner_image' => $request->banner_id ? 'image|max:2048' : 'required|image|max:2048',
             'banner_alt' => 'required'
         ]);
@@ -26,6 +27,7 @@ class BannerController extends Controller
                 'id' => $request->banner_id
             ], [
                 'title' => $request->banner_title,
+                'description'=> $request->description,
                 'alt' => $request->banner_alt,
                 'page'=> $request->banner_page,
             ]);

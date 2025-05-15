@@ -12,7 +12,7 @@ class Banner extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['title', 'alt', 'page'];
+    protected $fillable = ['title', 'description', 'alt', 'page',];
     protected $guarded = [];
     protected $appends = ['images'];
 
