@@ -129,12 +129,12 @@
                         <div class="card-body">
                             <form class="formSubmit" data-content=" " id="formSubmit">
                                 @csrf
-                                <input type="hidden" class="blog_id" name="blog_id" id="blog_id">
+                                <input type="hidden" class="destination_id" name="destination_id" id="destination_id">
                                 <div class="modal-body p-4">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="mb-4">
-                                                <label for="title">Title<span style="color:#ff0000">*</span></label>
+                                                <label for="title">Name<span style="color:#ff0000">*</span></label>
                                                 <input id="title" name="title" type="text"
                                                     class="form-control title" placeholder="Enter Title">
                                                 <span class="title-validation error-validation" style="color:red;"></span>
@@ -209,7 +209,7 @@
                                                 <span class="inner_image-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
-                                            <input type="file" id="inner1-input" name="inner_image" class="file-input"
+                                            <input type="file" id="inner1-input" name="inner1_image" class="file-input"
                                                 accept="image/*" onchange="previewInner1(event)">
                                             <label for="title">Image Alt </label>
                                             <input id="inner1_image_alt" name="inner1_image_alt" type="text"
@@ -236,18 +236,6 @@
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="mb-4">
-                                                <label for="description_1">Description 1<span
-                                                        style="color:#ff0000">*</span></label>
-                                                <textarea id="description_1" name="description_1" rows="5" class="form-control description_1"
-                                                    placeholder="Enter Description 1"></textarea>
-                                                <span class="description_1_validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
                                 </div>
                                 <div class="modal-footer p-4">
                                     <a href="{{ route('blog.index') }}" style="margin-right: 20px">

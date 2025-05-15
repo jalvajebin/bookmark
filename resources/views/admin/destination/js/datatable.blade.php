@@ -39,7 +39,7 @@
                             var editForm = '';
 
                             var deleteForm = `<li class="delete_course" data-bs-toggle="tooltip" data-bs-placement="top" data-id="" aria-label="Delete">
-                                            <button type="button" onclick="deleteTestimonial(${data})" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></button>
+                                            <button type="button" onclick="deleteDestination(${data})" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></button>
                                         </li>`;
 
                             var editForm = `<li data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit">
