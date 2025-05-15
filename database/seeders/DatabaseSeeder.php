@@ -34,8 +34,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        JobTag::create(['name' => 'Laravel', 'slug' => 'laravel']);
-        JobTag::create(['name' => 'Vue JS', 'slug' => 'vue-js']);
-        JobTag::create(['name' => 'Livewire', 'slug' => 'livewire']);
+        // JobTag::create(['name' => 'Laravel', 'slug' => 'laravel']);
+        // JobTag::create(['name' => 'Vue JS', 'slug' => 'vue-js']);
+        // JobTag::create(['name' => 'Livewire', 'slug' => 'livewire']);
     }
 }

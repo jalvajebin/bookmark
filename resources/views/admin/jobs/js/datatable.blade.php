@@ -1,117 +1,34 @@
 <script>
-    var datatable;
-
-    function dataTable() {
-        $(function() {
-            datatable = $('#commentTable').DataTable({
-                pageLength: 10,
-                processing: true,
-                serverSide: true,
-                responsive: false,
-                destroy: true,
-                searching: true,
-                ajax: {
-                    url: '{{ route('get.blog.comment') }}',
-                    type: "get",
-                    data: function(d) {
-
+    $(document).ready(function () {
+        $('#jobTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route("admin.job.getData") }}',
+            columns: [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                { data: 'title', name: 'title' }, // must match your DB column
+                { 
+                    data: 'id', 
+                    name: 'id', 
+                    orderable: false, 
+                    render: function(data, type, row) {
+                        return `
+                            <ul class="list-unstyled hstack gap-1 mb-0">
+                                <li>
+                                    <a href="/admin/jobs/edit/${data}" class="btn btn-sm btn-soft-info">
+                                        <i class="mdi mdi-pencil-outline"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <button onclick="deleteJob(${data})" class="btn btn-sm btn-soft-danger">
+                                        <i class="mdi mdi-delete-outline"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        `;
                     }
-                },
-                "order": [
-                    [0, "desc"]
-                ],
-                "paging": true,
-                columns: [{
-                        data: 'id',
-                        name: "id",
-                        orderable: false,
-                        render: function(data, type, row) {
-                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="commentIds" value="${data}"/> `;
-                        }
-                    },
-                    {
-                        data: 'blog_title',
-                        name: 'blog_title'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-
-                    {
-                        data: 'email',
-                        name: "email"
-                    },
-                    {
-                        data: 'message',
-                        name: "message",
-                        render: function(data, type, row) {
-                            var maxLength = 50;
-                            if (data.length > maxLength) {
-                                return '<span data-toggle="tooltip" title="' + data + '">' +
-                                    data.substr(0, maxLength) + '...</span>';
-                            }
-                            return data;
-                        }
-                    },
-                    {
-                        data: 'status',
-                        name: 'status',
-                        render: function(data, type, row) {
-
-                            if (data == 1) {
-                                var status = "checked";
-                            } else {
-                                var status = '';
-                            }
-                            return `
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input course-status" type="checkbox" role="switch" id="customSwitch1${row.id}" onchange="statusChange(${row.id},${data})" ${status} >
-                                    </div>
-                                    `;
-                        }
-                    },
-
-                    {
-                        data: 'id',
-                        name: 'id',
-                        orderable: false,
-                        render: function(data, type, row) {
-                            return `<ul class="list-unstyled hstack gap-1 mb-0">
-                                                     <a href="#" onclick="deleteBlogComment(event,${data})" class="btn btn-sm btn-soft-danger"><i
-                                                        class="mdi mdi-delete-outline"></i></a>
-                                                </ul>`;
-                        }
-                    }
-                ],
-                "initComplete": function() {
-                    var i = 0;
-                    var hasData = this.api().data().any();
-
-                    this.api().columns().every(function() {
-                        var column = this;
-                        if (i == 0) {
-                            var input =
-                                "<input  class='mulltiCheckBox' " +
-                                " type='checkbox'  style='text-align: center; width:20px;height:15px;margin-left:15px;'>" +
-                                "</input>";
-                            $(input).appendTo($(column.header()).empty())
-                                .on('change', function() {
-                                    if (this.checked) {
-                                        $(".commentIds:enabled").prop('checked',
-                                            'true');
-                                    } else {
-                                        $('.commentIds').prop('checked', false)
-                                            .removeAttr('checked');
-                                    }
-                                });
-                        }
-                        i++;
-
-                    });
                 }
-            });
+            ]
         });
-
-    }
+    });
 </script>

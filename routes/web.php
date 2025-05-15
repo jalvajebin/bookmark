@@ -77,8 +77,13 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::group(['prefix' => 'jobs'], function () {
                 Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
                 Route::get('create', [JobsController::class, 'create'])->name('jobs.create');
-            
-                // Route::post('update-jobs', [JobsController::class, 'updateService'])->name('admin.jobs.add');
+                Route::post('store', [JobsController::class, 'store'])->name('job.store');
+                Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
+                Route::get('edit/{id}', [JobsController::class, 'edit']);
+                Route::put('update/{id}', [JobsController::class, 'update'])->name('job.update');
+                Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('job.destroy');
+
+
             });
 
             

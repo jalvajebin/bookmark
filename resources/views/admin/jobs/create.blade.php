@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ 'Job | Veuz' }}
+    {{ 'Jobs | Veuz' }}
 @endsection
 @section('css')
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
@@ -111,12 +111,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create jobs</h4>
+                        <h4 class="mb-sm-0 font-size-18">Create Jobs</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create jobs</li>
+                                <li class="breadcrumb-item active">Create job</li>
                             </ol>
                         </div>
                     </div>
@@ -127,90 +127,29 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="formSubmit" data-content=" " id="formSubmit">
+                            <form class="formSubmit"  id="formSubmit">
                                 @csrf
-                                <input type="hidden" class="job_id" name="job_id" id="job_id">
+                                <input type="hidden" class="blog_id" name="blog_id" id="blog_id">
                                 <div class="modal-body p-4">
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="mb-4">
-                                                <label for="title">Title<span style="color:#ff0000">*</span></label>
-                                                <input id="title" name="title" type="text"
-                                                    class="form-control title" placeholder="Enter Title">
-                                                <span class="title-validation error-validation" style="color:red;"></span>
-                                            </div>
+                                        <!-- Title -->
+                                        <div class="col-12 mb-3">
+                                            <label for="title">Title <span class="text-danger">*</span></label>
+                                            <input id="title" name="title" type="text" class="form-control title" placeholder="Enter Title">
+                                            <span class="title-validation error-validation text-danger"></span>
                                         </div>
-                                        <div class="col-sm-6 col-6">
-                                            <label for="formFile" class="form-label">Main Image<span
-                                                    style="color:#ff0000">*</span></label>
-                                            <br>
-                                            <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit
-                                                is 2MB</small>
-                                            <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
-                                                    class="logo-image avatar-md img-thumbnail image_class mainPreview"
-                                                    id="mainPreview" style="object-fit: contain;">
-                                                <div class="edit-icon" onclick="triggerMainFileInput()">
-                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
-                                                        alt="Edit">
-                                                </div>
-                                                <span class="main_image-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                            <input type="file" id="main-input" name="main_image" class="file-input"
-                                                accept="image/*" onchange="previewMain(event)">
 
-                                            <label for="title">Image Alt </label>
-                                            <input id="alt" name="alt" type="text"
-                                                class="form-control alt mb-3" placeholder="Enter Alt">
-                                        </div>
-                                        <div class="col-sm-6 col-6">
-                                            <label for="formFile" class="form-label">Inner Image<span
-                                                    style="color:#ff0000">*</span></label>
-                                            <br>
-                                            <small class="text-red">Size Recommended:1920x1280px <br> Maximum File Size
-                                                Limit is 2MB</small>
-                                            <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
-                                                    class="logo-image avatar-md img-thumbnail image_class innerPreview"
-                                                    id="innerPreview" style="object-fit: contain;">
-                                                <div class="edit-icon" onclick="triggerInnerFileInput()">
-                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
-                                                        alt="Edit">
-                                                </div>
-                                                <span class="inner_image-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                            <input type="file" id="inner-input" name="inner_image" class="file-input"
-                                                accept="image/*" onchange="previewInner(event)">
-                                        </div>
+
                                         <div class="col-sm-6">
                                             <div class="mb-4">
-                                                <label for="tag">Tags<span style="color:#ff0000">*</span></label>
-                                                <select class="select2 form-control tag" multiple="multiple" id="tag"
-                                                    name="tag_ids[]" data-placeholder="Select Tag"
-                                                    aria-placeholder="Select Tag">
-                                                    @if ($tagLoops)
-                                                        @foreach ($tagLoops as $tagLoop)
-                                                            <option value="{{ $tagLoop->id }}">
-                                                                {{ $tagLoop->tag_title_en }}
-                                                            </option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                                <span class="tag-validation error-validation" style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="category">Category<span style="color:#ff0000">*</span></label>
-                                                <select class="select2 form-control category" multiple="multiple"
-                                                    id="category" name="category_ids[]"
-                                                    data-placeholder="Select Category" aria-placeholder="Select Category">
-                                                    @if ($categories)
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">
-                                                                {{ $category->title_en }}
+                                                <label for="destination">destination<span style="color:#ff0000">*</span></label>
+                                                <select class="select2 form-control category"
+                                                    id="destination" name="destination"
+                                                    data-placeholder="Select destination" aria-placeholder="Select destination">
+                                                    @if ($destinations)
+                                                        @foreach ($destinations as $destination)
+                                                            <option value="{{ $destination->id }}">
+                                                                {{ $destination->name }}
                                                             </option>
                                                         @endforeach
                                                     @endif
@@ -219,73 +158,73 @@
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="author">Author<span style="color:#ff0000">*</span></label>
-                                                <input id="author" name="author" type="text"
-                                                    class="form-control author" placeholder="Enter Author">
-                                                <span class="author-validation error-validation"
-                                                    style="color:red;"></span>
+                            
+                                        <!-- Main Image -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="main-input" class="form-label">Main Image <span class="text-danger">*</span></label>
+                                            <small class="text-danger d-block">Recommended: 380x250px | Max: 2MB</small>
+                                            <div class="logo-wrapper mb-2">
+                                                <img src="{{ asset('admin/images/no-image.png') }}" alt="Logo"
+                                                     class="logo-image avatar-md img-thumbnail image_class mainPreview"
+                                                     id="mainPreview" style="object-fit: contain;">
+                                                <div class="edit-icon" onclick="triggerMainFileInput()">
+                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png" alt="Edit">
+                                                </div>
+                                                <span class="main_image-validation error-validation text-danger"></span>
                                             </div>
+                                            <input type="file" id="main-input" name="main_image" class="file-input form-control" accept="image/*" onchange="previewMain(event)">
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="date">Publish Date<span
-                                                        style="color:#ff0000">*</span></label>
-                                                <input id="date" name="date" type="text"
-                                                    class="form-control date" placeholder="DD-MM-YYYY">
-                                                <span class="date-validation error-validation" style="color:red;"></span>
-                                            </div>
+                            
+                                        <!-- Location -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="location" class="form-label">Location</label>
+                                            <input type="text" name="location" class="form-control" required>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="mb-4">
-                                                <label for="description">Description<span
-                                                        style="color:#ff0000">*</span></label>
-                                                <textarea id="description" name="description" rows="5" class="form-control description"
-                                                    placeholder="Enter Description"></textarea>
-                                                <span class="description-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
+                            
+                                        <!-- Salary Min / Max -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="salary_min" class="form-label">Minimum Salary (£)</label>
+                                            <input type="number" name="salary_min" class="form-control" required>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="meta_title">Meta Title</label>
-                                                <input id="meta_title" name="meta_title" type="text"
-                                                    class="form-control meta_title" placeholder="Enter Meta Title">
-                                                <span class="meta_title-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
+                            
+                                        <div class="col-md-6 mb-3">
+                                            <label for="salary_max" class="form-label">Maximum Salary (£)</label>
+                                            <input type="number" name="salary_max" class="form-control" required>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="meta_keyword">Meta Keyword</label>
-                                                <input id="meta_keyword" name="meta_keyword" type="text"
-                                                    class="form-control meta_keyword" placeholder="Enter Meta Keyword">
-                                                <span class="meta_keyword-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
+                            
+                                        <!-- Posted Date / Start Date -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="posted_date" class="form-label">Posted Date</label>
+                                            <input type="date" name="posted_date" class="form-control" required>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="mb-4">
-                                                <label for="meta_description">Meta Description</label>
-                                                <textarea id="meta_description" name="meta_description" rows="5" class="form-control meta_description"
-                                                    placeholder="Enter Meta Description"></textarea>
-                                                <span class="meta_description-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
+                            
+                                        <div class="col-md-6 mb-3">
+                                            <label for="start_date" class="form-label">Start Date</label>
+                                            <input type="date" name="start_date" class="form-control">
+                                        </div>
+                            
+                                        <!-- Image Alt -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="alt" class="form-label">Image Alt</label>
+                                            <input id="alt" name="alt" type="text" class="form-control alt" placeholder="Enter Alt">
+                                        </div>
+                            
+                                        <!-- Description -->
+                                        <div class="col-12 mb-3">
+                                            <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                                            <textarea id="description" name="description" rows="5" class="form-control description" placeholder="Enter Description"></textarea>
+                                            <span class="description-validation error-validation text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
+                            
+                                <!-- Footer -->
                                 <div class="modal-footer p-4">
-                                    <a href="{{ route('blog.index') }}" style="margin-right: 20px">
-                                        <button type="button" class="btn btn-danger waves-effect"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </a>
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light"
-                                        id="blog-btn">Save
-                                    </button>
+                                    <a href="{{ route('jobs.index') }}" class="btn btn-danger me-3" data-bs-dismiss="modal">Close</a>
+                                    <button type="submit" class="btn btn-primary" id="job-btn">Save</button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -298,7 +237,7 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
     </script>
 
-
+ 
     <script>
         function triggerMainFileInput() {
             document.getElementById('main-input').click();
@@ -327,6 +266,21 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+
+    <script>
+        function triggerInner1FileInput() {
+            document.getElementById('inner1-input').click();
+        }
+
+        function previewInner1(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('inner1Preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $.ajaxSetup({
@@ -340,62 +294,69 @@
             });
 
             CKEDITOR.replace('description');
+           
 
 
             $('#formSubmit').submit(function(e) {
                 e.preventDefault();
-                $("#loader").show();
-                var description = CKEDITOR.instances['description'].getData();
-                $('#formSubmit').data('content', 'admin/blog/store');
-                var dataContent = $(this).data('content');
-                var formData = new FormData(this);
-                formData.append('description', description);
-                $('.error-validation').html('');
 
+        const form = $(this)[0];
+        const formData = new FormData(form);
+         const description = CKEDITOR.instances['description'].getData();
+         formData.set('description', description);
+
+        // Clear old errors
+        $('.error-validation').html('');
+
+        // Disable submit button
+        $('#job-btn').prop('disabled', false).text('Saving...');
                 $.ajax({
                     type: 'POST',
-                    url: base_url + dataContent,
+                    url: "{{ route('job.store') }}",  // Laravel route
                     data: formData,
                     cache: false,
                     contentType: false,
                     processData: false,
 
                     success: function(data) {
+                        console.log(data,'sfs');
+
                         $("#formSubmit")[0].reset();
                         $("#loader").hide();
+                        $('#job-btn').prop('enebled', false).text('Save');
                         Swal.fire({
-                            title: data.title,
-                            text: data.message,
-                            icon: data.icon,
+                            title: data.title || 'Success',
+                            text: data.message || 'Job saved successfully.',
+                            icon: data.icon || 'success',
                             confirmButtonText: "OK"
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = '/admin/blog';
+                                window.location.href = '/admin/jobs';
                             }
                         });
                     },
                     error: function(data) {
                         $("#loader").hide();
                         console.log(data.responseJSON.errors);
-                        var title = data.responseJSON.errors.title;
-                        var priority = data.responseJSON.errors.priority;
-                        var main_image = data.responseJSON.errors.main_image;
-                        var inner_image = data.responseJSON.errors.inner_image;
-                        var tag = data.responseJSON.errors.tag_ids;
-                        var category = data.responseJSON.errors.category_ids;
-                        var author = data.responseJSON.errors.author;
-                        var date = data.responseJSON.errors.date;
-                        var description = data.responseJSON.errors.description;
+                        // var title = data.responseJSON.errors.title;
+                        // var priority = data.responseJSON.errors.priority;
+                        // var main_image = data.responseJSON.errors.main_image;
+                        // var inner_image = data.responseJSON.errors.inner_image;
+                        // var tag = data.responseJSON.errors.tag_ids;
+                        // var category = data.responseJSON.errors.category_ids;
+                        // var author = data.responseJSON.errors.author;
+                        // var date = data.responseJSON.errors.date;
+                        // var description = data.responseJSON.errors.description;
 
-                        $('.title-validation').html(title);
-                        $('.priority-validation').html(priority);
-                        $('.main_image-validation').html(main_image);
-                        $('.inner_image-validation').html(inner_image);
-                        $('.tag-validation').html(tag);
-                        $('.category-validation').html(category);
-                        $('.author-validation').html(author);
-                        $('.date-validation').html(date);
-                        $('.description-validation').html(description);
+                        // $('.title-validation').html(title);
+                        // $('.priority-validation').html(priority);
+                        // $('.main_image-validation').html(main_image);
+                        // $('.inner_image-validation').html(inner_image);
+                        // $('.tag-validation').html(tag);
+                        // $('.category-validation').html(category);
+                        // $('.author-validation').html(author);
+                        // $('.date-validation').html(date);
+                        // $('.description-validation').html(description);
                     }
                 });
             });

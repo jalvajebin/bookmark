@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
-            $table->longText('description');
-            $table->date('date');
             $table->string('location');
-            $table->unsignedInteger('salary');
-         
+            $table->decimal('salary_min', 8, 2);
+            $table->decimal('salary_max', 8, 2);
+            $table->date('posted_date');
+            $table->date('start_date')->nullable();
+            $table->string('alt')->nullable();
+            $table->text('description');
             $table->foreignId('destination_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
