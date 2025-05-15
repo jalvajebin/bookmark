@@ -134,19 +134,6 @@
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">Contact Enquiries</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Social Media</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Contact Enquiries</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab6" class="m-2">Request a quote</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
-
                             </ul>
                         </div>
                     </div>
@@ -157,11 +144,6 @@
                 @include('admin.contact.banner')
                 @include('admin.contact.contact')
                 @include('admin.contact.enquiry')
-                {{-- @include('admin.contact.social')
-                @include('admin.contact.enquiry')
-                @include('admin.contact.quote')
-                @include('admin.contact.seo')
-            </div> --}}
         </div>
     </div>
     <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"

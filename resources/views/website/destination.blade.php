@@ -14,12 +14,8 @@
                         <li class="breadcrumb-item active" aria-current="page">Destinations</li>
                     </ol>
                 </nav>
-                <h1>Abu Dhabi</h1>
-                <p>Not just a millionaire’s playground, Abu Dhabi has something for everyone and is sympathetic to western
-                    life, unlike some of the slightly more conservative
-                    rulers in the region. Its rapid rise to being one of the leading employment hubs in the world makes it
-                    an attractive proposition for those with a busy and
-                    social lifestyle.</p>
+                <h1>{{ optional($banner)->title }}</h1>
+                <p>{{ optional($banner)->description }}</p>
             </div>
         </div>
     </div>
@@ -32,9 +28,6 @@
                 <div class="section-title text-center">
                     <h2>Top Destinations</h2>
                 </div>
-                <!-- <div class="more-buttons">
-                      <a href="all-jobs.html">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                    </div> -->
             </div>
             <div class="gallery-container">
                 <div class="row g-4">
@@ -50,7 +43,6 @@
                                     <img src="assets/img/g-saudi-arabia.png">
                                     <div class="city-name">
                                         <h2>{{ $destination->name }}</h2>
-
                                     </div>
                                 </div>
                             </a>
@@ -60,7 +52,6 @@
                     @if ($destinationsTwo->isNotEmpty())
                     @foreach ($destinationsTwo as $destinationTwo)
                     <div class="col-lg-4">
-                        <!-- Item 1: Kuwait -->
                         <a href="destination-details.html">
                             <div class="gallery-item item3">
                                 <img src="assets/img/g-kuwait.jpg">
@@ -74,7 +65,6 @@
                     @endif
                 </div>
             </div>
-
         </section>
     @endsection
     @push('js')
@@ -84,8 +74,6 @@
                 once: false
             });
         </script>
-
-
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const tabs = document.querySelectorAll('.tab');
@@ -121,8 +109,6 @@
                 });
             });
         </script>
-
-
         <script>
             // Add this at the beginning of your script
             document.addEventListener('DOMContentLoaded', function() {
