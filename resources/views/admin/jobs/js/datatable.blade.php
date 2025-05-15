@@ -6,7 +6,7 @@
             ajax: '{{ route("admin.job.getData") }}',
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'title', name: 'title' }, // must match your DB column
+                { data: 'title', name: 'title' },
                 { 
                     data: 'id', 
                     name: 'id', 
@@ -31,4 +31,42 @@
             ]
         });
     });
+
+    function deleteJob(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This action cannot be undone!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `/admin/jobs/delete/${id}`,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Deleted!',
+                            response.message || 'Job deleted successfully.',
+                            'success'
+                        );
+                        $('#jobTable').DataTable().ajax.reload(null, false);
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong.',
+                            'error'
+                        );
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        });
+    }
 </script>
