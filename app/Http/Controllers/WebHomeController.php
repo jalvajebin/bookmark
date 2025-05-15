@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class WebHomeController extends Controller
 {
     public function index(){
+        $destinations = Destination::all();
 
         $latestJobs = Job::latest()->get(); 
         $about = AboutUs::first();
