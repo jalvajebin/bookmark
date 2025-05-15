@@ -75,6 +75,7 @@
             });
         });
     </script>
+    
     @stack('js')
 </body>
 

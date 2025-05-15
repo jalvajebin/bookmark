@@ -30,7 +30,7 @@
                         @csrf
                         <input type="hidden" class="banner_id" name="banner_id" id="banner_id"
                             value="{{ $banner->id ?? '' }}">
-                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="contact">
+                        <input type="hidden" class="banner_page" name="banner_page" id="banner_page" value="service">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="mb-3">
@@ -39,6 +39,17 @@
                                         class="form-control banner_title" placeholder="Title"
                                         value="{{ $banner->title ?? '' }}">
                                     <span class="banner_title-validation error-validation" style="color:red;"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="mb-4">
+                                    <label for="description">Description<span
+                                            style="color:#ff0000">*</span></label>
+                                    <textarea id="description" name="description" rows="5" class="form-control description"
+                                        placeholder="Enter Description"></textarea>
+                                    <span class="description-validation error-validation"
+                                        style="color:red;"></span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-12">

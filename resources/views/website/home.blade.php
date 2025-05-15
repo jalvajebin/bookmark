@@ -319,124 +319,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/nomad.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Social Media Assistant</h3>
-                                    <p>Nomad &bull; <span class="location">Paris, France</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
+                    @foreach($latestJobs as $job)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <img src="{{ $job->Images->url ?? "assets/img/nomad.png" }}  " alt="{{ $job->alt }}" class="company-logo">
+                                    <div class="job-info">
+                                        <h3>{{ $job->title }}</h3>
+                                        <p>Company Name &bull; <span class="location">{{ $job->location }}</span></p>
+                                        <div class="job-tags">
+                                            <span class="tag active">Full-Time</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/brand-design.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Brand Designer</h3>
-                                    <p>Dropbox &bull; <span class="location">San Fransisco, USA</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/intereactive.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Interactive Developer</h3>
-                                    <p>Terraform &bull; <span class="location">Hamburg, Germany</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/hr.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>HR Manager</h3>
-                                    <p>Packer &bull; <span class="location">Lucern, Switzerland</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/social-media.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Social Media Assistant</h3>
-                                    <p>Netlify &bull; <span class="location">Paris, France</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/intereactive-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Interactive Developer</h3>
-                                    <p>Udacity &bull; <span class="location">Hamburg, Germany</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/brand-design-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Brand Designer</h3>
-                                    <p>Maze &bull; <span class="location">San Fransisco, USA</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/hr-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>HR Manager</h3>
-                                    <p>Webflow &bull; <span class="location">Lucern, Switzerland</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+               
+                
             </div>
         </section>
 

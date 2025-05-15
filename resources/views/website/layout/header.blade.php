@@ -31,15 +31,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-lg-0 w-100 justify-content-center gap-3 main-nav-links">
                             <li class="nav-item">
+<<<<<<< HEAD
                                 <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+=======
+                                <a class="nav-link active" aria-current="page" href="{{ route('web.home') }}">Home</a>
+>>>>>>> 2c31373ca1d52fdbcd2f72ab2872790c42bce2e8
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
+                                <a class="nav-link" href="{{ route('web.about.index') }}">About</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">Service</a>
+                                <a class="nav-link" href="{{ route('web.service.index') }}">Service</a>
                             </li>
 
 

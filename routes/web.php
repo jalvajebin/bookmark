@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
+use App\Http\Controllers\Web\AboutController as WebAboutController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
+use App\Http\Controllers\Web\ServiceController as WebServiceController;
 use App\Http\Controllers\WebHomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,12 +31,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [WebHomeController::class, 'index']);
+Route::get('/', [WebHomeController::class, 'index'])->name('web.home');
+
 Route::get('destinations', [WebDestinationController::class, 'index'])->name('web.destination.index');
 Route::get('/destination-single/{slug}', [WebDestinationController::class, 'show'])->name('destination.details');
 Route::get('/blog', [WebBlogController::class, 'blog'])->name('blogs');
 Route::get('/blog-single/{slug}', [WebBlogController::class, 'blogDetail'])->name('blog.details');
 
+// about
+Route::get('About-us', [WebAboutController::class, 'index'])->name('web.about.index');
+
+Route::get('Service', [WebServiceController::class, 'index'])->name('web.service.index');
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
