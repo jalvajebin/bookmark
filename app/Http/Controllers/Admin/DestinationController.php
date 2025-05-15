@@ -87,6 +87,7 @@ class DestinationController extends Controller
 
     public function edit(Request $request)
     {
-        return view('admin.destination.edit');
+        $destination = Destination::all();
+        return view('admin.destination.edit', compact('destination'));
     }
 }
