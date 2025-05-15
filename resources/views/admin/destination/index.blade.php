@@ -155,8 +155,8 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.destinatin.banner')
-                @include('admin.destinatin.destination')
+                @include('admin.destination.banner')
+                @include('admin.destination.destination')
              
                 {{-- @include('admin.services.service') --}}
                 {{-- @include('admin.contact.contact')
@@ -187,6 +187,6 @@
     </div>
 @endsection
 @section('js')
-@include('admin.destinatin.js.datatable')
-@include('admin.destinatin.js.script')
+@include('admin.destination.js.datatable')
+@include('admin.destination.js.script')
 @endsection

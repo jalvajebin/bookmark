@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('description_1')->nullable();
+            $table->string('description')->nullable();
             $table->string('description_2')->nullable();
             $table->string('main_image_alt')->nullable();
             $table->string('inner_image_1_alt')->nullable();
             $table->string('inner_image_2_alt')->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });
     }

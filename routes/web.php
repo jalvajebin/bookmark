@@ -67,7 +67,11 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
         });
         Route::group(['prefix' => 'destination'], function () {
             Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
-            Route::post('update-destination', [DestinationController::class, 'updateDestination'])->name('admin.destination.add');
+            Route::get('create', [DestinationController::class, 'create']);
+            Route::post('store', [DestinationController::class, 'store'])->name('admin.destination.add');
+            Route::get('edit', [DestinationController::class, 'edit']);
+            Route::get('destination-data', [DestinationController::class, 'getData'])->name('admin.destination.getData');
+
             });
 
             Route::group(['prefix' => 'jobs'], function () {
