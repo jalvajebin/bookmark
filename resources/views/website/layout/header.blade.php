@@ -31,7 +31,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-lg-0 w-100 justify-content-center gap-3 main-nav-links">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ route('web.home') }}">Home</a>
                             </li>
 
                             <li class="nav-item">
@@ -39,7 +39,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html">Service</a>
+                                <a class="nav-link" href="{{ route('web.service.index') }}">Service</a>
                             </li>
 
 

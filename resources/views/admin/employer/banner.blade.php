@@ -46,7 +46,8 @@
                                     <label for="description">Description<span
                                             style="color:#ff0000">*</span></label>
                                     <textarea id="description" name="description" rows="5" class="form-control description"
-                                        placeholder="Enter Description">{{ $banner->description }}</textarea>
+                                        placeholder="Enter Description">{{ optional($banner)->description }}
+                                    </textarea>
                                     <span class="description-validation error-validation"
                                         style="color:red;"></span>
                                 </div>
