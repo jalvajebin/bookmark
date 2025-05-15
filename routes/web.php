@@ -10,8 +10,10 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\FormController;
-
+use App\Http\Controllers\Web\DestinationController as WebDestinationController;
+use App\Http\Controllers\WebHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', [WebHomeController::class, 'index']);
+Route::get('destinations', [WebDestinationController::class, 'index'])->name('web.destination.index');
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -68,12 +72,11 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
             Route::get('create', [DestinationController::class, 'create']);
             Route::post('store', [DestinationController::class, 'store'])->name('admin.destination.add');
-            Route::get('edit', [DestinationController::class, 'edit']);
+            Route::get('edit/{id}', [DestinationController::class, 'edit']);
             Route::get('destination-data', [DestinationController::class, 'getData'])->name('admin.destination.getData');
-
+            Route::post('update', [DestinationController::class, 'update']);
+            Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
             });
-
-
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
@@ -123,15 +126,6 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/', [EmployerController::class, 'index'])->name('employer.index');
             Route::post('employer-contact-us', [EmployerController::class, 'addEmployerContactUs'])->name('admin.employer-contact.add');
             Route::post('we-recruit-for', [EmployerController::class, 'addWeRecruitFor'])->name('admin.we-recruit-for.add');
-
-
-            // Route::post('learn-about-us', [AboutController::class, 'addLearnAboutUs'])->name('admin.learn-about-us.add');
-            // Route::post('counter', [AboutController::class, 'addCounterData'])->name('admin.counter.add');
-            // Route::post('about-us', [AboutController::class, 'addAboutUs'])->name('admin.about-us.add');
-            // Route::get('testimonials', [AboutController::class, 'getTestimonial'])->name('admin.about-us.getTestimonial');
-            // Route::post('add-testimonial', [AboutController::class, 'addTestimonial'])->name('admin.testimonial.add');
-            // Route::get('/{id}', [AboutController::class, 'getTestimonialById'])->name('admin.testimonial.getbyid');
-            // Route::delete('/{id}', [AboutController::class, 'deleteTestimonial'])->name('admin.testimonial.delete');
         });
 
         Route::group(['prefix' => 'home'], function () {

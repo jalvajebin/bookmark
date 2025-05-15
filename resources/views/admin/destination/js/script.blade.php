@@ -418,7 +418,7 @@
         });
     }
 
-    function deleteTestimonial(id) {
+    function deleteDestination(id) {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -429,7 +429,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                let route = "{{ route('admin.testimonial.delete', ':id') }}?_token={{ csrf_token() }}"
+                let route = "{{ route('admin.destination.delete', ':id') }}?_token={{ csrf_token() }}"
                 route = route.replace(':id', id);
                 formData = new FormData();
                 // formData.append('_token', "{{ csrf_token() }}");
@@ -455,7 +455,7 @@
                             'Your file has been deleted.',
                             'success'
                         )
-                        $('#testimonialTable').DataTable().ajax.reload();
+                        $('#destinationTable').DataTable().ajax.reload();
                         alertMessage(message, 'successfully deleted');
                     },
                     error: function(data) {
