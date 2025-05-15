@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="{{ Request::is('home*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('home.index') }}" class="waves-effect">
+                    <a href="" class="waves-effect">
                         <i class="fas fa-home"></i>
                         <span key="t-dollar">Home</span>
                     </a>

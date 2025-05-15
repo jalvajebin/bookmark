@@ -111,7 +111,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create Destination</h4>
+                        <h4 class="mb-sm-0 font-size-18">Edit Destination</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
@@ -129,14 +129,15 @@
                         <div class="card-body">
                             <form class="formSubmit" data-content=" " id="formSubmit">
                                 @csrf
-                                <input type="hidden" class="blog_id" name="blog_id" id="blog_id">
+                                <input type="hidden" class="destination_id" name="destination_id" id="destination_id" value="{{  optional($destination)->id }}">
                                 <div class="modal-body p-4">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="mb-4">
-                                                <label for="title">Title<span style="color:#ff0000">*</span></label>
+                                                <label for="title">Name<span style="color:#ff0000">*</span></label>
                                                 <input id="title" name="title" type="text"
-                                                    class="form-control title" placeholder="Enter Title">
+                                                    class="form-control title" placeholder="Enter Title"
+                                                    value="{{ optional($destination)->name }}">
                                                 <span class="title-validation error-validation" style="color:red;"></span>
                                             </div>
                                         </div>
@@ -147,7 +148,7 @@
                                             <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit
                                                 is 2MB</small>
                                             <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
+                                                <img alt="Logo" src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
                                                     class="logo-image avatar-md img-thumbnail image_class mainPreview"
                                                     id="mainPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerMainFileInput()">
@@ -169,7 +170,7 @@
                                             <small class="text-red">Size Recommended:1920x1280px <br> Maximum File Size
                                                 Limit is 2MB</small>
                                             <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
+                                                <img alt="Logo" src="@if ($destination->InnerImages) {{ $destination->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
                                                     class="logo-image avatar-md img-thumbnail image_class innerPreview"
                                                     id="innerPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerInnerFileInput()">
@@ -185,12 +186,12 @@
                                         <div class="col-sm-6 col-6">
                                             <label for="title">Image Alt </label>
                                             <input id="alt" name="alt" type="text"
-                                                class="form-control alt mb-3" placeholder="Enter Alt">
+                                                class="form-control alt mb-3" placeholder="Enter Alt" value = "{{ optional($destination)->main_image_alt }}">
                                         </div>
                                         <div class="col-sm-6 col-6">
                                             <label for="inner_image_alt">Image Alt </label>
                                             <input id="inner_image_alt" name="inner_image_alt" type="text"
-                                                class="form-control alt mb-3" placeholder="Enter Alt">
+                                                class="form-control alt mb-3" placeholder="Enter Alt" value = "{{ optional($destination)->inner_image_1_alt }}">
                                         </div>
                                         <div class="col-sm-6 col-6">
                                             <label for="formFile" class="form-label">Inner Image 2<span
@@ -199,7 +200,7 @@
                                             <small class="text-red">Size Recommended:1920x1280px <br> Maximum File Size
                                                 Limit is 2MB</small>
                                             <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
+                                                <img alt="Logo" src="@if ($destination->Inner1Images) {{ $destination->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
                                                     class="logo-image avatar-md img-thumbnail image_class inner1Preview"
                                                     id="inner1Preview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerInner1FileInput()">
@@ -209,11 +210,11 @@
                                                 <span class="inner_image-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
-                                            <input type="file" id="inner1-input" name="inner_image" class="file-input"
-                                                accept="image/*" onchange="previewInner1(event)">
+                                            <input type="file" id="inner1-input" name="inner1_image"
+                                                class="file-input" accept="image/*" onchange="previewInner1(event)">
                                             <label for="title">Image Alt </label>
                                             <input id="inner1_image_alt" name="inner1_image_alt" type="text"
-                                                class="form-control alt mb-3" placeholder="Enter Alt">
+                                                class="form-control alt mb-3" placeholder="Enter Alt" value = "{{ optional($destination)->inner_image_2_alt }}">
                                         </div>
 
                                         <div class="col-sm-12">
@@ -221,7 +222,7 @@
                                                 <label for="description">Description<span
                                                         style="color:#ff0000">*</span></label>
                                                 <textarea id="description" name="description" rows="5" class="form-control description"
-                                                    placeholder="Enter Description"></textarea>
+                                                    placeholder="Enter Description"> {{ optional($destination)->description }} </textarea>
                                                 <span class="description-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
@@ -231,22 +232,11 @@
                                                 <label for="description_1">Description 1<span
                                                         style="color:#ff0000">*</span></label>
                                                 <textarea id="description_1" name="description_1" rows="5" class="form-control description_1"
-                                                    placeholder="Enter description 1"></textarea>
+                                                    placeholder="Enter description 1">{{ optional($destination)->description_1 }}</textarea>
                                                  <span class="description-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="mb-4">
-                                                <label for="description_1">Description 1<span
-                                                        style="color:#ff0000">*</span></label>
-                                                <textarea id="description_1" name="description_1" rows="5" class="form-control description_1"
-                                                    placeholder="Enter Description 1"></textarea>
-                                                <span class="description_1_validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                                 <div class="modal-footer p-4">
@@ -454,7 +444,7 @@
                 $("#loader").show();
                 var description = CKEDITOR.instances['description'].getData();
                 var description_1 = CKEDITOR.instances['description_1'].getData();
-                $('#formSubmit').data('content', 'admin/destination/store');
+                $('#formSubmit').data('content', 'admin/destination/update');
                 var dataContent = $(this).data('content');
                 var formData = new FormData(this);
                 formData.append('description', description);
