@@ -17,7 +17,7 @@
 
     <div class="main-nav" id="navbar">
         <div>
-            <a href="index.html"><img src="assets/img/logo.png" alt="" class="logo-width"></a>
+            <a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="" class="logo-width"></a>
         </div>
 
         <div>
@@ -31,7 +31,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-lg-0 w-100 justify-content-center gap-3 main-nav-links">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                             </li>
 
                             <li class="nav-item">
@@ -51,17 +51,16 @@
                                     <li><a class="dropdown-item" href="find-job.html">Find a Job</a></li>
                                     <li><a class="dropdown-item" href='submit-cv.html'>Submit your CV</a></li>
                                     <li><a class="dropdown-item" href='career-hub.html'>Career Hub</a></li>
-                                    <li><a class="dropdown-item" href='{{ route('web.destination.index') }}'>Destinations</a></li>
+                                    <li><a class="dropdown-item"
+                                            href='{{ route('web.destination.index') }}'>Destinations</a></li>
                                 </ul>
                             </li>
-
-
                             <li class="nav-item">
                                 <a class="nav-link" href="employers.html">Employers</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="blog.html">Blogs</a>
+                                <a class="nav-link" href="{{ route('blogs') }}">Blogs</a>
                             </li>
 
                             <li class="nav-item">

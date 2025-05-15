@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class WebHomeController extends Controller
 {
     public function index(){
-
-        return view('website.home');
+        $destinations = Destination::all();
+        return view('website.home', compact('destinations'));
     }
 }

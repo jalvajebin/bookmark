@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
 use App\Http\Controllers\WebHomeController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WebHomeController::class, 'index']);
 Route::get('destinations', [WebDestinationController::class, 'index'])->name('web.destination.index');
+Route::get('/destination-single/{slug}', [WebDestinationController::class, 'show'])->name('destination.details');
+Route::get('/blog', [WebBlogController::class, 'blog'])->name('blogs');
+Route::get('/blog-single/{slug}', [WebBlogController::class, 'blogDetail'])->name('blog.details');
+
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');

@@ -46,4 +46,9 @@ class Job extends Model implements HasMedia
         }
         return $file;
     }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
+    }
 }
