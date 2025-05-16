@@ -32,11 +32,11 @@
                                 <div class="col-7">
                                     <div class="text-primary white_clor p-4">
                                         <h5 class="">Welcome Back !</h5>
-                                        <p>Sign in to continue to Fitsolution.</p>
+                                        <p>Sign in to continue to Bookmark.</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
-                                    <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+                                    <img src="admin/assets/images/profile-img.png" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>

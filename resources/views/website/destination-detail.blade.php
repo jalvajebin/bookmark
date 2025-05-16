@@ -56,6 +56,7 @@
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
                         <div class="dest-detail-title">
+                            <h2>Travel Highlights</h2>
                             <p>
                                 {!! optional($destination)->description_1 !!}
                             </p>

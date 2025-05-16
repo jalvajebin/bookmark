@@ -314,7 +314,7 @@
                     </div>
 
                     <div class="more-buttons">
-                        <a href="all-jobs.html">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="{{  route('web.applicants.career-hub') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
 
@@ -758,12 +758,7 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
-   
-
-        
         <!-- Testimonials -->
         <!-- Testimonials -->
         <section class="section-padding">
