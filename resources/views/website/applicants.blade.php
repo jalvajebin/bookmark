@@ -125,13 +125,10 @@
             <div class="row">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="section-title">
-                        <h2><span>We</span> recruit for</h2>
+                        <h2> {{ $weRecruitFor->heading  }}</h2>
                     </div>
                     <p class="main-para">
-                        Bookmark recruitments guarantees to discover élite teaching talent for
-                        reputable institute through a tailored and specialized recruitment process.
-                        Our intention is to improve the reputation and eminence of educational
-                        institutions by connecting you with great educators.
+                        {{ $weRecruitFor->description  }}
                     </p>
                     <button class="head-btn"> <span>More Top Employers</span>
                     </button>
@@ -320,93 +317,37 @@
 
 
         <!-- top destination -->
-        <section class="section-padding" data-aos="fade-up">
+        <section class="section-padding">
 
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <div class="section-title text-center">
                     <h2>Top Destinations</h2>
                 </div>
                 <div class="more-buttons">
-                    <a href="">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <a href="all-jobs.html">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
             </div>
 
             <div class="gallery-container">
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <!-- Item 4: UAE -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item1">
-                                <img src="assets/img/g-uae.png">
-                                <div class="city-name">
-                                    <h2>UAE</h2>
-                                </div>
+                    @if ($destinations->isNotEmpty())
+                        @foreach ($destinations as $destination)
+                            <div class="col-lg-4">
+                                <a href="{{ route('destination.details', $destination->slug) }}">
+                                    <div class="gallery-item item2">
+                                        <img
+                                            src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif">
+                                        <div class="city-name">
+                                            <h2>{{ $destination->name }}</h2>
+
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <!-- Item 3: Saudi Arabia -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item2">
-                                <img src="assets/img/g-saudi-arabia.png">
-                                <div class="city-name">
-                                    <h2>Saudi arabia</h2>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-
-                    <div class="col-lg-4">
-                        <!-- Item 1: Kuwait -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item3">
-                                <img src="assets/img/g-kuwait.jpg">
-                                <div class="city-name">
-                                    <h2>Kuwait</h2>
-
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <!-- Item 5: Qatar -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item3">
-                                <img src="assets/img/g-qatar.png">
-                                <div class="city-name">
-                                    <h2>Qatar</h2>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <!-- Item 6: Bahrain -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item3">
-                                <img src="assets/img/g-bahrain.png">
-                                <div class="city-name">
-                                    <h2>Bahrain</h2>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-
-
-
-
-
-
-
-
+                        @endforeach
+                    @endif
                 </div>
             </div>
-
         </section>
         <!-- top destination -->
 
@@ -425,186 +366,86 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/nomad.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Social Media Assistant</h3>
-                                    <p>Nomad &bull; <span class="location">Paris, France</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
+                    @foreach ($latestJobs as $job)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <img src="{{ $job->Images->url ?? 'assets/img/nomad.png' }}  "
+                                        alt="{{ $job->alt }}" class="company-logo">
+                                    <div class="job-info">
+                                        <h3>{{ $job->title }}</h3>
+                                        <p>Company Name &bull; <span class="location">{{ $job->location }}</span></p>
+                                        <div class="job-tags">
+                                            <span class="tag active">Full-Time</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/brand-design.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Brand Designer</h3>
-                                    <p>Dropbox &bull; <span class="location">San Fransisco, USA</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/intereactive.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Interactive Developer</h3>
-                                    <p>Terraform &bull; <span class="location">Hamburg, Germany</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/hr.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>HR Manager</h3>
-                                    <p>Packer &bull; <span class="location">Lucern, Switzerland</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/social-media.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Social Media Assistant</h3>
-                                    <p>Netlify &bull; <span class="location">Paris, France</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/intereactive-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Interactive Developer</h3>
-                                    <p>Udacity &bull; <span class="location">Hamburg, Germany</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/brand-design-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>Brand Designer</h3>
-                                    <p>Maze &bull; <span class="location">San Fransisco, USA</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="job-card">
-                            <div class="job-header">
-                                <img src="assets/img/hr-2.png" alt="Company Logo" class="company-logo">
-                                <div class="job-info">
-                                    <h3>HR Manager</h3>
-                                    <p>Webflow &bull; <span class="location">Lucern, Switzerland</span></p>
-                                    <div class="job-tags">
-                                        <span class="tag active">Full-Time</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
-@endsection
-@push('js')
-    <script>
-        AOS.init({
-            duration: 2000,
-            once: false
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
+    @endsection
+    @push('js')
+        <script>
+            AOS.init({
+                duration: 2000,
+                once: false
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content');
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active classes
-                    tabs.forEach(t => t.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove active classes
+                        tabs.forEach(t => t.classList.remove('active'));
 
-                    // Fade out all content
-                    contents.forEach(content => {
-                        content.style.opacity = '0';
-                        content.style.transform = 'translateY(20px)';
+                        // Fade out all content
+                        contents.forEach(content => {
+                            content.style.opacity = '0';
+                            content.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                content.classList.remove('active');
+                            }, 300);
+                        });
+
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+
+                        // Fade in selected content
+                        const targetContent = document.getElementById(tab.dataset.tab);
                         setTimeout(() => {
-                            content.classList.remove('active');
+                            targetContent.classList.add('active');
+                            setTimeout(() => {
+                                targetContent.style.opacity = '1';
+                                targetContent.style.transform = 'translateY(0)';
+                            }, 50);
                         }, 300);
                     });
-
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-
-                    // Fade in selected content
-                    const targetContent = document.getElementById(tab.dataset.tab);
-                    setTimeout(() => {
-                        targetContent.classList.add('active');
-                        setTimeout(() => {
-                            targetContent.style.opacity = '1';
-                            targetContent.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, 300);
                 });
             });
-        });
-    </script>
-    <script>
-        // Add this at the beginning of your script
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.querySelector('.loader');
+        </script>
+        <script>
+            // Add this at the beginning of your script
+            document.addEventListener('DOMContentLoaded', function() {
+                const loader = document.querySelector('.loader');
 
-            // Hide loader after content loads
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    gsap.to(loader, {
-                        opacity: 0,
-                        duration: 0.5,
-                        onComplete: () => {
-                            loader.style.display = 'none';
-                        }
-                    });
-                }, 2000); // Adjust time as needed
+                // Hide loader after content loads
+                window.addEventListener('load', function() {
+                    setTimeout(() => {
+                        gsap.to(loader, {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                loader.style.display = 'none';
+                            }
+                        });
+                    }, 2000); // Adjust time as needed
+                });
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

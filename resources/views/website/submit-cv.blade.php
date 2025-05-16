@@ -498,7 +498,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Services list -->
 
 @endsection

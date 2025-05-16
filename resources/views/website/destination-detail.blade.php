@@ -37,7 +37,8 @@
                     </div>
                     <div class="col-lg-6 first-dest-detail-bg" data-aos="fade-right">
                         <div class="dest-detail-bg">
-                            <img src="@if ($destination->InnerImages) {{ $destination->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="">
+                            <img src="@if ($destination->InnerImages) {{ $destination->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                alt="">
                         </div>
                     </div>
 
@@ -49,7 +50,8 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6 second-dest-detail-bg" data-aos="fade-right">
                         <div class="dest-detail-bg">
-                            <img src="@if ($destination->Inner1Images) {{ $destination->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="">
+                            <img src="@if ($destination->Inner1Images) {{ $destination->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                alt="">
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
@@ -83,14 +85,19 @@
                     <h2>Latest jobs</h2>
                 </div>
                 <div class="row">
-                    @foreach ($jobs  as $key => $job )
-                    <div class="col-lg-6 col-md-6">
-                        <div class="destination-box">
-                            <h5>{{ optional($job)->title }}</h5>
-                            <div class="date">{{ \Carbon\Carbon::parse($job->posted_date)->format('M d') }}</div>
-                            <div class="contract">{!! optional($job)->description !!}<a href="#">read more</a> </p>
+                    @foreach ($jobs as $job)
+                        <div class="col-lg-6 col-md-6">
+                            <div class="destination-box">
+                                <h5>{{ $job->title }}</h5>
+                                <div class="date">{{ \Carbon\Carbon::parse($job->posted_date)->format('d/m/Y') }}</div>
+                                <div class="contract">{{ $job->location }} {{ $job->contract_type }} {{ $job->salary }}
+                                </div>
+                                <p>
+                                    {{ Str::limit(strip_tags($job->description), 150) }}
+                                    <a href="#">read more</a>
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
