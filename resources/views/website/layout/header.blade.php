@@ -56,7 +56,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.applicants.employer') }}">Employers</a>
+                                <a class="nav-link" href="{{ route('web.employers.index') }}">Employers</a>
                             </li>
 
                             <li class="nav-item">
@@ -64,7 +64,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact Us</a>
+                                <a class="nav-link" href="{{ route('web.contact.index') }}">Contact Us</a>
                             </li>
                         </ul>
 
