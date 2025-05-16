@@ -108,9 +108,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
             });
 
-            
-
-
+        
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
