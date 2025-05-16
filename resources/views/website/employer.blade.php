@@ -82,78 +82,22 @@
           </div>
 
           <div class="owl-carousel" id="testimonial-carousel">
+            @foreach ($testimonials as $testimonial)
             <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-img">
-                  <img src="assets/img/testimonial-1.png" alt="">
-                </div>
-
-                <div class="testmonial-cntnt">
-                  <h6>May 8, 2020</h6>
-                  <h4>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus
-                    maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus
-                    venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in
-                    tincidunt.</p>
+                <div class="testimonial-box">
+                  <div class="testimonial-img">
+                    <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
+                  </div>
+    
+                  <div class="testmonial-cntnt">
+                    <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
+                    <h4>{{ $testimonial->heading }}</h4>
+                    <p>{{ $testimonial->description }}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-img">
-                  <img src="assets/img/testimonial-2.png" alt="">
-                </div>
-
-                <div class="testmonial-cntnt">
-                  <h6>May 8, 2020</h6>
-                  <h4>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus
-                    maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus
-                    venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in
-                    tincidunt.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-img">
-                  <img src="assets/img/testimonial-1.png" alt="">
-                </div>
-
-                <div class="testmonial-cntnt">
-                  <h6>May 8, 2020</h6>
-                  <h4>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus
-                    maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus
-                    venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in
-                    tincidunt.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="item">
-              <div class="testimonial-box">
-                <div class="testimonial-img">
-                  <img src="assets/img/testimonial-2.png" alt="">
-                </div>
-
-                <div class="testmonial-cntnt">
-                  <h6>May 8, 2020</h6>
-                  <h4>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus
-                    maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus arcu. Faucibus
-                    venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis magna pretium in
-                    tincidunt.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            @endforeach
+        </div>
         </div>
       </div>
     </section>
@@ -164,10 +108,10 @@
         <div class="ab-rectangle"></div>
         <div class="ab-circle"></div>
         <div data-aos="fade-up">
-          <h3><span>Contact our head office</span></h3>
-          <a href=""><h2>+971 1245678</h2></a>
-          <p>As an international recruitment agency, we work across time <br>
-            zones and working days to suit the needs of clients and candidates.</p>
+          <h3><span>{{$contact->heading ?? "Contact our head office"}}</span></h3>
+          <a href=""><h2>{{ $contact->phone ?? "+971 1245678"}}</h2></a>
+          <p>{{$contact->description ?? "As an international recruitment agency, we work across time <br>
+            zones and working days to suit the needs of clients and candidates."}}</p>
           <div class="d-flex justify-content-center gap-2">
             <button class="head-btn"> <span>Contact US</span>
             </button>
@@ -178,18 +122,19 @@
       </div>
     </section>
 
-
+{{-- we recruite --}}
     <section class="section-padding">
       <div class="row">
         <div class="col-lg-6"  data-aos="fade-right">
           <div class="section-title">
-            <h2><span>We</span> recruit for</h2>
+            <h2>{{ $recruit->heading ?? "We recruit for"}}</h2>
           </div>
           <p class="main-para">
-            Bookmark recruitments guarantees to discover élite teaching talent for
+            {{  $recruit->description ?? " Bookmark recruitments guarantees to discover élite teaching talent for
             reputable institute through a tailored and specialized recruitment process.
             Our intention is to improve the reputation and eminence of educational
-            institutions by connecting you with great educators.
+            institutions by connecting you with great educators." }}
+           
           </p>
           <button class="head-btn"> <span>More Top Employers</span>
           </button>
@@ -234,7 +179,7 @@
     </section>
 
 
-
+{{-- 
     <section class="section-padding employer-stats-container">
       <div class="stats-container" data-aos="fade-up">
         <div class="stat-box">
@@ -261,7 +206,37 @@
           <div class="stat-label">Teachers placed in 2024</div>
         </div>
       </div>
+    </section> --}}
+
+    {{-- conter data --}}
+    <section class="section-padding employer-stats-container">
+    <div class="stats-container" data-aos="fade-up">
+      <div class="stat-box">
+        <img src="{{ $counters->Count1Image->url ?? "assets/img/why-offices.png"}}" alt="">
+        <div class="stat-number"> {{$counters->count1 ?? '8'}}</div>
+        <div class="stat-label">{{ $counters->counter_1_name ?? 'Offices Worldwide'}}</div>
+      </div>
+
+      <div class="stat-box">
+        <img src="{{ $counters->Count2Image->url ?? "assets/img/why-consultant.png"}}" alt="">
+        <div class="stat-number">{{$counters->count2 ?? '16'}}</div>
+        <div class="stat-label">{{ $counters->counter_2_name ?? 'Consultants across the world'}}</div>
+      </div>
+
+      <div class="stat-box">
+        <img src="{{ $counters->Count3Image->url ?? "assets/img/why-country.png"}}" alt="">
+        <div class="stat-number">{{ $counters->count3 ?? '28'}}</div>
+        <div class="stat-label">{{$counters->counter_3_name ?? "Countries placed in 2024"}}</div>
+      </div>
+
+      <div class="stat-box">
+        <img src=" {{ $counters->Count4Image->url ?? "assets/img/why-teacher.png"}}" alt="">
+        <div class="stat-number">{{$counters->count4?? '266'}}</div>
+        <div class="stat-label">{{$counters->counter_4_name ?? "Teachers placed in 2024"}}</div>
+      </div>
+    </div>
     </section>
+     {{-- end conter data --}}
 
 
 
