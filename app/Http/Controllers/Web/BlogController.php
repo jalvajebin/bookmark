@@ -49,6 +49,7 @@ class BlogController extends Controller
 
         $popularPost = Blog::orderBy('id', 'DESC')->where('status', 1)->inRandomOrder()->take(8)->get();
         $blogCount = Blog::where('status', 1)->count();
+        $blogRecents = Blog::where('status', '1')->latest()->get();
         $category = BlogCategory::orderBy('id', 'DESC')->where('status', 1)->inRandomOrder()->take(10)->get();
         $tags = Tag::orderBy('id', 'DESC')->where('status', 1)->inRandomOrder()->take(13)->get();
         $categories = BlogCategory::where('status', 1)->get();
@@ -58,17 +59,18 @@ class BlogController extends Controller
             $data->categories = $categories;
         });
         // $seo = Seo::where('page', 'blog')->first();
-        return view('website.blog', compact('blogs', 'categories', 'popularPost', 'blogCount', 'category', 'tags', 'banner'));
+        return view('website.blog', compact('blogs', 'categories', 'popularPost', 'blogCount', 'category', 'tags', 'banner', 'blogRecents'));
     }
 
     public function blogDetail(Request $request, $slug)
     {
         $blog = Blog::where('slug', $slug)->where('status', '1')->first();
+        $blogRecents = Blog::where('status', '1')->latest()->get();
         $blogCount = Blog::where('status', 1)->count();
         $categories = BlogCategory::where('status', 1)->inRandomOrder()->limit(8)->get();
         $popularPost = Blog::orderBy('id', 'DESC')->where('status', 1)->where('slug', '!=', $slug)->inRandomOrder()->limit(6)->get();
         $tags = Tag::orderBy('id', 'DESC')->where('status', '1')->inRandomOrder()->take(10)->get();
         // $seo = Seo::where('page', 'blog')->first();
-        return view('website.blog-detail', compact('blog', 'categories', 'popularPost', 'tags', 'blogCount'));
+        return view('website.blog-detail', compact('blog', 'categories', 'popularPost', 'tags', 'blogCount', 'blogRecents'));
     }
 }
