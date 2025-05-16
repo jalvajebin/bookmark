@@ -41,7 +41,6 @@
                                     <span class="banner_title-validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
-
                             <div class="col-sm-12">
                                 <div class="mb-4">
                                     <label for="description">Description<span

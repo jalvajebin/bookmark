@@ -35,36 +35,22 @@
                             <div class="blog-meta">
                                 <span><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($blog->date)->format('F d, Y') }}</span>
                                 <span><i class="fas fa-user"></i> {{ optional($blog)->author }}</span>
-                                <span><i class="fas fa-comments"></i> 2 Comments</span>
+                                {{-- <span><i class="fas fa-comments"></i> 2 Comments</span> --}}
                             </div>
                             <h2>{{ optional($blog)->title }}</h2>
                             <div class="blog-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elementum sem ligula. Phasellus eleifend vel justo sit amet volutpat. Duis vitae maximus ligula, nec mattis libero...</p>
-                                <h3>Why Choose International Teaching?</h3>
-                                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula...</p>
-                                <blockquote>
-                                    "Education is not preparation for life; education is life itself."
-                                    <cite>- John Dewey</cite>
-                                </blockquote>
-                                <h3>Key Benefits</h3>
-                                <ul>
-                                    <li>Professional growth opportunities</li>
-                                    <li>Cultural immersion experience</li>
-                                    <li>Competitive salary packages</li>
-                                    <li>Global networking possibilities</li>
-                                </ul>
+                                {!! optional($blog)->description  !!}
                             </div>
                             <!-- Tags -->
                             <div class="blog-tags">
                                 <h4>Tags:</h4>
                                 <div class="tags">
-                                    <a href="#">Teaching</a>
-                                    <a href="#">Education</a>
-                                    <a href="#">Career</a>
-                                    <a href="#">International</a>
+                                    @foreach ($tags as $key => $tag)
+                                    <a href="#">{{ optional($tag)->tag_title_en }}</a>
+                                    @endforeach
                                 </div>
                             </div>
-                            <!-- Comments -->
+                            {{-- <!-- Comments -->
                             <div class="comments-section">
                                 <h3>2 Comments</h3>
                                 <div class="comment">
@@ -78,7 +64,7 @@
                                         <a href="#" class="reply-btn">Reply</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Comment Form -->
                             <div class="comment-form">
                                 <h3>Leave a Comment</h3>

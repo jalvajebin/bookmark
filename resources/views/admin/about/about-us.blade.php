@@ -45,7 +45,7 @@
                                 <small class="text-red"> Maximum File Size Limit is 2MB</small>
                                 <div class="logo-wrapper mb-3">
                                     <img alt="Image1"
-                                        src="{{ $aboutUs->images->url ?? asset('admin/images/no-image.png') }}"
+                                        src="{{ optional($aboutUs)->images->url ?? asset('admin/images/no-image.png') }}"
                                         class="logo-image avatar-md img-thumbnail imagePreview1" id="imagePreview1"
                                         style="object-fit: contain;">
                                     <div class="edit-icon" onclick="Image1InputTrigger()">
@@ -62,7 +62,7 @@
                             <div class="mb-3">
                                 <label for="image1">Image1 Alt</label>
                                 <input id="image1_alt" name="image1_alt" type="text" class="form-control"
-                                    value="{{ $aboutUs->image1_alt ?? '' }}" placeholder="Enter alt">
+                                    value="{{ optional($aboutUs)->image1_alt ?? '' }}" placeholder="Enter alt">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -70,7 +70,7 @@
                                 <label for="online_support_no">Online Support No</label>
                                 <input id="online_support_no" name="online_support_no" type="text"
                                     class="form-control online_support_no" placeholder="Online Support No"
-                                    value="{{ $aboutUs->online_support_number ?? '' }}">
+                                    value="{{ optional($aboutUs)->online_support_number ?? '' }}">
                                 <span class="online_support_no_validation error-validation" style="color:red;"></span>
                             </div>
                         </div>

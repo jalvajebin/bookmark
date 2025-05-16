@@ -149,9 +149,9 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
+                @include('admin.about.banner')  
                 @include('admin.about.testimonials') 
                 @include('admin.about.counters')
-                @include('admin.about.banner')  
                 @include('admin.about.learn-about-agency')   
                 @include('admin.about.about-us')
           
