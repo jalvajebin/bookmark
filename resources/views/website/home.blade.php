@@ -286,16 +286,12 @@
 
             <div class="gallery-container">
                 <div class="row g-4">
-                  @php
-                  $destinations = \App\Models\Destination::take(2)->get(); 
-                  $destinationsTwo = \App\Models\Destination::skip(2)->take(3)->get(); 
-                  @endphp
                   @if ($destinations->isNotEmpty())
                     @foreach ($destinations as $destination)
-                        <div class="col-lg-6">
-                            <a href="destination-details.html">
+                        <div class="col-lg-4">
+                            <a href="{{ route('destination.details', $destination->slug) }}">
                                 <div class="gallery-item item2">
-                                    <img src="assets/img/g-saudi-arabia.png">
+                                    <img src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif">
                                     <div class="city-name">
                                         <h2>{{ $destination->name }}</h2>
 
@@ -305,28 +301,11 @@
                         </div>
                     @endforeach
                     @endif
-                    @if ($destinationsTwo->isNotEmpty())
-                    @foreach ($destinationsTwo as $destinationTwo)
-                    <div class="col-lg-4">
-                        <!-- Item 1: Kuwait -->
-                        <a href="destination-details.html">
-                            <div class="gallery-item item3">
-                                <img src="assets/img/g-kuwait.jpg">
-                                <div class="city-name">
-                                    <h2>{{ $destinationTwo->name }}</h2>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
-                    @endif
                 </div>
             </div>
         </section>
         <!-- top destination -->
-
         <!-- latest job opening -->
-
         <section class="section-padding">
             <div class="custom-container">
                 <div class="d-flex justify-content-between">
