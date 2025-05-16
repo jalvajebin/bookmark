@@ -14,6 +14,6 @@ class WebHomeController extends Controller
 
         $latestJobs = Job::latest()->get(); 
         $about = AboutUs::first();
-        return view('website.home', compact('latestJobs', 'about'));
+        return view('website.home', compact('latestJobs', 'about', 'destinations'));
     }
 }
