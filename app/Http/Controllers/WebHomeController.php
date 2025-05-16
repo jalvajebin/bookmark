@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
 use App\Models\Blog;
+use App\Models\Counter;
 use App\Models\Destination;
 use App\Models\Job;
 use App\Models\Testimonial;
@@ -20,7 +21,9 @@ class WebHomeController extends Controller
         $blog = Blog::all();
     
         $testimonials = Testimonial::orderBy('id', 'asc')->get();
+
+        $counters = Counter::first();
       
-        return view('website.home', compact('latestJobs', 'about', 'destinations', 'blog', 'testimonials'));
+        return view('website.home', compact('latestJobs', 'about', 'destinations', 'blog', 'testimonials', 'counters'));
     }
 }

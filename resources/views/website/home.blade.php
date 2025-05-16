@@ -177,7 +177,7 @@
                                     <img src="assets/img/why-offices.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>8</h3>
+                                    <h3>{{$counters->count1 ?? "8"}}</h3>
                                     <h6>Offices
                                         Worldwide</h6>
                                 </div>
@@ -189,7 +189,7 @@
                                     <img src="assets/img/why-consultant.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>16</h3>
+                                    <h3>{{$counters->count2 ?? "16"}}</h3>
                                     <h6>Consultants across the world</h6>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                     <img src="assets/img/why-country.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>28</h3>
+                                    <h3>{{$counters->count3 ?? "28"}}</h3>
                                     <h6>Countries placed in 2024</h6>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
                                     <img src="assets/img/why-teacher.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>266</h3>
+                                    <h3>{{$counters->count4 ?? "266"}} </h3>
                                     <h6>Teachers placed in 2024</h6>
                                 </div>
                             </div>
