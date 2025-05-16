@@ -6,7 +6,7 @@
 
 
   <!-- banner  -->
-  <div class="inner-banner" style="background-image: url({{ $banners->images->url }})">
+  <div class="inner-banner" style="background-image: url({{ $banners->Images->url ?? asset('admin/images/no-image.png') }})"> 
     <div class="inner-banner-overlay"></div>
     <div class="inner-banner-cntnt " data-aos="fade-up">
       <div class="custom-container">
