@@ -27,6 +27,7 @@ class ContactController extends Controller
         $logedUserData = auth()->user(); 
 
         $banner = Banner::where('page', 'contact')->first();
+      
     
         $contact = Contact::first();
        

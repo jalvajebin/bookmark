@@ -11,7 +11,8 @@ class ServiceController extends Controller
 {
     public function index(){
         $banners = Banner::where('page', 'service')->first();
-      $service = Service::first();
+        $service = Service::first();
+        
       return view('website.service' , compact('banners' , 'service'));
     }
 }
