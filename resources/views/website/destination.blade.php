@@ -14,8 +14,8 @@
                         <li class="breadcrumb-item active" aria-current="page">Destinations</li>
                     </ol>
                 </nav>
-                <h1>{{ optional($banner)->title }}</h1>
-                <p>{{ optional($banner)->description }}</p>
+                <h1>{{ optional($destinations)->title }}</h1>
+                <p>{{ optional($destinations)->description }}</p>
             </div>
         </div>
     </div>

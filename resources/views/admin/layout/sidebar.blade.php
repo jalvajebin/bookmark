@@ -52,25 +52,20 @@
                         <i class="fas fa-users"></i>
                         <span key="t-applicants">Applicants</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Find a Job</a></li>
-                        <li><a href="#">Submit your CV</a></li>
-                        <li><a href="#">Career Hub</a></li>
-                        <li><a href="{{ route('destination.index') }}">Destinations</a></li>
-                    </ul>
                 </li>
 
-
+                <li class="{{ Request::is('destination*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('destination.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Destinations</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('jobs*') ? 'mm-active' : '' }}">
                     <a href="{{ route('jobs.index') }}" class="waves-effect">
                         <i class="fas fa-address-book"></i>
                         <span key="t-dollar">Job</span>
                     </a>
                 </li>
-
-
-
-
 
                 <li class="{{ Request::is('contact*') ? 'mm-active' : '' }}">
                     <a href="{{ route('contact.index') }}" class="waves-effect">
