@@ -19,6 +19,24 @@
          });
      });
 
+
+     function triggerBanner1FileInput() {
+        document.getElementById('banner1-input').click();
+    }
+
+    function previewBanner1(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('bannerPreview1');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    
+
+
+
      $('#employerContactFormSubmit').submit(function(e) {
          e.preventDefault();
          $("#loader").show();

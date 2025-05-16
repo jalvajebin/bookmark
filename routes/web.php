@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
+use App\Http\Controllers\Web\ContactController as WebContactController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
+use App\Http\Controllers\Web\EmployerController as WebEmployerController;
 use App\Http\Controllers\Web\ServiceController as WebServiceController;
 use App\Http\Controllers\WebHomeController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +39,12 @@ Route::get('destinations', [WebDestinationController::class, 'index'])->name('we
 Route::get('About-us', [WebAboutController::class, 'index'])->name('web.about.index');
 
 Route::get('Service', [WebServiceController::class, 'index'])->name('web.service.index');
+
+//web.employers.index
+Route::get('Employers', [WebEmployerController::class, 'index'])->name('web.employers.index');
+
+//web.contact.index
+Route::get('Contact-us', [WebContactController::class, 'index'])->name('web.contact.index');
 
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
