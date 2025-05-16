@@ -30,7 +30,7 @@
                     <div class="col-lg-8" data-aos="fade-right">
                         <div class="blog-detail-content">
                             <div class="blog-detail-image">
-                                <img src="assets/img/blog-main.png" alt="Blog Detail">
+                                <img src="{{ $blog->InnerImages->getUrl('preview') ?? '' }}" alt="Blog Detail">
                             </div>
                             <div class="blog-meta">
                                 <span><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse($blog->date)->format('F d, Y') }}</span>
@@ -96,47 +96,40 @@
                                 <input type="text" placeholder="Search...">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
+                            @if ($categories->count() > 0)
                             <ul class="category-list">
-                                <li><a href="#">Teaching Abroad <span>(15)</span></a></li>
-                                <li><a href="#">Career Development <span>(23)</span></a></li>
-                                <li><a href="#">Education News <span>(18)</span></a></li>
-                                <li><a href="#">Teaching Tips <span>(32)</span></a></li>
-                                <li><a href="#">Recruitment Guide <span>(14)</span></a></li>
+                                @foreach ($categories as $data)
+                                <li><a href="#">{{ $data->title_en  }} <span>{{ $data->getBlogCount->count()  }} </span></a></li>
+                                @endforeach 
                             </ul>
+                            @endif
                         </div>
                         <!-- Recent Posts Widget -->
                         <div class="sidebar-widget">
                             <h4>Recent Posts</h4>
+                            @foreach ($blogRecents as $key => $blogRecent )
                             <div class="recent-post">
                                 <div class="recent-post-thumb">
-                                    <img src="assets/img/blog.png" alt="">
+                                    <img src="{{ $blogRecent->InnerImages->getUrl('preview') ?? '' }}" alt="">
                                 </div>
                                 <div class="recent-post-content">
-                                    <h6><a href="#">Best Practices for Teaching English Abroad</a></h6>
+                                    {{-- <h6><a href="#">{{ optional($blogRecent)->title }}</a></h6> --}}
+                                    <h6><a href="#">{{ optional($blogRecent)->title }}</a></h6>
                                     <span class="date"><i class="far fa-calendar-alt"></i> April 24, 2025</span>
                                 </div>
-                            </div>
-                            <div class="recent-post">
-                                <div class="recent-post-thumb">
-                                    <img src="assets/img/blog2.png" alt="">
-                                </div>
-                                <div class="recent-post-content">
-                                    <h6><a href="#">Best Practices for Teaching English Abroad</a></h6>
-                                    <span class="date"><i class="far fa-calendar-alt"></i> April 24, 2025</span>
-                                </div>
-                            </div>
+                            </div> 
+                            @endforeach
                         </div>
                         <!-- Tags Widget -->
                         <div class="sidebar-widget">
                             <h4>Popular Tags</h4>
+                            @if ($tags->count() > 0)
                             <div class="tags">
-                                <a href="#">Teaching</a>
-                                <a href="#">Education</a>
-                                <a href="#">Career</a>
-                                <a href="#">Development</a>
-                                <a href="#">Schools</a>
-                                <a href="#">Learning</a>
+                                @foreach ($tags as $key => $tag)
+                                <a href="#">{{ optional($tag)->tag_title_en }}</a>
+                                @endforeach  
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

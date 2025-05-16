@@ -335,14 +335,10 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-               
-                
+                </div> 
             </div>
         </section>
-
         <!-- latest job opening -->
-
     </div>
 
     <!-- Excellence -->
@@ -364,11 +360,8 @@
     </section>
 
     <!-- Excellence -->
-
     <div class="main-body">
-
         <!-- partner with us -->
-
         <section class="section-padding section-no-bottom-padding">
             <div class="process-section">
                 <div class="row">
@@ -424,8 +417,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="step">
                                 <div class="step-content">
                                     <div class="step-left">

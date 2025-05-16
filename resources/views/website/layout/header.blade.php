@@ -44,13 +44,13 @@
 
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="applicant.html" role="button">
+                                <a class="nav-link dropdown-toggle" href='{{ route('web.applicants.index') }}' role="button">
                                     Applicants
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="find-job.html">Find a Job</a></li>
-                                    <li><a class="dropdown-item" href='submit-cv.html'>Submit your CV</a></li>
-                                    <li><a class="dropdown-item" href='career-hub.html'>Career Hub</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('web.find-job.index') }}">Find a Job</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('web.applicants.submit-cv') }}">Submit your CV</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('web.applicants.career-hub') }}">Career Hub</a></li>
                                     <li><a class="dropdown-item"
                                             href='{{ route('web.destination.index') }}'>Destinations</a></li>
                                 </ul>

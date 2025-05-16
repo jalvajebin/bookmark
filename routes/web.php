@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
+use App\Http\Controllers\Web\ApplicantsController;
 use App\Http\Controllers\Web\ContactController as WebContactController;
 use App\Http\Controllers\Web\DestinationController as WebDestinationController;
 use App\Http\Controllers\Web\EmployerController as WebEmployerController;
@@ -39,18 +40,14 @@ Route::get('destinations', [WebDestinationController::class, 'index'])->name('we
 Route::get('/destination-single/{slug}', [WebDestinationController::class, 'show'])->name('destination.details');
 Route::get('/blog', [WebBlogController::class, 'blog'])->name('blogs');
 Route::get('/blog-single/{slug}', [WebBlogController::class, 'blogDetail'])->name('blog.details');
-
-// about
 Route::get('About-us', [WebAboutController::class, 'index'])->name('web.about.index');
-
 Route::get('Service', [WebServiceController::class, 'index'])->name('web.service.index');
-
-//web.employers.index
+Route::get('applicants', [ApplicantsController::class, 'applicants'])->name('web.applicants.index');
+Route::get('find-a-job', [ApplicantsController::class, 'findJob'])->name('web.find-job.index');
+Route::get('submit-cv', [ApplicantsController::class, 'submitCv'])->name('web.applicants.submit-cv');
+Route::get('career-hub', [ApplicantsController::class, 'careerHub'])->name('web.applicants.career-hub');
 Route::get('Employers', [WebEmployerController::class, 'index'])->name('web.employers.index');
-
-//web.contact.index
 Route::get('Contact-us', [WebContactController::class, 'index'])->name('web.contact.index');
-
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
