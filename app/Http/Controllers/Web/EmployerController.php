@@ -11,9 +11,6 @@ class EmployerController extends Controller
     public function index(){
 
         $banner = Banner::where('page', 'about')->first();
-       
-
-   
     
         return view('website.employer', compact('banner'));
     }

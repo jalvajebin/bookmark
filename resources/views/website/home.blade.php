@@ -659,7 +659,7 @@
         <!-- Meet Exprets -->
 
         <!-- Meet Exprets -->
-        <section class="section-padding">
+        {{-- <section class="section-padding">
             <div class="custom-container">
                 <div class="d-flex justify-content-between">
                     <div class="section-title">
@@ -692,29 +692,50 @@
 
 
                 </div>
-                <div class="blog-div fade-up">
-                    <div class="blog-img">
-                        <img src="assets/img/blog2.png" alt="">
-                    </div>
-
-                    <div>
-                        <div class="meta-info">
-                            <span>4 Min</span>
-                            <span class="dot"></span>
-                            <span>August 19, 2022</span>
-                        </div>
-                        <h6>Revitalizing Workplace Morale: Innovative Tactics for Boosting Employee Engagement in 2024
-                        </h6>
-                        <div class="more-buttons">
-                            <a href="">Read more <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-                        </div>
-                    </div>
-
-                </div>
+           
             </div>
-        </section>
+        </section> --}}
         <!-- Meet Exprets -->
 
+        <section class="section-padding">
+            <div class="custom-container">
+                <div class="d-flex justify-content-between">
+                    <div class="section-title">
+                        <h2>News and Blog</h2>
+                        <p>Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed tristique in dolor</p>
+                    </div>
+                    <div class="more-buttons">
+                        <a href="">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    </div>
+                </div>
+        
+                @foreach ($blog as $blogs)
+                <div class="blog-div fade-up">
+                    <div class="blog-img">
+                        <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}" alt="{{ $blogs->alt }}">
+                    </div>
+        
+                    <div>
+                        <div class="meta-info">
+                            <span>By {{ $blogs->author }}</span>
+                            <span class="dot"></span>
+                            <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                        </div>
+        
+                        <h6>{!! $blogs->description !!}</h6>
+        
+                        <div class="more-buttons">
+                            <a href="{{ $blogs->meta_title }}" target="_blank">
+                                Read More <span><i class="fa-solid fa-arrow-right"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+        
+            </div>
+        </section>
+        
 
 
         <!-- Testimonials -->
@@ -728,94 +749,30 @@
                     </div>
 
                     <div class="owl-carousel" id="testimonial-carousel">
+                        @foreach ($testimonials as $testimonial)
                         <div class="item">
                             <div class="testimonial-box">
-                                <div class="testimonial-img">
-                                    <img src="assets/img/testimonial-1.png" alt="">
-                                </div>
-
-                                <div class="testmonial-cntnt">
-                                    <h6>May 8, 2020</h6>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec
-                                        turpis orci lectus
-                                        maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus
-                                        arcu. Faucibus
-                                        venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis
-                                        magna pretium in
-                                        tincidunt.</p>
-                                </div>
+                              <div class="testimonial-img">
+                                <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
+                              </div>
+                
+                              <div class="testmonial-cntnt">
+                                <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
+                                <h4>{{ $testimonial->heading }}</h4>
+                                <p>{{ $testimonial->description }}</p>
+                              </div>
                             </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="testimonial-box">
-                                <div class="testimonial-img">
-                                    <img src="assets/img/testimonial-2.png" alt="">
-                                </div>
-
-                                <div class="testmonial-cntnt">
-                                    <h6>May 8, 2020</h6>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec
-                                        turpis orci lectus
-                                        maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus
-                                        arcu. Faucibus
-                                        venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis
-                                        magna pretium in
-                                        tincidunt.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="testimonial-box">
-                                <div class="testimonial-img">
-                                    <img src="assets/img/testimonial-1.png" alt="">
-                                </div>
-
-                                <div class="testmonial-cntnt">
-                                    <h6>May 8, 2020</h6>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec
-                                        turpis orci lectus
-                                        maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus
-                                        arcu. Faucibus
-                                        venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis
-                                        magna pretium in
-                                        tincidunt.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="testimonial-box">
-                                <div class="testimonial-img">
-                                    <img src="assets/img/testimonial-2.png" alt="">
-                                </div>
-
-                                <div class="testmonial-cntnt">
-                                    <h6>May 8, 2020</h6>
-                                    <h4>Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit.</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec
-                                        turpis orci lectus
-                                        maecenas. Suspendisse sed magna eget nibh in turpis. Consequat duis diam lacus
-                                        arcu. Faucibus
-                                        venenatis felis id augue sit cursus pellentesque enim arcu. Elementum felis
-                                        magna pretium in
-                                        tincidunt.</p>
-                                </div>
-                            </div>
-                        </div>
+                          </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
 
         </section>
+
+   
+
+        
         <!-- Testimonials -->
         <!-- Testimonials -->
         <section class="section-padding">

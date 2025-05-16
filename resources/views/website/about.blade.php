@@ -98,8 +98,8 @@
           <div class="col-lg-7" data-aos="fade-left">
             <div class="tab-container">
               <div class="tabs ab-tabs">
-                <button class="tab ab-tab active" data-tab="tab1"> {{ $learAboutUs->employee_content_1 ?? "For Employees"}}</button>
-                <button class="tab ab-tab" data-tab="tab2">{{ $learAboutUs->employee_content_2 ?? "For Employees"}}</button>
+                <button class="tab ab-tab active" data-tab="tab1"> For Employees</button>
+                <button class="tab ab-tab" data-tab="tab2"> For Employer</button>
               </div>
 
               <div class="tab-content ab-tab-cntnt active" id="tab1">

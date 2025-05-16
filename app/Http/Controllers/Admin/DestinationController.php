@@ -44,6 +44,7 @@ class DestinationController extends Controller
 
         //     ]
         // );
+       
 
         $destination = new Destination();
         $destination->name = $request->input('title');
