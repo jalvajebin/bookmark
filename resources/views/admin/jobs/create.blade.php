@@ -111,133 +111,186 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Create Jobs</h4>
+                        <h4 class="mb-sm-0 font-size-18">Create Job</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
-                                </li>
-                                <li class="breadcrumb-item active">Create job</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Create Job</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end page title -->
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form class="formSubmit"  id="formSubmit">
+                            <form class="formSubmit" id="formSubmit" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" class="blog_id" name="blog_id" id="blog_id">
                                 <div class="modal-body p-4">
                                     <div class="row">
-                                        <!-- Title -->
-                                        <div class="col-12 mb-3">
-                                            <label for="title">Title <span class="text-danger">*</span></label>
-                                            <input id="title" name="title" type="text" class="form-control title" placeholder="Enter Title">
+                                        <!-- Job Title -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="title">Job Title <span class="text-danger">*</span></label>
+                                            <input type="text" name="title" id="title" class="form-control title"  placeholder="Enter Job Title">
                                             <span class="title-validation error-validation text-danger"></span>
                                         </div>
 
+                                        <!-- Company Name -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="company_name">Company Name</label>
+                                            <input type="text" name="company_name" id="company_name" class="form-control company_name" placeholder="Enter Company Name">
+                                            <span class="company_name-validation error-validation text-danger"></span>
+                                        </div>
 
+                                        <!-- Location -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="location">Location</label>
+                                            <select name="location" id="location" class="form-control location">
+                                                <option value="">Select Location</option>
+                                                @foreach($locations as $location)
+                                                    <option value="{{ $location->id }}">{{ $location->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="location-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Category -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="category">Category</label>
+                                            <select name="category" id="category" class="form-control category">
+                                                <option value="">Select Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="category-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Salary Range -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="salary_rang">Salary Range</label>
+                                            <input type="text" name="salary_rang" id="salary_rang" class="form-control salary_rang" placeholder="e.g. £30,000 - £40,000">
+                                            <span class="salary_rang-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Date -->
                                         <div class="col-sm-6">
                                             <div class="mb-4">
-                                                <label for="destination">destination<span style="color:#ff0000">*</span></label>
-                                                <select class="select2 form-control category"
-                                                    id="destination" name="destination"
-                                                    data-placeholder="Select destination" aria-placeholder="Select destination">
-                                                    @if ($destinations)
-                                                        @foreach ($destinations as $destination)
-                                                            <option value="{{ $destination->id }}">
-                                                                {{ $destination->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                                <span class="category-validation error-validation"
-                                                    style="color:red;"></span>
+                                                <label for="date"> Date<span
+                                                        style="color:#ff0000">*</span></label>
+                                                <input id="date" name="date" type="text"
+                                                       class="form-control date" placeholder="DD-MM-YYYY">
+                                                <span class="date-validation error-validation" style="color:red;"></span>
                                             </div>
                                         </div>
-                            
-                                        <!-- Main Image -->
+
                                         <div class="col-md-6 mb-3">
-                                            <label for="main-input" class="form-label">Main Image <span class="text-danger">*</span></label>
-                                            <small class="text-danger d-block">Recommended: 380x250px | Max: 2MB</small>
-                                            <div class="logo-wrapper mb-2">
-                                                <img src="{{ asset('admin/images/no-image.png') }}" alt="Logo"
+                                            <label for="type">Job Type</label>
+                                            <select name="type" id="type" class="form-control type">
+                                                <option value="">Select Job Type</option>
+                                                    <option value="FULL_TIME">Full Time</option>
+                                                    <option value="PART_TIME">Part Time</option>
+                                            </select>
+                                            <span class="type-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="destination">Destinations</label>
+                                            <select name="destination" id="destination" class="form-control destination">
+                                                <option value="">Select Destination</option>
+                                                @foreach($destinations as $destination)
+                                                    <option value="{{ $destination->id }}">{{ $destination->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="category-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="col-md-12 mb-3">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" id="description" class="form-control description" rows="4"></textarea>
+                                            <span class="description-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- School Type -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="school_type">School Type</label>
+                                            <select name="school_type" id="school_type" class="form-control school_type">
+                                                <option value="">Select School Type</option>
+                                                @foreach($schoolTypes as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="school_type-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Specialism -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="specialism">Specialism</label>
+                                            <select name="specialism" id="specialism" class="form-control specialism">
+                                                <option value="">Select Specialism</option>
+                                                @foreach($specialisms as $specialism)
+                                                    <option value="{{ $specialism->id }}">{{ $specialism->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="specialism-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Position Type -->
+                                        <div class="col-md-6 mb-3">
+                                            <label for="position_type">Position Type</label>
+                                            <select name="position_type" id="position_type" class="form-control position_type">
+                                                <option value="">Select Position Type</option>
+                                                @foreach($positionTypes as $position)
+                                                    <option value="{{ $position->id }}">{{ $position->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="position_type-validation error-validation text-danger"></span>
+                                        </div>
+
+                                        <!-- Main Image -->
+                                        <div class="col-sm-6 col-6">
+                                            <label for="formFile" class="form-label">Main Image<span
+                                                    style="color:#ff0000">*</span></label>
+                                            <br>
+                                            <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit
+                                                is 2MB</small>
+                                            <div class="logo-wrapper mb-4">
+                                                <img alt="Logo" src="{{ asset('admin/images/no-image.png') }}"
                                                      class="logo-image avatar-md img-thumbnail image_class mainPreview"
                                                      id="mainPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerMainFileInput()">
-                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png" alt="Edit">
+                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
+                                                         alt="Edit">
                                                 </div>
-                                                <span class="main_image-validation error-validation text-danger"></span>
+                                                <span class="main_image-validation error-validation"
+                                                      style="color:red;"></span>
                                             </div>
-                                            <input type="file" id="main-input" name="main_image" class="file-input form-control" accept="image/*" onchange="previewMain(event)">
-                                        </div>
-                            
-                                        <!-- Location -->
-                                        <div class="col-md-6 mb-3">
-                                            <label for="location" class="form-label">Location</label>
-                                            <input type="text" name="location" class="form-control" required>
-                                        </div>
-                            
-                                        <!-- Salary Min / Max -->
-                                        <div class="col-md-6 mb-3">
-                                            <label for="salary_min" class="form-label">Minimum Salary (£)</label>
-                                            <input type="number" name="salary_min" class="form-control" required>
-                                        </div>
-                            
-                                        <div class="col-md-6 mb-3">
-                                            <label for="salary_max" class="form-label">Maximum Salary (£)</label>
-                                            <input type="number" name="salary_max" class="form-control" required>
-                                        </div>
-                            
-                                        <!-- Posted Date / Start Date -->
-                                        <div class="col-md-6 mb-3">
-                                            <label for="posted_date" class="form-label">Posted Date</label>
-                                            <input type="date" name="posted_date" class="form-control" required>
-                                        </div>
-                            
-                                        <div class="col-md-6 mb-3">
-                                            <label for="start_date" class="form-label">Start Date</label>
-                                            <input type="date" name="start_date" class="form-control">
-                                        </div>
-                            
-                                        <!-- Image Alt -->
-                                        <div class="col-md-6 mb-3">
-                                            <label for="alt" class="form-label">Image Alt</label>
-                                            <input id="alt" name="alt" type="text" class="form-control alt" placeholder="Enter Alt">
-                                        </div>
-                            
-                                        <!-- Description -->
-                                        <div class="col-12 mb-3">
-                                            <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                                            <textarea id="description" name="description" rows="5" class="form-control description" placeholder="Enter Description"></textarea>
-                                            <span class="description-validation error-validation text-danger"></span>
+                                            <input type="file" id="main-input" name="main_image" class="file-input"
+                                                   accept="image/*" onchange="previewMain(event)">
                                         </div>
                                     </div>
-                                </div>
-                            
-                                <!-- Footer -->
-                                <div class="modal-footer p-4">
-                                    <a href="{{ route('jobs.index') }}" class="btn btn-danger me-3" data-bs-dismiss="modal">Close</a>
-                                    <button type="submit" class="btn btn-primary" id="job-btn">Save</button>
+                                    <div class="modal-footer p-4">
+                                        <a href="" class="btn btn-danger" style="margin-right: 20px;">Close</a>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light" id="job-btn">Save</button>
+                                    </div>
                                 </div>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- container-fluid -->
     </div>
 @endsection
 @section('js')
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
     </script>
 
- 
+
     <script>
         function triggerMainFileInput() {
             document.getElementById('main-input').click();
@@ -252,35 +305,6 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-    <script>
-        function triggerInnerFileInput() {
-            document.getElementById('inner-input').click();
-        }
-
-        function previewInner(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const output = document.getElementById('innerPreview');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
-
-    <script>
-        function triggerInner1FileInput() {
-            document.getElementById('inner1-input').click();
-        }
-
-        function previewInner1(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const output = document.getElementById('inner1Preview');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $.ajaxSetup({
@@ -289,45 +313,35 @@
                 }
             });
 
-            $('#date').datetimepicker({
-                format: 'DD-MM-YYYY',
-            });
-
             CKEDITOR.replace('description');
-           
+
 
 
             $('#formSubmit').submit(function(e) {
                 e.preventDefault();
+                $("#loader").show();
+                var description = CKEDITOR.instances['description'].getData();
+                $('#formSubmit').data('content', 'admin/jobs/store');
+                var dataContent = $(this).data('content');
+                var formData = new FormData(this);
+                formData.append('description', description);
+                $('.error-validation').html('');
 
-        const form = $(this)[0];
-        const formData = new FormData(form);
-         const description = CKEDITOR.instances['description'].getData();
-         formData.set('description', description);
-
-        // Clear old errors
-        $('.error-validation').html('');
-
-        // Disable submit button
-        $('#job-btn').prop('disabled', false).text('Saving...');
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('job.store') }}",  // Laravel route
+                    url: base_url + dataContent,
                     data: formData,
                     cache: false,
                     contentType: false,
                     processData: false,
 
                     success: function(data) {
-                        console.log(data,'sfs');
-
                         $("#formSubmit")[0].reset();
                         $("#loader").hide();
-                        $('#job-btn').prop('enebled', false).text('Save');
                         Swal.fire({
-                            title: data.title || 'Success',
-                            text: data.message || 'Job saved successfully.',
-                            icon: data.icon || 'success',
+                            title: data.title,
+                            text: data.message,
+                            icon: data.icon,
                             confirmButtonText: "OK"
                         }).then((result) => {
                             if (result.isConfirmed) {
@@ -338,7 +352,7 @@
                     error: function(data) {
                         $("#loader").hide();
                         console.log(data.responseJSON.errors);
-                        // var title = data.responseJSON.errors.title;
+                        var title = data.responseJSON.errors.title;
                         // var priority = data.responseJSON.errors.priority;
                         // var main_image = data.responseJSON.errors.main_image;
                         // var inner_image = data.responseJSON.errors.inner_image;
@@ -348,7 +362,7 @@
                         // var date = data.responseJSON.errors.date;
                         // var description = data.responseJSON.errors.description;
 
-                        // $('.title-validation').html(title);
+                        $('.title-validation').html(title);
                         // $('.priority-validation').html(priority);
                         // $('.main_image-validation').html(main_image);
                         // $('.inner_image-validation').html(inner_image);
@@ -360,6 +374,10 @@
                     }
                 });
             });
+
         });
     </script>
 @endsection
+
+
+

@@ -246,6 +246,7 @@
                                         id="blog-btn">Save
                                     </button>
                                 </div>
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use App\Models\Job;
+use App\Models\JobLocation;
+use App\Models\JobPositionType;
+use App\Models\JobSchoolType;
+use App\Models\JobSpecialism;
 use App\Models\JobTag;
 use App\Models\WeRecruitFor;
 use Illuminate\Http\Request;
@@ -20,13 +24,71 @@ class ApplicantsController extends Controller
         return view('website.applicants', compact('destinations', 'latestJobs', 'weRecruitFor'));
     }
 
-    public function findJob(){
-        
-        return view('website.findjob');
+    public function findJob(Request $request){
+
+        $jobs = Job::query();
+        if ($request->has('school_type')) {
+            $jobs->where('school_type', $request->school_type);
+        }
+        if ($request->has('location')) {
+            $jobs->where('location', $request->location);
+        }
+        if ($request->has('specialism')) {
+            $jobs->where('specialism', $request->specialism);
+        }
+        if ($request->has('position_type')) {
+            $jobs->where('position_type', $request->position_type);
+        }
+        $locations      = JobLocation::orderBy('title')->get();
+        $schoolTypes    = JobSchoolType::orderBy('title')->get();
+        $specialisms    = JobSpecialism::orderBy('title')->get();
+        $positionTypes  = JobPositionType::orderBy('title')->get();
+
+        if ($request->filled('search')) {
+            $keyword = $request->search;
+
+            $jobs->where(function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%')
+                    ->orWhere('description', 'like', '%' . $keyword . '%');
+            });
+        }
+
+        $jobs = $jobs->get();
+        return view('website.findjob', compact('jobs', 'schoolTypes', 'specialisms', 'positionTypes', 'locations'));
+    }
+    public function list(Request $request)
+    {
+        $jobs = Job::query();
+
+        if ($request->filled('search')) {
+            $jobs->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('school_type')) {
+            $jobs->where('school_type', $request->school_type);
+        }
+
+        if ($request->filled('location')) {
+            $jobs->where('location', $request->location);
+        }
+
+        if ($request->filled('specialism')) {
+            $jobs->where('specialism', $request->specialism);
+        }
+
+        if ($request->filled('position_type')) {
+            $jobs->where('position_type', $request->position_type);
+        }
+
+        $jobs = $jobs->paginate(10);
+
+        $html = view('website.partials.job_list', compact('jobs'))->render();
+
+        return response()->json(['html' => $html]);
     }
 
     public function submitCv(){
-        
+
         return view('website.submit-cv');
     }
 
@@ -35,10 +97,10 @@ class ApplicantsController extends Controller
         $jobs = Job::all();
         $tags = JobTag::all();
 
-       
+
 
         // dd($tags);
-        
+
         return view('website.career-hub', compact('jobs', 'tags' ));
     }
 }

@@ -44,10 +44,12 @@ Route::get('About-us', [WebAboutController::class, 'index'])->name('web.about.in
 Route::get('Service', [WebServiceController::class, 'index'])->name('web.service.index');
 Route::get('applicants', [ApplicantsController::class, 'applicants'])->name('web.applicants.index');
 Route::get('find-a-job', [ApplicantsController::class, 'findJob'])->name('web.find-job.index');
+Route::get('/jobs/list', [ApplicantsController::class, 'list'])->name('jobs.list');
 Route::get('submit-cv', [ApplicantsController::class, 'submitCv'])->name('web.applicants.submit-cv');
 Route::get('career-hub', [ApplicantsController::class, 'careerHub'])->name('web.applicants.career-hub');
 Route::get('Employers', [WebEmployerController::class, 'index'])->name('web.employers.index');
 Route::get('Contact-us', [WebContactController::class, 'index'])->name('web.contact.index');
+
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -101,14 +103,32 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
                 Route::post('store', [JobsController::class, 'store'])->name('job.store');
                 Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
                 Route::get('edit/{id}', [JobsController::class, 'edit']);
-                Route::put('update/{id}', [JobsController::class, 'update'])->name('job.update');
+                Route::post('update', [JobsController::class, 'update']);
                 Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('delete');
-
-
+                Route::post('job-category', [JobsController::class, 'storeCategory'])->name('jobs.category.store');
+                Route::get('job-category-data', [JobsController::class, 'getCategoryData'])->name('jobs.category.getData');
+                Route::get('job-category-edit/{id}', [JobsController::class, 'editCategory'])->name('jobs.category.edit');
+                Route::delete('category-delete/{id}', [JobsController::class, 'destroyCategory'])->name('delete-category');
+                Route::post('job-location', [JobsController::class, 'storeLocation'])->name('jobs.location.store');
+                Route::get('job-location-data', [JobsController::class, 'getLocationData'])->name('jobs.location.getData');
+                Route::get('job-location-edit/{id}', [JobsController::class, 'editLocation'])->name('jobs.location.edit');
+                Route::delete('location-delete/{id}', [JobsController::class, 'destroyLocation'])->name('delete-location');
+                Route::post('job-school-type', [JobsController::class, 'storeSchoolType'])->name('jobs.school-type.store');
+                Route::get('job-school-type-data', [JobsController::class, 'getSchoolTypeData'])->name('jobs.school-type.getData');
+                Route::get('job-school-type-edit/{id}', [JobsController::class, 'editSchoolType'])->name('jobs.school-type.edit');
+                Route::delete('school-type-delete/{id}', [JobsController::class, 'destroySchoolType'])->name('delete-school-type');
+                Route::post('job-specialism', [JobsController::class, 'storeSpecialism'])->name('jobs.specialism.store');
+                Route::get('job-specialism-data', [JobsController::class, 'getSpecialismData'])->name('jobs.specialism.getData');
+                Route::get('job-specialism-edit/{id}', [JobsController::class, 'editSpecialism'])->name('jobs.specialism.edit');
+                Route::delete('specialism-delete/{id}', [JobsController::class, 'destroySpecialism'])->name('delete-specialism');
+                Route::post('job-position-type', [JobsController::class, 'storePositionType'])->name('jobs.position-type.store');
+                Route::get('job-position-type-data', [JobsController::class, 'getPositionTypeData'])->name('jobs.position-type.getData');
+                Route::get('job-position-type-edit/{id}', [JobsController::class, 'editPositionType'])->name('jobs.position-type.edit');
+                Route::delete('position-type-delete/{id}', [JobsController::class, 'destroyPositionType'])->name('delete-position-type');
 
             });
 
-        
+
 
         Route::get('/get-delivery-status/{id}', [ContactController::class, 'getDeliveryDetails']);
 
