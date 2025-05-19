@@ -112,8 +112,8 @@ class AboutController extends Controller
         $request->validate([
             'title' => 'required',
             'heading' => 'required',
-            'button_title' => 'required',
-            'button_link' => 'required|url',
+            'button_title' => 'nullable',
+            'button_link' => 'nullable|url',
             'employee_description' => 'required',
             'employee_content_1' => 'required',
             'employee_content_2' => 'required',

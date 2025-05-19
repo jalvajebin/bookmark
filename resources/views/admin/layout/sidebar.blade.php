@@ -67,12 +67,12 @@
                     </li>
 
                   <!-- Applicants Dropdown -->
-                  <li>
+                  {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-users"></i>
                         <span key="t-applicants">Applicants</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="{{ Request::is('destination*') ? 'mm-active' : '' }}">
                     <a href="{{ route('destination.index') }}" class="waves-effect">

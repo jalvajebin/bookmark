@@ -92,7 +92,7 @@
             <div class="hero-text">
               <div class="agency-label">{{ $learAboutUs->title ?? "Title"}}</div>
               <h1 class="hero-heading">{{$learAboutUs->heading ?? "We're Reliable & Cost Efficient Recruitment Agency"}}</h1>
-              <a href="{{ $learAboutUs->button_link ?? '#' }}" class="cta-button">{{ $learAboutUs->button_title ?? "NICE"}}</a>
+              {{-- <a href="{{ $learAboutUs->button_link ?? '#' }}" class="cta-button">{{ $learAboutUs->button_title ?? "NICE"}}</a> --}}
             </div>
           </div>
           <div class="col-lg-7" data-aos="fade-left">
@@ -160,7 +160,6 @@
               </div>
             </div>
           </div>
-
 
         </div>
       </div>

@@ -39,7 +39,7 @@
                                     <span class="heading-validation error-validation" style="color:red;"></span>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="mb-4">
                                     <label for="button_title">Button Title</label>
                                     <input id="button_title" name="button_title" type="text"
@@ -56,7 +56,7 @@
                                         value="{{ $learnAboutUs->button_link ?? '' }}">
                                     <span class="button_link_validation error-validation" style="color:red;"></span>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-sm-6 col-md-6 col-6">
                                 <label for="formFile" class="form-label">Employee Image <span
                                         style="color:#ff0000">*</span></label>

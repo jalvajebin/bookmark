@@ -14,26 +14,19 @@
         <p>Bookmark skilled and dedicated teams work hard to add value and efficiency ensuring every candidate we
           recruit is the right match, and every service we provide is of the highest quality.</p>
         <div class="employer-banner-link">
-          <a href="#" class="country-box">
+          <a href="{{ route('web.applicants.submit-cv') }}" class="country-box">
             <h6>Submit a Vacancy</h6>
             <i class="fas fa-chevron-right"></i>
           </a>
-          <a href="#" class="country-box">
-            <h6>Leadership positions</h6>
-            <i class="fas fa-chevron-right"></i>
-          </a>
-          <a href="#" class="country-box">
+          <a href="{{ route('web.contact.index') }}" class="country-box">
             <h6>Contact Us</h6>
             <i class="fas fa-chevron-right"></i>
           </a>
-          <a href="#" class="country-box">
+          <a href="{{ route('web.service.index') }}" class="country-box">
             <h6>Our Service</h6>
             <i class="fas fa-chevron-right"></i>
           </a>
-          <a href="#" class="country-box">
-            <h6>How to conduct virtual Interviews</h6>
-            <i class="fas fa-chevron-right"></i>
-          </a>
+        
         </div>
       </div>
     </div>
@@ -53,22 +46,22 @@
         <h2><span>International teacher recruitment</span></h2>
       </div>
       <div class="expertise-loc-wrapper">
-        <a href="">
+        <a>
           <div class="expertise-box">
             Leadership Positions <span><i class="fas fa-chevron-right"></i></span>
           </div>
         </a>
-        <a href="">
+        <a>
           <div class="expertise-box">
-            Submit a Vacency <span><i class="fas fa-chevron-right"></i></span>
+            Submit a Vacancy <span><i class="fas fa-chevron-right"></i></span>
           </div>
         </a>
-        <a href="">
+        <a>
           <div class="expertise-box">
             Meet the team <span><i class="fas fa-chevron-right"></i></span>
           </div>
         </a>
-        <a href="">
+        <a>
           <div class="expertise-box">
             Our Recruitment Proccess <span><i class="fas fa-chevron-right"></i></span>
           </div>
@@ -113,9 +106,9 @@
           <p>{{$contact->description ?? "As an international recruitment agency, we work across time <br>
             zones and working days to suit the needs of clients and candidates."}}</p>
           <div class="d-flex justify-content-center gap-2">
-            <button class="head-btn"> <span>Contact US</span>
-            </button>
-            <button class="head-btn emp-cta-button"> <span>Submit Your Vacancy</span>
+            <a href="{{ route('web.contact.index') }}"><button  class="head-btn"> <span>Contact Us</span>
+            </button></a>
+            <a href="{{ route('web.applicants.submit-cv') }}"><button class="head-btn emp-cta-button"> <span style="color: white">Submit Your Vacancy</span></a>
             </button>
           </div>
         </div>
@@ -136,8 +129,8 @@
             institutions by connecting you with great educators." }}
            
           </p>
-          <button class="head-btn"> <span>More Top Employers</span>
-          </button>
+          {{-- <button class="head-btn"> <span>More Top Employers</span>
+          </button> --}}
         </div>
         <div class="col-lg-6"  data-aos="fade-left">
           <div class="client-wrapper">
