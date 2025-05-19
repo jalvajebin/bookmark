@@ -5,8 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use App\Models\Job;
+use App\Models\JobCategory;
+use App\Models\JobLocation;
+use App\Models\JobPositionType;
+use App\Models\JobSchoolType;
+use App\Models\JobSpecialism;
 use App\Models\JobTag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 use Illuminate\Support\Facades\Validator;
@@ -17,55 +24,65 @@ class JobsController extends Controller
     {
         return view('admin.jobs.index');
     }
+
     public function create()
     {
-        $tagLoops = JobTag::orderBy('id', 'DESC')->get();
-        $destinations = Destination::orderBy('id', 'DESC')->get();
+            $destinations   = Destination::all();
+            $locations      = JobLocation::orderBy('title')->get();
+            $categories     = JobCategory::orderBy('title')->get();
+            $schoolTypes    = JobSchoolType::orderBy('title')->get();
+            $specialisms    = JobSpecialism::orderBy('title')->get();
+            $positionTypes  = JobPositionType::orderBy('title')->get();
 
-        return view('admin.jobs.create', compact('destinations'));
+        return view('admin.jobs.create', compact(
+            'locations',
+            'categories',
+            'schoolTypes',
+            'specialisms',
+            'positionTypes',
+            'destinations',
+        ));
     }
 
 
     public function store(Request $request)
     {
-        // Show the input for debugging if needed
-        // dd($request->all());
 
-        // Validate request
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-
-            'main_image' => 'required|image|max:2048',
-            'location' => 'required|string|max:255',
-            'salary_min' => 'required|numeric',
-            'salary_max' => 'required|numeric',
-            'posted_date' => 'required|date',
-            'start_date' => 'nullable|date',
-            'alt' => 'nullable|string|max:255',
-            'description' => 'required|string',
+        $request->validate([
+            'title'         => 'required|string',
+            'company_name'  => 'required|string',
+            'location'      => 'required|integer',
+            'category'      => 'required|integer',
+            'salary_rang'   => 'required|string',
+            'date'          => 'required|date',
+            'type'          => 'required',
+            'destination'   => 'required',
+            'description'   => 'required|string',
+            'school_type'   => 'required|integer',
+            'specialism'    => 'required|integer',
+            'position_type' => 'required|integer',
+            'main_image'    => 'required|image',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
 
-        // Create Job
         $job = new Job();
-        $job->title = trim($request->title);
-        $job->destination_id = trim($request->destination);
-        $job->location = trim($request->location);
-        $job->salary_min = trim($request->salary_min);
-        $job->salary_max = trim($request->salary_max);
-        $job->posted_date = trim($request->posted_date);
-        $job->start_date = trim($request->start_date);
-        $job->alt = trim($request->alt);
-        $job->description = trim($request->description);
+        $job->title = $request->input('title');
+        $job->company_name = $request->input('company_name');
+        $job->location = $request->input('location');
+        $job->category = $request->input('category');
+        $job->salary_rang = $request->input('salary_rang');
+        $job->date = Carbon::parse($request->input('date'))->format('Y-m-d');
+        $job->job_type = $request->input('type');
+        $job->destination_id = $request->input('destination');
+        $job->description = $request->input('description');
+        $job->school_type = $request->input('school_type');
+        $job->specialism = $request->input('specialism');
+        $job->position_type = $request->input('position_type');
 
-        $job->save(); // Save first so media can attach to it
+        $job->save();
 
-        // Upload image via Spatie Media Library
         if ($request->hasFile('main_image')) {
-            $job->addMediaFromRequest('main_image')->toMediaCollection('images');
+            $job->addMediaFromRequest('main_image')->toMediaCollection('main_images');
         }
 
         return response()->json([
@@ -74,8 +91,6 @@ class JobsController extends Controller
             'icon' => 'success'
         ]);
     }
-
-
 
 
     public function getData()
@@ -96,49 +111,65 @@ class JobsController extends Controller
     public function edit($id)
     {
         $job = Job::findOrFail($id);
-        $destinations = Destination::all();
-        return view('admin.jobs.edit', compact('job', 'destinations'));
+        $locations      = JobLocation::orderBy('title')->get();
+        $categories     = JobCategory::orderBy('title')->get();
+        $schoolTypes    = JobSchoolType::orderBy('title')->get();
+        $specialisms    = JobSpecialism::orderBy('title')->get();
+        $positionTypes  = JobPositionType::orderBy('title')->get();
+        $destinations   = Destination::orderBy('name')->get();
+
+
+        return view('admin.jobs.edit', compact('job', 'locations',
+            'categories',
+            'schoolTypes',
+            'specialisms',
+            'positionTypes',
+            'destinations',));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'destination' => 'required|exists:destinations,id',
-            'description' => 'required|string',
-            'salary_min' => 'required|numeric',
-            'salary_max' => 'required|numeric',
-            'posted_date' => 'required|date',
-            'start_date' => 'nullable|date',
-            'alt' => 'nullable|string|max:255',
 
+        $id = $request->job_id;
+        $job = Job::findOrFail($id);
+        $request->validate([
+            'title'         => 'required|string',
+            'company_name'  => 'required|string',
+            'location'      => 'required|integer',
+            'category'      => 'required|integer',
+            'salary_rang'   => 'required|string',
+            'type'          => 'required',
+            'destination'   => 'required',
+            'description'   => 'required|string',
+            'school_type'   => 'required|integer',
+            'specialism'    => 'required|integer',
+            'position_type' => 'required|integer',
+            'main_image'   => ($id ? 'nullable' : 'required') . '|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $job = Job::findOrFail($id);
-        $job->title = $request->title;
-        $job->destination_id = $request->destination;
-        $job->location = $request->location;
-        $job->description = $request->description;
-        $job->location = trim($request->location);
-        $job->salary_min = trim($request->salary_min);
-        $job->salary_max = trim($request->salary_max);
-        $job->posted_date = trim($request->posted_date);
-        $job->start_date = trim($request->start_date);
-        $job->alt = trim($request->alt);
 
-        if ($request->hasFile('main_image')) {
-            $job->clearMediaCollection('images');
-            $job->addMediaFromRequest('main_image')->toMediaCollection('images');
-            $message = "You Have Successfully Updated";
-            $status = true;
-            $title = "Added";
-            $icon = "success";
-        }
+        $job->title = $request->input('title');
+        $job->company_name = $request->input('company_name');
+        $job->location = $request->input('location');
+        $job->category = $request->input('category');
+        $job->salary_rang = $request->input('salary_rang');
+        $job->date = Carbon::parse($request->input('date'))->format('Y-m-d');
+        $job->job_type = $request->input('type');
+        $job->destination_id = $request->input('destination');
+        $job->description = $request->input('description');
+        $job->school_type = $request->input('school_type');
+        $job->specialism = $request->input('specialism');
+        $job->position_type = $request->input('position_type');
 
         $job->save();
 
+        if ($request->hasFile('main_image')) {
+            $job->clearMediaCollection('main_images');
+            $job->addMediaFromRequest('main_image')->toMediaCollection('main_images');
+        }
+
         return response()->json([
-            'title' => 'Success',
+            'title' => 'Success!',
             'message' => 'Job updated successfully.',
             'icon' => 'success'
         ]);
@@ -153,4 +184,262 @@ class JobsController extends Controller
             'message' => 'Job deleted successfully'
         ]);
     }
+
+    public function storeCategory(Request $request)
+    {
+
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $jobCategory = JobCategory::updateOrCreate([
+                'id' => $request->category_id
+            ], [
+                'title' => $request->title,
+
+            ]);
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->category_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function getCategoryData()
+    {
+        $quote = JobCategory::query()->orderBy('id', 'desc');
+
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function editCategory($id)
+    {
+        $jobCategory = JobCategory::findOrfail($id);
+        return $jobCategory;
+    }
+
+    public function destroyCategory($id){
+        $jobCategory = JobCategory::findOrfail($id);
+        $jobCategory->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+
+    public function storeLocation(Request $request)
+    {
+
+//        dd($request->all());
+
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $jobLocation = JobLocation::updateOrCreate([
+                'id' => $request->location_id
+            ], [
+                'title' => $request->title,
+
+            ]);
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->location_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function getLocationData()
+    {
+        $quote = JobLocation::query()->orderBy('id', 'desc');
+
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function editLocation($id)
+    {
+        $jobLocation = JobLocation::findOrfail($id);
+        return $jobLocation;
+    }
+
+    public function destroyLocation($id){
+        $jobLocation = JobLocation::findOrfail($id);
+        $jobLocation->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+    public function storeSchoolType(Request $request)
+    {
+
+
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $jobSchoolType = JobSchoolType::updateOrCreate([
+                'id' => $request->school_type_id
+            ], [
+                'title' => $request->title,
+
+            ]);
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->school_type_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function getSchoolTypeData()
+    {
+        $quote = JobSchoolType::query()->orderBy('id', 'desc');
+
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function editSchoolType($id)
+    {
+        $jobSchoolType = JobSchoolType::findOrfail($id);
+        return $jobSchoolType;
+    }
+
+    public function destroySchoolType($id){
+        $jobSchoolType = JobSchoolType::findOrfail($id);
+        $jobSchoolType->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+
+    public function storeSpecialism(Request $request)
+{
+
+
+    $request->validate([
+        'title' => 'required',
+    ]);
+
+    DB::beginTransaction();
+    try {
+        $jobSpecialism = JobSpecialism::updateOrCreate([
+            'id' => $request->specialism_id
+        ], [
+            'title' => $request->title,
+
+        ]);
+
+        DB::commit();
+        return response()->json(['status' => true, 'message' => $request->specialism_id ? "Successfully Updated" : "Successfully Added"]);
+    } catch (\Exception $e) {
+        DB::rollback();
+        return response()->json(['status' => false, 'message' => $e->getMessage()]);
+    }
 }
+
+    public function getSpecialismData()
+    {
+        $quote = JobSpecialism::query()->orderBy('id', 'desc');
+
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function editSpecialism($id)
+    {
+        $jobSpecialism = JobSpecialism::findOrfail($id);
+        return $jobSpecialism;
+    }
+
+    public function destroySpecialism($id){
+        $jobSpecialism = JobSpecialism::findOrfail($id);
+        $jobSpecialism->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+
+    public function storePositionType(Request $request)
+    {
+
+
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $jobPositionType = JobPositionType::updateOrCreate([
+                'id' => $request->position_type_id
+            ], [
+                'title' => $request->title,
+
+            ]);
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->position_type_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function getPositionTypeData()
+    {
+        $quote = JobPositionType::query()->orderBy('id', 'desc');
+
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function editPositionType($id)
+    {
+        $jobPositionType = JobPositionType::findOrfail($id);
+        return $jobPositionType;
+    }
+
+    public function destroyPositionType($id){
+        $jobPositionType = JobPositionType::findOrfail($id);
+        $jobPositionType->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
+
+
+}
+
+
+

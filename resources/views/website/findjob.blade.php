@@ -39,10 +39,12 @@
                         <!-- Categories Widget -->
                         <div class="sidebar-widget">
                             <h4>Find job</h4>
-                            <form class="search-form">
-                                <input type="text" placeholder="Enter Keywords">
+                            <form id="searchForm" class="search-form">
+                                <input type="text" id="search_job" name="search"
+                                    value="{{ request()->query('search') }}" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
+
                             <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
                                 <span class="radio-checkmark"></span>
@@ -51,53 +53,65 @@
                         </div>
 
                         <!-- Recent Posts Widget -->
+                        @php
+                            $currentQuery = request()->query();
+                        @endphp
+
                         <div class="sidebar-widget">
-                            <h4>Rifine Your Search</h4>
+                            <h4>Refine Your Search</h4>
+
+                            {{-- School Type --}}
                             <div>
-                                <h6>School type</h6>
+                                <h6>School Type</h6>
                                 <div class="tags">
-                                    <a href="#">Independent <span>(138)</span></a>
-                                    <a href="#">Broadly International <span>(104)</span></a>
+                                    @foreach ($schoolTypes as $schoolType)
+                                        <a href="#" class="filter-tag" data-filter="school_type"
+                                            data-id="{{ $schoolType->id }}">
+                                            {{ $schoolType->title }} <span>(138)</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
 
+                            {{-- Location --}}
                             <div>
-                                <h6>Region</h6>
+                                <h6>Location</h6>
                                 <div class="tags">
-                                    <a href="#">Dubai <span>(40)</span></a>
+                                    @foreach ($locations as $location)
+                                        <a href="#" class="filter-tag" data-filter="location"
+                                            data-id="{{ $location->id }}">
+                                            {{ $location->title }} <span>(138)</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
 
-                            <div>
-                                <h6>Country</h6>
-                                <div class="tags">
-                                    <a href="#">China <span>(4)</span></a>
-                                    <a href="#">United Arab Emirates <span>(57)</span></a>
-                                    <a href="#">Oman <span>(23)</span></a>
-                                    <a href="#">Kuwait <span>(54)</span></a>
-                                </div>
-                            </div>
-
+                            {{-- Specialism --}}
                             <div>
                                 <h6>Specialism</h6>
                                 <div class="tags">
-                                    <a href="#">Secondary <span>(4)</span></a>
-                                    <a href="#">Primary <span>(57)</span></a>
-                                    <a href="#">Leadership & management <span>(23)</span></a>
-                                    <a href="#">Early years <span>(54)</span></a>
+                                    @foreach ($specialisms as $specialism)
+                                        <a href="#" class="filter-tag" data-filter="specialism"
+                                            data-id="{{ $specialism->id }}">
+                                            {{ $specialism->title }} <span>(138)</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
 
+                            {{-- Position Type --}}
                             <div>
-                                <h6>Position type</h6>
+                                <h6>Position Type</h6>
                                 <div class="tags">
-                                    <a href="#">Private <span>(4)</span></a>
-                                    <a href="#">Public <span>(57)</span></a>
+                                    @foreach ($positionTypes as $positionType)
+                                        <a href="#" class="filter-tag" data-filter="position_type"
+                                            data-id="{{ $positionType->id }}">
+                                            {{ $positionType->title }} <span>(138)</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-
-
 
 
                         <!-- Tags Widget -->
@@ -105,22 +119,26 @@
                     </div>
 
                     <div class="col-lg-8 order-2 order-md-2" data-aos="fade-right">
+                        @php
+                            $titles = $jobs->pluck('title');
+                            $displayed = $titles->take(2);
+                            $totalCount = $titles->count();
+                            $displayedCount = $displayed->count();
+                        @endphp
                         <!-- Blog Post Card -->
                         <div class="job-description">
                             <h4>Jobs</h4>
-                            <p>Teachanywhere has 242 jobs. Our 242 jobs available include the following types of jobs:
-                                Contract (241) and Permanent (1).</p>
-                        </div>
-
-                        <div class="job-description">
+                            <p>Boomark has {{ $jobs->count() }} jobs. Our {{ $jobs->count() }} jobs available include the
+                                following types of jobs:
+                                {{ $displayed->join(', ') }}
+                                {{ $totalCount > 2 ? ' and ' . ($totalCount - 2) . ' more' : '' }}
                             <h4>Get new jobs for this search in your inbox!</h4>
                             <div class="d-flex gap-2">
                                 <div class="form-group mb-2">
                                     <input type="email" class="form-control" placeholder="Your Email*" required>
                                     <span class="focus-border"></span>
                                 </div>
-
-                                <div class="form-group mb-2">
+                                {{-- <div class="form-group mb-2">
                                     <select class="form-control" required="">
                                         <option value="" selected="" disabled="">Frequency</option>
                                         <option value="seeker">Daily</option>
@@ -128,9 +146,8 @@
                                         <option value="client">Monthly</option>
                                     </select>
                                     <span class="focus-border"></span>
-                                </div>
+                                </div> --}}
                             </div>
-
                             <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
                                 <span class="radio-checkmark"></span>
@@ -144,7 +161,7 @@
                                 <span>Send Message</span>
                             </button>
 
-                            <div class="sorting mt-4 mb-4">
+                            {{-- <div class="sorting mt-4 mb-4">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap">
 
                                     <div class="sorting-buttons">
@@ -154,148 +171,9 @@
                                         <button class="sort-btn active" data-sort="title">title</button>
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div class="sub-job-card p-4">
-                                <!-- Header Section -->
-                                <div class="sub-job-header d-flex justify-content-between align-items-start mb-3">
-                                    <h3 class="sub-job-title m-0">
-                                        <a href="#" class=" text-decoration-none">Primary (Year 3) Teacher</a>
-                                    </h3>
-                                    <span class="sub-job-date ms-3">02 May 2025</span>
-                                </div>
-
-                                <!-- Details Section -->
-                                <div class="sub-job-details d-flex gap-4 mb-3">
-                                    <div class="sub-job-location d-flex align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2"></i>
-                                        <span>Kobe, 兵庫県</span>
-                                    </div>
-                                    <div class="sub-job-salary d-flex align-items-center">
-                                        <i class="fas fa-pound-sign me-2"></i>
-                                        <span>£1,700 - £2,600 per month</span>
-                                    </div>
-                                </div>
-
-                                <!-- Description Section -->
-                                <div class="sub-job-description mb-4">
-                                    <p class="text-secondary mb-2">
-                                        Primary (Year 3) Teacher, August 2025 Start Kobe, Japan Do you want to nurture the
-                                        minds and hearts of young learners as they take their first steps in education? This
-                                        is an excellent opportunity to join a welcoming international school in Kobe, Japan,
-                                        and be part of a supportive and dynamic team!
-                                    </p>
-                                    <a href="#"
-                                        class="read-more d-inline-flex align-items-center text-decoration-none">
-                                        read more
-                                        <i class="fas fa-arrow-right ms-2"></i>
-                                    </a>
-                                </div>
-
-                                <!-- Actions Section -->
-                                <div class="sub-job-actions d-flex justify-content-between align-items-center">
-                                    <button class="sub-job-btn email-job d-inline-flex align-items-center">
-                                        <i class="far fa-envelope me-2"></i>
-                                        <span>Email this job</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="sub-job-card p-4">
-                                <!-- Header Section -->
-                                <div class="sub-job-header d-flex justify-content-between align-items-start mb-3">
-                                    <h3 class="sub-job-title m-0">
-                                        <a href="#" class=" text-decoration-none">Primary (Year 3) Teacher</a>
-                                    </h3>
-                                    <span class="sub-job-date ms-3">02 May 2025</span>
-                                </div>
-
-                                <!-- Details Section -->
-                                <div class="sub-job-details d-flex gap-4 mb-3">
-                                    <div class="sub-job-location d-flex align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2"></i>
-                                        <span>Kobe, 兵庫県</span>
-                                    </div>
-                                    <div class="sub-job-salary d-flex align-items-center">
-                                        <i class="fas fa-pound-sign me-2"></i>
-                                        <span>£1,700 - £2,600 per month</span>
-                                    </div>
-                                </div>
-
-                                <!-- Description Section -->
-                                <div class="sub-job-description mb-4">
-                                    <p class="text-secondary mb-2">
-                                        Primary (Year 3) Teacher, August 2025 Start Kobe, Japan Do you want to nurture the
-                                        minds and hearts of young learners as they take their first steps in education? This
-                                        is an excellent opportunity to join a welcoming international school in Kobe, Japan,
-                                        and be part of a supportive and dynamic team!
-                                    </p>
-                                    <a href="#"
-                                        class="read-more d-inline-flex align-items-center text-decoration-none">
-                                        read more
-                                        <i class="fas fa-arrow-right ms-2"></i>
-                                    </a>
-                                </div>
-
-                                <!-- Actions Section -->
-                                <div class="sub-job-actions d-flex justify-content-between align-items-center">
-                                    <button class="sub-job-btn email-job d-inline-flex align-items-center">
-                                        <i class="far fa-envelope me-2"></i>
-                                        <span>Email this job</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="sub-job-card p-4">
-                                <!-- Header Section -->
-                                <div class="sub-job-header d-flex justify-content-between align-items-start mb-3">
-                                    <h3 class="sub-job-title m-0">
-                                        <a href="#" class=" text-decoration-none">Primary (Year 3) Teacher</a>
-                                    </h3>
-                                    <span class="sub-job-date ms-3">02 May 2025</span>
-                                </div>
-
-                                <!-- Details Section -->
-                                <div class="sub-job-details d-flex gap-4 mb-3">
-                                    <div class="sub-job-location d-flex align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2"></i>
-                                        <span>Kobe, 兵庫県</span>
-                                    </div>
-                                    <div class="sub-job-salary d-flex align-items-center">
-                                        <i class="fas fa-pound-sign me-2"></i>
-                                        <span>£1,700 - £2,600 per month</span>
-                                    </div>
-                                </div>
-
-                                <!-- Description Section -->
-                                <div class="sub-job-description mb-4">
-                                    <p class="text-secondary mb-2">
-                                        Primary (Year 3) Teacher, August 2025 Start Kobe, Japan Do you want to nurture the
-                                        minds and hearts of young learners as they take their first steps in education? This
-                                        is an excellent opportunity to join a welcoming international school in Kobe, Japan,
-                                        and be part of a supportive and dynamic team!
-                                    </p>
-                                    <a href="#"
-                                        class="read-more d-inline-flex align-items-center text-decoration-none">
-                                        read more
-                                        <i class="fas fa-arrow-right ms-2"></i>
-                                    </a>
-                                </div>
-
-                                <!-- Actions Section -->
-                                <div class="sub-job-actions d-flex justify-content-between align-items-center">
-                                    <button class="sub-job-btn email-job d-inline-flex align-items-center">
-                                        <i class="far fa-envelope me-2"></i>
-                                        <span>Email this job</span>
-                                    </button>
-                                </div>
-                            </div>
-
-
-
+                            </div> --}}
+                            <div id="job-list-container"></div>
                         </div>
-
 
                         <!-- Pagination -->
                         <div class="pagination-wrap">
@@ -310,66 +188,117 @@
                 </div>
             </div>
         </section>
-@endsection
-@push('js')
-    <script>
-        AOS.init({
-            duration: 2000,
-            once: false
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
+    @endsection
+    @push('js')
+        <script>
+            AOS.init({
+                duration: 2000,
+                once: false
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content');
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active classes
-                    tabs.forEach(t => t.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove active classes
+                        tabs.forEach(t => t.classList.remove('active'));
 
-                    // Fade out all content
-                    contents.forEach(content => {
-                        content.style.opacity = '0';
-                        content.style.transform = 'translateY(20px)';
+                        // Fade out all content
+                        contents.forEach(content => {
+                            content.style.opacity = '0';
+                            content.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                content.classList.remove('active');
+                            }, 300);
+                        });
+
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+
+                        // Fade in selected content
+                        const targetContent = document.getElementById(tab.dataset.tab);
                         setTimeout(() => {
-                            content.classList.remove('active');
+                            targetContent.classList.add('active');
+                            setTimeout(() => {
+                                targetContent.style.opacity = '1';
+                                targetContent.style.transform = 'translateY(0)';
+                            }, 50);
                         }, 300);
                     });
-
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-
-                    // Fade in selected content
-                    const targetContent = document.getElementById(tab.dataset.tab);
-                    setTimeout(() => {
-                        targetContent.classList.add('active');
-                        setTimeout(() => {
-                            targetContent.style.opacity = '1';
-                            targetContent.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, 300);
                 });
             });
-        });
-    </script>
-    <script>
-        // Add this at the beginning of your script
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.querySelector('.loader');
+        </script>
+        <script>
+            // Add this at the beginning of your script
+            document.addEventListener('DOMContentLoaded', function() {
+                const loader = document.querySelector('.loader');
 
-            // Hide loader after content loads
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    gsap.to(loader, {
-                        opacity: 0,
-                        duration: 0.5,
-                        onComplete: () => {
-                            loader.style.display = 'none';
+                // Hide loader after content loads
+                window.addEventListener('load', function() {
+                    setTimeout(() => {
+                        gsap.to(loader, {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                loader.style.display = 'none';
+                            }
+                        });
+                    }, 2000); // Adjust time as needed
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                // Initial filter data
+                let filters = {
+                    search: '',
+                    school_type: null,
+                    location: null,
+                    specialism: null,
+                    position_type: null
+                };
+
+                // Load default jobs
+                loadJobs();
+
+                // Search input handler (if you have #search_job input)
+                $('#search_job').on('keyup', function() {
+                    filters.search = $(this).val().trim();
+                    loadJobs();
+                });
+
+                // Filter link click handler
+                $('.filter-tag').on('click', function(e) {
+                    e.preventDefault();
+
+                    const filterKey = $(this).data('filter');
+                    const filterValue = $(this).data('id');
+
+                    // Set the selected filter
+                    filters[filterKey] = filterValue;
+
+                    // Load jobs with filters
+                    loadJobs();
+                });
+
+                // AJAX job loader
+                function loadJobs() {
+                    $.ajax({
+                        url: '{{ route('jobs.list') }}',
+                        type: 'GET',
+                        data: filters,
+                        success: function(response) {
+                            $('#job-list-container').html(response.html);
+                        },
+                        error: function(xhr) {
+                            console.error('Error loading jobs:', xhr);
                         }
                     });
-                }, 2000); // Adjust time as needed
+                }
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

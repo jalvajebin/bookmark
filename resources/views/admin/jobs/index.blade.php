@@ -125,28 +125,24 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="d-flex align-items-center m-0 p-0" id="tabs-nav">
-                                <li class="tab-list">
-                                    <a href="#tab1" class="m-2">Job</a>
+                                  <li class="tab-list">
+                                    <a href="#tab1" class="m-2">Category</a>
                                 </li>
-                                
-                                 {{-- <li class="tab-list">
-                                    <a href="#tab2" class="m-2">Top Destinations</a>
-                                </li> --}}
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Contact Enquiries</a>
-                                </li> --}}
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Social Media</a>
+                                 <li class="tab-list">
+                                    <a href="#tab2" class="m-2">Location</a>
+                                </li>
+                                 <li class="tab-list">
+                                    <a href="#tab3" class="m-2">School Type</a>
                                 </li>
                                 <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Contact Enquiries</a>
+                                    <a href="#tab4" class="m-2">Specialism</a>
                                 </li>
                                 <li class="tab-list">
-                                    <a href="#tab6" class="m-2">Request a quote</a>
+                                    <a href="#tab5" class="m-2">Position Type</a>
                                 </li>
                                 <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
+                                    <a href="#tab6" class="m-2">Jobs</a>
+                                </li>
 
                             </ul>
                         </div>
@@ -155,17 +151,14 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                {{-- @include('admin.jobs.create') --}}
+                @include('admin.jobs.category')
+                @include('admin.jobs.location')
+                @include('admin.jobs.school-type')
+                @include('admin.jobs.specialism')
+                @include('admin.jobs.position-type')
                 @include('admin.jobs.job')
-             
-                {{-- @include('admin.services.service') --}}
-                {{-- @include('admin.contact.contact')
-                @include('admin.contact.enquiry') --}}
-                {{-- @include('admin.contact.social')
-                @include('admin.contact.enquiry')
-                @include('admin.contact.quote')
-                @include('admin.contact.seo')
-            </div> --}}
+
+            </div>
         </div>
     </div>
     <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
@@ -187,6 +180,6 @@
     </div>
 @endsection
 @section('js')
-@include('admin.jobs.js.datatable')
-@include('admin.jobs.js.script')
+    @include('admin.jobs.js.datatable')
+    @include('admin.jobs.js.script')
 @endsection

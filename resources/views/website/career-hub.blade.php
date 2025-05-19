@@ -38,13 +38,13 @@
                                                 {!! optional($job)->description !!}
                                             </div>
                                             <div class="career-tags">
-                                                <a href="#" class="first-tags">Design</a>
-                                                <a href="#" class="second-tags">Lifestyle</a>
-                                                <a href="#" class="third-tags">Location reports</a>
+                                                <a  class="first-tags">Design</a>
+                                                <a class="second-tags">Lifestyle</a>
+                                                <a  class="third-tags">Location reports</a>
                                             </div>
                                         </div>
                                         <div class="right-career-card">
-                                            <a href="career-hub-details.html" class="card-read-more"><span><i
+                                            <a href="{{ route('career.details', $job->slug ) }}" class="card-read-more"><span><i
                                                         class="fa-solid fa-arrow-right"></i></span></a>
                                         </div>
                                     </div>

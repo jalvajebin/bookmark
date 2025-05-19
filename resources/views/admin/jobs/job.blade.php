@@ -1,4 +1,4 @@
-<div id="tab1" class="tab-content">
+<div id="tab6" class="tab-content">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -22,9 +22,8 @@
                     <div class="row">
                         <div class="col-sm-12 tbl-res">
                             <div class="top-hd-box mb-3">
-                                <h5 class="card-title">Job List</h5>
+                                <h5 class="card-title">Jobs List</h5>
                                 <div class="top-hd-box-right">
-                                    {{-- <a href="/admin/destination/create" class="btn btn-success add-cntry create-modal" onclick="jobAddForm(1)">Create New</a> --}}
                                     <a href="{{ route('jobs.create') }}" class="btn btn-success add-job-btn" >Create New</a>
                                 </div>
                             </div>
@@ -40,7 +39,6 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -48,4 +46,4 @@
 </div>
 
 
-    
+

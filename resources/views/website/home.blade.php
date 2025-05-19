@@ -14,42 +14,54 @@
                 <P>Connecting Talent with Opportunity: Your Gateway to Career Success</P>
             </div>
 
+            <form method="GET" action="{{ route('web.home') }}#resultSection">
+
             <div class="job-search-main">
-                <div class="search-div">
-                    <input type="text" placeholder="Job Title or Company">
-                </div>
-                <div class="dropdown-div">
-                    <div class="dropdown-container">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Select Location <i class="bi bi-chevron-down"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Canada</a></li>
-                            <li><a class="dropdown-item" href="#">United States</a></li>
-                            <li><a class="dropdown-item" href="#">United Kingdom</a></li>
-                            <li><a class="dropdown-item" href="#">Australia</a></li>
-                            <li><a class="dropdown-item" href="#">Remote</a></li>
-                        </ul>
+                    <div class="search-div">
+                        <input type="text" name="search" placeholder="Job Title" value="{{ request('search') }}">
                     </div>
 
-                    <div class="dropdown-container">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Select Category <i class="bi bi-chevron-down"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Teaching</a></li>
-                            <li><a class="dropdown-item" href="#">Administration</a></li>
-                            <li><a class="dropdown-item" href="#">IT & Technology</a></li>
-                            <li><a class="dropdown-item" href="#">Management</a></li>
-                            <li><a class="dropdown-item" href="#">Support Staff</a></li>
-                        </ul>
-                    </div>
+                    <div class="dropdown-div">
+                        {{-- Location Dropdown --}}
+                        <div class="dropdown-container">
+                            <button class="btn dropdown-toggle" type="button" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedLocation">{{ request('location') ?? 'Select Location' }}</span> <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($locations as $location)
+                                    <li>
+                                        <a class="dropdown-item" href="#" onclick="selectDropdown('selectedLocation', 'locationInput', '{{ $location->title }}')">
+                                            {{ $location->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <input type="hidden" name="location" id="locationInput" value="{{ request('location') }}">
+                        </div>
 
-                    <button type="button" class="search-button">
-                        <i class="fas fa-search"></i> Search
-                    </button>
+                        {{-- Category Dropdown --}}
+                        <div class="dropdown-container">
+                            <button class="btn dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedCategory">{{ request('category') ?? 'Select Category' }}</span> <i class="bi bi-chevron-down"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a class="dropdown-item" href="#" onclick="selectDropdown('selectedCategory', 'categoryInput', '{{ $category->title }}')">
+                                            {{ $category->title }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <input type="hidden" name="category" id="categoryInput" value="{{ request('category') }}">
+                        </div>
+
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <div class="banner-counter">
                 <div class="counter-div">
@@ -306,7 +318,7 @@
         </section>
         <!-- top destination -->
         <!-- latest job opening -->
-        <section class="section-padding">
+        <section id="resultSection" class="section-padding">
             <div class="custom-container">
                 <div class="d-flex justify-content-between">
                     <div class="section-title">
@@ -335,7 +347,7 @@
                             </div>
                         </div>
                     @endforeach
-                </div> 
+                </div>
             </div>
         </section>
         <!-- latest job opening -->
@@ -683,7 +695,7 @@
 
 
                 </div>
-           
+
             </div>
         </section> --}}
         <!-- Meet Exprets -->
@@ -699,22 +711,22 @@
                         <a href="">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
-        
+
                 @foreach ($blog as $blogs)
                 <div class="blog-div fade-up">
                     <div class="blog-img">
                         <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}" alt="{{ $blogs->alt }}">
                     </div>
-        
+
                     <div>
                         <div class="meta-info">
                             <span>By {{ $blogs->author }}</span>
                             <span class="dot"></span>
                             <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
                         </div>
-        
+
                         <h6>{!! $blogs->description !!}</h6>
-        
+
                         <div class="more-buttons">
                             <a href="{{ $blogs->meta_title }}" target="_blank">
                                 Read More <span><i class="fa-solid fa-arrow-right"></i></span>
@@ -723,10 +735,10 @@
                     </div>
                 </div>
                 @endforeach
-        
+
             </div>
         </section>
-        
+
 
 
         <!-- Testimonials -->
@@ -746,7 +758,7 @@
                               <div class="testimonial-img">
                                 <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
                               </div>
-                
+
                               <div class="testmonial-cntnt">
                                 <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
                                 <h4>{{ $testimonial->heading }}</h4>
@@ -789,6 +801,17 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </section>
     @endsection
+        @push('js')
+            <script>
+                function selectDropdown(displayId, inputId, value) {
+                    document.getElementById(displayId).innerText = value;
+                    document.getElementById(inputId).value = value;
+                }
+            </script>
+        @endpush
+
