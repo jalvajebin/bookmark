@@ -829,6 +829,11 @@
                 document.getElementById('selectedLocation').textContent = 'Select Location';
                 document.getElementById('categoryInput').value = '';
                 document.getElementById('selectedCategory').textContent = 'Select Category';
+
+                if (window.location.search) {
+                    const newUrl = window.location.origin + window.location.pathname + '#resultSection';
+                    window.history.replaceState({}, document.title, newUrl);
+                }
             });
         </script>
     @endpush
