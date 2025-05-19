@@ -16,21 +16,23 @@
 
             <form method="GET" action="{{ route('web.home') }}#resultSection">
 
-            <div class="job-search-main">
+                <div class="job-search-main">
                     <div class="search-div">
                         <input type="text" name="search" placeholder="Job Title" value="{{ request('search') }}">
                     </div>
-
                     <div class="dropdown-div">
                         {{-- Location Dropdown --}}
                         <div class="dropdown-container">
-                            <button class="btn dropdown-toggle" type="button" id="locationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span id="selectedLocation">{{ request('location') ?? 'Select Location' }}</span> <i class="bi bi-chevron-down"></i>
+                            <button class="btn dropdown-toggle" type="button" id="locationDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedLocation">{{ request('location') ?? 'Select Location' }}</span> <i
+                                    class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                @foreach($locations as $location)
+                                @foreach ($locations as $location)
                                     <li>
-                                        <a class="dropdown-item" href="#" onclick="selectDropdown('selectedLocation', 'locationInput', '{{ $location->title }}')">
+                                        <a class="dropdown-item" href="#"
+                                            onclick="selectDropdown('selectedLocation', 'locationInput', '{{ $location->title }}')">
                                             {{ $location->title }}
                                         </a>
                                     </li>
@@ -38,16 +40,18 @@
                             </ul>
                             <input type="hidden" name="location" id="locationInput" value="{{ request('location') }}">
                         </div>
-
                         {{-- Category Dropdown --}}
                         <div class="dropdown-container">
-                            <button class="btn dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span id="selectedCategory">{{ request('category') ?? 'Select Category' }}</span> <i class="bi bi-chevron-down"></i>
+                            <button class="btn dropdown-toggle" type="button" id="categoryDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedCategory">{{ request('category') ?? 'Select Category' }}</span> <i
+                                    class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                @foreach($categories as $category)
+                                @foreach ($categories as $category)
                                     <li>
-                                        <a class="dropdown-item" href="#" onclick="selectDropdown('selectedCategory', 'categoryInput', '{{ $category->title }}')">
+                                        <a class="dropdown-item" href="#"
+                                            onclick="selectDropdown('selectedCategory', 'categoryInput', '{{ $category->title }}')">
                                             {{ $category->title }}
                                         </a>
                                     </li>
@@ -151,7 +155,6 @@
         </section>
         <!-- service -->
 
-
         <!-- why work with us -->
         <section class="section-padding">
 
@@ -189,7 +192,7 @@
                                     <img src="assets/img/why-offices.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{$counters->count1 ?? "8"}}</h3>
+                                    <h3>{{ $counters->count1 ?? '8' }}</h3>
                                     <h6>Offices
                                         Worldwide</h6>
                                 </div>
@@ -201,7 +204,7 @@
                                     <img src="assets/img/why-consultant.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{$counters->count2 ?? "16"}}</h3>
+                                    <h3>{{ $counters->count2 ?? '16' }}</h3>
                                     <h6>Consultants across the world</h6>
                                 </div>
                             </div>
@@ -214,7 +217,7 @@
                                     <img src="assets/img/why-country.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{$counters->count3 ?? "28"}}</h3>
+                                    <h3>{{ $counters->count3 ?? '28' }}</h3>
                                     <h6>Countries placed in 2024</h6>
                                 </div>
                             </div>
@@ -225,7 +228,7 @@
                                     <img src="assets/img/why-teacher.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{$counters->count4 ?? "266"}} </h3>
+                                    <h3>{{ $counters->count4 ?? '266' }} </h3>
                                     <h6>Teachers placed in 2024</h6>
                                 </div>
                             </div>
@@ -282,8 +285,6 @@
 
         </section>
         <!-- Explore -->
-
-
         <!-- top destination -->
         <section class="section-padding">
 
@@ -298,20 +299,21 @@
 
             <div class="gallery-container">
                 <div class="row g-4">
-                  @if ($destinations->isNotEmpty())
-                    @foreach ($destinations as $destination)
-                        <div class="col-lg-4">
-                            <a href="{{ route('destination.details', $destination->slug) }}">
-                                <div class="gallery-item item2">
-                                    <img src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif">
-                                    <div class="city-name">
-                                        <h2>{{ $destination->name }}</h2>
+                    @if ($destinations->isNotEmpty())
+                        @foreach ($destinations as $destination)
+                            <div class="col-lg-4">
+                                <a href="{{ route('destination.details', $destination->slug) }}">
+                                    <div class="gallery-item item2">
+                                        <img
+                                            src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif">
+                                        <div class="city-name">
+                                            <h2>{{ $destination->name }}</h2>
 
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
+                                </a>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
             </div>
@@ -326,16 +328,19 @@
                     </div>
 
                     <div class="more-buttons">
-                        <a href="{{  route('web.applicants.career-hub') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="{{ route('web.applicants.career-hub') }}">
+                            Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
                     </div>
                 </div>
 
                 <div class="row">
-                    @foreach($latestJobs as $job)
+                    @forelse($latestJobs as $job)
                         <div class="col-lg-3 col-md-6">
                             <div class="job-card">
                                 <div class="job-header">
-                                    <img src="{{ $job->Images->url ?? "assets/img/nomad.png" }}  " alt="{{ $job->alt }}" class="company-logo">
+                                    <img src="{{ $job->Images->url ?? asset('assets/img/nomad.png') }}"
+                                        alt="{{ $job->alt }}" class="company-logo">
                                     <div class="job-info">
                                         <h3>{{ $job->title }}</h3>
                                         <p>Company Name &bull; <span class="location">{{ $job->location }}</span></p>
@@ -346,10 +351,16 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-12 text-center py-5">
+                            <h4>No job found</h4>
+                            <p>Please try adjusting your search filters.</p>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </section>
+
         <!-- latest job opening -->
     </div>
 
@@ -713,34 +724,32 @@
                 </div>
 
                 @foreach ($blog as $blogs)
-                <div class="blog-div fade-up">
-                    <div class="blog-img">
-                        <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}" alt="{{ $blogs->alt }}">
-                    </div>
-
-                    <div>
-                        <div class="meta-info">
-                            <span>By {{ $blogs->author }}</span>
-                            <span class="dot"></span>
-                            <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                    <div class="blog-div fade-up">
+                        <div class="blog-img">
+                            <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}"
+                                alt="{{ $blogs->alt }}">
                         </div>
 
-                        <h6>{!! $blogs->description !!}</h6>
+                        <div>
+                            <div class="meta-info">
+                                <span>By {{ $blogs->author }}</span>
+                                <span class="dot"></span>
+                                <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                            </div>
 
-                        <div class="more-buttons">
-                            <a href="{{ $blogs->meta_title }}" target="_blank">
-                                Read More <span><i class="fa-solid fa-arrow-right"></i></span>
-                            </a>
+                            <h6>{!! $blogs->description !!}</h6>
+
+                            <div class="more-buttons">
+                                <a href="{{ $blogs->meta_title }}" target="_blank">
+                                    Read More <span><i class="fa-solid fa-arrow-right"></i></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>
         </section>
-
-
-
         <!-- Testimonials -->
         <section class="section-padding">
 
@@ -753,19 +762,19 @@
 
                     <div class="owl-carousel" id="testimonial-carousel">
                         @foreach ($testimonials as $testimonial)
-                        <div class="item">
-                            <div class="testimonial-box">
-                              <div class="testimonial-img">
-                                <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
-                              </div>
+                            <div class="item">
+                                <div class="testimonial-box">
+                                    <div class="testimonial-img">
+                                        <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
+                                    </div>
 
-                              <div class="testmonial-cntnt">
-                                <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
-                                <h4>{{ $testimonial->heading }}</h4>
-                                <p>{{ $testimonial->description }}</p>
-                              </div>
+                                    <div class="testmonial-cntnt">
+                                        <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
+                                        <h4>{{ $testimonial->heading }}</h4>
+                                        <p>{{ $testimonial->description }}</p>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         @endforeach
                     </div>
                 </div>
@@ -806,12 +815,20 @@
 
         </section>
     @endsection
-        @push('js')
-            <script>
-                function selectDropdown(displayId, inputId, value) {
-                    document.getElementById(displayId).innerText = value;
-                    document.getElementById(inputId).value = value;
-                }
-            </script>
-        @endpush
-
+    @push('js')
+        <script>
+            function selectDropdown(displayId, inputId, value) {
+                document.getElementById(displayId).innerText = value;
+                document.getElementById(inputId).value = value;
+            }
+        </script>
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('input[name="search"]').value = '';
+                document.getElementById('locationInput').value = '';
+                document.getElementById('selectedLocation').textContent = 'Select Location';
+                document.getElementById('categoryInput').value = '';
+                document.getElementById('selectedCategory').textContent = 'Select Category';
+            });
+        </script>
+    @endpush
