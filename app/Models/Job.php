@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
     class Job extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, Sluggable, InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -63,14 +63,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
     }
 
 
-//    public function sluggable(): array
-//    {
-//        return [
-//            'slug' => [
-//                'source' => 'title'
-//            ]
-//        ];
-//    }
+   public function sluggable(): array
+   {
+       return [
+           'slug' => [
+               'source' => 'title'
+           ]
+       ];
+   }
 
     public function locationModel()
     {

@@ -45,6 +45,8 @@ Route::get('Service', [WebServiceController::class, 'index'])->name('web.service
 Route::get('applicants', [ApplicantsController::class, 'applicants'])->name('web.applicants.index');
 Route::get('find-a-job', [ApplicantsController::class, 'findJob'])->name('web.find-job.index');
 Route::get('/jobs/list', [ApplicantsController::class, 'list'])->name('jobs.list');
+Route::get('/job-single/{slug}', [ApplicantsController::class, 'jobDetail'])->name('job.details');
+Route::get('/career-hub/{slug}', [ApplicantsController::class, 'careerHubDetail'])->name('career.details');
 Route::get('submit-cv', [ApplicantsController::class, 'submitCv'])->name('web.applicants.submit-cv');
 Route::get('career-hub', [ApplicantsController::class, 'careerHub'])->name('web.applicants.career-hub');
 Route::get('Employers', [WebEmployerController::class, 'index'])->name('web.employers.index');

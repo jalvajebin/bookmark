@@ -25,7 +25,7 @@
             <p class="text-secondary mb-2">
                 {!! Str::limit(strip_tags($job->description), 150) !!}
             </p>
-            <a href="#" class="read-more d-inline-flex align-items-center text-decoration-none">
+            <a href="{{ route('job.details', $job->slug) }}" class="read-more d-inline-flex align-items-center text-decoration-none">
                 read more
                 <i class="fas fa-arrow-right ms-2"></i>
             </a>

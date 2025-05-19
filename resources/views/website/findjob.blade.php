@@ -40,7 +40,8 @@
                         <div class="sidebar-widget">
                             <h4>Find job</h4>
                             <form id="searchForm" class="search-form">
-                                <input type="text" id="search_job" name="search" value="{{ request()->query('search') }}" placeholder="Enter Keywords">
+                                <input type="text" id="search_job" name="search"
+                                    value="{{ request()->query('search') }}" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
 
@@ -63,8 +64,9 @@
                             <div>
                                 <h6>School Type</h6>
                                 <div class="tags">
-                                    @foreach($schoolTypes as $schoolType)
-                                        <a href="#" class="filter-tag" data-filter="school_type" data-id="{{ $schoolType->id }}">
+                                    @foreach ($schoolTypes as $schoolType)
+                                        <a href="#" class="filter-tag" data-filter="school_type"
+                                            data-id="{{ $schoolType->id }}">
                                             {{ $schoolType->title }} <span>(138)</span>
                                         </a>
                                     @endforeach
@@ -75,8 +77,9 @@
                             <div>
                                 <h6>Location</h6>
                                 <div class="tags">
-                                    @foreach($locations as $location)
-                                        <a href="#" class="filter-tag" data-filter="location" data-id="{{ $location->id }}">
+                                    @foreach ($locations as $location)
+                                        <a href="#" class="filter-tag" data-filter="location"
+                                            data-id="{{ $location->id }}">
                                             {{ $location->title }} <span>(138)</span>
                                         </a>
                                     @endforeach
@@ -87,8 +90,9 @@
                             <div>
                                 <h6>Specialism</h6>
                                 <div class="tags">
-                                    @foreach($specialisms as $specialism)
-                                        <a href="#" class="filter-tag" data-filter="specialism" data-id="{{ $specialism->id }}">
+                                    @foreach ($specialisms as $specialism)
+                                        <a href="#" class="filter-tag" data-filter="specialism"
+                                            data-id="{{ $specialism->id }}">
                                             {{ $specialism->title }} <span>(138)</span>
                                         </a>
                                     @endforeach
@@ -99,8 +103,9 @@
                             <div>
                                 <h6>Position Type</h6>
                                 <div class="tags">
-                                    @foreach($positionTypes as $positionType)
-                                        <a href="#" class="filter-tag" data-filter="position_type" data-id="{{ $positionType->id }}">
+                                    @foreach ($positionTypes as $positionType)
+                                        <a href="#" class="filter-tag" data-filter="position_type"
+                                            data-id="{{ $positionType->id }}">
                                             {{ $positionType->title }} <span>(138)</span>
                                         </a>
                                     @endforeach
@@ -114,22 +119,26 @@
                     </div>
 
                     <div class="col-lg-8 order-2 order-md-2" data-aos="fade-right">
+                        @php
+                            $titles = $jobs->pluck('title');
+                            $displayed = $titles->take(2);
+                            $totalCount = $titles->count();
+                            $displayedCount = $displayed->count();
+                        @endphp
                         <!-- Blog Post Card -->
                         <div class="job-description">
                             <h4>Jobs</h4>
-                            <p>Teachanywhere has 242 jobs. Our 242 jobs available include the following types of jobs:
-                                Contract (241) and Permanent (1).</p>
-                        </div>
-
-                        <div class="job-description">
+                            <p>Boomark has {{ $jobs->count() }} jobs. Our {{ $jobs->count() }} jobs available include the
+                                following types of jobs:
+                                {{ $displayed->join(', ') }}
+                                {{ $totalCount > 2 ? ' and ' . ($totalCount - 2) . ' more' : '' }}
                             <h4>Get new jobs for this search in your inbox!</h4>
                             <div class="d-flex gap-2">
                                 <div class="form-group mb-2">
                                     <input type="email" class="form-control" placeholder="Your Email*" required>
                                     <span class="focus-border"></span>
                                 </div>
-
-                                <div class="form-group mb-2">
+                                {{-- <div class="form-group mb-2">
                                     <select class="form-control" required="">
                                         <option value="" selected="" disabled="">Frequency</option>
                                         <option value="seeker">Daily</option>
@@ -137,9 +146,8 @@
                                         <option value="client">Monthly</option>
                                     </select>
                                     <span class="focus-border"></span>
-                                </div>
+                                </div> --}}
                             </div>
-
                             <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
                                 <span class="radio-checkmark"></span>
@@ -153,7 +161,7 @@
                                 <span>Send Message</span>
                             </button>
 
-                            <div class="sorting mt-4 mb-4">
+                            {{-- <div class="sorting mt-4 mb-4">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap">
 
                                     <div class="sorting-buttons">
@@ -163,7 +171,7 @@
                                         <button class="sort-btn active" data-sort="title">title</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div id="job-list-container"></div>
                         </div>
 
@@ -180,119 +188,117 @@
                 </div>
             </div>
         </section>
-@endsection
-@push('js')
-    <script>
-        AOS.init({
-            duration: 2000,
-            once: false
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
+    @endsection
+    @push('js')
+        <script>
+            AOS.init({
+                duration: 2000,
+                once: false
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content');
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active classes
-                    tabs.forEach(t => t.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove active classes
+                        tabs.forEach(t => t.classList.remove('active'));
 
-                    // Fade out all content
-                    contents.forEach(content => {
-                        content.style.opacity = '0';
-                        content.style.transform = 'translateY(20px)';
+                        // Fade out all content
+                        contents.forEach(content => {
+                            content.style.opacity = '0';
+                            content.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                content.classList.remove('active');
+                            }, 300);
+                        });
+
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+
+                        // Fade in selected content
+                        const targetContent = document.getElementById(tab.dataset.tab);
                         setTimeout(() => {
-                            content.classList.remove('active');
+                            targetContent.classList.add('active');
+                            setTimeout(() => {
+                                targetContent.style.opacity = '1';
+                                targetContent.style.transform = 'translateY(0)';
+                            }, 50);
                         }, 300);
                     });
-
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-
-                    // Fade in selected content
-                    const targetContent = document.getElementById(tab.dataset.tab);
-                    setTimeout(() => {
-                        targetContent.classList.add('active');
-                        setTimeout(() => {
-                            targetContent.style.opacity = '1';
-                            targetContent.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, 300);
                 });
             });
-        });
-    </script>
-    <script>
-        // Add this at the beginning of your script
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.querySelector('.loader');
+        </script>
+        <script>
+            // Add this at the beginning of your script
+            document.addEventListener('DOMContentLoaded', function() {
+                const loader = document.querySelector('.loader');
 
-            // Hide loader after content loads
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    gsap.to(loader, {
-                        opacity: 0,
-                        duration: 0.5,
-                        onComplete: () => {
-                            loader.style.display = 'none';
-                        }
-                    });
-                }, 2000); // Adjust time as needed
-            });
-        });
-    </script>
-
-            <script>
-                $(document).ready(function () {
-                    // Initial filter data
-                    let filters = {
-                        search: '',
-                        school_type: null,
-                        location: null,
-                        specialism: null,
-                        position_type: null
-                    };
-
-                    // Load default jobs
-                    loadJobs();
-
-                    // Search input handler (if you have #search_job input)
-                    $('#search_job').on('keyup', function () {
-                        filters.search = $(this).val().trim();
-                        loadJobs();
-                    });
-
-                    // Filter link click handler
-                    $('.filter-tag').on('click', function (e) {
-                        e.preventDefault();
-
-                        const filterKey = $(this).data('filter');
-                        const filterValue = $(this).data('id');
-
-                        // Set the selected filter
-                        filters[filterKey] = filterValue;
-
-                        // Load jobs with filters
-                        loadJobs();
-                    });
-
-                    // AJAX job loader
-                    function loadJobs() {
-                        $.ajax({
-                            url: '{{ route("jobs.list") }}',
-                            type: 'GET',
-                            data: filters,
-                            success: function (response) {
-                                $('#job-list-container').html(response.html);
-                            },
-                            error: function (xhr) {
-                                console.error('Error loading jobs:', xhr);
+                // Hide loader after content loads
+                window.addEventListener('load', function() {
+                    setTimeout(() => {
+                        gsap.to(loader, {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                loader.style.display = 'none';
                             }
                         });
-                    }
+                    }, 2000); // Adjust time as needed
                 });
-            </script>
+            });
+        </script>
 
+        <script>
+            $(document).ready(function() {
+                // Initial filter data
+                let filters = {
+                    search: '',
+                    school_type: null,
+                    location: null,
+                    specialism: null,
+                    position_type: null
+                };
 
+                // Load default jobs
+                loadJobs();
+
+                // Search input handler (if you have #search_job input)
+                $('#search_job').on('keyup', function() {
+                    filters.search = $(this).val().trim();
+                    loadJobs();
+                });
+
+                // Filter link click handler
+                $('.filter-tag').on('click', function(e) {
+                    e.preventDefault();
+
+                    const filterKey = $(this).data('filter');
+                    const filterValue = $(this).data('id');
+
+                    // Set the selected filter
+                    filters[filterKey] = filterValue;
+
+                    // Load jobs with filters
+                    loadJobs();
+                });
+
+                // AJAX job loader
+                function loadJobs() {
+                    $.ajax({
+                        url: '{{ route('jobs.list') }}',
+                        type: 'GET',
+                        data: filters,
+                        success: function(response) {
+                            $('#job-list-container').html(response.html);
+                        },
+                        error: function(xhr) {
+                            console.error('Error loading jobs:', xhr);
+                        }
+                    });
+                }
+            });
+        </script>
     @endpush

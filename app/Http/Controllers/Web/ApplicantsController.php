@@ -95,12 +95,26 @@ class ApplicantsController extends Controller
     public function careerHub(){
 
         $jobs = Job::all();
-        $tags = JobTag::all();
+
+        // dd($tags)
+        return view('website.career-hub', compact('jobs' ));
+    }
+
+    public function careerHubDetail(Request $request, $slug){
+
+        $job = Job::where('slug', $slug)->firstOrFail();
+
+        // dd($tags)
+        return view('website.career-hub-details', compact('job' ));
+    }
 
 
+    public function jobDetail(Request $request, $slug)
+    {
+        $job = Job::where('slug', $slug)->firstOrFail();
 
-        // dd($tags);
-
-        return view('website.career-hub', compact('jobs', 'tags' ));
+        // Assuming these relations or you can create accessors
+        // Example: $job->location_name, $job->school_type_name, etc.
+        return view('website.job-detail', compact('job'));
     }
 }

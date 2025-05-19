@@ -10,6 +10,8 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
+
 
 use Illuminate\Support\Facades\Hash;
 
@@ -46,8 +48,11 @@ class DatabaseSeeder extends Seeder
         $positionTypeIds = [1, 2];
 
         for ($i = 0; $i < 10; $i++) {
+            $title = $faker->jobTitle;
+        
             Job::create([
-                'title'          => $faker->jobTitle,
+                'title'          => $title,
+                'slug'           => Str::slug($title) . '-' . uniqid(),
                 'company_name'   => $faker->company,
                 'location'       => $faker->randomElement($locationIds),
                 'category'       => $faker->randomElement($categoryIds),
