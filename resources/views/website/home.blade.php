@@ -293,7 +293,7 @@
                     <h2>Top Destinations</h2>
                 </div>
                 <div class="more-buttons">
-                    <a href="all-jobs.html">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <a href="{{ route('web.destination.index') }}">Show all <span><i class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
             </div>
 
@@ -328,7 +328,7 @@
                     </div>
 
                     <div class="more-buttons">
-                        <a href="{{ route('web.applicants.career-hub') }}">
+                        <a href="{{ route('web.find-job.index') }}">
                             Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span>
                         </a>
                     </div>
@@ -584,10 +584,10 @@
                         <div class="stats-number">250,998</div>
                         <div class="stats-text">people are getting hired with us</div>
                     </div>
-                    <a href="about.html" class="read-more">
+                    {{-- <a href="about.html" class="read-more">
                         <span>READ MORE</span>
                         <span class="arrow">→</span>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </section>
@@ -719,7 +719,7 @@
                         <p>Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed tristique in dolor</p>
                     </div>
                     <div class="more-buttons">
-                        <a href="">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="{{ route('blogs') }}">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
 
@@ -792,8 +792,8 @@
                                 <h3>Apply For A Job?</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor
                                     convallis efficitur.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
@@ -804,8 +804,8 @@
                                 <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
                                     Pelque augue
                                     risus, aliqu.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>

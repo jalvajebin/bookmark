@@ -77,7 +77,7 @@
         <div class="main-nav-right sm-hide-logo">
 
             <div>
-                <a href="submit-cv.html">
+                <a href="{{ route('web.applicants.submit-cv') }}">
                     <button class="head-btn"> <span>Submit Your CV</span>
                     </button>
                 </a>

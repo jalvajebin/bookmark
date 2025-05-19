@@ -151,7 +151,7 @@
                         title: res.title,
                         text: res.message
                     }).then(() => {
-                        window.location.href = "{{ route('index') }}";
+                        window.location.href = "{{ route('services.index') }}";
                     });
                 },
                 error: function (err) {

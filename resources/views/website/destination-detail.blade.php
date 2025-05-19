@@ -74,7 +74,7 @@
                         <h2>Looking to work in {{ optional($destination)->name }}?</h2>
                     </div>
                     <div class="right-Lookingtowork">
-                        <button class="head-btn"> <span>Submit your CV today</span></button>
+                        <a href="{{ route('web.applicants.submit-cv') }}"><button class="head-btn"> <span>Submit your CV today</span></button></a>
                     </div>
                 </div>
             </div>
@@ -114,8 +114,8 @@
                                 <h3>Apply For A Job?</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis
                                     efficitur.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>

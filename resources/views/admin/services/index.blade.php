@@ -185,6 +185,7 @@
     </div>
 @endsection
 @section('js')
-@include('admin.services.js.datatable')
+{{-- @include('admin.services.js.datatable') --}}
 @include('admin.services.js.script')
+@include('admin.serviceWeProvide.js.datatable')
 @endsection

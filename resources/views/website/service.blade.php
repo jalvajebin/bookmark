@@ -25,46 +25,27 @@
 
   <!-- main-body -->
   <div class="main-body">
-
     <!-- Services list -->
     <section class="section-padding">
       <div class="row">
-        <div class="col-lg-6" data-aos="fade-right">
+        @foreach ($services as $service )
+          <div class="col-lg-6" data-aos="fade-right">
           <div class="service-card">
             <div class="service-card-img">
               <img src="{{ $service->Images->url ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">
             </div>
             <div class="card-content">
               <h3>{{ $service->title ?? 'Teacher Recruitment'}} </h3>
-              <p> {{ $service->discription ?? "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis provident totam rem deserunt,"}}</p>
-              <div class="more-buttons">
+              <p> {{ $service->description ?? "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis provident totam rem deserunt,"}}</p>
+              {{-- <div class="more-buttons">
                 <a href="{{$service->link ?? "#" }}">{{ $service->read_more ?? "Read more"}} <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
-        <div class="col-lg-6" data-aos="fade-left">
-          <div class="service-card">
-            <div class="service-card-img">
-              <img src="{{ $service->ImagesTwo->url ?? "assets/img/temp-staffing.png"}}" alt="Classroom Discussion">
-            </div>
-            <div class="card-content">
-              <h3>{{ $service->title_two ?? 'Temporary Staffing'}}  </h3>
-              <p> {{ $service->discription_two ?? "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis provident totam rem deserunt,"}}</p>
-              <div class="more-buttons">
-                <a href="{{$service->link_two ?? "#" }}">{{ $service->read_more ?? "Read more"}} <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      
-       
+        @endforeach  
       </div>
-    </section>
-  
-
-   
+    </section>  
   </div>
 
   @endsection

@@ -32,11 +32,11 @@
         </div>
 
         <!-- Actions Section -->
-        <div class="sub-job-actions d-flex justify-content-between align-items-center">
+        {{-- <div class="sub-job-actions d-flex justify-content-between align-items-center">
             <button class="sub-job-btn email-job d-inline-flex align-items-center">
                 <i class="far fa-envelope me-2"></i>
                 <span>Email this job</span>
             </button>
-        </div>
+        </div> --}}
     </div>
 @endforeach

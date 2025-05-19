@@ -44,12 +44,12 @@
                         <span key="t-dollar">Services</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('serviceWeProvide*') ? 'mm-active' : '' }}">
+                {{-- <li class="{{ Request::is('serviceWeProvide*') ? 'mm-active' : '' }}">
                         <a href="{{ route('index') }}" class="waves-effect">
                             <i class="fas fa-address-book"></i>
                             <span key="t-dollar">Service we provide</span>
                         </a>
-                    </li>
+                    </li> --}}
  
  
                       <li class="{{ Request::is('whyworkwith*') ? 'mm-active' : '' }}">

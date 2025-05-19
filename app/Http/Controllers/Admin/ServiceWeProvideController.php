@@ -18,7 +18,6 @@ use Yajra\DataTables\Facades\DataTables;
 class ServiceWeProvideController extends Controller
 {
 
-
     public function index(Request $request)
     {
         if ($request->ajax()) {
