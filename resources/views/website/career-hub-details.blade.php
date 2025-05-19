@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="career-detail-img">
-                                    <img src="assets/img/career01.jpg" alt="People working">
+                                    <img src="{{ asset('assets/img/career01.jpg') }}" alt="People working">
                                 </div>
                             </div>
                             <div class="col-lg-9">
@@ -135,7 +135,7 @@
 
                 <div class="col-md-12">
                     <div class="career-hub-dts-img">
-                        <img src="assets/img/career-dtls-bg.jpg" alt="Teaching Team">
+                        <img src="{{ asset('assets/img/career-dtls-bg.jpg') }}" alt="Teaching Team">
                     </div>
                 </div>
 
