@@ -33,12 +33,12 @@
 
                     <div class="career-dtls">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-md-12">
                                 <div class="career-detail-img">
-                                    <img src="{{ asset('assets/img/career01.jpg') }}" alt="People working">
+                                    <img src="{{ asset('assets/img/banner-img.png') }}" alt="People working">
                                 </div>
                             </div>
-                            <div class="col-lg-9">
+                            {{-- <div class="col-lg-9">
                                 <div class="content">
                                     <div class="career-dtls-head">
                                         <div class="career-dtls-head-item1">{{ $job->title }}</div>
@@ -59,7 +59,7 @@
                                         what you can teach abroad!
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
@@ -142,8 +142,6 @@
 
             </div>
         </section>
-
-
         <!-- Testimonials -->
         <section class="section-padding">
 

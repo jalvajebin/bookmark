@@ -87,6 +87,13 @@
                     </a>
                 </li>
 
+                {{-- <li class="{{ Request::is('career*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('careers.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Careers</span>
+                    </a>
+                </li> --}}
+
                 <li class="{{ Request::is('contact*') ? 'mm-active' : '' }}">
                     <a href="{{ route('contact.index') }}" class="waves-effect">
                         <i class="fas fa-address-book"></i>

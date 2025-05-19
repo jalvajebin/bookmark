@@ -110,9 +110,9 @@ class DestinationController extends Controller
         $request->validate(
             [
                 'title' => 'required|max:100',
-                'main_image' => 'required|image|max:2048',
-                'inner_image' => 'required|image|max:2048',
-                'inner1_image' => 'required|image|max:2048',
+                'main_image' => 'nullable|image|max:2048',
+                'inner_image' => 'nullable|image|max:2048',
+                'inner1_image' => 'nullable|image|max:2048',
                 'description' => 'required',
                 'description_1' => 'required',
 

@@ -102,6 +102,17 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
             });
 
+
+            // Route::group(['prefix' => 'career'], function () {
+            // Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
+            // Route::get('create', [DestinationController::class, 'create']);
+            // Route::post('store', [DestinationController::class, 'store'])->name('admin.destination.add');
+            // Route::get('edit/{id}', [DestinationController::class, 'edit']);
+            // Route::get('destination-data', [DestinationController::class, 'getData'])->name('admin.destination.getData');
+            // Route::post('update', [DestinationController::class, 'update']);
+            // Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
+            // });
+
             Route::group(['prefix' => 'jobs'], function () {
                 Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
                 Route::get('create', [JobsController::class, 'create'])->name('jobs.create');

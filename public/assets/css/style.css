@@ -4301,12 +4301,14 @@ textarea.form-control {
 }
 
 .career-detail-img img {
-	width: 100%;
-	height: auto;
+    max-height: 300px; /* adjust as needed */
+    width: 100%;
+    object-fit: cover;
 }
 
+
 .career-dtls .content {
-	padding: 10px;
+	padding: 30px;
 }
 
 .career-dtls .career-dtls-description {
