@@ -33,17 +33,17 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate(
-        //     [
-        //         'title' => 'required|max:100',
-        //         'main_image' => 'required|image|max:2048',
-        //         'inner_image' => 'required|image|max:2048',
-        //         'inner1_image' => 'required|image|max:2048',
-        //         'description' => 'required',
-        //         'description_1' => 'required',
+        $request->validate(
+            [
+                'title' => 'required|max:100',
+                'main_image' => 'required|image|max:2048',
+                'inner_image' => 'required|image|max:2048',
+                'inner1_image' => 'required|image|max:2048',
+                'description' => 'required',
+                'description_1' => 'required',
 
-        //     ]
-        // );
+            ]
+        );
        
 
         $destination = new Destination();
@@ -107,17 +107,17 @@ class DestinationController extends Controller
 
     public function update(Request $request)
     {
-        // $request->validate(
-        //     [
-        //         'title' => 'required|max:100',
-        //         'main_image' => 'required|image|max:2048',
-        //         'inner_image' => 'required|image|max:2048',
-        //         'inner1_image' => 'required|image|max:2048',
-        //         'description' => 'required',
-        //         'description_1' => 'required',
+        $request->validate(
+            [
+                'title' => 'required|max:100',
+                'main_image' => 'required|image|max:2048',
+                'inner_image' => 'required|image|max:2048',
+                'inner1_image' => 'required|image|max:2048',
+                'description' => 'required',
+                'description_1' => 'required',
 
-        //     ]
-        // );
+            ]
+        );
         $id = $request->destination_id;
         // dd($id);
         $destination = Destination::findOrFail($id);

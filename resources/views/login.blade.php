@@ -45,7 +45,7 @@
                                 <a href="#" class="auth-logo-light">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="assets/images/fav-new.webp" alt="" class="rounded-circle"
+                                            <img src="admin/assets/images/logoBookMark.png" alt="" class="rounded-circle"
                                                 height="34">
                                         </span>
                                     </div>
@@ -53,10 +53,10 @@
 
                                 <a href="#" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/web/assets/img/fav.png') }}" alt="" class="rounded-circle"
+                                        {{-- <span class="avatar-title rounded-circle bg-light">
+                                            <img src="{{ asset('admin/assets/images/logoBookmark.png') }}" alt="" class="rounded-circle"
                                                 height="34">
-                                        </span>
+                                        </span> --}}
                                     </div>
                                 </a>
                             </div>

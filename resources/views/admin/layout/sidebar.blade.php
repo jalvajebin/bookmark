@@ -44,7 +44,27 @@
                         <span key="t-dollar">Services</span>
                     </a>
                 </li>
-
+                <li class="{{ Request::is('serviceWeProvide*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('index') }}" class="waves-effect">
+                            <i class="fas fa-address-book"></i>
+                            <span key="t-dollar">Service we provide</span>
+                        </a>
+                    </li>
+ 
+ 
+                      <li class="{{ Request::is('whyworkwith*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('whyworkwith.index') }}" class="waves-effect">
+                            <i class="fas fa-address-book"></i>
+                            <span key="t-dollar">Why work with Us</span>
+                        </a>
+                    </li>
+                    
+                    <li class="{{ Request::is('whatwedo*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('whatwedo.index') }}" class="waves-effect">
+                            <i class="fas fa-address-book"></i>
+                            <span key="t-dollar">what we do and easy</span>
+                        </a>
+                    </li>
 
                   <!-- Applicants Dropdown -->
                   <li>

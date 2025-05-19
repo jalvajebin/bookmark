@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\EmployerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\JobsController;
+use App\Http\Controllers\Admin\ServiceWeProvideController;
+use App\Http\Controllers\Admin\WhatwedoController;
+use App\Http\Controllers\Admin\WhyWorkWithController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
@@ -195,6 +198,35 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('services', [HomeController::class, 'addService'])->name('admin.home-services.add');
             Route::post('technolagies', [HomeController::class, 'addTechnolagy'])->name('admin.home-technolagy.add');
         });
+
+        Route::group(['prefix' => 'whatwedo'], function () {
+            Route::get('/index', [WhatwedoController::class, 'index'])->name('whatwedo.index');
+            Route::get('/create', [WhatwedoController::class, 'create'])->name('createWhatWeDo');
+            Route::post('/store-ajax', [WhatwedoController::class, 'store'])->name('storeWhatWeDo');
+            Route::get('/service-we-provide/{id}/edit', [WhatwedoController::class, 'edit'])->name('editWhatWeDo');
+            Route::put('/service-we-provide/{id}', [WhatwedoController::class, 'update']);
+ 
+        });
+ 
+        Route::group(['prefix' => 'serviceweprovide'], function () {
+            Route::get('/index', [ServiceWeProvideController::class, 'index'])->name('index');
+            Route::get('/create', [ServiceWeProvideController::class, 'create'])->name('createServicProvide');
+            Route::post('/store-ajax', [ServiceWeProvideController::class, 'storeAjax'])->name('storeServiceWeprovide');
+            Route::get('/service-we-provide/{id}/edit', [ServiceWeProvideController::class, 'edit'])->name('editServicePro');
+            Route::put('/service-we-provide/{id}', [ServiceWeProvideController::class, 'update']);
+ 
+            Route::delete('/service-we-provide-delete/{id}', [ServiceWeProvideController::class, 'destroy'])->name('destroyServicePro');
+        });
+ 
+        Route::group(['prefix' => 'whyworkwith'], function () {
+            Route::get('/index', [WhyWorkWithController::class, 'index'])->name('whyworkwith.index');
+            Route::get('/create', [WhyWorkWithController::class, 'create'])->name('whyworkcreate');
+            Route::post('/create', [WhyWorkWithController::class, 'storeAjax'])->name('storeAjax');
+            Route::get('/why-work-with/edit/{id}', [WhyWorkWithController::class, 'edit'])->name('editwhywork');
+            Route::put('/why-work-with/update/{id}', [WhyWorkWithController::class, 'update'])->name('updateAjax');
+            Route::delete('/why-work-with-delete/{id}', [WhyWorkWithController::class, 'destroy'])->name('destroywhywork');
+        });
+ 
 
         Route::prefix("blog")->group(function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');
