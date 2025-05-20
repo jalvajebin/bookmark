@@ -43,9 +43,9 @@ class WebHomeController extends Controller
             $query->where('title', 'like', '%' . $search . '%');
         }
 
-        $latestJobs = $query->latest()->get();
+        $latestJobs = $query->latest()->take(8)->get();
 
-        $destinations = Destination::all();
+        $destinations = Destination::latest()->take(6)->get();
         $about = AboutUs::first();
         $blog = Blog::all();
         $testimonials = Testimonial::orderBy('id', 'asc')->get();
@@ -54,10 +54,17 @@ class WebHomeController extends Controller
         $categories = JobCategory::orderBy('title')->get();
 
         return view('website.home', compact(
-            'latestJobs', 'about', 'destinations', 'blog', 'testimonials',
-            'counters', 'locations', 'categories', 'locationName', 'categoryName', 'search'
+            'latestJobs',
+            'about',
+            'destinations',
+            'blog',
+            'testimonials',
+            'counters',
+            'locations',
+            'categories',
+            'locationName',
+            'categoryName',
+            'search'
         ));
     }
-
-
 }
