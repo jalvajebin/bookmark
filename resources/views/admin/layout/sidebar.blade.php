@@ -2,7 +2,7 @@
 
     <div data-simplebar class="h-100">
 
-        <!--- Sidemenu -->
+       <!--- Sidemenu -->
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="{{ Request::is('home*') ? 'mm-active' : '' }}">
-                    <a href="" class="waves-effect">
+                    <a href="#" class="waves-effect">
                         <i class="fas fa-home"></i>
                         <span key="t-dollar">Home</span>
                     </a>
@@ -101,12 +101,12 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
+                {{-- <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
                     <a href="{{ route('email.index') }}" class="waves-effect">
                         <i class="fas fa-envelope"></i>
                         <span key="t-dollar">Email Settings</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ 'Dashboard | Veuz' }}
+    {{ 'Dashboard | Bookmark' }}
 @endsection
 @section('css')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

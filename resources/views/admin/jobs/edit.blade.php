@@ -4,7 +4,7 @@
 @endsection
 @section('css')
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
-          rel="stylesheet">
+        rel="stylesheet">
     <style>
         .switch.btn.btn-primary {
             width: 65.4688px !important;
@@ -135,14 +135,17 @@
                                         <!-- Job Title -->
                                         <div class="col-md-6 mb-3">
                                             <label for="title">Job Title <span class="text-danger">*</span></label>
-                                            <input type="text" name="title" id="title" class="form-control title" placeholder="Enter Job Title" value="{{ old('title', $job->title) }}">
+                                            <input type="text" name="title" id="title" class="form-control title"
+                                                placeholder="Enter Job Title" value="{{ old('title', $job->title) }}">
                                             <span class="title-validation error-validation text-danger"></span>
                                         </div>
 
                                         <!-- Company Name -->
                                         <div class="col-md-6 mb-3">
                                             <label for="company_name">Company Name</label>
-                                            <input type="text" name="company_name" id="company_name" class="form-control company_name" placeholder="Enter Company Name" value="{{ old('company_name', $job->company_name) }}">
+                                            <input type="text" name="company_name" id="company_name"
+                                                class="form-control company_name" placeholder="Enter Company Name"
+                                                value="{{ old('company_name', $job->company_name) }}">
                                             <span class="company_name-validation error-validation text-danger"></span>
                                         </div>
 
@@ -151,8 +154,9 @@
                                             <label for="location">Location</label>
                                             <select name="location" id="location" class="form-control location">
                                                 <option value="">Select Location</option>
-                                                @foreach($locations as $location)
-                                                    <option value="{{ $location->id }}" {{ old('location', $job->location) == $location->id ? 'selected' : '' }}>
+                                                @foreach ($locations as $location)
+                                                    <option value="{{ $location->id }}"
+                                                        {{ old('location', $job->location) == $location->id ? 'selected' : '' }}>
                                                         {{ $location->title }}
                                                     </option>
                                                 @endforeach
@@ -165,8 +169,9 @@
                                             <label for="category">Category</label>
                                             <select name="category" id="category" class="form-control category">
                                                 <option value="">Select Category</option>
-                                                @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}" {{ old('category', $job->category) == $category->id ? 'selected' : '' }}>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category', $job->category) == $category->id ? 'selected' : '' }}>
                                                         {{ $category->title }}
                                                     </option>
                                                 @endforeach
@@ -177,17 +182,18 @@
                                         <!-- Salary Range -->
                                         <div class="col-md-6 mb-3">
                                             <label for="salary_rang">Salary Range</label>
-                                            <input type="text" name="salary_rang" id="salary_rang" class="form-control salary_rang" placeholder="e.g. £30,000 - £40,000" value="{{ old('salary_rang', $job->salary_rang) }}">
+                                            <input type="text" name="salary_rang" id="salary_rang"
+                                                class="form-control salary_rang" placeholder="e.g. £30,000 - £40,000"
+                                                value="{{ old('salary_rang', $job->salary_rang) }}">
                                             <span class="salary_rang-validation error-validation text-danger"></span>
                                         </div>
 
                                         <!-- Date -->
                                         <div class="col-md-6 mb-3">
                                             <label for="date">Date</label>
-                                            <input id="date" name="date" type="text"
-                                                   class="form-control date"
-                                                   value="{{ \Carbon\Carbon::parse($job->date)->format('d-m-Y') }}"
-                                                   placeholder="DD-MM-YYYY">
+                                            <input id="date" name="date" type="date" class="form-control date"
+                                                value="{{ \Carbon\Carbon::parse($job->date)->format('Y-m-d') }}"
+                                                placeholder="DD-MM-YYYY">
                                             <span class="date-validation error-validation text-danger"></span>
                                         </div>
 
@@ -196,8 +202,12 @@
                                             <label for="type">Job Type</label>
                                             <select name="type" id="type" class="form-control type">
                                                 <option value="">Select Job Type</option>
-                                                <option value="FULL_TIME" {{ old('type', $job->job_type) == 'FULL_TIME' ? 'selected' : '' }}>Full Time</option>
-                                                <option value="PART_TIME" {{ old('type', $job->job_type) == 'PART_TIME' ? 'selected' : '' }}>Part Time</option>
+                                                <option value="FULL_TIME"
+                                                    {{ old('type', $job->job_type) == 'FULL_TIME' ? 'selected' : '' }}>Full
+                                                    Time</option>
+                                                <option value="PART_TIME"
+                                                    {{ old('type', $job->job_type) == 'PART_TIME' ? 'selected' : '' }}>Part
+                                                    Time</option>
                                             </select>
                                             <span class="type-validation error-validation text-danger"></span>
                                         </div>
@@ -206,9 +216,10 @@
                                             <label for="destination">Destinations</label>
                                             <select name="destination" id="destination" class="form-control destination">
                                                 <option value="">Select Destination</option>
-                                                @foreach($destinations as $destination)
-                                                    <option value="{{ $destination->id }}" {{ old('destination', $job->destination_id) == $destination->id ? 'selected' : '' }}>{{ $destination->name }}</option>
-
+                                                @foreach ($destinations as $destination)
+                                                    <option value="{{ $destination->id }}"
+                                                        {{ old('destination', $job->destination_id) == $destination->id ? 'selected' : '' }}>
+                                                        {{ $destination->name }}</option>
                                                 @endforeach
                                             </select>
                                             <span class="category-validation error-validation text-danger"></span>
@@ -226,8 +237,9 @@
                                             <label for="school_type">School Type</label>
                                             <select name="school_type" id="school_type" class="form-control school_type">
                                                 <option value="">Select School Type</option>
-                                                @foreach($schoolTypes as $type)
-                                                    <option value="{{ $type->id }}" {{ old('school_type', $job->school_type) == $type->id ? 'selected' : '' }}>
+                                                @foreach ($schoolTypes as $type)
+                                                    <option value="{{ $type->id }}"
+                                                        {{ old('school_type', $job->school_type) == $type->id ? 'selected' : '' }}>
                                                         {{ $type->title }}
                                                     </option>
                                                 @endforeach
@@ -240,8 +252,9 @@
                                             <label for="specialism">Specialism</label>
                                             <select name="specialism" id="specialism" class="form-control specialism">
                                                 <option value="">Select Specialism</option>
-                                                @foreach($specialisms as $specialism)
-                                                    <option value="{{ $specialism->id }}" {{ old('specialism', $job->specialism) == $specialism->id ? 'selected' : '' }}>
+                                                @foreach ($specialisms as $specialism)
+                                                    <option value="{{ $specialism->id }}"
+                                                        {{ old('specialism', $job->specialism) == $specialism->id ? 'selected' : '' }}>
                                                         {{ $specialism->title }}
                                                     </option>
                                                 @endforeach
@@ -252,10 +265,12 @@
                                         <!-- Position Type -->
                                         <div class="col-md-6 mb-3">
                                             <label for="position_type">Position Type</label>
-                                            <select name="position_type" id="position_type" class="form-control position_type">
+                                            <select name="position_type" id="position_type"
+                                                class="form-control position_type">
                                                 <option value="">Select Position Type</option>
-                                                @foreach($positionTypes as $position)
-                                                    <option value="{{ $position->id }}" {{ old('position_type', $job->position_type) == $position->id ? 'selected' : '' }}>
+                                                @foreach ($positionTypes as $position)
+                                                    <option value="{{ $position->id }}"
+                                                        {{ old('position_type', $job->position_type) == $position->id ? 'selected' : '' }}>
                                                         {{ $position->title }}
                                                     </option>
                                                 @endforeach
@@ -265,25 +280,32 @@
 
                                         <!-- Main Image -->
                                         <div class="col-sm-6 col-6">
-                                            <label for="formFile" class="form-label">Main Image<span style="color:#ff0000">*</span></label><br>
-                                            <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit is 2MB</small>
+                                            <label for="formFile" class="form-label">Main Image<span
+                                                    style="color:#ff0000">*</span></label><br>
+                                            <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit
+                                                is 2MB</small>
                                             <div class="logo-wrapper mb-4">
-                                                <img alt="Logo" src="@if ($job->MainImages) {{ $job->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
-                                                     class="logo-image avatar-md img-thumbnail image_class mainPreview"
-                                                     id="mainPreview" style="object-fit: contain;">
+                                                <img alt="Logo"
+                                                    src="@if ($job->MainImages) {{ $job->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                                    class="logo-image avatar-md img-thumbnail image_class mainPreview"
+                                                    id="mainPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerMainFileInput()">
-                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png" alt="Edit">
+                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
+                                                        alt="Edit">
                                                 </div>
-                                                <span class="main_image-validation error-validation" style="color:red;"></span>
+                                                <span class="main_image-validation error-validation"
+                                                    style="color:red;"></span>
                                             </div>
-                                            <input type="file" id="main-input" name="main_image" class="file-input" accept="image/*" onchange="previewMain(event)">
+                                            <input type="file" id="main-input" name="main_image" class="file-input"
+                                                accept="image/*" onchange="previewMain(event)">
                                         </div>
                                     </div>
 
                                     <!-- Footer -->
                                     <div class="modal-footer p-4">
                                         <a href="" class="btn btn-danger" style="margin-right: 20px;">Close</a>
-                                        <button type="submit" class="btn btn-primary waves-effect waves-light" id="job-btn">Update</button>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light"
+                                            id="job-btn">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -387,6 +409,3 @@
         });
     </script>
 @endsection
-
-
-

@@ -4,7 +4,7 @@
             <div class="navbar-brand-box">
                 <a href="{{ url('dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('admin/assets/images/fav.png') }}" alt="" height="30">
+                        <img src="{{ asset('assets/img/fav.png') }}" alt="" height="30">
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('admin/assets/images/logoBookmark.png') }}" alt="" height="50">

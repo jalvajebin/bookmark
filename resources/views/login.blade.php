@@ -2,12 +2,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login | Veuz</title>
+    <title>Login | Bookmark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Fitsolution" name="description" />
-    <meta content="Fitsolution" name="author" />
+    <meta content="Bookmark" name="description" />
+    <meta content="Bookmark" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('admin/web/assets/img/fav.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/fav.png') }}">
     <!-- Bootstrap Css -->
     <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -45,7 +45,7 @@
                                 <a href="#" class="auth-logo-light">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="admin/assets/images/logoBookMark.png" alt="" class="rounded-circle"
+                                            <img src="{{ asset('assets/img/fav.png') }}" alt="" class="rounded-circle"
                                                 height="34">
                                         </span>
                                     </div>
@@ -53,10 +53,10 @@
 
                                 <a href="#" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
-                                        {{-- <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/assets/images/logoBookmark.png') }}" alt="" class="rounded-circle"
+                                        <span class="avatar-title rounded-circle bg-light">
+                                            <img src="{{ asset('assets/img/fav.png') }}" alt="" class="rounded-circle"
                                                 height="34">
-                                        </span> --}}
+                                        </span>
                                     </div>
                                 </a>
                             </div>

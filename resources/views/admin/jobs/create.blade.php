@@ -181,7 +181,7 @@
                                             <div class="mb-4">
                                                 <label for="date"> Date<span
                                                         style="color:#ff0000">*</span></label>
-                                                <input id="date" name="date" type="text"
+                                                <input id="date" name="date" type="date"
                                                        class="form-control date" placeholder="DD-MM-YYYY">
                                                 <span class="date-validation error-validation" style="color:red;"></span>
                                             </div>
@@ -353,24 +353,9 @@
                         $("#loader").hide();
                         console.log(data.responseJSON.errors);
                         var title = data.responseJSON.errors.title;
-                        // var priority = data.responseJSON.errors.priority;
-                        // var main_image = data.responseJSON.errors.main_image;
-                        // var inner_image = data.responseJSON.errors.inner_image;
-                        // var tag = data.responseJSON.errors.tag_ids;
-                        // var category = data.responseJSON.errors.category_ids;
-                        // var author = data.responseJSON.errors.author;
-                        // var date = data.responseJSON.errors.date;
-                        // var description = data.responseJSON.errors.description;
-
+                     
                         $('.title-validation').html(title);
-                        // $('.priority-validation').html(priority);
-                        // $('.main_image-validation').html(main_image);
-                        // $('.inner_image-validation').html(inner_image);
-                        // $('.tag-validation').html(tag);
-                        // $('.category-validation').html(category);
-                        // $('.author-validation').html(author);
-                        // $('.date-validation').html(date);
-                        // $('.description-validation').html(description);
+                       
                     }
                 });
             });

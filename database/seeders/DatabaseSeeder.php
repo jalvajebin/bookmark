@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 
@@ -24,45 +25,27 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-//        User::factory()->create([
-//            'name' => 'Admin User',
-//            'email' => 'admin@example.com',
-//            'email_verified_at' => now(),
-//            'password' => Hash::make('password'),
-//            'is_admin' => 1,
-//        ]);
-//
-//
-//          User::factory(3)->create([
-//            'is_admin' => 0,
-//            'password' => Hash::make('password'),
-//        ]);
+        //        User::factory()->create([
+        //            'name' => 'Admin User',
+        //            'email' => 'admin@example.com',
+        //            'email_verified_at' => now(),
+        //            'password' => Hash::make('password'),
+        //            'is_admin' => 1,
+        //        ]);
+        //
+        //
+        //          User::factory(3)->create([
+        //            'is_admin' => 0,
+        //            'password' => Hash::make('password'),
+        //        ]);
 
-        $faker = Faker::create();
-
-        // Example arrays for foreign keys - make sure these IDs exist in your DB
-        $locationIds = [1, 2, 3];       // Replace with your actual location IDs
-        $categoryIds = [1, 2, 3];
-        $schoolTypeIds = [1, 2];
-        $specialismIds = [1, 2, 3];
-        $positionTypeIds = [1, 2];
-
-        for ($i = 0; $i < 10; $i++) {
-            $title = $faker->jobTitle;
-        
-            Job::create([
-                'title'          => $title,
-                'slug'           => Str::slug($title) . '-' . uniqid(),
-                'company_name'   => $faker->company,
-                'location'       => $faker->randomElement($locationIds),
-                'category'       => $faker->randomElement($categoryIds),
-                'salary_rang'    => $faker->randomElement(['2000-3000', '3000-4000', '4000-5000']),
-                'date'           => $faker->dateTimeBetween('-1 month', '+1 month')->format('Y-m-d'),
-                'job_type'       => $faker->randomElement(['FULL_TIME', 'PART_TIME']),
-                'description'    => '<p>' . $faker->paragraph(3) . '</p>',
-                'school_type'    => $faker->randomElement($schoolTypeIds),
-                'specialism'     => $faker->randomElement($specialismIds),
-                'position_type'  => $faker->randomElement($positionTypeIds),
+        {
+            DB::table('users')->insert([
+                'name' => 'admin',
+                'email' => 'admin@bookmark.com',
+                'password' => Hash::make('admin#2780-K3'),
+                'status' => 1,
+                'is_admin' => 1
             ]);
         }
 

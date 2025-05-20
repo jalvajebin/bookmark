@@ -7,9 +7,9 @@
         dataTable4();
         dataTable5();
 
-        $('#date').datetimepicker({
-            format: 'DD-MM-YYYY',
-        });
+        // $('#date').datetimepicker({
+        //     format: 'DD-MM-YYYY',
+        // });
 
         $('#tabs-nav li:first-child').addClass('active');
         $('.tab-content').hide();
