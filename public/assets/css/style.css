@@ -1979,6 +1979,7 @@ img {
 
 .footer-col {
 	flex: 1 1 200px;
+    padding-top: 80px;
 }
 
 .footer-logo {
