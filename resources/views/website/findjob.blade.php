@@ -39,17 +39,17 @@
                         <!-- Categories Widget -->
                         <div class="sidebar-widget">
                             <h4>Find job</h4>
-                            <form id="searchForm" class="search-form">
+                            <form action="{{ route('jobs.list') }}" id="searchForm" class="search-form">
                                 <input type="text" id="search_job" name="search"
                                     value="{{ request()->query('search') }}" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
 
-                            <label class="custom-radio square">
+                            {{-- <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
                                 <span class="radio-checkmark"></span>
                                 <span class="radio-label">Search Job title Only</span>
-                            </label>
+                            </label> --}}
                         </div>
 
                         <!-- Recent Posts Widget -->
@@ -266,11 +266,13 @@
                 loadJobs();
 
                 // Search input handler (if you have #search_job input)
-                $('#search_job').on('keyup', function() {
-                    filters.search = $(this).val().trim();
+                $('#searchForm').on('submit', function(e) {
+                    e.preventDefault();
+                    filters.search = $('#search_job').val().trim();
+                    // $("#loader").show();
+                    $("#loader").css("opacity", 1);
                     loadJobs();
                 });
-
                 // Filter link click handler
                 $('.filter-tag').on('click', function(e) {
                     e.preventDefault();

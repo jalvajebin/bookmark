@@ -13,7 +13,8 @@ class ServiceController extends Controller
     public function index()
     {
         $logedUserData = auth()->user(); 
-        $banner = Banner::where('page', 'services')->first();
+        $banner = Banner::where('page', 'service')->first();
+        // dd($banner);
         $service = Service::first();
         return view('admin.services.index', compact('logedUserData', 'banner' , 'service'));
 

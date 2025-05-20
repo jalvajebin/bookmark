@@ -15,7 +15,8 @@ use Illuminate\Http\Request;
 
 class ApplicantsController extends Controller
 {
-    public function applicants(){
+    public function applicants()
+    {
         $destinations = Destination::all();
 
         $latestJobs = Job::latest()->get();
@@ -24,7 +25,8 @@ class ApplicantsController extends Controller
         return view('website.applicants', compact('destinations', 'latestJobs', 'weRecruitFor'));
     }
 
-    public function findJob(Request $request){
+    public function findJob(Request $request)
+    {
 
         $jobs = Job::query();
         if ($request->has('school_type')) {
@@ -80,6 +82,15 @@ class ApplicantsController extends Controller
             $jobs->where('position_type', $request->position_type);
         }
 
+        if ($request->filled('search')) {
+            $keyword = $request->search;
+
+            $jobs->where(function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%')
+                    ->orWhere('description', 'like', '%' . $keyword . '%');
+            });
+        }
+
         $jobs = $jobs->paginate(10);
 
         $html = view('website.partials.job_list', compact('jobs'))->render();
@@ -87,25 +98,28 @@ class ApplicantsController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function submitCv(){
+    public function submitCv()
+    {
 
         return view('website.submit-cv');
     }
 
-    public function careerHub(){
+    public function careerHub()
+    {
 
         $jobs = Job::all();
 
         // dd($tags)
-        return view('website.career-hub', compact('jobs' ));
+        return view('website.career-hub', compact('jobs'));
     }
 
-    public function careerHubDetail(Request $request, $slug){
+    public function careerHubDetail(Request $request, $slug)
+    {
 
         $job = Job::where('slug', $slug)->firstOrFail();
 
         // dd($tags)
-        return view('website.career-hub-details', compact('job' ));
+        return view('website.career-hub-details', compact('job'));
     }
 
 
@@ -118,10 +132,9 @@ class ApplicantsController extends Controller
         return view('website.job-detail', compact('job'));
     }
 
-     public function postVacancy(){
+    public function postVacancy()
+    {
 
         return view('website.post-vacancy');
     }
-
 }
-

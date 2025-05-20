@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ 'Why work with | Veuz' }}
+    {{ 'Why work with | Bookmark' }}
 @endsection
 @section('css')
     <style>

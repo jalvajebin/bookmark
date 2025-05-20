@@ -16,8 +16,8 @@
             <li class="breadcrumb-item active" aria-current="page">About Us</li>
           </ol>
         </nav>
-        <h1>{{$banners->title ?? 'About' }}</h1>
-        <p>{{$banners->description ?? "Description"}}</p>
+        <h1>{{$banner->title ?? 'About' }}</h1>
+        <p>{{$banner->description ?? "Description"}}</p>
       </div>
     </div>
   </div>

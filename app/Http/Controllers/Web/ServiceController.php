@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     public function index(){
-        $banners = Banner::where('page', 'service')->first();
+        $banner = Banner::where('page', 'service')->first();
+        // dd( $banners);
         $services = ServiceWeProvide::all();
                 
-      return view('website.service' , compact('banners' , 'services'));
+      return view('website.service' , compact('banner' , 'services'));
     }
 }
