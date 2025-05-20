@@ -108,7 +108,7 @@
           <div class="d-flex justify-content-center gap-2">
             <a href="{{ route('web.contact.index') }}"><button  class="head-btn"> <span>Contact Us</span>
             </button></a>
-            <a href="{{ route('web.applicants.submit-cv') }}"><button class="head-btn emp-cta-button"> <span style="color: white">Submit Your Vacancy</span></a>
+            <a href="{{ route('web.applicants.post-vacancy') }}"><button class="head-btn emp-cta-button"> <span style="color: white">Submit Your Vacancy</span></a>
             </button>
           </div>
         </div>

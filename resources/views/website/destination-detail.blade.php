@@ -126,9 +126,9 @@
                                 <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
                                     Pelque augue
                                     risus, aliqu.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
-                            </div>
+                               <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+
                         </div>
                     </div>
                 </div>

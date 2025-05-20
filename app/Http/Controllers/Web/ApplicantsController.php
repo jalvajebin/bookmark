@@ -117,4 +117,11 @@ class ApplicantsController extends Controller
         // Example: $job->location_name, $job->school_type_name, etc.
         return view('website.job-detail', compact('job'));
     }
+
+     public function postVacancy(){
+
+        return view('website.post-vacancy');
+    }
+
 }
+
