@@ -14,7 +14,7 @@
         <p>Bookmark skilled and dedicated teams work hard to add value and efficiency ensuring every candidate we
           recruit is the right match, and every service we provide is of the highest quality.</p>
         <div class="employer-banner-link">
-          <a href="{{ route('web.applicants.submit-cv') }}" class="country-box">
+          <a href="{{ route('web.applicants.post-vacancy') }}" class="country-box">
             <h6>Submit a Vacancy</h6>
             <i class="fas fa-chevron-right"></i>
           </a>
@@ -31,9 +31,6 @@
       </div>
     </div>
   </div>
-
-
-
   <!-- banner  -->
 
   <!-- main-body -->

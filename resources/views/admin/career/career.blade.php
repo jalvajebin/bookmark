@@ -1,4 +1,4 @@
-<div id="tab2" class="tab-content">
+<div id="tab1" class="tab-content">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -24,10 +24,10 @@
                             <div class="top-hd-box mb-3">
                                 <h5 class="card-title">Career List</h5>
                                 <div class="top-hd-box-right">
-                                    <a href="/admin/destination/create" class="btn btn-success add-cntry create-modal" onclick="testimonialAddForm(1)">Create New</a>
+                                    <a href="/admin/career/create" class="btn btn-success add-cntry create-modal" onclick="testimonialAddForm(1)">Create New</a>
                                 </div>
                             </div>
-                            <table id="destinationTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
+                            <table id="careerTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="10px" style="text-align: left; ">No</th>

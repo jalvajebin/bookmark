@@ -129,25 +129,9 @@
                                     <a href="#tab1" class="m-2">Career</a>
                                 </li>
                                 
-                                 <li class="tab-list">
+                                 {{-- <li class="tab-list">
                                     <a href="#tab2" class="m-2">Tag</a>
-                                </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Contact Enquiries</a>
                                 </li> --}}
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Social Media</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Contact Enquiries</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab6" class="m-2">Request a quote</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
-
                             </ul>
                         </div>
                     </div>
@@ -155,17 +139,9 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.career-hub.career')
-                @include('admin.career-hub.tag')
-             
-                {{-- @include('admin.services.service') --}}
-                {{-- @include('admin.contact.contact')
-                @include('admin.contact.enquiry') --}}
-                {{-- @include('admin.contact.social')
-                @include('admin.contact.enquiry')
-                @include('admin.contact.quote')
-                @include('admin.contact.seo')
-            </div> --}}
+                @include('admin.career.career')
+                @include('admin.career.tag')     
+            </div> 
         </div>
     </div>
     <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
@@ -187,6 +163,6 @@
     </div>
 @endsection
 @section('js')
-@include('admin.destination.js.datatable')
-@include('admin.destination.js.script')
+@include('admin.career.js.datatable')
+@include('admin.career.js.script')
 @endsection

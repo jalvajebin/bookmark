@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Job seeker </li>
+                        <li class="breadcrumb-item" aria-current="page"> Applicants </li>
                         <li class="breadcrumb-item active" aria-current="page"> Career hub</li>
                     </ol>
                 </nav>
@@ -27,15 +27,15 @@
             <div class="custom-container">
                 <div class="col-lg-12 order order-md-1">
                     <div class="row gx-5">
-                        @foreach ($jobs as $key => $job)
+                        @foreach ($careers as $key => $career)
                             <div class="col-md-6 col-lg-6 fade-left">
                                 <div class="career-card">
-                                    <img src="assets/img/career01.jpg" alt="People working">
+                                    <img src="@if ($career->MainImages) {{ $career->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="People working">
                                     <div class="content">
                                         <div class="left-career-card">
-                                            <div class="title">{{ optional($job)->title }}</div>
+                                            <div class="title">{{ optional($career)->title }}</div>
                                             <div class="career-card-description">
-                                                {!! optional($job)->description !!}
+                                                {!! optional($career)->description !!}
                                             </div>
                                             <div class="career-tags">
                                                 <a  class="first-tags">Design</a>
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="right-career-card">
-                                            <a href="{{ route('career.details', $job->slug ) }}" class="card-read-more"><span><i
+                                            <a href="{{ route('career.details', $career->slug ) }}" class="card-read-more"><span><i
                                                         class="fa-solid fa-arrow-right"></i></span></a>
                                         </div>
                                     </div>
@@ -56,8 +56,6 @@
                 <!-- </div> -->
             </div>
         </section>
-
-
         <!-- Testimonials -->
         <section class="section-padding">
 
@@ -67,10 +65,10 @@
                         <div class="register-bg">
                             <div>
                                 <h3>Apply For A Job?</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis
-                                    efficitur.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor
+                                    convallis efficitur.</p>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
@@ -81,14 +79,13 @@
                                 <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
                                     Pelque augue
                                     risus, aliqu.</p>
-                                <button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button>
+                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button" class="register-button">Register now <span><i
+                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
         <!-- Testimonials -->
     @endsection

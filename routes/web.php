@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\JobsController;
 use App\Http\Controllers\Admin\ServiceWeProvideController;
 use App\Http\Controllers\Admin\WhatwedoController;
 use App\Http\Controllers\Admin\WhyWorkWithController;
+use App\Http\Controllers\Admin\CareerController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
@@ -64,10 +66,10 @@ Route::get('logout', [LoginController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [LoginController::class, 'profileChange']);
-    Route::post('/profile-update', [LoginController::class, 'profileUpdate']);
-    Route::post('/profile-data-update', [LoginController::class, 'profileDataUpdate']);
-    Route::post('/change-password', [LoginController::class, 'changePassword']);
+     Route::get('/profile', [ProfileController::class, 'profileChange'])->name('admin.profile');
+    Route::post('/profile-update', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
+    Route::post('/profile-data-update', [ProfileController::class, 'profileDataUpdate'])->name('admin.profiledata.update');
+    Route::post('/change-password', [ProfileController::class, 'changePassword']);
     // Route::post('/seo/{id}', [SeoController::class, 'update']);
 
     Route::prefix("admin")->group(function () {
@@ -101,49 +103,57 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('destination-data', [DestinationController::class, 'getData'])->name('admin.destination.getData');
             Route::post('update', [DestinationController::class, 'update']);
             Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
+        });
+
+
+        Route::group(['prefix' => 'career'], function () {
+            Route::get('/', [CareerController::class, 'index'])->name('career.index');
+            Route::get('create', [CareerController::class, 'create']);
+            Route::post('store', [CareerController::class, 'store'])->name('admin.career.add');
+            Route::get('edit/{id}', [CareerController::class, 'edit']);
+            Route::get('career-data', [CareerController::class, 'getData'])->name('admin.career.getData');
+            Route::post('update', [CareerController::class, 'update']);
+            Route::delete('/{id}', [CareerController::class, 'destroy'])->name('admin.career.delete');
+
+            Route::prefix("tag")->group(function () {
+                Route::post('create', [CareerController::class, 'storeTag'])->name('career.tag.store');
+                Route::get('edit/{id}', [CareerController::class, 'editTag'])->name('career.tag.edit');
+                // Route::post('update/{id}', [CareerController::class, 'updateTag']);
+                Route::get('tag-data', [CareerController::class, 'tagGetData'])->name('admin.tag.getData');
+                Route::post('status-change', [CareerController::class, 'changeStatusTag']);
+                Route::get('delete/{id}', [CareerController::class, 'destroyTag'])->name('delete-tag');
             });
+        });
 
-
-            // Route::group(['prefix' => 'career'], function () {
-            // Route::get('/', [DestinationController::class, 'index'])->name('destination.index');
-            // Route::get('create', [DestinationController::class, 'create']);
-            // Route::post('store', [DestinationController::class, 'store'])->name('admin.destination.add');
-            // Route::get('edit/{id}', [DestinationController::class, 'edit']);
-            // Route::get('destination-data', [DestinationController::class, 'getData'])->name('admin.destination.getData');
-            // Route::post('update', [DestinationController::class, 'update']);
-            // Route::delete('/{id}', [DestinationController::class, 'destroy'])->name('admin.destination.delete');
-            // });
-
-            Route::group(['prefix' => 'jobs'], function () {
-                Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
-                Route::get('create', [JobsController::class, 'create'])->name('jobs.create');
-                Route::post('store', [JobsController::class, 'store'])->name('job.store');
-                Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
-                Route::get('edit/{id}', [JobsController::class, 'edit']);
-                Route::post('update', [JobsController::class, 'update']);
-                Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('delete');
-                Route::post('job-category', [JobsController::class, 'storeCategory'])->name('jobs.category.store');
-                Route::get('job-category-data', [JobsController::class, 'getCategoryData'])->name('jobs.category.getData');
-                Route::get('job-category-edit/{id}', [JobsController::class, 'editCategory'])->name('jobs.category.edit');
-                Route::delete('category-delete/{id}', [JobsController::class, 'destroyCategory'])->name('delete-category');
-                Route::post('job-location', [JobsController::class, 'storeLocation'])->name('jobs.location.store');
-                Route::get('job-location-data', [JobsController::class, 'getLocationData'])->name('jobs.location.getData');
-                Route::get('job-location-edit/{id}', [JobsController::class, 'editLocation'])->name('jobs.location.edit');
-                Route::delete('location-delete/{id}', [JobsController::class, 'destroyLocation'])->name('delete-location');
-                Route::post('job-school-type', [JobsController::class, 'storeSchoolType'])->name('jobs.school-type.store');
-                Route::get('job-school-type-data', [JobsController::class, 'getSchoolTypeData'])->name('jobs.school-type.getData');
-                Route::get('job-school-type-edit/{id}', [JobsController::class, 'editSchoolType'])->name('jobs.school-type.edit');
-                Route::delete('school-type-delete/{id}', [JobsController::class, 'destroySchoolType'])->name('delete-school-type');
-                Route::post('job-specialism', [JobsController::class, 'storeSpecialism'])->name('jobs.specialism.store');
-                Route::get('job-specialism-data', [JobsController::class, 'getSpecialismData'])->name('jobs.specialism.getData');
-                Route::get('job-specialism-edit/{id}', [JobsController::class, 'editSpecialism'])->name('jobs.specialism.edit');
-                Route::delete('specialism-delete/{id}', [JobsController::class, 'destroySpecialism'])->name('delete-specialism');
-                Route::post('job-position-type', [JobsController::class, 'storePositionType'])->name('jobs.position-type.store');
-                Route::get('job-position-type-data', [JobsController::class, 'getPositionTypeData'])->name('jobs.position-type.getData');
-                Route::get('job-position-type-edit/{id}', [JobsController::class, 'editPositionType'])->name('jobs.position-type.edit');
-                Route::delete('position-type-delete/{id}', [JobsController::class, 'destroyPositionType'])->name('delete-position-type');
-
-            });
+        Route::group(['prefix' => 'jobs'], function () {
+            Route::get('/', [JobsController::class, 'index'])->name('jobs.index');
+            Route::get('create', [JobsController::class, 'create'])->name('jobs.create');
+            Route::post('store', [JobsController::class, 'store'])->name('job.store');
+            Route::get('job-data', [JobsController::class, 'getData'])->name('admin.job.getData');
+            Route::get('edit/{id}', [JobsController::class, 'edit']);
+            Route::post('update', [JobsController::class, 'update']);
+            Route::delete('delete/{id}', [JobsController::class, 'destroy'])->name('delete');
+            Route::post('job-category', [JobsController::class, 'storeCategory'])->name('jobs.category.store');
+            Route::get('job-category-data', [JobsController::class, 'getCategoryData'])->name('jobs.category.getData');
+            Route::get('job-category-edit/{id}', [JobsController::class, 'editCategory'])->name('jobs.category.edit');
+            Route::delete('category-delete/{id}', [JobsController::class, 'destroyCategory'])->name('delete-category');
+            Route::post('job-location', [JobsController::class, 'storeLocation'])->name('jobs.location.store');
+            Route::get('job-location-data', [JobsController::class, 'getLocationData'])->name('jobs.location.getData');
+            Route::get('job-location-edit/{id}', [JobsController::class, 'editLocation'])->name('jobs.location.edit');
+            Route::delete('location-delete/{id}', [JobsController::class, 'destroyLocation'])->name('delete-location');
+            Route::post('job-school-type', [JobsController::class, 'storeSchoolType'])->name('jobs.school-type.store');
+            Route::get('job-school-type-data', [JobsController::class, 'getSchoolTypeData'])->name('jobs.school-type.getData');
+            Route::get('job-school-type-edit/{id}', [JobsController::class, 'editSchoolType'])->name('jobs.school-type.edit');
+            Route::delete('school-type-delete/{id}', [JobsController::class, 'destroySchoolType'])->name('delete-school-type');
+            Route::post('job-specialism', [JobsController::class, 'storeSpecialism'])->name('jobs.specialism.store');
+            Route::get('job-specialism-data', [JobsController::class, 'getSpecialismData'])->name('jobs.specialism.getData');
+            Route::get('job-specialism-edit/{id}', [JobsController::class, 'editSpecialism'])->name('jobs.specialism.edit');
+            Route::delete('specialism-delete/{id}', [JobsController::class, 'destroySpecialism'])->name('delete-specialism');
+            Route::post('job-position-type', [JobsController::class, 'storePositionType'])->name('jobs.position-type.store');
+            Route::get('job-position-type-data', [JobsController::class, 'getPositionTypeData'])->name('jobs.position-type.getData');
+            Route::get('job-position-type-edit/{id}', [JobsController::class, 'editPositionType'])->name('jobs.position-type.edit');
+            Route::delete('position-type-delete/{id}', [JobsController::class, 'destroyPositionType'])->name('delete-position-type');
+        });
 
 
 
@@ -197,19 +207,19 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('we-recruit-for', [EmployerController::class, 'addWeRecruitFor'])->name('admin.we-recruit-for.add');
         });
 
-        Route::group(['prefix' => 'home'], function () {
-            Route::get('/', [HomeController::class, 'index'])->name('home.index');
-            Route::get('getData', [HomeController::class, 'getBannerData'])->name('admin.banner.getData');
-            Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
-            Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
-            Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');
-            Route::delete('/{id}', [HomeController::class, 'deleteBanner'])->name('admin.home-banner.delete');
-            Route::post('what-we-do', [HomeController::class, 'addWhatWeDo'])->name('admin.what-we-do.add');
-            Route::post('about-us', [HomeController::class, 'addAboutUs'])->name('admin.home-about-us.add');
-            Route::post('why-choose-us', [HomeController::class, 'addWhyChooseUs'])->name('admin.home-why-choose-us.add');
-            Route::post('services', [HomeController::class, 'addService'])->name('admin.home-services.add');
-            Route::post('technolagies', [HomeController::class, 'addTechnolagy'])->name('admin.home-technolagy.add');
-        });
+        // Route::group(['prefix' => 'home'], function () {
+        //     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+        //     Route::get('getData', [HomeController::class, 'getBannerData'])->name('admin.banner.getData');
+        //     Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
+        //     Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
+        //     Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');
+        //     Route::delete('/{id}', [HomeController::class, 'deleteBanner'])->name('admin.home-banner.delete');
+        //     Route::post('what-we-do', [HomeController::class, 'addWhatWeDo'])->name('admin.what-we-do.add');
+        //     Route::post('about-us', [HomeController::class, 'addAboutUs'])->name('admin.home-about-us.add');
+        //     Route::post('why-choose-us', [HomeController::class, 'addWhyChooseUs'])->name('admin.home-why-choose-us.add');
+        //     Route::post('services', [HomeController::class, 'addService'])->name('admin.home-services.add');
+        //     Route::post('technolagies', [HomeController::class, 'addTechnolagy'])->name('admin.home-technolagy.add');
+        // });
 
         Route::group(['prefix' => 'whatwedo'], function () {
             Route::get('/index', [WhatwedoController::class, 'index'])->name('whatwedo.index');
@@ -217,19 +227,17 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('/store-ajax', [WhatwedoController::class, 'store'])->name('storeWhatWeDo');
             Route::get('/service-we-provide/{id}/edit', [WhatwedoController::class, 'edit'])->name('editWhatWeDo');
             Route::put('/service-we-provide/{id}', [WhatwedoController::class, 'update']);
- 
         });
- 
+
         Route::group(['prefix' => 'serviceweprovide'], function () {
             Route::get('/index', [ServiceWeProvideController::class, 'index'])->name('index');
             Route::get('/create', [ServiceWeProvideController::class, 'create'])->name('createServicProvide');
             Route::post('/store-ajax', [ServiceWeProvideController::class, 'storeAjax'])->name('storeServiceWeprovide');
-            Route::get('/service-we-provide/{id}/edit', [ServiceWeProvideController::class, 'edit'])->name('editServicePro');
+            Route::get('edit/{id}', [ServiceWeProvideController::class, 'edit']);
             Route::put('/service-we-provide/{id}', [ServiceWeProvideController::class, 'update']);
- 
             Route::delete('/service-we-provide-delete/{id}', [ServiceWeProvideController::class, 'destroy'])->name('destroyServicePro');
         });
- 
+
         Route::group(['prefix' => 'whyworkwith'], function () {
             Route::get('/index', [WhyWorkWithController::class, 'index'])->name('whyworkwith.index');
             Route::get('/create', [WhyWorkWithController::class, 'create'])->name('whyworkcreate');
@@ -238,7 +246,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::put('/why-work-with/update/{id}', [WhyWorkWithController::class, 'update'])->name('updateAjax');
             Route::delete('/why-work-with-delete/{id}', [WhyWorkWithController::class, 'destroy'])->name('destroywhywork');
         });
- 
+
 
         Route::prefix("blog")->group(function () {
             Route::get('/', [BlogController::class, 'index'])->name('blog.index');

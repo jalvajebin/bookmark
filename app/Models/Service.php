@@ -15,7 +15,7 @@ class Service extends Model implements HasMedia
 
     protected $fillable = ['title','title_two','discription','discription_two','read_more', 'read_more_two','link','link_two'];
     // protected $guarded = [];
-    protected $appends = ['images', 'imagesTwo'];
+    protected $appends = ['images'];
 
 
     public function registerMediaConversions(Media $media = null): void
@@ -49,16 +49,16 @@ class Service extends Model implements HasMedia
         return $file;
     }
 
-    public function getImagesTwoAttribute()
-    {
-        $file = $this->getMedia('images')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
-        return $file;
-    }
+    // public function getImagesTwoAttribute()
+    // {
+    //     $file = $this->getMedia('images')->last();
+    //     if ($file) {
+    //         $file->url       = $file->getUrl();
+    //         $file->thumbnail = $file->getUrl('thumb');
+    //         $file->preview   = $file->getUrl('preview');
+    //     }
+    //     return $file;
+    // }
 }
 
 

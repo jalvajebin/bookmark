@@ -130,9 +130,7 @@
                                     <a href="#tab1" class="m-2">Sevice we provide</a>
                                 </li>
 
-                               
-                             
-                             
+                      
                                
                             </ul>
                         </div>
@@ -142,11 +140,8 @@
             <!-- end page list -->
             <div id="tabs-content">
                 @include('admin.serviceWeProvide.serviceWeProvide') 
-             
-
-            
+                 
             </div>
-
 
     </div>
     <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"

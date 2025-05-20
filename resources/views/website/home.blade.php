@@ -372,16 +372,13 @@
             <div class="fade-up">
                 <h3><span>Partnered With</span> Excellence</h3>
                 <p>we team up with top international schools to connect great talent with the right opportunities.</p>
-                <a href="contact.html">
+                <a href="{{ route('web.contact.index') }}">
                     <button class="head-btn"> <span>Contact US</span>
                     </button>
                 </a>
             </div>
-
-
         </div>
     </section>
-
     <!-- Excellence -->
     <div class="main-body">
         <!-- partner with us -->

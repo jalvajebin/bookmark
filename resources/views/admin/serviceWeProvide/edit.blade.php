@@ -70,8 +70,8 @@
                                         <span class="error-validation icon-validation"></span>
 
                                         <div class="mt-2">
-                                            @if($service->getFirstMediaUrl('icon'))
-                                               <img id="iconPreview" class="logo-image" src="{{ $service->icon_url }}" alt="Preview Icon">
+                                            @if($service->IconUrl)
+                                               <img id="iconPreview" class="logo-image" src="{{ $service->IconUrl->getUrl('preview') }}" alt="Preview Icon">
 
                                             @else
                                                 <img id="iconPreview" class="logo-image d-none" src="#" alt="Preview Icon">

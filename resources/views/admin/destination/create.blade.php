@@ -116,7 +116,7 @@
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Create Blog</li>
+                                <li class="breadcrumb-item active">Create Destination</li>
                             </ol>
                         </div>
                     </div>

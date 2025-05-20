@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-   {{ 'Service | Bookmark' }}
+    {{ 'Service | Bookmark' }}
 @endsection
 @section('css')
     <style>
@@ -60,6 +60,7 @@
         .tab-list.active a {
             color: #14b0c4;
         }
+
         .tab-list a {
             font-size: 1rem;
             font-weight: 700;
@@ -128,8 +129,8 @@
                                 <li class="tab-list">
                                     <a href="#tab1" class="m-2">Banner</a>
                                 </li>
-                                
-                                 <li class="tab-list">
+
+                                <li class="tab-list">
                                     <a href="#tab2" class="m-2">Service Us</a>
                                 </li>
                                 {{-- <li class="tab-list">
@@ -157,13 +158,7 @@
             <div id="tabs-content">
                 @include('admin.services.banner')
                 @include('admin.services.service')
-                {{-- @include('admin.contact.contact')
-                @include('admin.contact.enquiry') --}}
-                {{-- @include('admin.contact.social')
-                @include('admin.contact.enquiry')
-                @include('admin.contact.quote')
-                @include('admin.contact.seo')
-            </div> --}}
+            </div>
         </div>
     </div>
     <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
@@ -185,7 +180,70 @@
     </div>
 @endsection
 @section('js')
-{{-- @include('admin.services.js.datatable') --}}
-@include('admin.services.js.script')
-@include('admin.serviceWeProvide.js.datatable')
+    {{-- @include('admin.services.js.datatable') --}}
+    @include('admin.services.js.script')
+    @include('admin.services.js.datatable')
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // $(document).on('click', '.delete-btn', function() {
+            //     const id = $(this).data('id');
+
+            //     Swal.fire({
+            //         title: 'Are you sure?',
+            //         text: "You won't be able to revert this!",
+            //         icon: 'warning',
+            //         showCancelButton: true,
+            //         confirmButtonColor: '#d33',
+            //         cancelButtonColor: '#3085d6',
+            //         confirmButtonText: 'Yes, delete it!'
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             $.ajax({
+            //                 url: '/admin/serviceweprovide/service-we-provide-delete/' + id,
+            //                 type: 'DELETE',
+            //                 success: function(res) {
+            //                     Swal.fire({
+            //                         icon: res.icon ?? 'success',
+            //                         title: res.title ?? 'Deleted!',
+            //                         text: res.message ??
+            //                             'Service has been deleted.'
+            //                     });
+            //                     $('#serviceWeProYajTable').DataTable().ajax.reload();
+            //                 },
+            //                 error: function() {
+            //                     Swal.fire({
+            //                         icon: 'error',
+            //                         title: 'Oops...',
+            //                         text: 'Something went wrong while deleting!'
+            //                     });
+            //                 }
+            //             });
+            //         }
+            //     });
+            // })
+
+        });
+
+
+
+        $('#tabs-nav li:first-child').addClass('active');
+        $('.tab-content').hide();
+        $('.tab-content:first').show();
+        $('#tabs-nav li').click(function() {
+            $('#tabs-nav li').removeClass('active');
+            $(this).addClass('active');
+            $('.tab-content').hide();
+            var activeTab = $(this).find('a').attr('href');
+            $(activeTab).fadeIn();
+            return false;
+        });
+    </script>
 @endsection

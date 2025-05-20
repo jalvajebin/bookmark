@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ 'Blog | Veuz' }}
+    {{ 'Career | Veuz' }}
 @endsection
 @section('css')
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css"
@@ -94,6 +94,15 @@
             color: #14b0c4;
         }
     </style>
+    <style>
+        /* Make the editor wider */
+        .ck-editor__editable_inline {
+            min-height: 150px;
+
+        }
+
+        /* If you want to control the container width as well */
+    </style>
 @endsection
 @section('content')
     <div class="page-content">
@@ -102,13 +111,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Edit Destination</h4>
-
+                        <h4 class="mb-sm-0 font-size-18">Edit Career</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active">Edit Destination</li>
+                                <li class="breadcrumb-item active">Create Career</li>
                             </ol>
                         </div>
                     </div>
@@ -119,20 +127,18 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-
                             <form class="formSubmit" data-content=" " id="formSubmit">
                                 @csrf
-                                <input type="hidden" class="blog_id" name="blog_id" value="{{ $blog->id }}"
-                                    id="blog_id">
+                                <input type="hidden" class="career_id" name="career_id" id="career_id"
+                                    value={{ optional($career)->id }}>
                                 <div class="modal-body p-4">
                                     <div class="row">
-
                                         <div class="col-sm-12">
                                             <div class="mb-4">
                                                 <label for="title">Title<span style="color:#ff0000">*</span></label>
                                                 <input id="title" name="title" type="text"
-                                                    class="form-control title" value="{{ $blog->title }}"
-                                                    placeholder="Enter Title">
+                                                    class="form-control title" placeholder="Enter Title"
+                                                    value="{{ optional($career)->title }}">
                                                 <span class="title-validation error-validation" style="color:red;"></span>
                                             </div>
                                         </div>
@@ -142,24 +148,25 @@
                                             <br>
                                             <small class="text-red">Size Recommended:380x250px <br> Maximum File Size Limit
                                                 is 2MB</small>
-                                            <div class="logo-wrapper mb-3">
+                                            <div class="logo-wrapper mb-4">
+                                                {{-- @php
+                                                    dd($career->MainImages);
+                                                @endphp --}}
                                                 <img alt="Logo"
-                                                    src="@if ($blog->MainImages) {{ $blog->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                                    src="@if ($career->MainImages) {{ $career->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
                                                     class="logo-image avatar-md img-thumbnail image_class mainPreview"
                                                     id="mainPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerMainFileInput()">
                                                     <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
                                                         alt="Edit">
                                                 </div>
+                                                <span class="main_image-validation error-validation"
+                                                    style="color:red;"></span>
                                             </div>
                                             <input type="file" id="main-input" name="main_image" class="file-input"
                                                 accept="image/*" onchange="previewMain(event)">
-                                            <span class="main_image-validation error-validation" style="color:red;"></span>
 
-                                            <label for="title">Image Alt </label>
-                                            <input id="alt" name="alt" type="text"
-                                                class="form-control alt mb-3" placeholder="Enter Alt"
-                                                value="{{ $blog->alt }}">
+
                                         </div>
                                         <div class="col-sm-6 col-6">
                                             <label for="formFile" class="form-label">Inner Image<span
@@ -167,114 +174,60 @@
                                             <br>
                                             <small class="text-red">Size Recommended:1920x1280px <br> Maximum File Size
                                                 Limit is 2MB</small>
-                                            <div class="logo-wrapper mb-3">
+                                            <div class="logo-wrapper mb-4">
                                                 <img alt="Logo"
-                                                    src="@if ($blog->InnerImages) {{ $blog->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                                    src="@if ($career->InnerImages) {{ $career->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
                                                     class="logo-image avatar-md img-thumbnail image_class innerPreview"
                                                     id="innerPreview" style="object-fit: contain;">
                                                 <div class="edit-icon" onclick="triggerInnerFileInput()">
                                                     <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
                                                         alt="Edit">
                                                 </div>
+                                                <span class="inner_image-validation error-validation"
+                                                    style="color:red;"></span>
                                             </div>
                                             <input type="file" id="inner-input" name="inner_image" class="file-input"
                                                 accept="image/*" onchange="previewInner(event)">
-                                            <span class="inner_image-validation error-validation" style="color:red;"></span>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="tag">Tags<span style="color:#ff0000">*</span></label>
-                                                <select class="select2 form-control tag" multiple="multiple" id="tag"
-                                                    name="tag_ids[]" data-placeholder="Select Tag"
-                                                    aria-placeholder="Select Tag">
-                                                    @if ($tags)
-                                                        @foreach ($tags as $tag)
-                                                            <option @if ($tag->id == $blog->tag_id) selected @endif
-                                                                @if ($blog->multipleTag($blog->id, $tag->id)) selected @endif
-                                                                value="{{ $tag->id }}">{{ $tag->tag_title_en }}
-                                                            </option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                                <span class="tag-validation error-validation" style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="category">Category<span style="color:#ff0000">*</span></label>
-                                                <select class="select2 form-control category" multiple="multiple"
-                                                    id="category" name="category_ids[]"
-                                                    data-placeholder="Select Category" aria-placeholder="Select Category">
-                                                    @if ($categories)
-                                                        @foreach ($categories as $category)
-                                                            <option @if ($category->id == $blog->category_id) selected @endif
-                                                                @if ($blog->multipleCategory($blog->id, $category->id)) selected @endif
-                                                                value="{{ $category->id }}">{{ $category->title_en }}
-                                                            </option>
-                                                        @endforeach
-                                                    @endif
-                                                </select>
-                                                <span class="category-validation error-validation"
+
+                                        <div class="col-sm-6 col-6">
+                                            <label for="formFile" class="form-label">Inner Image 2<span
+                                                    style="color:#ff0000">*</span></label>
+                                            <br>
+                                            <small class="text-red">Size Recommended:1920x1280px <br> Maximum File Size
+                                                Limit is 2MB</small>
+                                            <div class="logo-wrapper mb-4">
+                                                <img alt="Logo"
+                                                    src="@if ($career->Inner1Images) {{ $career->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                                    class="logo-image avatar-md img-thumbnail image_class inner1Preview"
+                                                    id="inner1Preview" style="object-fit: contain;">
+                                                <div class="edit-icon" onclick="triggerInner1FileInput()">
+                                                    <img src="https://img.icons8.com/material-outlined/24/000000/edit.png"
+                                                        alt="Edit">
+                                                </div>
+                                                <span class="inner_image-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="author">Author<span style="color:#ff0000">*</span></label>
-                                                <input id="author" name="author" type="text"
-                                                    class="form-control author" value="{{ $blog->author }}"
-                                                    placeholder="Enter Author">
-                                                <span class="author-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="date">Publish Date<span
-                                                        style="color:#ff0000">*</span></label>
-                                                <input id="date" name="date" type="text"
-                                                    class="form-control date"
-                                                    value="{{ \Carbon\Carbon::parse($blog->date)->format('d-m-Y') }}"
-                                                    placeholder="DD-MM-YYYY">
-                                                <span class="date-validation error-validation" style="color:red;"></span>
-                                            </div>
+                                            <input type="file" id="inner1-input" name="inner1_image"
+                                                class="file-input" accept="image/*" onchange="previewInner1(event)">
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="mb-4">
                                                 <label for="description">Description<span
                                                         style="color:#ff0000">*</span></label>
                                                 <textarea id="description" name="description" rows="5" class="form-control description"
-                                                    placeholder="Enter Description">{{ $blog->description }}</textarea>
+                                                    placeholder="Enter Description"> {{ optional($career)->description }} </textarea>
                                                 <span class="description-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="meta_title">Meta Title</label>
-                                                <input id="meta_title" name="meta_title" type="text"
-                                                    class="form-control meta_title" value="{{ $blog->meta_title }}"
-                                                    placeholder="Enter Meta Title">
-                                                <span class="meta_title-validation error-validation"
-                                                    style="color:red;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-4">
-                                                <label for="meta_keyword">Meta Keyword</label>
-                                                <input id="meta_keyword" name="meta_keyword" type="text"
-                                                    class="form-control meta_keyword" value="{{ $blog->meta_keyword }}"
-                                                    placeholder="Enter Meta Keyword">
-                                                <span class="meta_keyword-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="mb-4">
-                                                <label for="meta_description">Meta Description</label>
-                                                <textarea id="meta_description" name="meta_description" rows="5" class="form-control meta_description"
-                                                    placeholder="Enter Meta Description">{{ $blog->meta_description }}</textarea>
-                                                <span class="meta_description-validation error-validation"
+                                                <label for="description_1">Description 1<span
+                                                        style="color:#ff0000">*</span></label>
+                                                <textarea id="description_1" name="description_1" rows="5" class="form-control description_1"
+                                                    placeholder="Enter description 1">{{ optional($career)->description_1 }}</textarea>
+                                                <span class="description-validation error-validation"
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
@@ -289,21 +242,137 @@
                                         id="blog-btn">Save
                                     </button>
                                 </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div> <!-- container-fluid -->
+        </div>
+    </div>
+    <!-- container-fluid -->
     </div>
 @endsection
 @section('js')
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js">
     </script>
-    <script>
-        CKEDITOR.replace('description', {
-            format_tags: 'p;h1;h2;h3;h4;h5;h6;pre'
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ClassicEditor
+                .create(document.querySelector('#description'), {
+                    toolbar: {
+                        items: [
+                            'undo', 'redo',
+                            '|', 'heading',
+                            '|', 'bold', 'italic', 'underline', 'strikethrough',
+                            '|', 'link', 'uploadImage', 'insertTable', 'blockQuote', 'codeBlock',
+                            '|', 'bulletedList', 'numberedList',
+                            '|', 'fontColor', 'fontBackgroundColor', 'fontSize',
+                            '|', 'alignment',
+                            '|', 'horizontalLine', 'specialCharacters',
+                            '|', 'removeFormat'
+                        ]
+                    },
+                    image: {
+                        toolbar: [
+                            'imageTextAlternative',
+                            'toggleImageCaption',
+                            'imageStyle:inline',
+                            'imageStyle:block',
+                            'imageStyle:side'
+                        ]
+                    },
+                    table: {
+                        contentToolbar: [
+                            'tableColumn', 'tableRow', 'mergeTableCells',
+                            'tableProperties', 'tableCellProperties'
+                        ]
+                    },
+                    fontColor: {
+                        colors: [{
+                                color: 'black',
+                                label: 'Black'
+                            },
+                            {
+                                color: 'white',
+                                label: 'White'
+                            },
+                            {
+                                color: '#f44336',
+                                label: 'Red'
+                            },
+                            {
+                                color: '#4caf50',
+                                label: 'Green'
+                            },
+                            {
+                                color: '#2196f3',
+                                label: 'Blue'
+                            },
+                            {
+                                color: '#ff9800',
+                                label: 'Orange'
+                            },
+                            {
+                                color: '#9c27b0',
+                                label: 'Purple'
+                            }
+                        ]
+                    },
+                    fontBackgroundColor: {
+                        colors: [{
+                                color: 'black',
+                                label: 'Black'
+                            },
+                            {
+                                color: 'white',
+                                label: 'White'
+                            },
+                            {
+                                color: '#f44336',
+                                label: 'Red'
+                            },
+                            {
+                                color: '#4caf50',
+                                label: 'Green'
+                            },
+                            {
+                                color: '#2196f3',
+                                label: 'Blue'
+                            },
+                            {
+                                color: '#ff9800',
+                                label: 'Orange'
+                            },
+                            {
+                                color: '#9c27b0',
+                                label: 'Purple'
+                            }
+                        ]
+                    },
+                    fontSize: {
+                        options: [
+                            'tiny',
+                            'small',
+                            'default',
+                            'big',
+                            'huge'
+                        ]
+                    }
+                })
+                .then(editor => {
+                    // Set initial data from textarea
+                    editor.setData(document.querySelector('#description').value);
+
+                    // Update textarea on editor change
+                    editor.model.document.on('change:data', () => {
+                        document.querySelector('#description').value = editor
+                            .getData();
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
     <script>
@@ -334,6 +403,21 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+
+    <script>
+        function triggerInner1FileInput() {
+            document.getElementById('inner1-input').click();
+        }
+
+        function previewInner1(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('inner1Preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $.ajaxSetup({
@@ -346,14 +430,21 @@
                 format: 'DD-MM-YYYY',
             });
 
+            CKEDITOR.replace('description');
+            CKEDITOR.replace('description_1');
+
+
             $('#formSubmit').submit(function(e) {
                 e.preventDefault();
                 $("#loader").show();
                 var description = CKEDITOR.instances['description'].getData();
-                $('#formSubmit').data('content', 'admin/blog/update');
+                var description_1 = CKEDITOR.instances['description_1'].getData();
+                $('#formSubmit').data('content', 'admin/career/update');
                 var dataContent = $(this).data('content');
                 var formData = new FormData(this);
                 formData.append('description', description);
+                formData.append('description_1', description_1);
+
                 $('.error-validation').html('');
 
                 $.ajax({
@@ -374,7 +465,7 @@
                             confirmButtonText: "OK"
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = '/admin/blog';
+                                window.location.href = '/admin/career';
                             }
                         });
                     },

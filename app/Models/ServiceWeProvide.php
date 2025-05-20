@@ -44,9 +44,14 @@ class ServiceWeProvide extends Model implements HasMedia
     /**
      * Accessor for full image URLs (original, thumb, preview)
      */
-  public function getIconUrlAttribute()
-{
-    return optional($this->getMedia('icon')->last())->getUrl();
-}
-
+    public function getIconUrlAttribute()
+    {
+        $file = $this->getMedia('icon')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+        return $file;
+    }
 }

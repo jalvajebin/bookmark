@@ -6,14 +6,14 @@
 
 
   <!-- banner  -->
-  <div class="inner-banner" style="background-image: url({{ $banners->Images->url ?? asset('admin/images/no-image.png') }})"> 
+  <div class="inner-banner" style="background-image: url({{ $banner->Images->url ?? asset('admin/images/no-image.png') }})"> 
     <div class="inner-banner-overlay"></div>
     <div class="inner-banner-cntnt " data-aos="fade-up">
       <div class="custom-container">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            <li class="breadcrumb-item active" aria-current="page">Service Us</li>
           </ol>
         </nav>
         <h1>{{$banner->title ?? 'About' }}</h1>
@@ -32,7 +32,7 @@
           <div class="col-lg-6" data-aos="fade-right">
           <div class="service-card">
             <div class="service-card-img">
-              <img src="{{ $service->Images->url ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">
+              <img src="{{ $service->IconUrl->preview ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">
             </div>
             <div class="card-content">
               <h3>{{ $service->title ?? 'Teacher Recruitment'}} </h3>

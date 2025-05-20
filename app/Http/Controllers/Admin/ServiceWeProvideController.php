@@ -14,7 +14,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 
 
-
 class ServiceWeProvideController extends Controller
 {
 
@@ -26,20 +25,20 @@ class ServiceWeProvideController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $editUrl = route('editServicePro', $row->id);
-                    $deleteUrl = route('destroyServicePro', $row->id);
+                // ->addColumn('action', function ($row) {
+                //     $editUrl = route('editServicePro', $row->id);
+                //     $deleteUrl = route('destroyServicePro', $row->id);
 
-                    return '
-                        <a href="' . $editUrl . '" class="btn btn-sm btn-primary">Edit</a>
-                        <button class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">Delete</button>
-                    ';
-                })
+                //     return '
+                //         <a href="' . $editUrl . '" class="btn btn-sm btn-primary">Edit</a>
+                //         <button class="btn btn-sm btn-danger delete-btn" data-id="' . $row->id . '">Delete</button>
+                //     ';
+                // })
                 ->rawColumns(['action'])
                 ->make(true);
         }
 
-        return view('admin.serviceWeProvide.index');
+        return view('admin.services.index');
     }
 
 
@@ -53,7 +52,7 @@ class ServiceWeProvideController extends Controller
     public function storeAjax(Request $request)
     {
 
-       
+
         // Validate input
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
@@ -87,53 +86,48 @@ class ServiceWeProvideController extends Controller
 
     public function edit($id)
     {
-      
+
         $service = ServiceWeProvide::findOrFail($id);
-       
+
         return view('admin.serviceWeProvide.edit', compact('service'));
     }
-public function update(Request $request, $id)
-{
-    $validator = Validator::make($request->all(), [
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 422);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $service = ServiceWeProvide::findOrFail($id);
+        $service->title = $request->title;
+        $service->description = strip_tags($request->description);
+        $service->save();
+
+        if ($request->hasFile('icon')) {
+            $service->clearMediaCollection('icon');
+            $service->addMediaFromRequest('icon')->toMediaCollection('icon');
+        }
+
+        return response()->json([
+            'icon' => 'success',
+            'title' => 'Updated!',
+            'message' => 'Service We Provide updated successfully.'
+        ]);
     }
+    public function destroy($id)
+    {
+        $service = ServiceWeProvide::findOrFail($id);
 
-    $service = ServiceWeProvide::findOrFail($id);
-    $service->title = $request->title;
-    $service->description = strip_tags($request->description);
-    $service->save();
-
-    if ($request->hasFile('icon')) {
+        // Optionally delete associated media
         $service->clearMediaCollection('icon');
-        $service->addMediaFromRequest('icon')->toMediaCollection('icon');
+
+        $service->delete();
+
+        return response()->json(['message' => 'Service deleted successfully.']);
     }
-
-    return response()->json([
-        'icon' => 'success',
-        'title' => 'Updated!',
-        'message' => 'Service We Provide updated successfully.'
-    ]);
-}
-public function destroy($id)
-{
-    $service = ServiceWeProvide::findOrFail($id);
-    
-    // Optionally delete associated media
-    $service->clearMediaCollection('icon');
-
-    $service->delete();
-
-    return response()->json(['message' => 'Service deleted successfully.']);
-}
-
-
-
-
-
 }

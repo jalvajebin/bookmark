@@ -90,12 +90,12 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="destination-box">
                                 <h5>{{ $job->title }}</h5>
-                                <div class="date">{{ \Carbon\Carbon::parse($job->posted_date)->format('d/m/Y') }}</div>
-                                <div class="contract">{{ $job->location }} {{ $job->contract_type }} {{ $job->salary }}
+                                <div class="date">{{ \Carbon\Carbon::parse($job->date)->format('d/m/Y') }}</div>
+                                <div class="contract">{{ $job->locationModel->title }} {{ $job->job_type }} {{ $job->salary_rang }}
                                 </div>
                                 <p>
                                     {{ Str::limit(strip_tags($job->description), 150) }}
-                                    <a href="#">read more</a>
+                                    <a href="{{ route('job.details', $job->slug) }}">read more</a>
                                 </p>
                             </div>
                         </div>
