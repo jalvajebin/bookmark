@@ -100,7 +100,7 @@ class ContactController extends Controller
                 $contact->addMediaFromRequest('logo_image')->toMediaCollection('logo');
             }
             DB::commit();
-            return response()->json(['status' => true, 'message' => $request->id ? "Successfully Updated" : "Successfully Added"]);
+            return response()->json(['status' => true, 'message' => $request->contact_id ? "Successfully Updated" : "Successfully Added"]);
         } catch (Exception $e) {
             DB::rollback();
             return  response()->json(['status' => false, 'message' => $e->getMessage()]);

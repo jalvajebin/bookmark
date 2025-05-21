@@ -137,10 +137,10 @@
                                 <li class="tab-list">
                                     <a href="#tab4" class="m-2">Meet our experts</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Position Type</a>
-                                </li>
                                 <li class="tab-list">
+                                    <a href="#tab5" class="m-2">Contact Banner</a>
+                                </li>
+                                {{-- <li class="tab-list">
                                     <a href="#tab6" class="m-2">Jobs</a>
                                 </li> --}}
 
@@ -154,9 +154,7 @@
                 @include('admin.home.banner')
                 @include('admin.home.why-work-with-us')
                 @include('admin.home.what-we-do')
-                @include('admin.jobs.specialism')
-                {{-- @include('admin.jobs.position-type')
-                @include('admin.jobs.job') --}}
+                @include('admin.home.home-contact-banner')
 
             </div>
         </div>

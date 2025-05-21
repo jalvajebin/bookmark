@@ -8,7 +8,7 @@
         <div class="nav-right">
             <div class="call-info">
                 <i class="fas fa-phone"></i>
-                <span>+1 234 567 8900</span>
+                <span>{{ contactUs()->phone }}</span>
             </div>
 
 
@@ -31,48 +31,49 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-lg-0 w-100 justify-content-center gap-3 main-nav-links">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"" aria-current="page" href="{{ url('/') }}">Home</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.about.index') }}">About</a>
+                                <a class="nav-link {{ request()->routeIs('web.about.index') ? 'active' : '' }} " href="{{ route('web.about.index') }}">About</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.service.index') }}">Service</a>
+                                <a class="nav-link {{ request()->routeIs('web.service.index') ? 'active' : '' }}" href="{{ route('web.service.index') }}">Service</a>
                             </li>
 
 
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href='{{ route('web.applicants.index') }}' role="button">
+                                <a class="nav-link dropdown-toggle  {{ request()->routeIs('web.applicants.*') || request()->routeIs('web.find-job.index') || request()->routeIs('web.applicants.submit-cv') || request()->routeIs('web.applicants.career-hub') || request()->routeIs('web.destination.index') ? 'active' : '' }}" " href='{{ route('web.applicants.index') }}' role="button">
                                     Applicants
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('web.find-job.index') }}">Find a Job</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('web.applicants.submit-cv') }}">Submit your CV</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('web.applicants.career-hub') }}">Career Hub</a></li>
-                                    <li><a class="dropdown-item"
+                                    <li><a class="dropdown-item {{ request()->routeIs('web.find-job.index') ? 'active' : '' }}"" href="{{ route('web.find-job.index') }}">Find a Job</a></li>
+                                    <li><a class="dropdown-item {{ request()->routeIs('web.applicants.submit-cv') ? 'active' : '' }} " href="{{ route('web.applicants.submit-cv') }}">Submit your CV</a></li>
+                                    <li><a class="dropdown-item {{ request()->routeIs('web.applicants.career-hub') ? 'active' : '' }}" href="{{ route('web.applicants.career-hub') }}">Career Hub</a></li>
+                                    <li><a class="dropdown-item {{ request()->routeIs('web.destination.index') ? 'active' : '' }}"
                                             href='{{ route('web.destination.index') }}'>Destinations</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.employers.index') }}">Employers</a>
+                                <a class="nav-link {{ request()->routeIs('web.employers.index') ? 'active' : '' }}" href="{{ route('web.employers.index') }}">Employers</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blogs') }}">Blogs</a>
+                                <a class="nav-link  {{ request()->routeIs('blogs') ? 'active' : '' }}" href="{{ route('blogs') }}">Blogs</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web.contact.index') }}">Contact Us</a>
+                                <a class="nav-link {{ request()->routeIs('web.contact.index') ? 'active' : '' }} " href="{{ route('web.contact.index') }}">Contact Us</a>
                             </li>
                         </ul>
-
-
                     </div>
                 </div>
             </nav>
         </div>
+
+
+      
 
         <div class="main-nav-right sm-hide-logo">
 

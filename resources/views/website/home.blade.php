@@ -96,10 +96,7 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
     <!-- banner  -->
 
     <!-- main-body -->
@@ -344,12 +341,12 @@
 
     <!-- Excellence -->
     <section class="section-padding">
-        <div class="exllence-main">
+        <div class="exllence-main" style="background-image: url('{{ $contactBanner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
             <div class="ab-rectangle"></div>
             <div class="ab-circle"></div>
             <div class="fade-up">
-                <h3><span>Partnered With</span> Excellence</h3>
-                <p>we team up with top international schools to connect great talent with the right opportunities.</p>
+                <h3><span>{{ optional($contactBanner)->title }}</h3>
+                <p>{{ optional($contactBanner)->description }}</p>
                 <a href="{{ route('web.contact.index') }}">
                     <button class="head-btn"> <span>Contact US</span>
                     </button>

@@ -33,6 +33,20 @@
          reader.readAsDataURL(event.target.files[0]);
      }
 
+
+     function triggerContactBanner1FileInput() {
+         document.getElementById('banner-contact-input').click();
+     }
+
+     function previewContactBanner1(event) {
+         const reader = new FileReader();
+         reader.onload = function() {
+             const output = document.getElementById('ContactPreview1');
+             output.src = reader.result;
+         }
+         reader.readAsDataURL(event.target.files[0]);
+     }
+
     
 
 
@@ -104,6 +118,38 @@
          });
      });
 
+     $('#contactBannerFormSubmit').submit(function(e) {
+         e.preventDefault();
+         $("#loader").show();
+         var formData = new FormData(this);
+         $('.error-validation').html('');
+         $.ajax({
+             type: 'POST',
+             url: "{{ route('admin.banner-contact.add') }}",
+             data: formData,
+             cache: false,
+             contentType: false,
+             processData: false,
+             success: function(data) {
+                 $("#loader").hide();
+                 var message = data.message;
+                 if (data.status == true) {
+                     alertMessage('success', message);
+                 } else if (data.status == false) {
+                     alertMessage('error', message);
+                 }
+             },
+             error: function(data) {
+                 console.log(data);
+                 $("#loader").hide();
+                 
+                 $('.contact-title-validation').html(data.responseJSON.errors.banner_title);
+                 $('.contact-description-validation').html(data.responseJSON.errors.description);
+                 $('.contact-image-validation').html(data.responseJSON.errors.banner_image);
+             }
+         });
+     });
+
      $('#formSubmit').on('submit', function(e) {
          e.preventDefault();
          $("#loader").show();
@@ -132,15 +178,8 @@
      });
 
 
-    //  $('#type').on('change', function() {
-    //      if ($(this).val() === 'easystep') {
-    //          $('#easyStepFields').slideDown();
-    //      } else {
-    //          $('#easyStepFields').slideUp();
-    //      }
-    //  }).trigger('change');
+    
 
-     // Form Submit
      $('#whatWedoFormSubmit').on('submit', function(e) {
          e.preventDefault();
          $("#loader").show();

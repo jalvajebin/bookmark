@@ -58,6 +58,8 @@ class WebHomeController extends Controller
         $why = WhyWorkWith::first();
         $whatWedo =WhatWeDo::first();
         $banner = Banner::where('page', 'home')->first();
+        $contactBanner = Banner::where('page', 'homeContact')->first();
+
         // dd($banner);
 
         return view('website.home', compact(
@@ -74,7 +76,8 @@ class WebHomeController extends Controller
             'search',
             'why',
             'whatWedo',
-            'banner'
+            'banner',
+            'contactBanner'
         ));
     }
 }

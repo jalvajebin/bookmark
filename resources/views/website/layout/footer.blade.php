@@ -2,7 +2,7 @@
 <footer class="footer">
     <div class="footer-container custom-container">
       <div class="footer-col">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="Bookmark Logo" class="footer-logo">
+        <img src="{{ contactUs()->logo->url }}" alt="{{ contactUs()->logoalt }}" class="footer-logo">
         <p class="footer-dis">Let’s build the future of education together. <span>Partner with us today!</span></p>
       </div>
       <div class="footer-col">
@@ -27,8 +27,8 @@
         <h4>Address</h4>
         <ul>
           <li><a href="mailto:hello@bookmark.com"><strong>hello@bookmark.com</strong></a></li>
-          <li>SR No.98 lorem, ipsum</li>
-          <li>West Java, Canada</li>
+          <li>{{ contactUs()->address }}</li>
+          {{-- <li>West Java, Canada</li> --}}
         </ul>
       </div>
     </div>

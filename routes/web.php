@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ServiceWeProvideController;
 use App\Http\Controllers\Admin\WhatwedoController;
 use App\Http\Controllers\Admin\WhyWorkWithController;
 use App\Http\Controllers\Admin\CareerController;
+use App\Http\Controllers\Admin\HomeContactBannerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\FormController;
@@ -76,6 +77,8 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
     Route::prefix("admin")->group(function () {
 
         Route::post('banner-update', [BannerController::class, 'updateBanner'])->name('admin.banner.add');
+        Route::post('contact-banner-update', [HomeContactBannerController::class, 'updateBanner'])->name('admin.banner-contact.add');
+
 
         Route::group(['prefix' => 'contact'], function () {
             Route::get('/', [ContactController::class, 'index'])->name('contact.index');

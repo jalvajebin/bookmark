@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-{{ 'Profile | Bokkmark' }}
+    {{ 'Profile | Frontline' }}
 @endsection
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -89,24 +89,23 @@
                                         <form id="profileUpdateForm" data-content="profile-update">
                                             @csrf
                                             {{-- <div class="container">
-                                                <div class="avatar-upload">
-                                                    <div class="avatar-edit">
-                                                        <input type='file' name="image" id="imageUpload"
-                                                            accept=".png, .jpg, .jpeg" />
-                                                        <label for="imageUpload"> <i class="mdi mdi-pencil"></i></label>
-                                                    </div>
-                                                    <div class="avatar-preview">
-                                                        <div id="imagePreview"
-                                                            style="background-image: url('{{ userImage() }}')">
-                                                        </div>
-                                                    </div>
-                                                    <span class='image-validation' style="color:red;"></span>
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+                                                    <input type='file' name="image" id="imageUpload"
+                                                        accept=".png, .jpg, .jpeg" />
+                                                    <label for="imageUpload"> <i class="mdi mdi-pencil"></i></label>
                                                 </div>
-                                            </div> --}}
-
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview"
+                                                        style="background-image: url('{{ userImage() }}')">
+                                                    </div>
+                                                </div>
+                                                <span class='image-validation' style="color:red;"></span>
+                                            </div>
+                                        </div> --}}
                                             <div class="col-12">
                                                 <div class="logo-wrapper mb-3">
-                                                    <img src="{{ asset('assets/img/user.jpg') }}"
+                                                    <img src="{{ userImage() ?? asset('images/flags/emty.png') }}"
                                                         alt="Logo"
                                                         class="logo-image avatar-md rounded-circle img-thumbnail image_class"
                                                         id="logoPreview" style="object-fit: contain;background: #97959580;">
@@ -115,7 +114,8 @@
                                                             alt="Edit">
                                                     </div>
                                                 </div>
-                                                <input type="file" id="logo-input" name="image" class="file-input" accept=".png, .jpg, .jpeg" onchange="previewLogo(event)">
+                                                <input type="file" id="logo-input" name="image" class="file-input"
+                                                    accept=".png, .jpg, .jpeg" onchange="previewLogo(event)">
                                             </div>
 
                                             <h5 class="mt-0 mb-1">{{ $user->name ?? '' }}</h5>
@@ -148,7 +148,8 @@
                                                                 <div class="input-group auth-pass-inputgroup">
                                                                     <input type="password" class="form-control"
                                                                         name="old_password" placeholder="Enter password"
-                                                                        aria-label="Password" aria-describedby="password-addon">
+                                                                        aria-label="Password"
+                                                                        aria-describedby="password-addon">
                                                                     <button class="btn btn-light" type="button"
                                                                         id="password-addon"><i
                                                                             class="mdi mdi-eye-outline"></i></button>
@@ -174,8 +175,8 @@
                                                                 <span class='new_password-validation error-validation'
                                                                     style="color:red;"></span>
                                                                 {{-- <input type="password" class="form-control" id="new_password"
-                                                                        name="new_password" placeholder="New Password">
-                                                                    --}}
+                                                                    name="new_password" placeholder="New Password">
+                                                                --}}
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="useremail" class="form-label">Confirm Password
@@ -193,14 +194,15 @@
                                                                 </div>
 
                                                                 {{-- <input type="password" class="form-control"
-                                                                        id="confirm_password" name="confirm_password"
-                                                                        placeholder="Confirm Password "> --}}
+                                                                    id="confirm_password" name="confirm_password"
+                                                                    placeholder="Confirm Password "> --}}
                                                                 <span class='confirm_password-validation error-validation'
                                                                     style="color:red;"></span>
                                                             </div>
 
                                                             <div class="text-end">
-                                                                <button class="btn btn-primary w-md waves-effect waves-light"
+                                                                <button
+                                                                    class="btn btn-primary w-md waves-effect waves-light"
                                                                     type="submit">Reset</button>
                                                             </div>
 
@@ -258,8 +260,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <button type="submit"
-                                                                class="btn btn-primary btn-x" style="margin-top: 45px;">Update</button>
+                                                            <button type="submit" class="btn btn-primary btn-x"
+                                                                style="margin-top: 45px;">Update</button>
                                                         </td>
 
                                                     </tr>
@@ -276,6 +278,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- end page title -->
 
 
@@ -288,6 +292,7 @@
         function triggerLogoFileInput() {
             document.getElementById('logo-input').click();
         }
+
         function previewLogo(event) {
             const reader = new FileReader();
             reader.onload = function() {
