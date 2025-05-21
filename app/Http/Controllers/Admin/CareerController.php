@@ -93,7 +93,7 @@ class CareerController extends Controller
         $request->validate([
             'title' => 'required|max:100',
             'main_image' => 'nullable|max:2048',
-            'inner_image' => 'nullablemax:2048',
+            'inner_image' => 'nullable|max:2048',
             'inner1_image' => 'nullable|image|max:2048',
             'description' => 'required',
             'description_1' => 'required',
