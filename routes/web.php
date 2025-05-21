@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ServiceWeProvideController;
 use App\Http\Controllers\Admin\WhatwedoController;
 use App\Http\Controllers\Admin\WhyWorkWithController;
 use App\Http\Controllers\Admin\CareerController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
@@ -207,24 +208,24 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('we-recruit-for', [EmployerController::class, 'addWeRecruitFor'])->name('admin.we-recruit-for.add');
         });
 
-        // Route::group(['prefix' => 'home'], function () {
-        //     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-        //     Route::get('getData', [HomeController::class, 'getBannerData'])->name('admin.banner.getData');
-        //     Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
-        //     Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
-        //     Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');
-        //     Route::delete('/{id}', [HomeController::class, 'deleteBanner'])->name('admin.home-banner.delete');
-        //     Route::post('what-we-do', [HomeController::class, 'addWhatWeDo'])->name('admin.what-we-do.add');
-        //     Route::post('about-us', [HomeController::class, 'addAboutUs'])->name('admin.home-about-us.add');
-        //     Route::post('why-choose-us', [HomeController::class, 'addWhyChooseUs'])->name('admin.home-why-choose-us.add');
-        //     Route::post('services', [HomeController::class, 'addService'])->name('admin.home-services.add');
-        //     Route::post('technolagies', [HomeController::class, 'addTechnolagy'])->name('admin.home-technolagy.add');
-        // });
+        Route::group(['prefix' => 'home'], function () {
+            Route::get('/', [HomeController::class, 'index'])->name('home.index');
+            // Route::get('getData', [HomeController::class, 'getBannerData'])->name('admin.banner.getData');
+            // Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
+            // Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
+            // Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');
+            // Route::delete('/{id}', [HomeController::class, 'deleteBanner'])->name('admin.home-banner.delete');
+            // Route::post('what-we-do', [HomeController::class, 'addWhatWeDo'])->name('admin.what-we-do.add');
+            // Route::post('about-us', [HomeController::class, 'addAboutUs'])->name('admin.home-about-us.add');
+            // Route::post('why-choose-us', [HomeController::class, 'addWhyChooseUs'])->name('admin.home-why-choose-us.add');
+            // Route::post('services', [HomeController::class, 'addService'])->name('admin.home-services.add');
+            // Route::post('technolagies', [HomeController::class, 'addTechnolagy'])->name('admin.home-technolagy.add');
+        });
 
         Route::group(['prefix' => 'whatwedo'], function () {
             Route::get('/index', [WhatwedoController::class, 'index'])->name('whatwedo.index');
             Route::get('/create', [WhatwedoController::class, 'create'])->name('createWhatWeDo');
-            Route::post('/store-ajax', [WhatwedoController::class, 'store'])->name('storeWhatWeDo');
+            Route::post('/store', [WhatwedoController::class, 'store'])->name('storeWhatWeDo');
             Route::get('/service-we-provide/{id}/edit', [WhatwedoController::class, 'edit'])->name('editWhatWeDo');
             Route::put('/service-we-provide/{id}', [WhatwedoController::class, 'update']);
         });
@@ -241,7 +242,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
         Route::group(['prefix' => 'whyworkwith'], function () {
             Route::get('/index', [WhyWorkWithController::class, 'index'])->name('whyworkwith.index');
             Route::get('/create', [WhyWorkWithController::class, 'create'])->name('whyworkcreate');
-            Route::post('/create', [WhyWorkWithController::class, 'storeAjax'])->name('storeAjax');
+            Route::post('/create', [WhyWorkWithController::class, 'store'])->name('store');
             Route::get('/why-work-with/edit/{id}', [WhyWorkWithController::class, 'edit'])->name('editwhywork');
             Route::put('/why-work-with/update/{id}', [WhyWorkWithController::class, 'update'])->name('updateAjax');
             Route::delete('/why-work-with-delete/{id}', [WhyWorkWithController::class, 'destroy'])->name('destroywhywork');

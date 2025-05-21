@@ -12,7 +12,7 @@ class DestinationController extends Controller
 {
     public function index(){
         $banner = Banner::where('page', 'destination')->first();
-        $destinations = Destination::all();
+        $destinations = Destination::orderBy('id', 'asc')->take(6)->get();
         return view('website.destination', compact('banner', 'destinations'));
     }
 

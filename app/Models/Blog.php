@@ -95,7 +95,7 @@ class Blog extends Model implements HasMedia
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'blog_multiple_tags', 'blog_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'multiple_blog_tags', 'blog_id', 'tag_id');
     }
 
     public function multipleCategory($blogId, $categoryId)

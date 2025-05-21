@@ -339,13 +339,13 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="job-card">
                                 <div class="job-header">
-                                    <img src="{{ $job->Images->url ?? asset('assets/img/nomad.png') }}"
+                                    <img src="{{ $job->MainImages->url ?? asset('assets/img/nomad.png') }}"
                                         alt="{{ $job->alt }}" class="company-logo">
                                     <div class="job-info">
                                         <h3>{{ $job->title }}</h3>
-                                        <p>Company Name &bull; <span class="location">{{ $job->location }}</span></p>
+                                        <p>{{ $job->company_name }}&bull; <span class="location">{{ $job->location }}</span></p>
                                         <div class="job-tags">
-                                            <span class="tag active">Full-Time</span>
+                                            <span class="tag active"> {{ $job->job_type }} </span>
                                         </div>
                                     </div>
                                 </div>

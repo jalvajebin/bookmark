@@ -44,9 +44,9 @@
                             <!-- Tags -->
                             <div class="blog-tags">
                                 <h4>Tags:</h4>
-                                <div class="tags">
+                                <div class="tags-inner">
                                     @foreach ($tags as $key => $tag)
-                                    <a href="#">{{ optional($tag)->tag_title_en }}</a>
+                                    <a>{{ optional($tag)->tag_title_en }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -92,10 +92,10 @@
                         <!-- Categories Widget -->
                         <div class="sidebar-widget">
                             <h4>Categories</h4>
-                            <form class="search-form">
+                            {{-- <form class="search-form">
                                 <input type="text" placeholder="Search...">
                                 <button type="submit"><i class="fas fa-search"></i></button>
-                            </form>
+                            </form> --}}
                             @if ($categories->count() > 0)
                             <ul class="category-list">
                                 @foreach ($categories as $data)
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="recent-post-content">
                                     {{-- <h6><a href="#">{{ optional($blogRecent)->title }}</a></h6> --}}
-                                    <h6><a href="#">{{ optional($blogRecent)->title }}</a></h6>
+                                    <h6><a href="{{ route('blog.details', $blogRecent->slug) }}">{{ optional($blogRecent)->title }}</a></h6>
                                     <span class="date"><i class="far fa-calendar-alt"></i> April 24, 2025</span>
                                 </div>
                             </div> 
@@ -124,9 +124,9 @@
                         <div class="sidebar-widget">
                             <h4>Popular Tags</h4>
                             @if ($tags->count() > 0)
-                            <div class="tags">
+                            <div class="tags-inner">
                                 @foreach ($tags as $key => $tag)
-                                <a href="#">{{ optional($tag)->tag_title_en }}</a>
+                                <a>{{ optional($tag)->tag_title_en }}</a>
                                 @endforeach  
                             </div>
                             @endif

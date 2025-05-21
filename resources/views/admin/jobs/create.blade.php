@@ -191,8 +191,8 @@
                                             <label for="type">Job Type</label>
                                             <select name="type" id="type" class="form-control type">
                                                 <option value="">Select Job Type</option>
-                                                    <option value="FULL_TIME">Full Time</option>
-                                                    <option value="PART_TIME">Part Time</option>
+                                                    <option value="Full-Time">Full Time</option>
+                                                    <option value="Part-Time">Part Time</option>
                                             </select>
                                             <span class="type-validation error-validation text-danger"></span>
                                         </div>

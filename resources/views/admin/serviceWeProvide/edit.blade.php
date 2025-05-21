@@ -82,7 +82,7 @@
 
                             <!-- Buttons -->
                             <div class="d-flex justify-content-end">
-                                <a href="{{ route('index') }}" class="btn btn-danger me-2">Cancel</a>
+                                <a href="{{ route('services.index') }}" class="btn btn-danger me-2">Cancel</a>
                                 <button type="submit" class="btn btn-primary" id="updateBtn">Update</button>
                             </div>
                         </form>

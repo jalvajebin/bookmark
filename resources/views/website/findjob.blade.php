@@ -44,7 +44,6 @@
                                     value="{{ request()->query('search') }}" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
-
                             {{-- <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
                                 <span class="radio-checkmark"></span>

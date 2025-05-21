@@ -202,11 +202,11 @@
                                             <label for="type">Job Type</label>
                                             <select name="type" id="type" class="form-control type">
                                                 <option value="">Select Job Type</option>
-                                                <option value="FULL_TIME"
-                                                    {{ old('type', $job->job_type) == 'FULL_TIME' ? 'selected' : '' }}>Full
+                                                <option value="Full-Time"
+                                                    {{ old('type', $job->job_type) == 'Full-Time' ? 'selected' : '' }}>Full
                                                     Time</option>
-                                                <option value="PART_TIME"
-                                                    {{ old('type', $job->job_type) == 'PART_TIME' ? 'selected' : '' }}>Part
+                                                <option value="Part-Time"
+                                                    {{ old('type', $job->job_type) == 'Part-Time' ? 'selected' : '' }}>Part
                                                     Time</option>
                                             </select>
                                             <span class="type-validation error-validation text-danger"></span>

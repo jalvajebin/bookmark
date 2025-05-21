@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\WhatWeDo;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 use Illuminate\Support\Facades\Validator;
@@ -49,63 +51,48 @@ class WhatwedoController extends Controller
 
     public function store(Request $request)
     {
-        // Basic validation rules
-        $rules = [
-            'type' => 'required|in:whatwedo,easystep',
+
+
+        $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
-        ];
-
-        // Additional rules for easystep
-        if ($request->type === 'easystep') {
-            $rules = array_merge($rules, [
-                'title_one' => 'nullable|string|max:255',
-                'para_one' => 'nullable|string',
-                'title_two' => 'nullable|string|max:255',
-                'para_two' => 'nullable|string',
-                'title_three' => 'nullable|string|max:255',
-                'para_three' => 'nullable|string',
-            ]);
-        }
-
-        $validator = Validator::make($request->all(), $rules);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'icon' => 'error',
-                'title' => 'Validation Failed',
-                'message' => 'Please correct the errors and try again.',
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        // Save the data
-        $data = new WhatWeDo();
-        $data->type = $request->type;
-        $data->title = $request->title;
-        $data->description = strip_tags($request->description);
-
-        if ($request->type === 'easystep') {
-            $data->title_one = $request->title_one;
-            $data->para_one = $request->para_one;
-            $data->title_two = $request->title_two;
-            $data->para_two = $request->para_two;
-            $data->title_three = $request->title_three;
-            $data->para_three = $request->para_three;
-        }
-
-        $data->save();
-
-        // Handle image upload using Spatie Media Library
-        if ($request->hasFile('icon')) {
-            $data->addMediaFromRequest('icon')->toMediaCollection('what_we_do');
-        }
-
-        return response()->json([
-            'icon' => 'success',
-            'title' => 'Saved Successfully',
-            'message' => 'Your entry has been saved.'
+            'what_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'title_one' => 'nullable|string|max:255',
+            'para_one' => 'nullable|string',
+            'title_two' => 'nullable|string|max:255',
+            'para_two' => 'nullable|string',
+            'title_three' => 'nullable|string|max:255',
+            'para_three' => 'nullable|string',
         ]);
+
+        DB::beginTransaction();
+        try {
+            $what = WhatWeDo::updateOrCreate([
+                'id' => $request->what_we_do_id
+            ], [
+
+                'title' => $request->title,
+                'description' => $request->description,
+                'title_one' => $request->title_one,
+                'para_one' => $request->para_one,
+                'title_two' => $request->title_two,
+                'para_two' =>  $request->para_two,
+                'title_three' => $request->title_three,
+                'para_three' => $request->para_three,
+
+            ]);
+            if ($request->hasFile('what_image')) {
+                $what->clearMediaCollection('what_images');
+                $what->addMediaFromRequest('what_image')->toMediaCollection('what_images');
+            }
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->what_we_do_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (Exception $e) {
+            DB::rollback();
+            return  response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+
+
     }
 }

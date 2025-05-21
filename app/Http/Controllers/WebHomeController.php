@@ -45,7 +45,7 @@ class WebHomeController extends Controller
 
         $latestJobs = $query->latest()->take(8)->get();
 
-        $destinations = Destination::latest()->take(6)->get();
+        $destinations = Destination::orderBy('id', 'asc')->take(6)->get();
         $about = AboutUs::first();
         $blog = Blog::all();
         $testimonials = Testimonial::orderBy('id', 'asc')->get();

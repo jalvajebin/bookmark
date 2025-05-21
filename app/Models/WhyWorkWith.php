@@ -18,7 +18,7 @@ class WhyWorkWith extends Model implements HasMedia
     ];
 
     // Appended to model JSON output (optional)
-    protected $appends = ['image'];
+    protected $appends = ['images'];
 
     /**
      * Register conversions for images.
@@ -32,7 +32,7 @@ class WhyWorkWith extends Model implements HasMedia
             ->quality(80)
             ->sharpen(5)
             ->nonQueued()
-            ->performOnCollections('image1_name');
+            ->performOnCollections('images');
 
         $this->addMediaConversion('preview')
             ->width(600)
@@ -41,15 +41,15 @@ class WhyWorkWith extends Model implements HasMedia
             ->quality(90)
             ->sharpen(5)
             ->nonQueued()
-            ->performOnCollections('image1_name');
+            ->performOnCollections('images');
     }
 
     /**
      * Get image URLs with conversions.
      */
-    public function getImageAttribute()
+    public function getImagesAttribute()
     {
-        $media = $this->getMedia('image1_name')->last();
+        $media = $this->getMedia('images')->last();
         if ($media) {
             return [
                 'original' => $media->getUrl(),

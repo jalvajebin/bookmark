@@ -50,18 +50,7 @@ class JobsController extends Controller
 
         $request->validate([
             'title'         => 'required|string',
-            'company_name'  => 'required|string',
-            'location'      => 'required|integer',
-            'category'      => 'required|integer',
-            'salary_rang'   => 'required|string',
-            'date'          => 'required|date',
-            'type'          => 'required',
-            'destination'   => 'required',
-            'description'   => 'required|string',
-            'school_type'   => 'required|integer',
-            'specialism'    => 'required|integer',
-            'position_type' => 'required|integer',
-            'main_image'    => 'required|image',
+            'main_image'    => 'nullable|image',
         ]);
 
 
@@ -134,17 +123,7 @@ class JobsController extends Controller
         $job = Job::findOrFail($id);
         $request->validate([
             'title'         => 'required|string',
-            'company_name'  => 'required|string',
-            'location'      => 'required|integer',
-            'category'      => 'required|integer',
-            'salary_rang'   => 'required|string',
-            'type'          => 'required',
-            'destination'   => 'required',
-            'description'   => 'required|string',
-            'school_type'   => 'required|integer',
-            'specialism'    => 'required|integer',
-            'position_type' => 'required|integer',
-            'main_image'   => ($id ? 'nullable' : 'required') . '|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'main_image'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
 

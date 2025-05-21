@@ -43,9 +43,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form id="formSubmit" enctype="multipart/form-data">
+                        <form id="whatWedoFormSubmit" enctype="multipart/form-data">
                             @csrf
-
                             <!-- Type -->
                             <div class="mb-3">
                                 <label for="type">Section Type <span class="text-danger">*</span></label>
