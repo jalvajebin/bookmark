@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Counter;
 use App\Models\Destination;
@@ -13,6 +14,8 @@ use App\Models\JobPositionType;
 use App\Models\JobSchoolType;
 use App\Models\JobSpecialism;
 use App\Models\Testimonial;
+use App\Models\WhatWeDo;
+use App\Models\WhyWorkWith;
 use Illuminate\Http\Request;
 
 class WebHomeController extends Controller
@@ -52,6 +55,10 @@ class WebHomeController extends Controller
         $counters = Counter::first();
         $locations = JobLocation::orderBy('title')->get();
         $categories = JobCategory::orderBy('title')->get();
+        $why = WhyWorkWith::first();
+        $whatWedo =WhatWeDo::first();
+        $banner = Banner::where('page', 'home')->first();
+        // dd($banner);
 
         return view('website.home', compact(
             'latestJobs',
@@ -64,7 +71,10 @@ class WebHomeController extends Controller
             'categories',
             'locationName',
             'categoryName',
-            'search'
+            'search',
+            'why',
+            'whatWedo',
+            'banner'
         ));
     }
 }

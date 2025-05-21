@@ -32,8 +32,8 @@
                         <!-- Title -->
                         <div class="mb-3">
                             <label for="title">Title <span class="text-danger">*</span></label>
-                            <input type="text" name="title" class="form-control title" placeholder="Enter title"
-                                value={{ optional($why)->title }}>
+                            <input type="text" name="title" class="form-control title" placeholder="Enter title" value= "{{ optional($why)->title }}">
+                                
                             <span class="title-validation error-validation" style="color:red;" "></span>
                         </div>
 

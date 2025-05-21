@@ -238,7 +238,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer p-4">
-                                    <a href="{{ route('blog.index') }}" style="margin-right: 20px">
+                                    <a href="{{ route('services.index') }}" style="margin-right: 20px">
                                         <button type="button" class="btn btn-danger waves-effect"
                                             data-bs-dismiss="modal">Close</button>
                                     </a>

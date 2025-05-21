@@ -9,9 +9,8 @@
         <div class="banner-overlay"></div>
         <div class="banner-cntnt fade-left">
             <div>
-                <h2>Find Your Dream <br>
-                    Job Today!</h2>
-                <P>Connecting Talent with Opportunity: Your Gateway to Career Success</P>
+                <h2>{{ optional($banner)->title}}</h2>
+                <P>{{ optional($banner)->description}}</P>
             </div>
 
             <form method="GET" action="{{ route('web.home') }}#resultSection">
@@ -171,20 +170,9 @@
                 </div>
                 <div class="col-lg-6 fade-right">
                     <div class="section-title">
-                        <h2>Why Work <span>With Us?</span></h2>
+                        <h2>{{ optional($why)->title }}</span></h2>
                     </div>
-                    <p class="main-para">Bookmark recruitment is a leading teacher recruitment agency based in Canada
-                        and different regions of the Middle East. At Bookmark, we specialize in building
-                        strong partnerships with schools to connect them with exceptional educators.
-                        Our missions is to support educational institutions by providing qualified,
-                        passionate teachers who align with their values and academic goals. Whether
-                        you’re looking for long-term staff or temporary placements, we are committed to
-                        helping you build a thriving learning environment. We offer the best teacher talent
-                        sourcing for international schools and educational institutes across Canada and
-                        the Middle East. Bookmark recruitments support clients to find educational
-                        professionals from within the Middle East and overseas locations.  </p>
-
-
+                    <p class="main-para">{{ optional($why)->description }}</p>
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="why-points">
@@ -246,34 +234,24 @@
             <div class="row">
                 <div class="col-lg-6 fade-left">
                     <div class="section-title">
-                        <h2>Explore <span>What We Do</span></h2>
+                        <h2>{{ optional($whatWedo)->title }}</span></h2>
                     </div>
-                    <p class="main-para">Bookmark recruitments guarantees to discover élite teaching talent for
-                        reputable institute through a tailored and specialized recruitment process.
-                        Our intention is to improve the reputation and eminence of educational
-                        institutions by connecting you with great educators. We find experienced
-                        teaching professionals with the right expertise levels and ambition to teach abroad. At Bookmark
-                        Recruitments, we recognize that teachers view the world as their classroom. With that in mind,
-                        we want to
-                        take your teaching career to a whole new horizon. Our customized solutions help schools attract
-                        top talent,
-                        teachers expand their career aspirations and foster a culture of educational excellence. Guiding
-                        international schools to success with skilful teacher recruitment & development.   </p>
+                    <p class="main-para">{{ optional($whatWedo)->description }}</p>
 
                     <div class="explore-pt">
                         <div>
-                            <h3>Easy to upload Your Best CV and Portofolio</h3>
-                            <h6>You can upload your resume, CV, and portfolio directly to Job.</h6>
+                            <h3>{{ optional($whatWedo)->title_one }}</h3>
+                            <h6>{{ optional($whatWedo)->para_one }}</h6>
                         </div>
 
                         <div>
-                            <h3>You Will Be Notified With All Updates</h3>
-                            <h6>Get notified about new job vacancies. scheduled interview and job application.</h6>
+                            <h3>{{ optional($whatWedo)->title_two }}</h3>
+                            <h6>{{ optional($whatWedo)->para_two }}</h6>
                         </div>
 
                         <div>
-                            <h3>Apply for your dream job from the best company</h3>
-                            <h6>We will provide recommendations for your choice companies from all over the world.</h6>
+                            <h3>{{ optional($whatWedo)->title_three }}</h3>
+                            <h6>{{ optional($whatWedo)->para_three }}</h6>
                         </div>
                     </div>
 
@@ -477,22 +455,21 @@
                                 help you manage everything you need</p>
                         </div>
                         <div class="explore-pt">
-                            <div>
-                                <h3>Easy To Upload Your Best CV And Portfolio</h3>
-                                <h6>You can upload your resume, CV, and portfolio directly to Job.</h6>
-                            </div>
-
-                            <div>
-                                <h3>You Will Be Notified With All Updates</h3>
-                                <h6>Get notified about new job vacancies. scheduled interview and job application.</h6>
-                            </div>
-
-                            <div>
-                                <h3>Apply for your dream job from the best company</h3>
-                                <h6>We will provide recommendations for your choice companies from all over the world.
-                                </h6>
-                            </div>
+                        <div>
+                            <h3>{{ optional($whatWedo)->title_one }}</h3>
+                            <h6>{{ optional($whatWedo)->para_one }}</h6>
                         </div>
+
+                        <div>
+                            <h3>{{ optional($whatWedo)->title_two }}</h3>
+                            <h6>{{ optional($whatWedo)->para_two }}</h6>
+                        </div>
+
+                        <div>
+                            <h3>{{ optional($whatWedo)->title_three }}</h3>
+                            <h6>{{ optional($whatWedo)->para_three }}</h6>
+                        </div>
+                    </div>
                     </div>
                     <div class="col-lg-6 fade-right">
                         <div class="dream-job">
