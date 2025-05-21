@@ -5,7 +5,7 @@
 @section('content')
     <!-- banner  -->
 
-    <div class="banner">
+    <div class="banner" style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">>
         <div class="banner-overlay"></div>
         <div class="banner-cntnt fade-left">
             <div>
@@ -160,7 +160,7 @@
             <div class="row gx-5">
                 <div class="col-lg-6 fade-left">
                     <div class="why-img-main">
-                        <img src="assets/img/why-work.png" alt="" class="why-main-img">
+                        <img src="{{ $why->Images['preview'] ?? asset('admin/images/no-image.png') }}" alt="" class="why-main-img">
                         <div class="job-vacancy-div">
                             <img src="assets/img/briefcase.png" alt="">
                             <h6>10.5K</h6>
@@ -257,7 +257,7 @@
 
                 </div>
                 <div class="col-lg-6 fade-right">
-                    <img src="assets/img/what-we-do.png" alt="" class="explore-img">
+                    <img src="{{ $whatWedo->WhatImages['preview'] ?? asset('admin/images/no-image.png') }}" alt="" class="explore-img">
                 </div>
             </div>
 
