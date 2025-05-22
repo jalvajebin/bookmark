@@ -27,8 +27,8 @@
                         orderable: false
                     },
                     {
-                        data: 'heading',
-                        name: 'heading'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'id',
@@ -39,11 +39,11 @@
                             var editForm = '';
 
                             var deleteForm = `<li class="delete_course" data-bs-toggle="tooltip" data-bs-placement="top" data-id="" aria-label="Delete">
-                                            <button type="button" onclick="deleteTestimonial(${data})" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></button>
+                                            <button type="button" onclick="deleteTeam(${data})" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></button>
                                         </li>`;
 
                             var editForm = `<li data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit">
-                                            <button type="button" onclick="editTestimonial(${data})" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></button>
+                                            <button type="button" onclick="editTeam(${data})" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></button>
                                         </li>`
 
 

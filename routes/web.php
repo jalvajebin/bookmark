@@ -214,10 +214,10 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
         Route::group(['prefix' => 'home'], function () {
             Route::get('/', [HomeController::class, 'index'])->name('home.index');
             Route::get('getData', [HomeController::class, 'getData'])->name('admin.team.getData');
-            // Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
+            Route::post('team-add', [HomeController::class, 'addhomeTeam'])->name('meet-our-team.team.store');
             // Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
-            // Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');
-            // Route::delete('/{id}', [HomeController::class, 'deleteBanner'])->name('admin.home-banner.delete');
+            Route::get('/{id}', [HomeController::class, 'getTeamById'])->name('meet-our-team.team.edit');
+            Route::delete('/{id}', [HomeController::class, 'deleteTeam'])->name('delete-team');
             // Route::post('what-we-do', [HomeController::class, 'addWhatWeDo'])->name('admin.what-we-do.add');
             // Route::post('about-us', [HomeController::class, 'addAboutUs'])->name('admin.home-about-us.add');
             // Route::post('why-choose-us', [HomeController::class, 'addWhyChooseUs'])->name('admin.home-why-choose-us.add');

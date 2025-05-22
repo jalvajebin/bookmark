@@ -62,17 +62,6 @@
 
                         </div>
 
-                        <!-- Icon Upload -->
-                        {{-- <div class="mb-3">
-                            <label for="icon">Image <span class="style="color:red;"">*</span></label>
-                            <input type="file" name="icon" id="icon" class="form-control icon" accept="image/*">
-                            <span class="error-validation icon-validation" style="color:red;""></span>
-                            <div class="mt-2">
-                                    <img id="iconPreview" class="logo-preview {{ $why->Icon->preview ?? asset('admin/images/no-image.png') }}" 
-                                         src="{{ $why->images->preview ?? asset('admin/images/no-image.png') }}" alt="Preview">
-                                </div>
-                        </div> --}}
-
                         <!-- Action Buttons -->
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('index') }}" class="btn btn-secondary me-2">Cancel</a>
@@ -84,3 +73,4 @@
         </div>
     </div>
 </div>
+

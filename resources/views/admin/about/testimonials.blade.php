@@ -106,7 +106,7 @@
                                 <small class="text-red"> Maximum File Size Limit is 2MB</small>
                                 <div class="logo-wrapper mb-3">
                                     <img alt="Image"
-                                        src="{{ $learnAboutUs->images->url ?? asset('admin/images/no-image.png') }}"
+                                        src=""
                                         class="logo-image avatar-md img-thumbnail ImagePreview" id="ImagePreview"
                                         style="object-fit: contain;">
                                     <div class="edit-icon" onclick="ImageInputTrigger()">
@@ -129,7 +129,6 @@
                             </div>
                         </div>
                     </div>
-                
                     <div class="modal-footer p-4">
                         <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary waves-effect waves-light" onclick="addTestimonial(event)">Save</button>

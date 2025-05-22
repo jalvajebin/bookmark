@@ -555,66 +555,35 @@
                 </div>
 
                 <div class="owl-carousel" id="partner-carousel">
-                    <div class="item">
-                        <div class="team-div">
-                            <div class="team-img">
-                                <img src="assets/img/team-1.png" alt="">
-                                <img src="assets/img/blue-done.png" alt="" class="team-done">
-                            </div>
-                            <h6>Jane Smith</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur. </p>
-                            <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
-                                <i class="fab fa-facebook-f"></i>
-                                <i class="fa-brands fa-x-twitter"></i>
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="team-div">
-                            <div class="team-img">
-                                <img src="assets/img/team-4.png" alt="">
-                                <img src="assets/img/blue-done.png" alt="" class="team-done">
-                            </div>
-                            <h6>Jane Smith</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur. </p>
-                            <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
-                                <i class="fab fa-facebook-f"></i>
-                                <i class="fa-brands fa-x-twitter"></i>
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="team-div">
-                            <div class="team-img">
-                                <img src="assets/img/team-2.png" alt="">
-                                <img src="assets/img/blue-done.png" alt="" class="team-done">
-                            </div>
-                            <h6>Jane Smith</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur. </p>
-                            <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
-                                <i class="fab fa-facebook-f"></i>
-                                <i class="fa-brands fa-x-twitter"></i>
-                                <i class="fa-brands fa-linkedin-in"></i>
+                    @foreach ($meetOurTeams as $key => $meetOurTeam)
+                        <div class="item">
+                            <div class="team-div">
+                                <div class="team-img">
+                                    <img src="{{ $meetOurTeam->TeamImages->url }}" alt="">
+                                    <img src="assets/img/blue-done.png" alt="" class="team-done">
+                                </div>
+                                <h6>{{ optional($meetOurTeam)->name }}</h6>
+                                <p>{{ optional($meetOurTeam)->description }} </p>
+                                <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
+                                    @if (optional($meetOurTeam)->facebook)
+                                        <a href="{{ $meetOurTeam->facebook }}" target="_blank"><i
+                                                class="fab fa-facebook-f"></i></a>
+                                    @endif
+
+                                    @if (optional($meetOurTeam)->instagram)
+                                        <a href="{{ $meetOurTeam->instagram }}" target="_blank"><i
+                                                class="fab fa-instagram"></i></a>
+                                    @endif
+
+                                    @if (optional($meetOurTeam)->linkedin)
+                                        <a href="{{ $meetOurTeam->linkedin }}" target="_blank"><i
+                                                class="fab fa-linkedin-in"></i></a>
+                                    @endif
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="team-div">
-                            <div class="team-img">
-                                <img src="assets/img/team-3.png" alt="">
-                                <img src="assets/img/blue-done.png" alt="" class="team-done">
-                            </div>
-                            <h6>Jane Smith</h6>
-                            <p>Lorem ipsum dolor sit amet consectetur. </p>
-                            <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
-                                <i class="fab fa-facebook-f"></i>
-                                <i class="fa-brands fa-x-twitter"></i>
-                                <i class="fa-brands fa-linkedin-in"></i>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 

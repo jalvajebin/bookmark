@@ -28,7 +28,6 @@ class HomeController extends Controller
         $why = WhyWorkWith::first();
         $whatWedo =WhatWeDo::first();
         $contactBanner = Banner::where('page', 'homeContact')->first();
-
         return view('admin.home.index', compact('banner', 'why', 'whatWedo','contactBanner'));
     }
 
@@ -39,6 +38,56 @@ class HomeController extends Controller
             ->make(true);
     }
 
+     public function addhomeTeam(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'team_image' => $request->team_id ? 'image|max:2048' : 'required|image|max:2048',
+
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $team = MeetOurTeam::updateOrCreate([
+                'id' => $request->team_id
+            ], [
+
+                'name' => $request->name,
+                'description' => $request->description,
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'linkedin' => $request->linkedin,
+            ]);
+            if ($request->hasFile('team_image')) {
+                $team->clearMediaCollection('team_images');
+                $team->addMediaFromRequest('team_image')->toMediaCollection('team_images');
+            }
+            DB::commit();
+            return response()->json(['status' => true, 'message' => $request->team_id ? "Successfully Updated" : "Successfully Added"]);
+        } catch (Exception $e) {
+            DB::rollback();
+            return  response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+    
+
+     public function getTeamById($id){
+        $team = MeetOurTeam::findOrfail($id);
+        return $team;
+    }
+
+
+     public function deleteTeam($id){
+        $team = MeetOurTeam::findOrfail($id);
+        $team->delete();
+
+         return response()->json([
+            'success' => true,
+            'message' => 'Data deleted successfully!'
+        ]);
+    }
 
     
 
