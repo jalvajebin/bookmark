@@ -117,7 +117,7 @@
                                     alt="">
                             </div>
                             <h5>{{ $serviceWeProvide->title }}</h5>
-                            <p>{{ optional($serviceWeProvide)->description }}</p>
+                            <p>{!! optional($serviceWeProvide)->description !!}</p>
                         </div>
                     </div>
                 @endforeach

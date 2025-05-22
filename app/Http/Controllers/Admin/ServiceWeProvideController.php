@@ -70,7 +70,7 @@ class ServiceWeProvideController extends Controller
         $service = new ServiceWeProvide();
         $service->title = $request->title;
         $service->status = 1;
-        $service->description = strip_tags($request->description);
+        $service->description = $request->description;
 
         $service->save();
 
@@ -130,7 +130,7 @@ class ServiceWeProvideController extends Controller
 
         $service = ServiceWeProvide::findOrFail($id);
         $service->title = $request->title;
-        $service->description = strip_tags($request->description);
+        $service->description = $request->description;
         $service->save();
 
         if ($request->hasFile('icon')) {
