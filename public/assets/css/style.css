@@ -3153,6 +3153,7 @@ blockquote cite {
 
 .contact-item .icon {
 	width: 50px;
+	min-width: 50px;
 	height: 50px;
 	background: var(--primary-color);
 	border-radius: 50%;
@@ -3183,6 +3184,9 @@ blockquote cite {
 	width: 75%;
 	margin: auto;
 
+}
+.contact-details .contact-item .info{
+	width: 30%;
 }
 
 .form-group {
@@ -3297,6 +3301,10 @@ textarea.form-control {
 	.contact-item {
 		margin-bottom: 20px;
 	}
+	.contact-details .contact-item .info{
+	width: 30%;
+}
+
 }
 
 
@@ -4710,6 +4718,7 @@ textarea.form-control {
 		height: 30px;
 		width: 30px;
 		font-size: 15px;
+		min-width: 30px;
 	}
 
 	.contact-info h2 {
@@ -5109,6 +5118,12 @@ textarea.form-control {
 	.hiring-card {
 		padding: 15px 15px 0px 15px;
 	}
+		.contact-details .contact-item .info{
+	width: 65%;
+}
+.contact-item .icon {
+    margin-right: 10px;
+}
 }
 
 @media (max-width: 375px) {
