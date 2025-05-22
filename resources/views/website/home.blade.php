@@ -559,7 +559,7 @@
                         <div class="item">
                             <div class="team-div">
                                 <div class="team-img">
-                                    <img src="{{ $meetOurTeam->TeamImages->url }}" alt="">
+                                    <img src="{{ optional($meetOurTeam)->TeamImages->url }}" alt="">
                                     <img src="assets/img/blue-done.png" alt="" class="team-done">
                                 </div>
                                 <h6>{{ optional($meetOurTeam)->name }}</h6>
@@ -642,29 +642,29 @@
                 </div>
 
                 @foreach ($blog as $blogs)
-                    <div class="blog-div fade-up">
-                        <div class="blog-img">
-                            <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}"
-                                alt="{{ $blogs->alt }}">
-                        </div>
-
-                        <div>
-                            <div class="meta-info">
-                                <span>By {{ $blogs->author }}</span>
-                                <span class="dot"></span>
-                                <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                    <a href="{{ route('blog.details', $blogs->slug) }}" target="_blank" class="blog-link-wrapper">
+                        <div class="blog-div fade-up">
+                            <div class="blog-img">
+                                <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}"
+                                    alt="{{ $blogs->alt }}">
                             </div>
+                            <div>
+                                <div class="meta-info">
+                                    <span>By {{ $blogs->author }}</span>
+                                    <span class="dot"></span>
+                                    <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                                </div>
 
-                            <h6>{!! $blogs->description !!}</h6>
+                                <h6>{!! $blogs->title !!}</h6>
 
-                            <div class="more-buttons">
-                                <a href="{{ $blogs->meta_title }}" target="_blank">
+                                <div class="more-buttons">
                                     Read More <span><i class="fa-solid fa-arrow-right"></i></span>
-                                </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
+                Iu
 
             </div>
         </section>

@@ -273,10 +273,12 @@
                  if (data.responseJSON?.permissionMessage) {
                      alertMessage(data.responseJSON.permissionMessage, "warning");
                  }
-                 var title = data.responseJSON.errors.title;
-                 $('.title_validation ').html(title);
-
-
+                 $('.name_validation ').html(data.responseJSON.errors.name);
+                 $('.description_validation ').html(data.responseJSON.errors.description);
+                 $('.facebook_validation ').html(data.responseJSON.errors.facebook);
+                 $('.instagram_validation ').html(data.responseJSON.errors.instagram);
+                 $('.linkedin_validation ').html(data.responseJSON.errors.linkedin);
+                 $('.team_image_validation ').html(data.responseJSON.errors.team);
              }
          });
 

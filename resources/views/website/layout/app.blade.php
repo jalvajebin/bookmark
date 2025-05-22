@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="{{ asset('assets/css//owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <style>
+        .blog-link-wrapper {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-link-wrapper:hover {
+            text-decoration: none;
+        }
+
+        .blog-link-wrapper h6 {
+            color: inherit;
+            /* Keeps the title color same as parent */
+        }
+    </style>
     @stack('css')
 </head>
 
@@ -75,7 +91,7 @@
             });
         });
     </script>
-    
+
     @stack('js')
 </body>
 
