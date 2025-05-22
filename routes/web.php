@@ -237,6 +237,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/index', [ServiceWeProvideController::class, 'index'])->name('index');
             Route::get('/create', [ServiceWeProvideController::class, 'create'])->name('createServicProvide');
             Route::post('/store-ajax', [ServiceWeProvideController::class, 'storeAjax'])->name('storeServiceWeprovide');
+            Route::post('status-change', [ServiceWeProvideController::class, 'changeStatus'])->name('service.status.change');
             Route::get('edit/{id}', [ServiceWeProvideController::class, 'edit']);
             Route::put('/service-we-provide/{id}', [ServiceWeProvideController::class, 'update']);
             Route::delete('/service-we-provide-delete/{id}', [ServiceWeProvideController::class, 'destroy'])->name('destroyServicePro');

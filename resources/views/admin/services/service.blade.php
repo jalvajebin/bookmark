@@ -29,7 +29,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Title</th>
-                                {{-- <th>Description</th> --}}
+                                <th>Home Page</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

@@ -5,12 +5,13 @@
 @section('content')
     <!-- banner  -->
 
-    <div class="banner" style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">>
+    <div class="banner"
+        style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">>
         <div class="banner-overlay"></div>
         <div class="banner-cntnt fade-left">
             <div>
-                <h2>{{ optional($banner)->title}}</h2>
-                <P>{{ optional($banner)->description}}</P>
+                <h2>{{ optional($banner)->title }}</h2>
+                <P>{{ optional($banner)->description }}</P>
             </div>
 
             <form method="GET" action="{{ route('web.home') }}#resultSection">
@@ -107,57 +108,30 @@
             <div class="section-title">
                 <h2>Services We <span>Provide</span></h2>
             </div>
-
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-box">
-                            <img src="assets/img/teacher.png" alt="">
+                @foreach ($serviceWeProvides as $serviceWeProvide)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="service-box">
+                            <div class="service-img-box">
+                                <img src="{{ $serviceWeProvide->Icon->preview ?? asset('assets/img/teacher.png') }}"
+                                    alt="">
+                            </div>
+                            <h5>{{ $serviceWeProvide->title }}</h5>
+                            <p>{{ \Illuminate\Support\Str::words($serviceWeProvide->description, 15, '...') }}</p>
                         </div>
-                        <h5>permanent teacher placement</h5>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-box">
-                            <img src="assets/img/staffing.png" alt="">
-                        </div>
-                        <h5>substitute & temporary staffing</h5>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-box">
-                            <img src="assets/img/experts.png" alt="">
-                        </div>
-                        <h5>Specialzed Subject
-                            Experts</h5>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="service-box">
-                        <div class="service-img-box">
-                            <img src="assets/img/training.png" alt="">
-                        </div>
-                        <h5>professional development
-                            & training</h5>
-                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         <!-- service -->
-
         <!-- why work with us -->
         <section class="section-padding">
 
             <div class="row gx-5">
                 <div class="col-lg-6 fade-left">
                     <div class="why-img-main">
-                        <img src="{{ $why->Images['preview'] ?? asset('admin/images/no-image.png') }}" alt="" class="why-main-img">
+                        <img src="{{ $why->Images['preview'] ?? asset('admin/images/no-image.png') }}" alt=""
+                            class="why-main-img">
                         <div class="job-vacancy-div">
                             <img src="assets/img/briefcase.png" alt="">
                             <h6>10.5K</h6>
@@ -254,7 +228,8 @@
 
                 </div>
                 <div class="col-lg-6 fade-right">
-                    <img src="{{ $whatWedo->WhatImages['preview'] ?? asset('admin/images/no-image.png') }}" alt="" class="explore-img">
+                    <img src="{{ $whatWedo->WhatImages['preview'] ?? asset('admin/images/no-image.png') }}"
+                        alt="" class="explore-img">
                 </div>
             </div>
 
@@ -268,7 +243,8 @@
                     <h2>Top Destinations</h2>
                 </div>
                 <div class="more-buttons">
-                    <a href="{{ route('web.destination.index') }}">Show all <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <a href="{{ route('web.destination.index') }}">Show all <span><i
+                                class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
             </div>
 
@@ -318,7 +294,8 @@
                                         alt="{{ $job->alt }}" class="company-logo">
                                     <div class="job-info">
                                         <h3>{{ $job->title }}</h3>
-                                        <p>{{ $job->company_name }}&bull; <span class="location">{{ $job->location }}</span></p>
+                                        <p>{{ $job->company_name }}&bull; <span
+                                                class="location">{{ $job->location }}</span></p>
                                         <div class="job-tags">
                                             <span class="tag active"> {{ $job->job_type }} </span>
                                         </div>
@@ -341,7 +318,8 @@
 
     <!-- Excellence -->
     <section class="section-padding">
-        <div class="exllence-main" style="background-image: url('{{ $contactBanner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
+        <div class="exllence-main"
+            style="background-image: url('{{ $contactBanner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
             <div class="ab-rectangle"></div>
             <div class="ab-circle"></div>
             <div class="fade-up">
@@ -452,21 +430,21 @@
                                 help you manage everything you need</p>
                         </div>
                         <div class="explore-pt">
-                        <div>
-                            <h3>{{ optional($whatWedo)->title_one }}</h3>
-                            <h6>{{ optional($whatWedo)->para_one }}</h6>
-                        </div>
+                            <div>
+                                <h3>{{ optional($whatWedo)->title_one }}</h3>
+                                <h6>{{ optional($whatWedo)->para_one }}</h6>
+                            </div>
 
-                        <div>
-                            <h3>{{ optional($whatWedo)->title_two }}</h3>
-                            <h6>{{ optional($whatWedo)->para_two }}</h6>
-                        </div>
+                            <div>
+                                <h3>{{ optional($whatWedo)->title_two }}</h3>
+                                <h6>{{ optional($whatWedo)->para_two }}</h6>
+                            </div>
 
-                        <div>
-                            <h3>{{ optional($whatWedo)->title_three }}</h3>
-                            <h6>{{ optional($whatWedo)->para_three }}</h6>
+                            <div>
+                                <h3>{{ optional($whatWedo)->title_three }}</h3>
+                                <h6>{{ optional($whatWedo)->para_three }}</h6>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="col-lg-6 fade-right">
                         <div class="dream-job">
@@ -763,8 +741,9 @@
                                 <h3>Apply For A Job?</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor
                                     convallis efficitur.</p>
-                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
@@ -775,8 +754,9 @@
                                 <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
                                     Pelque augue
                                     risus, aliqu.</p>
-                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>

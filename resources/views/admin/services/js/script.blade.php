@@ -18,6 +18,9 @@
     });
 
 
+    
+
+
     function deleteService(id) {
         Swal.fire({
             title: 'Are you sure?',

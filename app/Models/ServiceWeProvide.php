@@ -15,7 +15,7 @@ class ServiceWeProvide extends Model implements HasMedia
     protected $fillable = ['title', 'description'];
 
     // Automatically append the icon URL to model JSON output
-    protected $appends = ['icon_url'];
+    protected $appends = ['icon', 'images'];
 
     /**
      * Register media conversions (thumbnails, previews)
@@ -29,7 +29,7 @@ class ServiceWeProvide extends Model implements HasMedia
             ->quality(80)
             ->sharpen(5)
             ->nonQueued()
-            ->performOnCollections('icon');
+            ->performOnCollections('icon', 'images');
 
         $this->addMediaConversion('preview')
             ->width(600)
@@ -38,15 +38,26 @@ class ServiceWeProvide extends Model implements HasMedia
             ->quality(90)
             ->sharpen(5)
             ->nonQueued()
-            ->performOnCollections('icon');
+            ->performOnCollections('icon', 'images');
     }
 
     /**
      * Accessor for full image URLs (original, thumb, preview)
      */
-    public function getIconUrlAttribute()
+    public function getIconAttribute()
     {
         $file = $this->getMedia('icon')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+        return $file;
+    }
+
+     public function getImagesAttribute()
+    {
+        $file = $this->getMedia( 'images')->last();
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');

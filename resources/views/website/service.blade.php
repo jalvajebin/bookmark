@@ -32,7 +32,7 @@
           <div class="col-lg-6" data-aos="fade-right">
           <div class="service-card">
             <div class="service-card-img">
-              <img src="{{ $service->IconUrl->preview ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">
+              <img src="{{ $service->Images->preview ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">
             </div>
             <div class="card-content">
               <h3>{{ $service->title ?? 'Teacher Recruitment'}} </h3>

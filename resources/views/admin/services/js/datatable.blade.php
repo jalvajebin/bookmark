@@ -31,6 +31,23 @@
                         name: 'title'
                     },
                     {
+                        data: 'status',
+                        name: 'status',
+                        render: function(data, type, row) {
+
+                            if (data == 1) {
+                                var status = "checked";
+                            } else {
+                                var status = '';
+                            }
+                            return `
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input course-status" type="checkbox" role="switch" id="customSwitch1${row.id}" onchange="statusChange(${row.id},${data})" ${status} >
+                                    </div>
+                                    `;
+                        }
+                    },
+                    {
                         data: 'id',
                         name: 'id',
                         orderable: false,

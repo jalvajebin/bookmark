@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceWeProvide;
 use Illuminate\Support\Facades\Validator;
@@ -52,12 +53,13 @@ class ServiceWeProvideController extends Controller
     public function storeAjax(Request $request)
     {
 
-
         // Validate input
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+
         ]);
 
         if ($validator->fails()) {
@@ -67,7 +69,7 @@ class ServiceWeProvideController extends Controller
         // Create the record
         $service = new ServiceWeProvide();
         $service->title = $request->title;
-
+        $service->status = 1;
         $service->description = strip_tags($request->description);
 
         $service->save();
@@ -77,10 +79,33 @@ class ServiceWeProvideController extends Controller
             $service->addMediaFromRequest('icon')->toMediaCollection('icon');
         }
 
+        if ($request->hasFile('image')) {
+            $service->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
+
         return response()->json([
             'icon' => 'success',
             'title' => 'Success!',
             'message' => 'Service We Provide created successfully.',
+        ]);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        // dd($request->all());
+        $id = $request->id;
+        $service = ServiceWeProvide::findOrFail($id);
+
+        if ($service->status == 1) {
+            $service->status = 0;
+        } else {
+            $service->status = 1;
+        }
+        $service->save();
+        return response()->json([
+            'status' => 'Successfully Changed Status'
+
         ]);
     }
 
@@ -97,6 +122,7 @@ class ServiceWeProvideController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -113,6 +139,10 @@ class ServiceWeProvideController extends Controller
             $service->addMediaFromRequest('icon')->toMediaCollection('icon');
         }
 
+        if ($request->hasFile('image')) {
+            $service->clearMediaCollection('images');
+            $service->addMediaFromRequest('image')->toMediaCollection('images');
+        }
         return response()->json([
             'icon' => 'success',
             'title' => 'Updated!',

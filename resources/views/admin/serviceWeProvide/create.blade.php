@@ -71,8 +71,16 @@
                                         <img id="iconPreview" class="logo-image d-none" src="#" alt="Preview Icon">
                                     </div>
                                 </div>
-                            </div>
 
+                                <div class="col-md-12 mb-3">
+                                    <label>Image <span class="text-danger">*</span></label>
+                                    <input type="file" name="image" id="image" class="form-control" accept="image/*">
+                                    <span class="error-validation icon-validation"></span>
+                                    <div class="mt-2">
+                                        <img id="imagePreview" class="logo-image d-none" src="#" alt="Preview Image">
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Buttons -->
                             <div class="d-flex justify-content-end">
                                 <a href="{{ route('services.index') }}" class="btn btn-danger me-2">Cancel</a>
@@ -122,6 +130,17 @@
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     $('#iconPreview').attr('src', e.target.result).removeClass('d-none');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $('#image').on('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').attr('src', e.target.result).removeClass('d-none');
                 };
                 reader.readAsDataURL(file);
             }

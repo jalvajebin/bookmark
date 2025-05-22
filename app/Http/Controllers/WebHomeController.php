@@ -13,6 +13,7 @@ use App\Models\JobLocation;
 use App\Models\JobPositionType;
 use App\Models\JobSchoolType;
 use App\Models\JobSpecialism;
+use App\Models\ServiceWeProvide;
 use App\Models\Testimonial;
 use App\Models\WhatWeDo;
 use App\Models\WhyWorkWith;
@@ -56,11 +57,10 @@ class WebHomeController extends Controller
         $locations = JobLocation::orderBy('title')->get();
         $categories = JobCategory::orderBy('title')->get();
         $why = WhyWorkWith::first();
-        $whatWedo =WhatWeDo::first();
+        $whatWedo = WhatWeDo::first();
         $banner = Banner::where('page', 'home')->first();
         $contactBanner = Banner::where('page', 'homeContact')->first();
-
-        // dd($banner);
+        $serviceWeProvides = ServiceWeProvide::where('status', '1')->get();
 
         return view('website.home', compact(
             'latestJobs',
@@ -77,7 +77,8 @@ class WebHomeController extends Controller
             'why',
             'whatWedo',
             'banner',
-            'contactBanner'
+            'contactBanner',
+            'serviceWeProvides'
         ));
     }
 }

@@ -245,5 +245,27 @@
             $(activeTab).fadeIn();
             return false;
         });
+
+
+        function statusChange(id, status) {
+            $.ajax({
+                type: "post",
+                data: {
+                    id: id,
+                    status: status,
+                    _token: "{{ csrf_token() }}"
+                },
+                url: "{{ route('service.status.change') }}",
+                success: function(response) {
+                    $('#serviceWeProYajTable').DataTable().ajax.reload();
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success(response.message, 1);
+                },
+                error: function() {
+                    $('#serviceWeProYajTable').DataTable().ajax.reload();
+                    console.log('error');
+                }
+            })
+        }
     </script>
 @endsection
