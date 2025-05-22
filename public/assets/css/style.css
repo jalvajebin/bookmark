@@ -1995,9 +1995,10 @@ img {
 }
 
 .footer-col ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 42%;
 }
 
 .footer-col ul li {
@@ -4846,6 +4847,9 @@ textarea.form-control {
 	.lookingtowork-in {
 		padding: 30px;
 	}
+	.footer-col ul {
+    width: 100%;
+}
 }
 
 @media (max-width: 768px) {
