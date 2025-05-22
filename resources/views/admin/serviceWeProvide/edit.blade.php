@@ -136,10 +136,7 @@
             });
 
             // CKEditor init
-            ClassicEditor
-                .create(document.querySelector('#description'))
-                .then(newEditor => editor = newEditor)
-                .catch(error => console.error('CKEditor Error:', error));
+            CKEDITOR.replace('description');
 
             // Preview icon
             $('#icon').on('change', function(e) {
@@ -153,7 +150,7 @@
                 }
             });
 
-             $('#image').on('change', function(e) {
+            $('#image').on('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
@@ -169,11 +166,10 @@
                 e.preventDefault();
                 $('#updateBtn').attr('disabled', true).text('Updating...');
                 $('.error-validation').text('');
-
                 const id = $('input[name="id"]').val();
+                var description = CKEDITOR.instances['description'].getData();
                 const formData = new FormData(this);
-                formData.set('description', editor.getData());
-
+                formData.append('description', description);
                 $.ajax({
                     url: "/admin/serviceweprovide/service-we-provide/" + id,
                     method: "POST",

@@ -105,7 +105,6 @@ class ServiceWeProvideController extends Controller
         $service->save();
         return response()->json([
             'status' => 'Successfully Changed Status'
-
         ]);
     }
 

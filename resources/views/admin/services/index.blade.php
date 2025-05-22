@@ -259,7 +259,7 @@
                 success: function(response) {
                     $('#serviceWeProYajTable').DataTable().ajax.reload();
                     alertify.set('notifier', 'position', 'top-right');
-                    alertify.success(response.message, 1);
+                    alertify.success(response.status, 1);
                 },
                 error: function() {
                     $('#serviceWeProYajTable').DataTable().ajax.reload();
