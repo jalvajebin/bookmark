@@ -160,7 +160,7 @@ class FormController extends Controller
 
     public function leaveAComment(Request $request)
     {
-        //  dd($request->all());
+    //  dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|email:dns,rfc',

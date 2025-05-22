@@ -487,6 +487,13 @@
                                 </div>
                             </div>
                             <div>
+                                <div class="form-group cv-form">
+                                    <label for=""> Upload your cv <span>*</span></label>
+                                    <input type="file" class="form-control" placeholder="Upload your Cv Message*" rows="5" required></textarea>
+                                    <span class="focus-border"></span>
+                                </div>
+                            </div>
+                            <div>
                                 <button type="submit" class="submit-btn">
                                     <span>Send Message</span>
                                     <i class="fas fa-paper-plane"></i>
@@ -561,5 +568,100 @@
                 }, 2000); // Adjust time as needed
             });
         });
+    </script>
+    <script>
+        function submitCv(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $("#loader").show();
+
+            $('#commentForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    message: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Name is required",
+                    },
+                    email: {
+                        required: "Email Address is required",
+                    },
+                    message: {
+                        required: "Message is required"
+                    }
+                },
+                errorElement: "span",
+                errorPlacement: function(error, element) {
+                    error.insertAfter($(element).closest('.required_item'));
+                }
+            });
+            if ($('#commentForm').valid()) {
+                $(".error").html('');
+                $("#commentButton").text("Posting...");
+
+                var formData = new FormData($("#commentForm")[0]);
+
+                $.ajax({
+                    url: "{{ route('leaveAComment') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        $(".error").html("");
+                        $("#loader").hide();
+                        $("#commentButton").text("Post Comment");
+
+                        if (response.success === true) {
+                            $("#commentForm")[0].reset();
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.success(response.message);
+                        } else {
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.error(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        $("#loader").hide();
+                        $("#commentButton").text("Post Comment");
+
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            const errors = xhr.responseJSON.errors;
+
+                            if (errors.name) {
+                                $(".name_validation").html(errors.name[0]);
+                            }
+                            if (errors.email) {
+                                $(".email_validation").html(errors.email[0]);
+                            }
+                            if (errors.message) {
+                                $(".message_validation").html(errors.message[0]);
+                            }
+                        } else {
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.error("Something went wrong. Try again!");
+                        }
+                    }
+                });
+            } else {
+                $("#loader").hide();
+
+            }
+        }
     </script>
 @endpush

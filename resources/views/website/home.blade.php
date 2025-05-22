@@ -459,7 +459,7 @@
                                 <div>
                                     <p>You Are Hired</p>
                                     <p style="font-size: 10px;">Congrats you got the job <br>
-                                        as Ui / UX Designer at CODE.ID</p>
+                                        as English Teacher at Nibras International School.</p>
                                 </div>
                             </div>
                         </div>
@@ -505,7 +505,7 @@
                         <div class="slide">
                             <img src="assets/img/hire-slider-img.png" class="slide-image">
                             <div class="slide-text">
-                                <h2><span>Discover</span> innovative learning methods.</h2>
+                                <h2><span>Discover</span> innovative learning strategies.</h2>
                             </div>
                             <div class="slide-number">02</div>
                         </div>
@@ -530,7 +530,7 @@
 
                 <div class="stats-bar">
                     <div class="stats-left">
-                        <div class="stats-number">250,998</div>
+                        <div class="stats-number">10,000</div>
                         <div class="stats-text">people are getting hired with us</div>
                     </div>
                     {{-- <a href="about.html" class="read-more">
@@ -628,13 +628,14 @@
             </div>
         </section> --}}
         <!-- Meet Exprets -->
-
         <section class="section-padding">
             <div class="custom-container">
                 <div class="d-flex justify-content-between">
                     <div class="section-title">
                         <h2>News and Blog</h2>
-                        <p>Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed tristique in dolor</p>
+                        <p>Explore the latest in
+                            international teaching — tips, trends, and stories to guide
+                            and inspire educators and schools alike.</p>
                     </div>
                     <div class="more-buttons">
                         <a href="{{ route('blogs') }}">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
@@ -664,8 +665,6 @@
                         </div>
                     </a>
                 @endforeach
-                Iu
-
             </div>
         </section>
         <!-- Testimonials -->
@@ -708,8 +707,9 @@
                         <div class="register-bg">
                             <div>
                                 <h3>Apply For A Job?</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor
-                                    convallis efficitur.</p>
+                                <p>Find your perfect teaching role
+                                    overseas with top schools and full support every step of the
+                                    way.</p>
                                 <a href="{{ route('web.applicants.submit-cv') }}"><button type="button"
                                         class="register-button">Register now <span><i
                                                 class="fa-solid fa-arrow-right-long"></i></span></button></a>
@@ -720,9 +720,9 @@
                         <div class="register-bg employer-bg">
                             <div>
                                 <h3>Post A Vacancy?</h3>
-                                <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
-                                    Pelque augue
-                                    risus, aliqu.</p>
+                                <p>Reach qualified, experienced educators who are ready to
+                                    join your school. Share your vacancy and let us help you find
+                                    the perfect match.</p>
                                 <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button"
                                         class="register-button">Register now <span><i
                                                 class="fa-solid fa-arrow-right-long"></i></span></button></a>

@@ -10,11 +10,13 @@
             <div class="banner-countries" data-aos="fade-up">
                 <div class="d-flex justify-content-center gap-2">
                     <div class="">
+                        @foreach( $destinations as $key => $destination)
                         <a href="#" class="country-box">
-                            <h6>China <span>(54)</span></h6>
+                            <h6>{{ $destination->name }} <span>(54)</span></h6>
                             <i class="fas fa-chevron-right"></i>
                         </a>
-
+                        @endforeach
+{{-- 
                         <a href="#" class="country-box">
                             <h6>Kuwait <span>(44)</span></h6>
                             <i class="fas fa-chevron-right"></i>
@@ -33,7 +35,7 @@
                         <a href="#" class="country-box">
                             <h6>Hong Kong Sar <span>(16)</span></h6>
                             <i class="fas fa-chevron-right"></i>
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="">
                         <a href="#" class="country-box">
@@ -64,11 +66,11 @@
                 </div>
             </div>
             <div class="more-buttons d-flex justify-content-center">
-                <a href="">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
             </div>
 
 
-            <div class="job-search-main" data-aos="fade-up">
+            {{-- <div class="job-search-main" data-aos="fade-up">
                 <div class="search-div">
                     <input type="text" placeholder="Job Title or Company">
                 </div>
@@ -109,7 +111,7 @@
                         </svg><!-- <i class="fas fa-search"></i> Font Awesome fontawesome.com --> Search
                     </button>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -125,45 +127,25 @@
             <div class="row">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="section-title">
-                        <h2> {{ $weRecruitFor->heading  }}</h2>
+                        <h2> {{ optional($weRecruitFor)->heading }}</h2>
                     </div>
                     <p class="main-para">
-                        {{ $weRecruitFor->description  }}
+                        {{ optional($weRecruitFor)->description }}
                     </p>
+                </div>
+                <div class="col-lg-12 text-center" data-aos="fade-left">
                     <button class="head-btn"> <span>More Top Employers</span>
                     </button>
-                </div>
-                <div class="col-lg-6" data-aos="fade-left">
-                    <div class="client-wrapper">
-                        <div class="row g-1">
-                            <div class="col-lg-4 col-md-6 col-6">
+                    <div class="cl-logo-box-outr mt-4">
+                        <div class="row g-1 justify-content-center">
+                            <div class="col-lg-3 col-md-6 col-6">
                                 <div class="cl-logo-box">
-                                    <img src="assets/img/cl-1.png" alt="">
+                                    <img src="assets/img/ncx.jpeg" alt="">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-6">
+                            <div class="col-lg-3 col-md-6 col-6">
                                 <div class="cl-logo-box">
-                                    <img src="assets/img/cl-2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-6">
-                                <div class="cl-logo-box">
-                                    <img src="assets/img/cl-3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-6">
-                                <div class="cl-logo-box">
-                                    <img src="assets/img/cl-4.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-6">
-                                <div class="cl-logo-box">
-                                    <img src="assets/img/cl-5.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-6">
-                                <div class="cl-logo-box">
-                                    <img src="assets/img/cl-1.png" alt="">
+                                    <img src="assets/img/logo2.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -206,7 +188,7 @@
                         <p>Wherever you are in the world,
                             find your nearest contact point</p>
                         <div class="more-buttons">
-                            <a href="">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -217,7 +199,7 @@
                             support
                             your next teaching step.</p>
                         <div class="more-buttons">
-                            <a href="">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -248,7 +230,7 @@
                 <div class="col-lg-2">
                     <div class="row gy-2">
                         <div class="col-lg-12 col-md-6 col-6">
-                            <a href="">
+                            <a href="{{ route('web.applicants.submit-cv') }}">
                                 <div
                                     class="expertise-box-white d-flex align-items-center justify-content-center flex-md-column gap-1">
                                     <img src="assets/img/submit-cv.svg" alt="">
@@ -257,13 +239,15 @@
                             </a>
                         </div>
                         <div class="col-lg-12 col-md-6 col-6">
-                            <a href="">
+                            <a href="tel:{{ contactUs()->phone }}">
                                 <div
                                     class="expertise-box-white d-flex align-items-center justify-content-center flex-md-column gap-1">
                                     <img src="assets/img/call.svg" alt="">
                                     <h6>Contact Us</h6>
+                                    <span>{{ contactUs()->phone }}</span>
                                 </div>
                             </a>
+
                         </div>
                     </div>
                 </div>

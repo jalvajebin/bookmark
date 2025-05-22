@@ -44,11 +44,6 @@
                                     value="{{ request()->query('search') }}" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
-                            {{-- <label class="custom-radio square">
-                                <input type="radio" name="teaching_license" value="no">
-                                <span class="radio-checkmark"></span>
-                                <span class="radio-label">Search Job title Only</span>
-                            </label> --}}
                         </div>
 
                         <!-- Recent Posts Widget -->
@@ -60,7 +55,7 @@
                             <h4>Refine Your Search</h4>
 
                             {{-- School Type --}}
-                            <div>
+                            {{-- <div>
                                 <h6>School Type</h6>
                                 <div class="tags">
                                     @foreach ($schoolTypes as $schoolType)
@@ -70,7 +65,7 @@
                                         </a>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div> --}}
 
                             {{-- Location --}}
                             <div>
@@ -127,10 +122,16 @@
                         <!-- Blog Post Card -->
                         <div class="job-description">
                             <h4>Jobs</h4>
-                            <p>Boomark has {{ $jobs->count() }} jobs. Our {{ $jobs->count() }} jobs available include the
+                            {{-- <p>Boomark has {{ $jobs->count() }} jobs. Our {{ $jobs->count() }} jobs available include the
                                 following types of jobs:
                                 {{ $displayed->join(', ') }}
-                                {{ $totalCount > 2 ? ' and ' . ($totalCount - 2) . ' more' : '' }}
+                                {{ $totalCount > 2 ? ' and ' . ($totalCount - 2) . ' more' : '' }}</p>
+                                  --}}
+
+                            <p>Bookmark has 225 jobs. Our 225
+                                jobs available include the following types of jobs: Permanent
+                                (200) and Temporary (25).
+                            </p>
                             <h4>Get new jobs for this search in your inbox!</h4>
                             <div class="d-flex gap-2">
                                 <div class="form-group mb-2">

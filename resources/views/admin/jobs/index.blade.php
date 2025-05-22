@@ -131,9 +131,9 @@
                                  <li class="tab-list">
                                     <a href="#tab2" class="m-2">Location</a>
                                 </li>
-                                 <li class="tab-list">
+                                 {{-- <li class="tab-list">
                                     <a href="#tab3" class="m-2">School Type</a>
-                                </li>
+                                </li> --}}
                                 <li class="tab-list">
                                     <a href="#tab4" class="m-2">Specialism</a>
                                 </li>
@@ -153,7 +153,7 @@
             <div id="tabs-content">
                 @include('admin.jobs.category')
                 @include('admin.jobs.location')
-                @include('admin.jobs.school-type')
+                {{-- @include('admin.jobs.school-type') --}}
                 @include('admin.jobs.specialism')
                 @include('admin.jobs.position-type')
                 @include('admin.jobs.job')

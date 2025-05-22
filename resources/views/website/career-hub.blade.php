@@ -30,7 +30,8 @@
                         @foreach ($careers as $key => $career)
                             <div class="col-md-6 col-lg-6 fade-left">
                                 <div class="career-card">
-                                    <img src="@if ($career->MainImages) {{ $career->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="People working">
+                                    <img src="@if ($career->MainImages) {{ $career->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                        alt="People working">
                                     <div class="content">
                                         <div class="left-career-card">
                                             <div class="title">{{ optional($career)->title }}</div>
@@ -38,13 +39,14 @@
                                                 {!! optional($career)->description !!}
                                             </div>
                                             <div class="career-tags">
-                                                <a  class="first-tags">Design</a>
+                                                <a class="first-tags">Design</a>
                                                 <a class="second-tags">Lifestyle</a>
-                                                <a  class="third-tags">Location reports</a>
+                                                <a class="third-tags">Location reports</a>
                                             </div>
                                         </div>
                                         <div class="right-career-card">
-                                            <a href="{{ route('career.details', $career->slug ) }}" class="card-read-more"><span><i
+                                            <a href="{{ route('career.details', $career->slug) }}"
+                                                class="card-read-more"><span><i
                                                         class="fa-solid fa-arrow-right"></i></span></a>
                                         </div>
                                     </div>
@@ -65,10 +67,12 @@
                         <div class="register-bg">
                             <div>
                                 <h3>Apply For A Job?</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor
-                                    convallis efficitur.</p>
-                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <p>Find your perfect teaching role
+                                    overseas with top schools and full support every step of the
+                                    way.</p>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
@@ -76,11 +80,12 @@
                         <div class="register-bg employer-bg">
                             <div>
                                 <h3>Post A Vacancy?</h3>
-                                <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
-                                    Pelque augue
-                                    risus, aliqu.</p>
-                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <p>Reach qualified, experienced educators who are ready to
+                                    join your school. Share your vacancy and let us help you find
+                                    the perfect match.</p>
+                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>

@@ -74,7 +74,8 @@
                         <h2>Looking to work in {{ optional($destination)->name }}?</h2>
                     </div>
                     <div class="right-Lookingtowork">
-                        <a href="{{ route('web.applicants.submit-cv') }}"><button class="head-btn"> <span>Submit your CV today</span></button></a>
+                        <a href="{{ route('web.applicants.submit-cv') }}"><button class="head-btn"> <span>Submit your CV
+                                    today</span></button></a>
                     </div>
                 </div>
             </div>
@@ -91,7 +92,8 @@
                             <div class="destination-box">
                                 <h5>{{ $job->title }}</h5>
                                 <div class="date">{{ \Carbon\Carbon::parse($job->date)->format('d/m/Y') }}</div>
-                                <div class="contract">{{ $job->locationModel->title }} {{ $job->job_type }} {{ $job->salary_rang }}
+                                <div class="contract">
+                                    {{ $job->locationModel->title }} {{ $job->job_type }} {{ $job->salary_rang }}
                                 </div>
                                 <p>
                                     {{ Str::limit(strip_tags($job->description), 150) }}
@@ -112,10 +114,12 @@
                         <div class="register-bg">
                             <div>
                                 <h3>Apply For A Job?</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis
-                                    efficitur.</p>
-                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <p>Find your perfect teaching role
+                                    overseas with top schools and full support every step of the
+                                    way.</p>
+                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
                         </div>
                     </div>
@@ -123,16 +127,17 @@
                         <div class="register-bg employer-bg">
                             <div>
                                 <h3>Post A Vacancy?</h3>
-                                <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
-                                    Pelque augue
-                                    risus, aliqu.</p>
-                               <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button" class="register-button">Register now <span><i
-                                            class="fa-solid fa-arrow-right-long"></i></span></button></a>
+                                <p>Reach qualified, experienced educators who are ready to
+                                    join your school. Share your vacancy and let us help you find
+                                    the perfect match.</p>
+                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button"
+                                        class="register-button">Register now <span><i
+                                                class="fa-solid fa-arrow-right-long"></i></span></button></a>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
         </section>
     @endsection

@@ -33,7 +33,8 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="career-detail-img">
-                                    <img src="@if ($career->InnerImages) {{ $career->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="People working">
+                                    <img src="@if ($career->InnerImages) {{ $career->InnerImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                                        alt="People working">
                                 </div>
                             </div>
                             <div class="col-lg-9">
@@ -62,7 +63,8 @@
 
                 <div class="col-md-12">
                     <div class="career-hub-dts-img">
-                        <img src="@if ($career->Inner1Images) {{ $career->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif" alt="Teaching Team">
+                        <img src="@if ($career->Inner1Images) {{ $career->Inner1Images->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif"
+                            alt="Teaching Team">
                     </div>
                 </div>
 
@@ -80,8 +82,9 @@
                         <div class="register-bg">
                             <div>
                                 <h3>Apply For A Job?</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis
-                                    efficitur.</p>
+                                <p>Find your perfect teaching role
+                                    overseas with top schools and full support every step of the
+                                    way.</p>
                                 <button type="button" class="register-button">Register now <span><i
                                             class="fa-solid fa-arrow-right-long"></i></span></button>
                             </div>
@@ -91,9 +94,9 @@
                         <div class="register-bg employer-bg">
                             <div>
                                 <h3>Post A Vacancy?</h3>
-                                <p>Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor.
-                                    Pelque augue
-                                    risus, aliqu.</p>
+                                <p>Reach qualified, experienced educators who are ready to
+                                    join your school. Share your vacancy and let us help you find
+                                    the perfect match.</p>
                                 <button type="button" class="register-button">Register now <span><i
                                             class="fa-solid fa-arrow-right-long"></i></span></button>
                             </div>
@@ -107,7 +110,7 @@
 
 
 
-      
+
     </div>
 @endsection
 @push('js')
