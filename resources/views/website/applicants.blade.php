@@ -95,7 +95,7 @@
 
 
         <section class="section-padding">
-            <div class="row">
+            <div class="row justify-content-center text-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="section-title">
                         <h2> {{ optional($weRecruitFor)->heading }}</h2>
