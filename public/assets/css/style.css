@@ -752,6 +752,7 @@ img {
 	background-color: var(--white-color);
 	padding: 20px 30px;
 	border-radius: 20px;
+	height: 100%;
 	min-height: 250px;
 }
 

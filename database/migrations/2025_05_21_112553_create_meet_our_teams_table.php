@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('meet_our_teams', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
         });
     }

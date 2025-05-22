@@ -154,6 +154,7 @@
                 @include('admin.home.banner')
                 @include('admin.home.why-work-with-us')
                 @include('admin.home.what-we-do')
+                @include('admin.home.meet-our-team')
                 @include('admin.home.home-contact-banner')
 
             </div>
@@ -178,6 +179,6 @@
     </div>
 @endsection
 @section('js')
-    @include('admin.jobs.js.datatable')
+    @include('admin.home.js.datatable')
     @include('admin.home.js.script')
 @endsection

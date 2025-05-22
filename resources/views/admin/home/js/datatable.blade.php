@@ -3,7 +3,7 @@
 
     function dataTable() {
         $(function() {
-            datatable = $('#testimonialTable').DataTable({
+            datatable = $('#teamTable').DataTable({
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
@@ -11,7 +11,7 @@
                 destroy: true,
                 searching: true,
                 ajax: {
-                    url: '{{ route('admin.about-us.getTestimonial') }}',
+                    url: '{{ route('admin.team.getData') }}',
                     type: "get",
                     data: function(d) {
 

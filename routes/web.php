@@ -213,7 +213,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
         Route::group(['prefix' => 'home'], function () {
             Route::get('/', [HomeController::class, 'index'])->name('home.index');
-            // Route::get('getData', [HomeController::class, 'getBannerData'])->name('admin.banner.getData');
+            Route::get('getData', [HomeController::class, 'getData'])->name('admin.team.getData');
             // Route::post('banner-add', [HomeController::class, 'addhomeBanner'])->name('admin.home-banner.add');
             // Route::post('banner-content-add', [HomeController::class, 'addHomeBannerContent'])->name('admin.home-banner-content.add');
             // Route::get('/{id}', [HomeController::class, 'getBannerById'])->name('admin.home-banner.getbyid');

@@ -10,6 +10,7 @@ use App\Models\HomeBannerTitle;
 use App\Models\HomePageService;
 use App\Models\HomePageTechnolagy;
 use App\Models\HomeWhyChooseUs;
+use App\Models\MeetOurTeam;
 use App\Models\Seo;
 use App\Models\WhatWeDo;
 use App\Models\WhyWorkWith;
@@ -30,4 +31,16 @@ class HomeController extends Controller
 
         return view('admin.home.index', compact('banner', 'why', 'whatWedo','contactBanner'));
     }
+
+    public function getData(){
+        $quote = MeetOurTeam::query()->orderBy('id', 'desc');
+        return DataTables::of($quote)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+
+    
+
+
 }
