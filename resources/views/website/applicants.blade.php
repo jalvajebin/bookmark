@@ -9,64 +9,35 @@
         <div class="inner-banner-cntnt">
             <div class="banner-countries" data-aos="fade-up">
                 <div class="d-flex justify-content-center gap-2">
-                    <div class="">
-                        @foreach( $destinations as $key => $destination)
-                        <a href="#" class="country-box">
-                            <h6>{{ $destination->name }} <span>(54)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-                        @endforeach
-{{-- 
-                        <a href="#" class="country-box">
-                            <h6>Kuwait <span>(44)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
+                    @php
+                        $half = ceil($destinations->count() / 2);
+                        $leftDestinations = $destinations->slice(0, $half);
+                        $rightDestinations = $destinations->slice($half);
+                    @endphp
 
-                        <a href="#" class="country-box">
-                            <h6>Qatar <span>(26)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>Slovakia <span>(13)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>Hong Kong Sar <span>(16)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a> --}}
-                    </div>
-                    <div class="">
-                        <a href="#" class="country-box">
-                            <h6>United Arab Emirates <span>(54)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>Oman <span>(44)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>Saudi arabia <span>(26)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>Indonesia <span>(13)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
-
-                        <a href="#" class="country-box">
-                            <h6>More Countries <span>(16)</span></h6>
-                            <i class="fas fa-chevron-right"></i>
-                        </a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @foreach ($leftDestinations as $destination)
+                                <a href="#" class="country-box">
+                                    <h6>{{ $destination->name }} <span>({{ $destination->count ?? 0 }})</span></h6>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            @endforeach
+                        </div>
+                        <div class="col-md-6">
+                            @foreach ($rightDestinations as $destination)
+                                <a href="#" class="country-box">
+                                    <h6>{{ $destination->name }} <span>({{ $destination->count ?? 0 }})</span></h6>
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="more-buttons d-flex justify-content-center">
-                <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i
+                            class="fa-solid fa-arrow-right"></i></span></a>
             </div>
 
 
@@ -188,7 +159,8 @@
                         <p>Wherever you are in the world,
                             find your nearest contact point</p>
                         <div class="more-buttons">
-                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i
+                                        class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
                 </div>
@@ -199,7 +171,8 @@
                             support
                             your next teaching step.</p>
                         <div class="more-buttons">
-                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                            <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i
+                                        class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
                 </div>
