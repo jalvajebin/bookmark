@@ -48,11 +48,10 @@
                                     Applicants
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item {{ request()->routeIs('web.find-job.index') ? 'active' : '' }}"" href="{{ route('web.find-job.index') }}">Find a Job</a></li>
-                                    <li><a class="dropdown-item {{ request()->routeIs('web.applicants.submit-cv') ? 'active' : '' }} " href="{{ route('web.applicants.submit-cv') }}">Submit your CV</a></li>
-                                    <li><a class="dropdown-item {{ request()->routeIs('web.applicants.career-hub') ? 'active' : '' }}" href="{{ route('web.applicants.career-hub') }}">Career Hub</a></li>
-                                    <li><a class="dropdown-item {{ request()->routeIs('web.destination.index') ? 'active' : '' }}"
-                                            href='{{ route('web.destination.index') }}'>Destinations</a></li>
+                                    <li><a class="dropdown-item"  href="{{ route('web.find-job.index') }}">Find a Job</a></li>
+                                    <li><a class="dropdown-item"  href="{{ route('web.applicants.submit-cv') }}">Submit your CV</a></li>
+                                    <li><a class="dropdown-item"  href="{{ route('web.applicants.career-hub') }}">Career Hub</a></li>
+                                    <li><a class="dropdown-item"  href='{{ route('web.destination.index') }}'>Destinations</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
