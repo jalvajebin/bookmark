@@ -152,8 +152,7 @@
                                 </div>
                                 <div class="why-contents">
                                     <h3>{{ $counters->count1 ?? '8' }}</h3>
-                                    <h6>Offices
-                                        Worldwide</h6>
+                                    <h6>{{ $counters->count1_name ?? '8' }}</h6>
                                 </div>
                             </div>
                         </div>

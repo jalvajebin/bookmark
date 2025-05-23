@@ -42,7 +42,15 @@
         select.form-control.error {
             color: #212529;
         }
-        
+
+        .radio-group.error {
+            border: 1px solid #212529;
+            /* black border */
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            /* light grey background (optional) */
+        }
     </style>
     @stack('css')
 </head>
@@ -78,6 +86,7 @@
     <!-- Place these scripts right before closing body tag -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>

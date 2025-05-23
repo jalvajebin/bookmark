@@ -1,0 +1,98 @@
+<script>
+    var datatable;
+
+
+    function dataTable() {
+        $(function() {
+            datatable = $('#cvTable').DataTable({
+                
+                pageLength: 10,
+                processing: true,
+                serverSide: true,
+                responsive: false,
+                destroy: true,
+                searching: true,
+                ajax: {
+                    url: '{{ route('get.cv-appliaction') }}',
+                    type: "get",
+                    data: function(d) {
+
+                    }
+                },
+                "order": [
+                    [0, "desc"]
+                ],
+                "paging": true,
+                columns: [{
+                        data: 'id',
+                        name: "id",
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="contactIds" value="${data}"/> `;
+                        }
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone'
+                    },
+                    {
+                        data: 'email',
+                        name: "email"
+                    },
+                    {
+                        data: 'id',
+                        name: 'id',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            let messageBtn = '';
+                            if (row.message_id) {
+                                messageBtn = `<a href="#" onclick="checkEmail('${row.message_id}')" class="btn btn-sm btn-soft-primary">
+                                                            check Email Delivery
+                                                        </a>`;
+                            }
+
+                            return `<ul class="list-unstyled hstack gap-1 mb-0">
+                                                     <a href="#" onclick="deleteContactEnquiry(event,${data})" class="btn btn-sm btn-soft-danger">
+                                                        <i class="mdi mdi-delete-outline"></i>
+                                                        </a>
+                                                         ${messageBtn}
+                                                </ul>`;
+                        }
+                    }
+                ],
+                "initComplete": function() {
+                    var i = 0;
+                    var hasData = this.api().data().any();
+
+                    this.api().columns().every(function() {
+                        var column = this;
+                        if (i == 0) {
+                            var input =
+                                "<input  class='mulltiCheckBox' " +
+                                " type='checkbox'  style='text-align: center; width:20px;height:15px;margin-left:15px;'>" +
+                                "</input>";
+                            $(input).appendTo($(column.header()).empty())
+                                .on('change', function() {
+                                    if (this.checked) {
+                                        $(".contactIds:enabled").prop('checked',
+                                            'true');
+                                    } else {
+                                        $('.contactIds').prop('checked', false)
+                                            .removeAttr('checked');
+                                    }
+                                });
+                        }
+                        i++;
+
+                    });
+                }
+            });
+        });
+    }
+
+   
+</script>

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\HomeContactBannerController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SubmitCvController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
@@ -92,6 +93,22 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/{id}', [ContactController::class, 'getQuoteById'])->name('admin.quote.getbyid');
             Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
+
+         Route::group(['prefix' => 'submitCv'], function () {
+            Route::get('/', [SubmitCvController::class, 'index'])->name('submit-cv.index');
+            Route::get('/cv-applications', [SubmitCvController::class, 'getCvApplication'])->name('get.cv-appliaction');
+
+            // Route::post('update-contact', [ContactController::class, 'updateContact'])->name('admin.contact.add');
+        //     Route::post('update-social', [ContactController::class, 'updateSocial'])->name('admin.social.add');
+        //     Route::get('/get-contact-enquiry', [ContactController::class, 'getContactEnquiry'])->name('get.contact.enquiry');
+        //     Route::get('/get-request-quote', [ContactController::class, 'getRequestQuote'])->name('get.request.quote');
+        //     Route::match(['get', 'post'], 'contact-export', [ContactController::class, 'contactExport'])->name("contacts.export");
+        //     Route::match(['get', 'post'], 'quote-export', [ContactController::class, 'quoteExport'])->name("quote.export");
+        //     Route::post('/delete-enquiry', [ContactController::class, 'deleteContactEnquiry'])->name('contact.enquiry.delete');
+        //     Route::get('/{id}', [ContactController::class, 'getQuoteById'])->name('admin.quote.getbyid');
+        //     Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
+        });
+
 
 
         Route::group(['prefix' => 'services'], function () {
@@ -294,6 +311,7 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
 
 Route::post('/contact', [FormController::class, 'contact'])->name('request.contact')->middleware('throttle:3,1');
+Route::post('/cv-application', [FormController::class, 'cv'])->name('request.cv')->middleware('throttle:3,1');
 Route::post('/contact-enquiry', [FormController::class, 'contactEnquiry'])->name('contact.enquiry')->middleware('throttle:3,1');
 Route::post('/applyNow', [FormController::class, 'applyNow'])->name('applyNow')->middleware('throttle:3,1');
 Route::post('/request-a-demo', [FormController::class, 'requestADemo'])->name('requestADemo')->middleware('throttle:3,1');

@@ -24,9 +24,14 @@
                     <div class="top-hd-box mb-3">
                         <h5 class="card-title">Enquiry List</h5>
                         <div class="top-hd-box-right">
-                            {{-- <a href="javascript:void(0);" class="btn btn-success add-cntry"
-                                onclick="bannerAddForm(1)">Add
-                                Banner</a> --}}
+                            <div>
+                                <a href="{{ route('contacts.export') }}" class="btn btn-primary">Export
+                                    All</a>
+                                <a href="#" onclick="exportSelect(event)" class="btn btn-primary">Select &
+                                    Export</a>
+                                <a href="#" class="btn btn-danger"
+                                    onclick="deleteContactEnquiry(event)">Delete</a>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -35,8 +40,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
                                         <th>Email</th>
                                         <th>Message</th>
                                         <th>Actions</th>

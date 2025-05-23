@@ -72,6 +72,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('submit-cv*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('submit-cv.index') }}" class="waves-effect">
+                        <i class="fas fa-address-book"></i>
+                        <span key="t-dollar">Sumbit CV</span>
+                    </a>
+                </li>
+
                 {{-- <li class="{{ Request::is('email-settings*') ? 'mm-active' : '' }}">
                     <a href="{{ route('email.index') }}" class="waves-effect">
                         <i class="fas fa-envelope"></i>

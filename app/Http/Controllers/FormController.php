@@ -8,6 +8,7 @@ use App\Models\ContactEnquiry;
 use App\Models\LeaveComment;
 use App\Models\RequestDemo;
 use App\Models\RequestQuote;
+use App\Models\SubmitCvApplication;
 use App\Models\Subscriber;
 use App\Traits\EmailTrait;
 use Exception;
@@ -64,6 +65,56 @@ class FormController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Enquiry has been successfully submitted!'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Please try again!',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    public function cv(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'date' => 'required|date',
+            'gender' => 'required|in:male,female,Prefer not to say',
+            'email' => 'required|email:dns,rfc',
+            'phone' => 'required|string|min:8|max:14',
+            'passport' => 'required|string',
+            'birth_country' => 'required|string',
+            'current_country' => 'required|string|max:255',
+            // 'teaching_dstination' => 'required|string',
+            'undergrad_subject' => 'required|string',
+            'teaching_qualification_subject' => 'required|string',
+            // 'teaching_license' => 'required|string',
+            'current_job_title' => 'required|string|max:255',
+            'seeking_role' => 'required|string|max:255',
+            // 'international_experience' => 'required|in:Yes,No',
+            'cv' => 'required|file|mimes:pdf,doc,docx|max:2048', // max:2MB
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $data = $request->except(['_token']);
+            dd($data);
+            // Optionally handle file upload
+            if ($request->hasFile('cv')) {
+                $cvPath = $request->file('cv')->store('cvs', 'public');
+                $data['cv'] = $cvPath;
+            }
+
+            SubmitCvApplication::create($data);
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'CV has been successfully submitted!'
             ]);
         } catch (\Exception $e) {
             DB::rollBack();

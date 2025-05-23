@@ -56,7 +56,7 @@ class WhatwedoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'what_image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'what_image' => $request->what_we_do_id ? 'image|max:2048' : 'required|image|max:2048',
             'title_one' => 'nullable|string|max:255',
             'para_one' => 'nullable|string',
             'title_two' => 'nullable|string|max:255',

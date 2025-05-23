@@ -60,6 +60,7 @@
         .tab-list.active a {
             color: #14b0c4;
         }
+
         .tab-list a {
             font-size: 1rem;
             font-weight: 700;
@@ -126,13 +127,7 @@
                         <div class="card-body">
                             <ul class="d-flex align-items-center m-0 p-0" id="tabs-nav">
                                 <li class="tab-list">
-                                    <a href="#tab1" class="m-2">Banner</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab2" class="m-2">Contact Us</a>
-                                </li>
-                                <li class="tab-list" onclick="jalu(event)">
-                                    <a href="#tab3" class="m-2">Contact Enquiries</a>
+                                    <a href="#tab1" class="m-2">CV Applications</a>
                                 </li>
                             </ul>
                         </div>
@@ -141,30 +136,28 @@
             </div>
             <!-- end page list -->
             <div id="tabs-content">
-                @include('admin.contact.banner')
-                @include('admin.contact.contact')
-                @include('admin.contact.enquiry')
+                @include('admin.cv.cv-application')
+            </div>
         </div>
-    </div>
-    <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h3 class="modal-title">Email Delivery Details</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="deliveryContent">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close <i
-                            class="far fa-gem ml-1 white-text"></i></button>
+        <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h3 class="modal-title">Email Delivery Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="deliveryContent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close <i
+                                class="far fa-gem ml-1 white-text"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@section('js')
-@include('admin.contact.js.datatable')
-@include('admin.contact.js.script')
-@endsection
+    @endsection
+    @section('js')
+        @include('admin.cv.js.datatable')
+        @include('admin.cv.js.script')
+    @endsection
