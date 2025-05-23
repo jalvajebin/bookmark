@@ -26,7 +26,7 @@
       <div class="footer-col">
         <h4>Address</h4>
         <ul>
-          <li><a href="mailto:hello@bookmark.com"><strong>hello@bookmark.com</strong></a></li>
+          <li><a href=" {{ contactUs()->email }}"><strong> {{ contactUs()->email }} </strong></a></li>
           <li>{{ contactUs()->address }}</li>
           {{-- <li>West Java, Canada</li> --}}
         </ul>
