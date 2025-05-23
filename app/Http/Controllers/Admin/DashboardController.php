@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\CareerOpening;
 use App\Models\Country;
 use App\Models\Course;
+use App\Models\Job;
 use App\Models\NewsEvents;
 use App\Models\Portfolio;
 use App\Models\Product;
@@ -37,10 +38,11 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $logedUserData = auth()->user(); 
-       
-        // $blogs = Blog::where('status', 1)->count();
-        // $filterType = $request->input('filter', 'week');
-        return view('admin.dashboard.index', compact('logedUserData'));
+             
+        $blogs = Blog::where('status', 1)->count();
+        $jobs = Job::all()->count();
+
+        $filterType = $request->input('filter', 'week');
+        return view('admin.dashboard.index', compact('blogs','jobs'));
     }
 }

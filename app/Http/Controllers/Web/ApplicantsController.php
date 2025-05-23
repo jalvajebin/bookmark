@@ -101,8 +101,9 @@ class ApplicantsController extends Controller
 
     public function submitCv()
     {
+         $destinations = Destination::all();
 
-        return view('website.submit-cv');
+        return view('website.submit-cv', compact('destinations'));
     }
 
     public function careerHub()

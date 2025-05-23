@@ -20,6 +20,17 @@
          });
      });
 
+     $('#testimonialModal').on('hidden.bs.modal', function() {
+         $('#ImagePreview').attr('src', '/admin/images/no-image.png');
+
+         $('.testimonial_id').val('');
+         $('.date').val('');
+         $('.heading').val('').trigger('change');
+         $('.description').val('').trigger('change');
+         $('.alt').val('').trigger('change');
+     });
+
+
      function triggerBanner1FileInput() {
          document.getElementById('banner1-input').click();
      }

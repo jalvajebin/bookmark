@@ -31,32 +31,34 @@ class FormController extends Controller
         // }
     }
 
-    public function requestAQuote(Request $request)
+    public function contact(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email:dns,rfc',
             'phone' => 'required|min:8|max:14',
+            'subject' => 'required',
             'message' => 'required',
         ]);
 
         DB::beginTransaction();
 
         try {
-            $data = $request->except(['_token', 'g-recaptcha-response']);
-            $quote = RequestQuote::create($data);
-            $data['email_subject'] = 'Request a quote from ' . $data['name'];
-            $data['email_to'] = $this->getAddress('to', 'Request A Quote');
-            $data['email_cc'] = $this->getAddress('cc', 'Request A Quote');
-            $data['email_bcc'] = $this->getAddress('bcc', 'Request A Quote');
-            $data['html'] = view("email.email", ['data' => $data])->render();
-            $response = $this->sendEmail($data);
-            if (is_string($response)) {
-                $response = json_decode($response, true);
-            }
-            if (isset($response['id'])) {
-                $quote->message_id = $response['id'];
-            }
+            // $data = $request->except(['_token', 'g-recaptcha-response']);
+            $data = $request->except(['_token']);
+            $quote = ContactEnquiry::create($data);
+            // $data['email_subject'] = 'Request a quote from ' . $data['name'];
+            // $data['email_to'] = $this->getAddress('to', 'Request A Quote');
+            // $data['email_cc'] = $this->getAddress('cc', 'Request A Quote');
+            // $data['email_bcc'] = $this->getAddress('bcc', 'Request A Quote');
+            // $data['html'] = view("email.email", ['data' => $data])->render();
+            // $response = $this->sendEmail($data);
+            // if (is_string($response)) {
+            //     $response = json_decode($response, true);
+            // }
+            // if (isset($response['id'])) {
+            //     $quote->message_id = $response['id'];
+            // }
             $quote->save();
             DB::commit();
             return response()->json([
@@ -83,7 +85,7 @@ class FormController extends Controller
         //     'message' => 'required'
         // ]);
 
-         $request->validate([
+        $request->validate([
             'type' => 'required|in:seeker,client',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -160,7 +162,7 @@ class FormController extends Controller
 
     public function leaveAComment(Request $request)
     {
-    //  dd($request->all());
+        //  dd($request->all());
         $request->validate([
             'name' => 'required',
             'email' => 'required|email:dns,rfc',

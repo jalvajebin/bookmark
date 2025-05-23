@@ -265,7 +265,7 @@
                                 data.message,
                                 'success'
                             )
-                            $('#contactEnquiryTable').DataTable().ajax.reload();
+                            $('#enquiryTable').DataTable().ajax.reload();
                             $('.contactIds').prop('checked', false).removeAttr('checked');
                             alertMessage(message, 'success');
                         } else {

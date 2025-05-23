@@ -98,13 +98,11 @@
                             <label for="birth_country">What country were you born in? <span>*</span></label>
                             <select name="birth_country" class="form-control" required>
                                 <option value="" selected disabled>Please Select</option>
-                                <option value="American">America</option>
-                                <option value="Australian">Australia</option>
-                                <option value="Canadian">Canada</option>
-                                <option value="European Union nation">Ireland</option>
-                                <option value="New Zealander">New Zealand</option>
-                                <option value="South African">South Africa</option>
-                                <option value="Other">Other</option>
+                                @foreach ($destinations as $key => $destination)
+                                    <option value="{{ $destination->id }}">{{ $destination->name }}</option>
+                                @endforeach
+                                <option value="other"> Other </option>
+
                             </select>
                             <span class="focus-border"></span>
                             <span class="birth_country-validation error-validation" style="color:red;"></span>
@@ -120,43 +118,20 @@
                         <div class="form-group cv-form">
                             <label>What destinations are you interested in teaching in? <span>*</span></label>
                             <div class="radio-group">
+                                @foreach ($destinations as $key => $destination)
+                                    <label class="custom-radio square">
+                                        <input type="radio" name="teaching_dstination" value="{{ $destination->id }}"
+                                            required>
+                                        <span class="radio-checkmark"></span>
+                                        <span class="radio-label">{{ $destination->name }}</span>
+                                    </label>
+                                @endforeach
                                 <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="Australia" required>
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">Australia</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination"
-                                        value="UK (QTS/GTC/EWC registered)">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">UK (QTS/GTC/EWC registered)</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination"
-                                        value="Canada (Provincial Licence Holder)">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">Canada (Provincial Licence Holder)</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="South Africa">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">South Africa</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="New Zealand">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">New Zealand</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="US (State Licence Holder)">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">US (State Licence Holder)</span>
-                                </label>
-                                <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="Other">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">Other</span>
-                                </label>
+                                        <input type="radio" name="teaching_dstination" value="Other"
+                                            required>
+                                        <span class="radio-checkmark"></span>
+                                        <span class="radio-label">Other</span>
+                                    </label>
                             </div>
                             <span class="teaching_destination-validation error-validation" style="color:red;"></span>
                         </div>
@@ -180,52 +155,20 @@
                         </div>
 
                         <div class="form-group cv-form">
-                            <label>Please can you confirm where you are licensed to teach? [Select all that
-                                apply]<span>*</span></label>
-                            <div class="checkbox-group">
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]" value="Australia" required>
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">Australia</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]"
-                                        value="UK (QTS/GTC/EWC registered)">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">UK (QTS/GTC/EWC registered)</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]"
-                                        value="Canada (Provincial Licence Holder)">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">Canada (Provincial Licence Holder)</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]" value="South Africa">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">South Africa</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]" value="New Zealand">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">New Zealand</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]" value="US (State Licence Holder)">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">US (State Licence Holder)</span>
-                                </label>
-                                <label class="custom-checkbox square">
-                                    <input type="checkbox" name="licensed_to_teach[]" value="Other">
-                                    <span class="checkbox-checkmark"></span>
-                                    <span class="checkbox-label">Other</span>
-                                </label>
+                            <label>Please can you confirm where you are licensed to teach?
+                                <span>*</span></label>
+                            <div class="radio-group">
+                                @foreach ($destinations as $key => $destination)
+                                    <label class="custom-radio square">
+                                        <input type="radio" name="teaching_license" value="{{ $destination->id }}"
+                                            required>
+                                        <span class="radio-checkmark"></span>
+                                        <span class="radio-label">{{ $destination->name }}</span>
+                                    </label>
+                                @endforeach
                             </div>
-                            <span class="licensed_to_teach-validation error-validation" style="color:red;"></span>
                         </div>
-
                         <!-- ... previous form fields ... -->
-
                         <div class="form-group cv-form">
                             <label for="current_job_title">What is your current job title? <span>*</span></label>
                             <input name="current_job_title" type="text" class="form-control" required>
@@ -258,9 +201,6 @@
                         </div>
 
                         <!-- Submit button and closing tags -->
-
-
-
                         <div class="form-group cv-form">
                             <label for="cv">Please upload your CV <span>*</span></label>
                             <input name="cv" type="file" class="form-control" required>

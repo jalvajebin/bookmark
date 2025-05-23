@@ -83,34 +83,39 @@
                     <div class="col-lg-7" data-aos="fade-left">
                         <div class="contact-form">
                             <form id="contactForm">
-
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <select class="form-control" required>
+                                        <div class="required_item">
+                                            <select name="type" class="form-control" required>
                                                 <option value="" selected disabled>Are you a job seeker or client
                                                 </option>
                                                 <option value="seeker">Job Seeker</option>
                                                 <option value="client">Client</option>
                                             </select>
-                                            <span class="focus-border"></span>
                                         </div>
+                                        <span class="type-validation error"></span>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="First Name" required>
-                                            <span class="focus-border"></span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="required_item">
+                                            <input type="text" name="name" class="form-control" placeholder="Name"
+                                                required>
                                         </div>
+                                        <span class="name-validation error"></span>
                                     </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name" required>
-                                            <span class="focus-border"></span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="required_item">
+                                            <input type="tel" name="phone" class="form-control" placeholder="Phone"
+                                                required pattern="[0-9]{10,}">
                                         </div>
+                                        <span class="phone-validation error"></span>
                                     </div>
-
-                                    <div class="col-lg-6">
+                                </div>
+                                {{-- <div class="col-lg-6">
                                         <div class="form-group">
                                             <select class="form-control" name="country" required>
                                                 <option value="" selected disabled>Select Country</option>
@@ -140,41 +145,49 @@
                                             </select>
                                             <span class="focus-border"></span>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email*" required>
-                                            <span class="focus-border"></span>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="required_item">
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Your Email*" required>
                                         </div>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Subject" required>
-                                            <span class="focus-border"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" placeholder="Your Message*" rows="5" required></textarea>
-                                            <span class="focus-border"></span>
-                                        </div>
+                                        <span class="email-validation error"></span>
                                     </div>
                                 </div>
 
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="required_item">
+                                            <input type="text" name="subject" class="form-control" placeholder="Subject"
+                                                required>
+                                        </div>
+                                        <span class="subject-validation error"></span>
+                                    </div>
+                                </div>
 
-                                <button type="submit" class="submit-btn">
-                                    <span>Send Message</span>
-                                    <i class="fas fa-paper-plane"></i>
-                                </button>
-                            </form>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="required_item">
+                                            <textarea class="form-control" name="message" placeholder="Your Message*" rows="5" required></textarea>
+                                        </div>
+                                        <span class="message-validation error"></span>
+                                    </div>
+                                </div>
                         </div>
+
+
+                        <button type="submit" id="submitButton" class="submit-btn" onclick="submitEnquiry(event)">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
 
 
 
@@ -186,6 +199,135 @@
             duration: 2000,
             once: false
         });
+    </script>
+    <script>
+        $.validator.addMethod("phone", function(value, element) {
+            return this.optional(element) || /^[0-9\-\+\s\(\)]+$/.test(value);
+        }, "Please enter a valid phone number");
+    </script>
+
+    <script>
+        function submitEnquiry(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $("#loader").show();
+
+            $('#contactForm').validate({
+                rules: {
+                    type: {
+                        required: true,
+                    },
+                    name: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
+                        required: true,
+                        phone: true
+                    },
+                    subject: {
+                        required: true
+                    },
+                    message: {
+                        required: true
+                    }
+                },
+                messages: {
+                    type: {
+                        required: "Type is required",
+                    },
+                    name: {
+                        required: "Name is required",
+                    },
+                    email: {
+                        required: "Email Address is required",
+                    },
+                    phone: {
+                        required: "Phone no is required",
+                    },
+                    subject: {
+                        required: "Subject is required",
+                    },
+                    message: {
+                        required: "Message is required"
+                    }
+                },
+                errorElement: "span",
+                errorPlacement: function(error, element) {
+                    error.insertAfter($(element).closest('.required_item'));
+                }
+            });
+            if ($('#contactForm').valid()) {
+                $(".error").html('');
+                $("#submitButton").text("Storing...");
+
+                var formData = new FormData($("#contactForm")[0]);
+
+                $.ajax({
+                    url: "{{ route('request.contact') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        $(".error").html("");
+                        $("#loader").hide();
+                        $("#submitButton").text("Submit");
+
+                        if (response.success === true) {
+                            $("#contactForm")[0].reset();
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.success(response.message);
+                        } else {
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.error(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        $("#loader").hide();
+                        $("#submitButton").text("Submit");
+
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            const errors = xhr.responseJSON.errors;
+                            if (errors.type) {
+                                $(".type-validation").html(errors.type[0]);
+                            }
+                            if (errors.name) {
+                                $(".name-validation").html(errors.name[0]);
+                            }
+                            if (errors.email) {
+                                $(".email-validation").html(errors.email[0]);
+                            }
+                            if (errors.email) {
+                                $(".phone-validation").html(errors.email[0]);
+                            }
+                            if (errors.subject) {
+                                $(".subject-validation").html(errors.subject[0]);
+                            }
+                            if (errors.email) {
+                                $(".message-validation").html(errors.email[0]);
+                            }
+
+                        } else {
+                            alertify.set('notifier', 'position', 'top-center');
+                            alertify.set('notifier', 'delay', 2);
+                            alertify.error("Something went wrong. Try again!");
+                        }
+                    }
+                });
+            } else {
+                $("#loader").hide();
+
+            }
+        }
     </script>
 
     <script>

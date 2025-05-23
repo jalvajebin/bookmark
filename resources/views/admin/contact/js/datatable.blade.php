@@ -33,12 +33,12 @@
                         }
                     },
                     {
-                        data: 'first_name',
-                        name: 'first_name'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
-                        data: 'last_name',
-                        name: 'last_name'
+                        data: 'phone',
+                        name: 'phone'
                     },
                     {
                         data: 'email',
@@ -109,7 +109,6 @@
                 }
             });
         });
-
     }
 
     function dataTable1() {

@@ -34,6 +34,15 @@
             color: inherit;
             /* Keeps the title color same as parent */
         }
+
+        .error {
+            color: red;
+        }
+
+        select.form-control.error {
+            color: #212529;
+        }
+        
     </style>
     @stack('css')
 </head>
