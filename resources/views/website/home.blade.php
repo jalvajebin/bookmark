@@ -295,7 +295,7 @@
                                     <div class="job-info">
                                         <h3>{{ $job->title }}</h3>
                                         <p>{{ $job->company_name }}&bull; <span
-                                                class="location">{{ $job->location }}</span></p>
+                                                class="location">{{ $job->locationModel->title }}</span></p>
                                         <div class="job-tags">
                                             <span class="tag active"> {{ $job->job_type }} </span>
                                         </div>
