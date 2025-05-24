@@ -115,25 +115,24 @@
                                 <span class="current_country-validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
-                        <div class="form-group cv-form required_item">
-                            <label>What destinations are you interested in teaching in? <span>*</span></label>
-                            <div class="w-100">
-                                <div class="radio-group">
-                                    @foreach ($destinations as $key => $destination)
-                                        <label class="custom-radio square">
-                                            <input type="radio" name="teaching_destination" value="{{ $destination->id }}"
-                                                required>
-                                            <span class="radio-checkmark"></span>
-                                            <span class="radio-label">{{ $destination->name }}</span>
-                                        </label>
-                                    @endforeach
+                        <div class="form-group cv-form">
+                            <label>What destinations are you interested in teaching in?</label>
+                            {{-- <div class="w-100"> --}}
+                            <div class="radio-group">
+                                @foreach ($destinations as $key => $destination)
                                     <label class="custom-radio square">
-                                        <input type="radio" name="teaching_destination" value="Other" required>
+                                        <input type="radio" name="teaching_destination" value="{{ $destination->id }}">
                                         <span class="radio-checkmark"></span>
-                                        <span class="radio-label">Other</span>
+                                        <span class="radio-label">{{ $destination->name }}</span>
                                     </label>
-                                </div>
-                                <span class="teaching_destination-validation error-validation" style="color:red;"></span>
+                                @endforeach
+                                <label class="custom-radio square">
+                                    <input type="radio" name="teaching_destination" value="Other">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">Other</span>
+                                </label>
+                                {{-- </div> --}}
+                                {{-- <span class="teaching_destination-validation error-validation" style="color:red;"></span> --}}
                             </div>
                         </div>
                         <div class="form-group cv-form required_item">
@@ -157,18 +156,17 @@
 
                         <div class="form-group cv-form">
                             <label>Please can you confirm where you are licensed to teach?
-                                <span>*</span></label>
+                            </label>
                             <div class="radio-group">
                                 @foreach ($destinations as $key => $destination)
                                     <label class="custom-radio square">
-                                        <input type="radio" name="teaching_license" value="{{ $destination->id }}"
-                                            required>
+                                        <input type="radio" name="teaching_destination" value="{{ $destination->id }}">
                                         <span class="radio-checkmark"></span>
                                         <span class="radio-label">{{ $destination->name }}</span>
                                     </label>
                                 @endforeach
                                 <label class="custom-radio square">
-                                    <input type="radio" name="teaching_dstination" value="Other" required>
+                                    <input type="radio" name="teaching_destination" value="Other">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">Other</span>
                                 </label>
@@ -186,16 +184,16 @@
                         <div class="form-group cv-form">
                             <label for="seeking_role">What role are you seeking? <span>*</span></label>
                             <div class="w-100">
-                            <input name="seeking_role" type="text" class="form-control" required>
-                            <span class="seeking_role-validation error-validation" style="color:red;"></span>
+                                <input name="seeking_role" type="text" class="form-control" required>
+                                <span class="seeking_role-validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
 
                         <div class="form-group cv-form">
-                            <label>Do you have international teaching experience? <span>*</span></label>
+                            <label>Do you have international teaching experience? </label>
                             <div class="radio-group">
                                 <label class="custom-radio square">
-                                    <input type="radio" name="international_experience" value="Yes" required>
+                                    <input type="radio" name="international_experience" value="Yes">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">Yes</span>
                                 </label>
@@ -205,8 +203,10 @@
                                     <span class="radio-label">No</span>
                                 </label>
                             </div>
-                            <span class="international_experience-validation error-validation" style="color:red;"></span>
+                            {{-- Optional: remove this validation message span if not needed --}}
+                            {{-- <span class="international_experience-validation error-validation" style="color:red;"></span> --}}
                         </div>
+
                         <!-- Submit button and closing tags -->
                         <div class="form-group cv-form">
                             <label for="cv">Please upload your CV <span>*</span></label>
@@ -214,10 +214,9 @@
                                 <input name="cv" type="file" class="form-control" required>
                                 <span class="cv-validation error-validation" style="color:red;"></span>
                             </div>
-                            </div>
-
-                            <button type="submit" id="" class="btn btn-primary"
-                                onclick="submitCv(event)">Submit</button>
+                        </div>
+                        <button type="submit" id="" class="btn btn-primary"
+                            onclick="submitCv(event)">Submit</button>
                     </form>
                 </div>
             </div>
@@ -319,9 +318,7 @@
                         current_country: {
                             required: true
                         },
-                        teaching_dstination: {
-                            required: true
-                        },
+
                         undergrad_subject: {
                             required: true
                         },
@@ -335,9 +332,6 @@
                             required: true
                         },
                         seeking_role: {
-                            required: true
-                        },
-                        international_experience: {
                             required: true
                         },
                         cv: {
@@ -372,17 +366,12 @@
                         current_country: {
                             required: "Current country is required"
                         },
-                        teaching_dstination: {
-                            required: "Please select a teaching destination"
-                        },
+
                         undergrad_subject: {
                             required: "Undergraduate subject is required"
                         },
                         teaching_qualification_subject: {
                             required: "Teaching qualification subject is required"
-                        },
-                        teaching_license: {
-                            required: "Please select where you are licensed to teach"
                         },
                         current_job_title: {
                             required: "Current job title is required"
@@ -390,9 +379,7 @@
                         seeking_role: {
                             required: "Seeking role is required"
                         },
-                        international_experience: {
-                            required: "Please specify if you have international teaching experience"
-                        },
+
                         cv: {
                             required: "Please upload your CV",
                             extension: "Allowed file types: pdf, doc, docx"
@@ -467,9 +454,7 @@
                                 if (errors.current_country) {
                                     $(".current_country-validation").html(errors.current_country[0]);
                                 }
-                                if (errors.teaching_dstination) {
-                                    $(".teaching_destination-validation").html(errors.teaching_dstination[0]);
-                                }
+
                                 if (errors.undergrad_subject) {
                                     $(".undergrad_subject-validation").html(errors.undergrad_subject[0]);
                                 }
@@ -486,10 +471,7 @@
                                 if (errors.seeking_role) {
                                     $(".seeking_role-validation").html(errors.seeking_role[0]);
                                 }
-                                if (errors.international_experience) {
-                                    $(".international_experience-validation").html(errors.international_experience[
-                                        0]);
-                                }
+
                                 if (errors.cv) {
                                     $(".cv-validation").html(errors.cv[0]);
                                 }
