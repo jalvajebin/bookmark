@@ -1,6 +1,8 @@
 <script>
     $(document).ready(function() {
         dataTable();
+        dataTable1();
+
 
         $('#tabs-nav li:first-child').addClass('active');
         $('.tab-content').hide();

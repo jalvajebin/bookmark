@@ -1,13 +1,13 @@
-<div id="tab1" class="tab-content"> <!-- start page title -->
+<div id="tab2" class="tab-content"> <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4>CV Applications</h4>
+                <h4>Post Vacancy Applications</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">CV Applications</li>
+                        <li class="breadcrumb-item active">Post Vacancy Applications</li>
                     </ol>
                 </div>
 
@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="top-hd-box mb-3">
-                        <h5 class="card-title">CV Applications List</h5>
+                        <h5 class="card-title">Post Vacancy Applications List</h5>
                         {{-- <button onclick="jalu(event)">ddf</button> --}}
                         <div class="top-hd-box-right">
                             <a href="{{ route('applications.export') }}" class="btn btn-primary">Export
@@ -32,24 +32,22 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 tbl-res">
-                            <table id="cvTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
+                            <table id="postVacancyTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Date of Birth</th>
-                                        <th>Gender</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Passport</th>
-                                        <th>Birth Country</th>
-                                        <th>Current Country</th>
-                                        <th>Undergrad Subject</th>
-                                        <th>Teaching Qualification Subject</th>
-                                        <th>Current Job Title</th>
-                                        <th>Seeking Role</th>
-                                        <th>International Experience</th>
-                                        <th>CV/Resume</th>
+                                        <th>SL.NO</th>
+                                        <th>Company Name</th>
+                                        <th>School Name</th>
+                                        <th>Full Name</th>
+                                        <th>Job Title</th>
+                                        <th>Website Address</th>
+                                        <th>City</th>
+                                        <th>Country</th>
+                                        <th>Email Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Curriculum</th>
+                                        <th>No. of Vacancies</th>
+                                        <th>Privacy Notice Accepted</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>

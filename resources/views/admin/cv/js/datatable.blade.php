@@ -1,5 +1,7 @@
 <script>
     var datatable;
+    var datatable1;
+
 
 
     function dataTable() {
@@ -95,6 +97,141 @@
                             }
                         }
                     },
+
+                    {
+                        data: 'id',
+                        name: 'id',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            let messageBtn = '';
+                            // if (row.message_id) {
+                            //     messageBtn = `<a href="#" onclick="checkEmail('${row.message_id}')" class="btn btn-sm btn-soft-primary">
+                            //                                 check Email Delivery
+                            //                             </a>`;
+                            // }
+
+                            return `<ul class="list-unstyled hstack gap-1 mb-0">
+                                                     <a href="#" onclick="deleteApplication(event,${data})" class="btn btn-sm btn-soft-danger">
+                                                        <i class="mdi mdi-delete-outline"></i>
+                                                        </a>
+                                                         ${messageBtn}
+                                                </ul>`;
+                        }
+                    }
+                ],
+                "initComplete": function() {
+                    var i = 0;
+                    var hasData = this.api().data().any();
+
+                    this.api().columns().every(function() {
+                        var column = this;
+                        if (i == 0) {
+                            var input =
+                                "<input  class='mulltiCheckBox' " +
+                                " type='checkbox'  style='text-align: center; width:20px;height:15px;margin-left:15px;'>" +
+                                "</input>";
+                            $(input).appendTo($(column.header()).empty())
+                                .on('change', function() {
+                                    if (this.checked) {
+                                        $(".applicationIds:enabled").prop('checked',
+                                            'true');
+                                    } else {
+                                        $('.contactIds').prop('checked', false)
+                                            .removeAttr('checked');
+                                    }
+                                });
+                        }
+                        i++;
+
+                    });
+                }
+            });
+        });
+    }
+
+
+
+    function dataTable1() {
+        $(function() {
+            datatable = $('#postVacancyTable').DataTable({
+
+                pageLength: 10,
+                processing: true,
+                serverSide: true,
+                responsive: false,
+                destroy: true,
+                searching: true,
+                ajax: {
+                    url: '{{ route('get.vacancy-appliaction') }}',
+                    type: "get",
+                    data: function(d) {
+
+                    }
+                },
+                "order": [
+                    [0, "desc"]
+                ],
+                "paging": true,
+                columns: [{
+                        data: 'id',
+                        name: "id",
+                        orderable: false,
+                        render: function(data, type, row) {
+                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="applicationIds" value="${data}"/> `;
+                        }
+                    },
+                    {
+                        data: 'company_name',
+                        name: 'company_name'
+                    },
+                    {
+                        data: 'school_name',
+                        name: 'school_name'
+                    },
+                    {
+                        data: 'name', // First name
+                        name: 'name'
+                    },
+                    {
+                        data: 'job_title',
+                        name: 'job_title'
+                    },
+                    {
+                        data: 'address', // Website address stored as text
+                        name: 'address'
+                    },
+                    {
+                        data: 'city',
+                        name: 'city'
+                    },
+                    {
+                        data: 'country',
+                        name: 'country'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone'
+                    },
+                    {
+                        data: 'curriculum',
+                        name: 'curriculum'
+                    },
+                    {
+                        data: 'vacancy',
+                        name: 'vacancy'
+                    },
+                    {
+                        data: 'privacy_notice_accepted',
+                        name: 'privacy_notice_accepted',
+                        render: function(data, type, row) {
+                            return data ? 'Accepted' : 'Not Accepted';
+                        }
+                    },
+
 
                     {
                         data: 'id',

@@ -6,6 +6,7 @@ use App\CustomFunction\CaptchaClass;
 use App\Models\CareerApplication;
 use App\Models\ContactEnquiry;
 use App\Models\LeaveComment;
+use App\Models\PostVacancyApplication;
 use App\Models\RequestDemo;
 use App\Models\RequestQuote;
 use App\Models\SubmitCvApplication;
@@ -125,6 +126,46 @@ class FormController extends Controller
         }
     }
 
+    public function postVacancy(Request $request)
+    {
+        $request->validate([
+            'school_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'job_title' => 'required|string|max:255',
+            'address' => 'required|string',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'email' => 'required|email:dns,rfc',
+            'phone' => 'required|string|min:8|max:14',
+            'curriculum' => 'required|string|max:255',
+            'vacancy' => 'required|integer|min:1',
+            'privacy_notice_accepted' => 'required|boolean',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $data = $request->except(['_token']);
+
+            PostVacancyApplication::create($data);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Vacancy has been successfully posted!',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Submission failed. Please try again!',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function contactEnquiry(Request $request)
     {
         // $request->validate([
@@ -174,41 +215,7 @@ class FormController extends Controller
         }
     }
 
-    public function requestADemo(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email:dns,rfc',
-            'looking_for' => 'required',
-            'phone' => 'required | min:8 | max:14',
-            'message' => 'required'
-        ]);
 
-        DB::beginTransaction();
-        try {
-            $data = $request->except([
-                "_token",
-                "g-recaptcha-response"
-            ]);
-            $career = RequestDemo::create($data);
-            DB::commit();
-            $data['email_subject'] = 'Request A Demo from' . ' ' . $request->name;
-            $to = $this->getAddress('to', 'Request A Quote');
-            $cc =  $this->getAddress('cc', 'Request A Quote');
-            $bcc =  $this->getAddress('bcc', 'Request A Quote');
-            $data['email_to'] = $to;
-            $data['email_cc'] = $cc;
-            $data['email_bcc'] = $bcc;
-            $data['html'] = view("email.email", [
-                'data' => $data
-            ])->render();
-            $this->sendEmail($data);
-            return response()->json(['success' => true, 'message' => 'Application Submitted Successfully!']);
-        } catch (Exception $e) {
-            DB::rollBack();
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
-        }
-    }
 
     public function leaveAComment(Request $request)
     {

@@ -72,10 +72,10 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('submit-cv*') ? 'mm-active' : '' }}">
+                <li class="{{ Request::is('applications*') ? 'mm-active' : '' }}">
                     <a href="{{ route('submit-cv.index') }}" class="waves-effect">
                         <i class="fas fa-address-book"></i>
-                        <span key="t-dollar">Sumbit CV</span>
+                        <span key="t-dollar">Applications</span>
                     </a>
                 </li>
 

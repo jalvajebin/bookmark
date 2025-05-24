@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\WhyWorkWithController;
 use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\HomeContactBannerController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PostVacancyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubmitCvController;
 use App\Http\Controllers\FormController;
@@ -94,12 +95,13 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
 
-        Route::group(['prefix' => 'submitCv'], function () {
+        Route::group(['prefix' => 'applications'], function () {
             Route::get('/', [SubmitCvController::class, 'index'])->name('submit-cv.index');
             Route::get('/cv-applications', [SubmitCvController::class, 'getCvApplication'])->name('get.cv-appliaction');
             Route::match(['get', 'post'], 'application-export', [SubmitCvController::class, 'applicationExport'])->name("applications.export");
-
             Route::post('/delete-application', [SubmitCvController::class, 'deleteApplication'])->name('application.cv.delete');
+            Route::get('/vacancy-applications', [PostVacancyController::class, 'getVacancyApplication'])->name('get.vacancy-appliaction');
+
 
 
             // Route::post('update-contact', [ContactController::class, 'updateContact'])->name('admin.contact.add');
@@ -314,6 +316,8 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
 Route::post('/contact', [FormController::class, 'contact'])->name('request.contact')->middleware('throttle:3,1');
 Route::post('/cv-application', [FormController::class, 'cv'])->name('request.cv')->middleware('throttle:3,1');
+Route::post('/vacancy-application', [FormController::class, 'postVacancy'])->name('request.vacancy')->middleware('throttle:3,1');
+
 Route::post('/contact-enquiry', [FormController::class, 'contactEnquiry'])->name('contact.enquiry')->middleware('throttle:3,1');
 Route::post('/applyNow', [FormController::class, 'applyNow'])->name('applyNow')->middleware('throttle:3,1');
 Route::post('/request-a-demo', [FormController::class, 'requestADemo'])->name('requestADemo')->middleware('throttle:3,1');

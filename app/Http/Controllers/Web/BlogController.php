@@ -19,8 +19,8 @@ class BlogController extends Controller
         $categoryTerm = request()->category;
         $tagTerm = request()->tag;
         $blogs = Blog::query()
-        ->whereDate('date', '<=', Carbon::now())
-        ->where('status', 1);
+            ->whereDate('date', '<=', Carbon::now())
+            ->where('status', 1);
         $banner = Banner::where('page', 'destination')->first();
 
 
@@ -69,8 +69,7 @@ class BlogController extends Controller
         $blogCount = Blog::where('status', 1)->count();
         $categories = BlogCategory::where('status', 1)->inRandomOrder()->limit(8)->get();
         $popularPost = Blog::orderBy('id', 'DESC')->where('status', 1)->where('slug', '!=', $slug)->inRandomOrder()->limit(6)->get();
-        $tags = Tag::orderBy('id', 'DESC')->where('status', '1')->inRandomOrder()->take(10)->get();
-        // $seo = Seo::where('page', 'blog')->first();
+        $tags = $blog->tags()->where('status', '1')->inRandomOrder()->take(10)->get();        // $seo = Seo::where('page', 'blog')->first();
         return view('website.blog-detail', compact('blog', 'categories', 'popularPost', 'tags', 'blogCount', 'blogRecents'));
     }
 }

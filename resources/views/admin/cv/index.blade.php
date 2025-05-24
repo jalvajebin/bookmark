@@ -129,6 +129,9 @@
                                 <li class="tab-list">
                                     <a href="#tab1" class="m-2">CV Applications</a>
                                 </li>
+                                <li class="tab-list">
+                                    <a href="#tab2" class="m-2">Post a vacancy Applications</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -137,6 +140,8 @@
             <!-- end page list -->
             <div id="tabs-content">
                 @include('admin.cv.cv-application')
+                @include('admin.cv.post-vacancy-application')
+
             </div>
         </div>
         <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
