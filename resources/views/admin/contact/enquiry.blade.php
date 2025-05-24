@@ -43,6 +43,7 @@
                                         <th>Name</th>
                                         <th>Phone</th>
                                         <th>Email</th>
+                                        <th>Subject</th>
                                         <th>Message</th>
                                         <th>Actions</th>
                                     </tr>
@@ -52,13 +53,9 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>

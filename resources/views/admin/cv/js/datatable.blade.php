@@ -5,7 +5,7 @@
     function dataTable() {
         $(function() {
             datatable = $('#cvTable').DataTable({
-                
+
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
@@ -28,7 +28,7 @@
                         name: "id",
                         orderable: false,
                         render: function(data, type, row) {
-                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="contactIds" value="${data}"/> `;
+                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="applicationIds" value="${data}"/> `;
                         }
                     },
                     {
@@ -36,27 +36,80 @@
                         name: 'name'
                     },
                     {
+                        data: 'date',
+                        name: 'date'
+                    },
+                    {
+                        data: 'gender',
+                        name: 'gender'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
                         data: 'phone',
                         name: 'phone'
                     },
                     {
-                        data: 'email',
-                        name: "email"
+                        data: 'passport',
+                        name: 'passport'
                     },
+                    {
+                        data: 'birth_country',
+                        name: 'birth_country'
+                    },
+                    {
+                        data: 'current_country',
+                        name: 'current_country'
+                    },
+                    {
+                        data: 'undergrad_subject',
+                        name: 'undergrad_subject'
+                    },
+                    {
+                        data: 'teaching_qualification_subject',
+                        name: 'teaching_qualification_subject'
+                    },
+                    {
+                        data: 'current_job_title',
+                        name: 'current_job_title'
+                    },
+                    {
+                        data: 'seeking_role',
+                        name: 'seeking_role'
+                    },
+                    {
+                        data: 'international_experience',
+                        name: 'international_experience'
+                    },
+                    {
+                        data: 'cv',
+                        name: 'cv',
+                        orderable: false,
+                        render: function(data, type, row) {
+                            if (data) {
+                                return `<a href="/storage/${data}" target="_blank" class="btn btn-sm btn-info">View CV</a>`;
+                            } else {
+                                return '<span class="text-muted">No CV</span>';
+                            }
+                        }
+                    },
+
                     {
                         data: 'id',
                         name: 'id',
                         orderable: false,
                         render: function(data, type, row) {
                             let messageBtn = '';
-                            if (row.message_id) {
-                                messageBtn = `<a href="#" onclick="checkEmail('${row.message_id}')" class="btn btn-sm btn-soft-primary">
-                                                            check Email Delivery
-                                                        </a>`;
-                            }
+                            // if (row.message_id) {
+                            //     messageBtn = `<a href="#" onclick="checkEmail('${row.message_id}')" class="btn btn-sm btn-soft-primary">
+                            //                                 check Email Delivery
+                            //                             </a>`;
+                            // }
 
                             return `<ul class="list-unstyled hstack gap-1 mb-0">
-                                                     <a href="#" onclick="deleteContactEnquiry(event,${data})" class="btn btn-sm btn-soft-danger">
+                                                     <a href="#" onclick="deleteApplication(event,${data})" class="btn btn-sm btn-soft-danger">
                                                         <i class="mdi mdi-delete-outline"></i>
                                                         </a>
                                                          ${messageBtn}
@@ -78,7 +131,7 @@
                             $(input).appendTo($(column.header()).empty())
                                 .on('change', function() {
                                     if (this.checked) {
-                                        $(".contactIds:enabled").prop('checked',
+                                        $(".applicationIds:enabled").prop('checked',
                                             'true');
                                     } else {
                                         $('.contactIds').prop('checked', false)
@@ -93,6 +146,4 @@
             });
         });
     }
-
-   
 </script>

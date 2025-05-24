@@ -283,24 +283,25 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="row">
                     @forelse($latestJobs as $job)
                         <div class="col-lg-3 col-md-6">
-                            <div class="job-card">
-                                <div class="job-header">
-                                    <img src="{{ $job->MainImages->url ?? asset('assets/img/nomad.png') }}"
-                                        alt="{{ $job->alt }}" class="company-logo">
-                                    <div class="job-info">
-                                        <h3>{{ $job->title }}</h3>
-                                        <p>{{ $job->company_name }}&bull; <span
-                                                class="location">{{ $job->locationModel->title }}</span></p>
-                                        <div class="job-tags">
-                                            <span class="tag active"> {{ $job->job_type }} </span>
+                            <a href="{{ route('web.find-job.index') }}">
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <img src="{{ $job->MainImages->url ?? asset('assets/img/nomad.png') }}"
+                                            alt="{{ $job->alt }}" class="company-logo">
+                                        <div class="job-info">
+                                            <h3>{{ $job->title }}</h3>
+                                            <p>{{ $job->company_name }}&bull; <span
+                                                    class="location">{{ $job->locationModel->title }}</span></p>
+                                            <div class="job-tags">
+                                                <span class="tag active"> {{ $job->job_type }} </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @empty
                         <div class="col-12 text-center py-5">

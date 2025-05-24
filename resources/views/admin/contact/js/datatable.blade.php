@@ -6,7 +6,7 @@
     function dataTable() {
         $(function() {
             datatable = $('#enquiryTable').DataTable({
-                
+
                 pageLength: 10,
                 processing: true,
                 serverSide: true,
@@ -44,9 +44,12 @@
                         data: 'email',
                         name: "email"
                     },
-                    
-                  
-                    
+
+                    {
+                        data: 'subject',
+                        name: "subject"
+                    },
+
                     {
                         data: 'message',
                         name: "message",

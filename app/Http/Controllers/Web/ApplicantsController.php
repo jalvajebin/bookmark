@@ -20,7 +20,7 @@ class ApplicantsController extends Controller
     {
         $destinations = Destination::all();
 
-        $latestJobs = Job::latest()->get();
+        $latestJobs = Job::latest()->take(8)->get();
 
         $weRecruitFor = WeRecruitFor::first();
         return view('website.applicants', compact('destinations', 'latestJobs', 'weRecruitFor'));

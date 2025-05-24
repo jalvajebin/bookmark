@@ -160,13 +160,13 @@
                             <div class="radio-group">
                                 @foreach ($destinations as $key => $destination)
                                     <label class="custom-radio square">
-                                        <input type="radio" name="teaching_destination" value="{{ $destination->id }}">
+                                        <input type="radio" name="teaching_license" value="{{ $destination->id }}">
                                         <span class="radio-checkmark"></span>
                                         <span class="radio-label">{{ $destination->name }}</span>
                                     </label>
                                 @endforeach
                                 <label class="custom-radio square">
-                                    <input type="radio" name="teaching_destination" value="Other">
+                                    <input type="radio" name="teaching_license" value="Other">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">Other</span>
                                 </label>
@@ -325,9 +325,7 @@
                         teaching_qualification_subject: {
                             required: true
                         },
-                        teaching_license: {
-                            required: true
-                        },
+                        
                         current_job_title: {
                             required: true
                         },

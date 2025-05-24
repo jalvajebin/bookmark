@@ -214,11 +214,11 @@
         });
     }
 
-    function deleteContactEnquiry(e, id = '') {
+    function deleteApplication(e, id = '') {
         e.preventDefault();
         let ids = '';
         if (id == '') {
-            ids = $("input:checkbox[class=contactIds]:checked").map(function() {
+            ids = $("input:checkbox[class=applicationIds]:checked").map(function() {
                 return this.value;
             }).get();
 
@@ -240,7 +240,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                let route = "{{ route('contact.enquiry.delete') }}"
+                let route = "{{ route('application.cv.delete') }}"
                 $.ajax({
                     type: 'POST',
                     url: route,
@@ -264,8 +264,8 @@
                                 data.message,
                                 'success'
                             )
-                            $('#enquiryTable').DataTable().ajax.reload();
-                            $('.contactIds').prop('checked', false).removeAttr('checked');
+                            $('#cvTable').DataTable().ajax.reload();
+                            $('.applicationIds').prop('checked', false).removeAttr('checked');
                             alertMessage(message, 'success');
                         } else {
                             Swal.fire(
@@ -358,7 +358,7 @@
     function exportSelect(e) {
         e.preventDefault();
         e.stopPropagation();
-        let ids = $("input:checkbox[class=contactIds]:checked").map(function() {
+        let ids = $("input:checkbox[class=applicationIds]:checked").map(function() {
             return this.value;
         }).get();
         if (ids.length < 1) {
@@ -367,7 +367,7 @@
         }
 
         $.ajax({
-            url: "{{ route('contacts.export') }}",
+            url: "{{ route('applications.export') }}",
             type: 'post',
             data: {
                 ids: ids,
@@ -384,10 +384,10 @@
                 let url = window.URL || window.webkitURL;
                 let objectUrl = url.createObjectURL(response);
                 link.href = objectUrl;
-                link.download = 'contact-enquiries.xlsx';
+                link.download = 'applications.xlsx';
                 link.click();
                 window.URL.revokeObjectURL(objectUrl);
-                $('.quoteIds').prop('checked', false);
+                $('.applicationIds').prop('checked', false);
                 $(".mulltiCheckBox").prop('checked', false);
                 // $('.sub_chk').prop('checked', false);
 

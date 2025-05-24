@@ -235,8 +235,8 @@
                     <h3><span>Got a friend looking for an international </span>Teaching job? <span>Refer them to us
                             today!</span>
                     </h3>
-                    <button class="head-btn"> <span>Contact US</span>
-                    </button>
+                    <a href="{{ route('web.contact.index') }}"><button class="head-btn"> <span>Contact US</span>
+                        </button></a>
                 </div>
             </div>
         </section>
@@ -318,26 +318,30 @@
                     </div>
 
                     <div class="more-buttons">
-                        <a href="">Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="{{ route('web.find-job.index') }}">Show all jobs <span><i
+                                    class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
 
                 <div class="row">
                     @foreach ($latestJobs as $job)
                         <div class="col-lg-3 col-md-6">
-                            <div class="job-card">
-                                <div class="job-header">
-                                    <img src="{{ $job->Images->url ?? 'assets/img/nomad.png' }}  "
-                                        alt="{{ $job->alt }}" class="company-logo">
-                                    <div class="job-info">
-                                        <h3>{{ $job->title }}</h3>
-                                        <p>Company Name &bull; <span class="location">{{ $job->location }}</span></p>
-                                        <div class="job-tags">
-                                            <span class="tag active">Full-Time</span>
+                            <a href="{{ route('web.find-job.index') }}">
+                                <div class="job-card">
+                                    <div class="job-header">
+                                        <img src="{{ $job->MainImages->url ?? asset('assets/img/nomad.png') }}"
+                                            alt="{{ $job->alt }}" class="company-logo">
+                                        <div class="job-info">
+                                            <h3>{{ $job->title }}</h3>
+                                            <p>{{ $job->company_name }}&bull; <span
+                                                    class="location">{{ $job->locationModel->title }}</span></p>
+                                            <div class="job-tags">
+                                                <span class="tag active"> {{ $job->job_type }} </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

@@ -102,8 +102,7 @@ class FormController extends Controller
 
         try {
             $data = $request->except(['_token']);
-            dd($data);
-            // Optionally handle file upload
+            // dd($data);
             if ($request->hasFile('cv')) {
                 $cvPath = $request->file('cv')->store('cvs', 'public');
                 $data['cv'] = $cvPath;

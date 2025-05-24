@@ -69,7 +69,7 @@ Route::get('logout', [LoginController::class, 'logout']);
 Route::group(['middleware' => ['auth', 'check_user_status']], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-     Route::get('/profile', [ProfileController::class, 'profileChange'])->name('admin.profile');
+    Route::get('/profile', [ProfileController::class, 'profileChange'])->name('admin.profile');
     Route::post('/profile-update', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
     Route::post('/profile-data-update', [ProfileController::class, 'profileDataUpdate'])->name('admin.profiledata.update');
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
@@ -94,19 +94,21 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
 
-         Route::group(['prefix' => 'submitCv'], function () {
+        Route::group(['prefix' => 'submitCv'], function () {
             Route::get('/', [SubmitCvController::class, 'index'])->name('submit-cv.index');
             Route::get('/cv-applications', [SubmitCvController::class, 'getCvApplication'])->name('get.cv-appliaction');
+            Route::match(['get', 'post'], 'application-export', [SubmitCvController::class, 'applicationExport'])->name("applications.export");
+
+            Route::post('/delete-application', [SubmitCvController::class, 'deleteApplication'])->name('application.cv.delete');
+
 
             // Route::post('update-contact', [ContactController::class, 'updateContact'])->name('admin.contact.add');
-        //     Route::post('update-social', [ContactController::class, 'updateSocial'])->name('admin.social.add');
-        //     Route::get('/get-contact-enquiry', [ContactController::class, 'getContactEnquiry'])->name('get.contact.enquiry');
-        //     Route::get('/get-request-quote', [ContactController::class, 'getRequestQuote'])->name('get.request.quote');
-        //     Route::match(['get', 'post'], 'contact-export', [ContactController::class, 'contactExport'])->name("contacts.export");
-        //     Route::match(['get', 'post'], 'quote-export', [ContactController::class, 'quoteExport'])->name("quote.export");
-        //     Route::post('/delete-enquiry', [ContactController::class, 'deleteContactEnquiry'])->name('contact.enquiry.delete');
-        //     Route::get('/{id}', [ContactController::class, 'getQuoteById'])->name('admin.quote.getbyid');
-        //     Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
+            //     Route::post('update-social', [ContactController::class, 'updateSocial'])->name('admin.social.add');
+            //     Route::get('/get-contact-enquiry', [ContactController::class, 'getContactEnquiry'])->name('get.contact.enquiry');
+            //     Route::get('/get-request-quote', [ContactController::class, 'getRequestQuote'])->name('get.request.quote');
+            //     Route::match(['get', 'post'], 'quote-export', [ContactController::class, 'quoteExport'])->name("quote.export");
+            //     Route::get('/{id}', [ContactController::class, 'getQuoteById'])->name('admin.quote.getbyid');
+            //     Route::post('/delete-quote-request', [ContactController::class, 'deleteQuoteRequest'])->name('quote.request.delete');
         });
 
 

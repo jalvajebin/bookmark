@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    {{ 'Contacts | Veuz' }}
+    {{ 'Applications | Veuz' }}
 @endsection
 @section('css')
     <style>
