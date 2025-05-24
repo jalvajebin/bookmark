@@ -24,7 +24,8 @@
                             <div class="top-hd-box mb-3">
                                 <h5 class="card-title">Jobs List</h5>
                                 <div class="top-hd-box-right">
-                                    <a href="{{ route('jobs.create') }}" class="btn btn-success add-job-btn" >Create New</a>
+                                    <a href="{{ route('jobs.create') }}" class="btn btn-success add-job-btn">Create
+                                        New</a>
                                 </div>
                             </div>
                             <table id="jobTable" class="table table-bordered mb-3 dt-responsive  nowrap w-100 ">
@@ -43,6 +44,3 @@
         </div>
     </div>
 </div>
-
-
-

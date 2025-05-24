@@ -206,7 +206,6 @@
                             {{-- Optional: remove this validation message span if not needed --}}
                             {{-- <span class="international_experience-validation error-validation" style="color:red;"></span> --}}
                         </div>
-
                         <!-- Submit button and closing tags -->
                         <div class="form-group cv-form">
                             <label for="cv">Please upload your CV <span>*</span></label>
@@ -215,7 +214,7 @@
                                 <span class="cv-validation error-validation" style="color:red;"></span>
                             </div>
                         </div>
-                        <button type="submit" id="" class="btn btn-primary"
+                        <button type="submit" id="contactButton" class="btn btn-primary"
                             onclick="submitCv(event)">Submit</button>
                     </form>
                 </div>

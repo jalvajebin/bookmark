@@ -74,7 +74,7 @@
                                     @foreach ($locations as $location)
                                         <a href="#" class="filter-tag" data-filter="location"
                                             data-id="{{ $location->id }}">
-                                            {{ $location->title }} <span>(138)</span>
+                                            {{ $location->title }} <span>({{ $location->jobs->count() }})</span>
                                         </a>
                                     @endforeach
                                 </div>

@@ -18,15 +18,31 @@ class SubmitCvController extends Controller
         return view('admin.cv.index');
     }
 
-    public function getCvApplication()
+    public function getCvApplication(Request $request)
     {
 
         $quote = SubmitCvApplication::query()->orderBy('id', 'desc');
         // dd($quote);
 
-        return DataTables::of($quote)
-            ->addIndexColumn()
-            ->make(true);
+        if ($request->ajax()) {
+            $data = SubmitCvApplication::with([
+                'passportDestination',
+                'birthCountryDestination',
+                'currentCountryDestination'
+            ])->select('submit_cv_applications.*');
+
+            return DataTables::of($data)
+                ->addColumn('passport', function ($row) {
+                    return $row->passportDestination->name ?? $row->passport;
+                })
+                ->addColumn('birth_country', function ($row) {
+                    return $row->birthCountryDestination->name ?? $row->birth_country;
+                })
+                ->addColumn('current_country', function ($row) {
+                    return $row->currentCountryDestination->name ?? $row->current_country;
+                })
+                ->make(true);
+        }
     }
 
 

@@ -42,7 +42,7 @@ class ApplicantsController extends Controller
         if ($request->has('position_type')) {
             $jobs->where('position_type', $request->position_type);
         }
-        $locations      = JobLocation::orderBy('title')->get();
+        $locations      = JobLocation::withCount('jobs')->orderBy('title')->get();
         $schoolTypes    = JobSchoolType::orderBy('title')->get();
         $specialisms    = JobSpecialism::orderBy('title')->get();
         $positionTypes  = JobPositionType::orderBy('title')->get();
