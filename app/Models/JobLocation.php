@@ -12,8 +12,7 @@ class JobLocation extends Model
     protected $guarded = [];
 
     public function jobs()
-{
-    return $this->hasMany(Job::class, 'location'); 
-}
-
+    {
+        return $this->hasMany(Job::class, 'location');
+    }
 }

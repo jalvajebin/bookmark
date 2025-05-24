@@ -43,9 +43,9 @@ class ApplicantsController extends Controller
             $jobs->where('position_type', $request->position_type);
         }
         $locations      = JobLocation::withCount('jobs')->orderBy('title')->get();
-        $schoolTypes    = JobSchoolType::orderBy('title')->get();
-        $specialisms    = JobSpecialism::orderBy('title')->get();
-        $positionTypes  = JobPositionType::orderBy('title')->get();
+        $schoolTypes    = JobSchoolType::withCount('jobs')->orderBy('title')->get();
+        $specialisms    = JobSpecialism::withCount('jobs')->orderBy('title')->get();
+        $positionTypes  = JobPositionType::withCount('jobs')->orderBy('title')->get();
 
         if ($request->filled('search')) {
             $keyword = $request->search;

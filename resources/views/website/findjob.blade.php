@@ -61,7 +61,7 @@
                                     @foreach ($schoolTypes as $schoolType)
                                         <a href="#" class="filter-tag" data-filter="school_type"
                                             data-id="{{ $schoolType->id }}">
-                                            {{ $schoolType->title }} <span>(138)</span>
+                                            {{ $schoolType->title }} <span>({{ $location->jobs->count() }})</span>
                                         </a>
                                     @endforeach
                                 </div>
@@ -87,7 +87,7 @@
                                     @foreach ($specialisms as $specialism)
                                         <a href="#" class="filter-tag" data-filter="specialism"
                                             data-id="{{ $specialism->id }}">
-                                            {{ $specialism->title }} <span>(138)</span>
+                                            {{ $specialism->title }} <span>({{ $specialism->jobs->count() }})</span>
                                         </a>
                                     @endforeach
                                 </div>
@@ -100,7 +100,7 @@
                                     @foreach ($positionTypes as $positionType)
                                         <a href="#" class="filter-tag" data-filter="position_type"
                                             data-id="{{ $positionType->id }}">
-                                            {{ $positionType->title }} <span>(138)</span>
+                                            {{ $positionType->title }} <span>({{ $positionType->jobs->count() }})</span>
                                         </a>
                                     @endforeach
                                 </div>
@@ -113,12 +113,12 @@
                     </div>
 
                     <div class="col-lg-8 order-2 order-md-2" data-aos="fade-right">
-                        @php
+                        {{-- @php
                             $titles = $jobs->pluck('title');
                             $displayed = $titles->take(2);
                             $totalCount = $titles->count();
                             $displayedCount = $displayed->count();
-                        @endphp
+                        @endphp --}}
                         <!-- Blog Post Card -->
                         <div class="job-description">
                             <h4>Jobs</h4>

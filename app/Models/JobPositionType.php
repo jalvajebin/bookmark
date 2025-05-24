@@ -10,4 +10,9 @@ class JobPositionType extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'position_type');
+    }
 }
