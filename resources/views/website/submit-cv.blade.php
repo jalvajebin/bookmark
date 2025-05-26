@@ -32,7 +32,7 @@
                         <h6 class="mandatory-text">Fields marked with an * are mandatory fields</h6>
 
                         <div class="col-lg-12">
-                            <div class="form-group cv-form required_item">
+                            <div class="form-group cv-form ">
                                 {{-- <div class=""> --}}
                                 <label for="">What is your full name? <span>*</span></label>
                                 <div class="w-100">
@@ -324,7 +324,7 @@
                         teaching_qualification_subject: {
                             required: true
                         },
-                        
+
                         current_job_title: {
                             required: true
                         },
@@ -385,8 +385,11 @@
 
                     errorElement: "span",
                     errorPlacement: function(error, element) {
-                        $(element).siblings("span").text(error.text())
-                        $(error).hide()
+                        $(element).siblings("span").text(error.text());
+                        $(error).hide();
+                    },
+                    success: function(label, element) {
+                        $(element).siblings("span").text(""); // Clear the error span when valid
                     }
                 });
                 if ($('#contactForm').valid()) {
@@ -426,6 +429,8 @@
 
                             if (xhr.responseJSON && xhr.responseJSON.errors) {
                                 const errors = xhr.responseJSON.errors;
+
+                                $(".error").html("");
 
                                 if (errors.name) {
                                     $(".name-validation").html(errors.name[0]);
