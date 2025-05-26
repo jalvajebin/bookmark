@@ -27,9 +27,9 @@
   <div class="main-body">
     <!-- Services list -->
     <section class="section-padding">
-      <div class="row">
+      <div class="row g-3">
         @foreach ($services as $service )
-          <div class="col-lg-6" data-aos="fade-right">
+          <div class="col-md-6" data-aos="fade-right">
           <div class="service-card">
             <div class="service-card-img">
               <img src="{{ $service->Images->preview ?? "assets/img/teacher-recuitment.png"}}" alt="Teaching Team">

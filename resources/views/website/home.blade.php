@@ -108,7 +108,7 @@
             <div class="section-title">
                 <h2>Services We <span>Provide</span></h2>
             </div>
-            <div class="row">
+            <div class="row g-3">
                 @foreach ($serviceWeProvides as $serviceWeProvide)
                     <div class="col-lg-3 col-md-6">
                         <div class="service-box">
