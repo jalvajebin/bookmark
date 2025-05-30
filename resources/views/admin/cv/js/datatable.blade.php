@@ -177,7 +177,7 @@
                         name: "id",
                         orderable: false,
                         render: function(data, type, row) {
-                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="applicationIds" value="${data}"/> `;
+                            return `<input type="checkbox" style='text-align: center;width:48px;height:15px;' class="vacancyApplicationIds" value="${data}"/> `;
                         }
                     },
                     {
@@ -246,7 +246,7 @@
                             // }
 
                             return `<ul class="list-unstyled hstack gap-1 mb-0">
-                                                     <a href="#" onclick="deleteApplication(event,${data})" class="btn btn-sm btn-soft-danger">
+                                                     <a href="#" onclick="deleteVacancyApplication(event,${data})" class="btn btn-sm btn-soft-danger">
                                                         <i class="mdi mdi-delete-outline"></i>
                                                         </a>
                                                          ${messageBtn}
@@ -268,7 +268,7 @@
                             $(input).appendTo($(column.header()).empty())
                                 .on('change', function() {
                                     if (this.checked) {
-                                        $(".applicationIds:enabled").prop('checked',
+                                        $(".vacancyApplicationIds:enabled").prop('checked',
                                             'true');
                                     } else {
                                         $('.contactIds').prop('checked', false)

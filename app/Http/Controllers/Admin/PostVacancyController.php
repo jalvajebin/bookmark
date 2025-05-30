@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\VacancyExport;
 use App\Http\Controllers\Controller;
 use App\Models\PostVacancyApplication;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class PostVacancyController extends Controller
@@ -35,7 +37,7 @@ class PostVacancyController extends Controller
     }
 
 
-    public function deleteApplication(Request $request)
+    public function deleteVacancyApplication(Request $request)
     {
         $cv  = PostVacancyApplication::whereIn('id', $request->ids)->first();
 
@@ -47,9 +49,9 @@ class PostVacancyController extends Controller
     }
 
 
-    public function applicationExport(Request $request)
+     public function vacancyApplicationExport(Request $request)
     {
         $ids = $request->ids ?? [];
-        return Excel::download(new ApplicationExport($ids), 'applications.xlsx');
+        return Excel::download(new VacancyExport($ids), 'vacancy-application.xlsx');
     }
 }

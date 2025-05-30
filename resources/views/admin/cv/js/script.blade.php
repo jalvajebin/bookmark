@@ -287,75 +287,7 @@
     }
 
 
-    function deleteQuoteRequest(e, id = '') {
-        e.preventDefault();
-        let ids = '';
-        if (id == '') {
-            ids = $("input:checkbox[class=quoteIds]:checked").map(function() {
-                return this.value;
-            }).get();
-
-            if (ids.length < 1) {
-                alertMessage('warning', 'Please select row', );
-                return;
-            }
-        } else {
-            ids = [id];
-        }
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let route = "{{ route('quote.request.delete') }}"
-                $.ajax({
-                    type: 'POST',
-                    url: route,
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                        ids: ids
-                    },
-                    dataType: "json",
-
-                    beforeSend: function() {
-                        $("#loader").show();
-                    },
-                    complete: function() {
-                        $("#loader").hide();
-                    },
-                    success: function(data) {
-                        $("#loader").hide();
-                        if (data.success == true) {
-                            Swal.fire(
-                                'Deleted!',
-                                data.message,
-                                'success'
-                            )
-                            $('#quoteRequestTable').DataTable().ajax.reload();
-                            $('.quoteIds').prop('checked', false).removeAttr('checked');
-                            alertMessage(message, 'success');
-                        } else {
-                            Swal.fire(
-                                'Warning!',
-                                data.message,
-                                'warning'
-                            )
-                        }
-
-                    },
-                    error: function(data) {
-                        $("#loader").hide();
-                    }
-                });
-            }
-        })
-    }
+    
 
     function exportSelect(e) {
         e.preventDefault();
@@ -403,10 +335,11 @@
 
     }
 
-    function exportQuoteSelect(e) {
+      function exportVacancySelect(e) {
+        // alert();
         e.preventDefault();
         e.stopPropagation();
-        let ids = $("input:checkbox[class=quoteIds]:checked").map(function() {
+        let ids = $("input:checkbox[class=vacancyApplicationIds]:checked").map(function() {
             return this.value;
         }).get();
         if (ids.length < 1) {
@@ -415,7 +348,7 @@
         }
 
         $.ajax({
-            url: "{{ route('quote.export') }}",
+            url: "{{ route('applications-vacancy.export') }}",
             type: 'post',
             data: {
                 ids: ids,
@@ -432,10 +365,10 @@
                 let url = window.URL || window.webkitURL;
                 let objectUrl = url.createObjectURL(response);
                 link.href = objectUrl;
-                link.download = 'quote-requests.xlsx';
+                link.download = 'vacancy-application.xlsx';
                 link.click();
                 window.URL.revokeObjectURL(objectUrl);
-                $('.quoteIds').prop('checked', false);
+                $('.vacancyApplicationIds').prop('checked', false);
                 $(".mulltiCheckBox").prop('checked', false);
                 // $('.sub_chk').prop('checked', false);
 
@@ -445,37 +378,80 @@
 
             }
         });
+
+
     }
 
-    function viewRequestQuote(value, id) {
-        $(".error-validation").html('');
-        if (value == 1) {
-            $("#id").val('');
-            $("#quoteModal").modal('show');
-            $("#quoteModal .heading").text("Request Details");
+    function deleteVacancyApplication(e, id = '') {
+        e.preventDefault();
+        let ids = '';
+        if (id == '') {
+            ids = $("input:checkbox[class=vacancyApplicationIds]:checked").map(function() {
+                return this.value;
+            }).get();
 
-            let route = "{{ route('admin.quote.getbyid', ':id') }}";
-            route = route.replace(':id', id);
-            $.ajax({
-                type: 'GET',
-                url: route,
-                success: function(data) {
-                    console.log(data.id);
-                    $(".id").val(data.id);
-                    $(".name").val(data.name).trigger('change');
-                    $(".email").val(data.email).trigger('change');
-                    $(".phone").val(data.phone).trigger('change');
-                    $(".message").val(data.message).trigger('change');
-                },
-                error: function(data) {
-                    if (data.responseJSON?.permissionMessage) {
-                        alertMessage(data.responseJSON.permissionMessage, "warning");
-                    }
-                }
-            });
+            if (ids.length < 1) {
+                alertMessage('warning', 'Please select row', );
+                return;
+            }
         } else {
-            $("#quoteModal").modal('hide');
+            ids = [id];
         }
 
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let route = "{{ route('application.vacancy.delete') }}"
+                $.ajax({
+                    type: 'POST',
+                    url: route,
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        ids: ids
+                    },
+                    dataType: "json",
+
+                    beforeSend: function() {
+                        $("#loader").show();
+                    },
+                    complete: function() {
+                        $("#loader").hide();
+                    },
+                    success: function(data) {
+                        $("#loader").hide();
+                        if (data.success == true) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.message,
+                                'success'
+                            )
+                            $('#postVacancyTable').DataTable().ajax.reload();
+                            $('.vacancyApplicationIds').prop('checked', false).removeAttr('checked');
+                            alertMessage(message, 'success');
+                        } else {
+                            Swal.fire(
+                                'Warning!',
+                                data.message,
+                                'warning'
+                            )
+                        }
+
+                    },
+                    error: function(data) {
+                        $("#loader").hide();
+                    }
+                });
+            }
+        })
     }
+
+
+  
 </script>

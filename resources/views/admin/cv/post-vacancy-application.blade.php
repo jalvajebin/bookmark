@@ -23,11 +23,11 @@
                         <h5 class="card-title">Post Vacancy Applications List</h5>
                         {{-- <button onclick="jalu(event)">ddf</button> --}}
                         <div class="top-hd-box-right">
-                            <a href="{{ route('applications.export') }}" class="btn btn-primary">Export
+                            <a href="{{ route('applications-vacancy.export') }}" class="btn btn-primary">Export
                                 All</a>
-                            <a href="#" onclick="exportSelect(event)" class="btn btn-primary">Select &
+                            <a href="#" onclick="exportVacancySelect(event)" class="btn btn-primary">Select &
                                 Export</a>
-                            <a href="#" class="btn btn-danger" onclick="deleteApplication(event)">Delete</a>
+                            <a href="#" class="btn btn-danger" onclick="deleteVacancyApplication(event)">Delete</a>
                         </div>
                     </div>
                     <div class="row">

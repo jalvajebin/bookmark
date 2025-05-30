@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\ApplicationExport;
+use App\Exports\VacancyExport;
 use App\Http\Controllers\Controller;
 use App\Models\ContactEnquiry;
+use App\Models\PostVacancyApplication;
 use App\Models\SubmitCvApplication;
 use App\Models\SumbitCvApllication;
 use Illuminate\Http\Request;
@@ -57,10 +59,23 @@ class SubmitCvController extends Controller
         return response()->json(['success' => true, 'message' => "Deleted"]);
     }
 
+     public function deleteVacancyApplication(Request $request)
+    {
+        $vacancy  = PostVacancyApplication::whereIn('id', $request->ids)->first();
+
+        if (!isset($cv)) {
+            return response()->json(['success' => false, 'message' => "Not found!"]);
+        }
+        $vacancy->delete();
+        return response()->json(['success' => true, 'message' => "Deleted"]);
+    }
+
 
     public function applicationExport(Request $request)
     {
         $ids = $request->ids ?? [];
         return Excel::download(new ApplicationExport($ids), 'applications.xlsx');
     }
+
+   
 }

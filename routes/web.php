@@ -101,6 +101,10 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::match(['get', 'post'], 'application-export', [SubmitCvController::class, 'applicationExport'])->name("applications.export");
             Route::post('/delete-application', [SubmitCvController::class, 'deleteApplication'])->name('application.cv.delete');
             Route::get('/vacancy-applications', [PostVacancyController::class, 'getVacancyApplication'])->name('get.vacancy-appliaction');
+            Route::post('/delete-vacancy-application', [PostVacancyController::class, 'deleteVacancyApplication'])->name('application.vacancy.delete');
+            Route::match(['get', 'post'], 'application-vanacy-export', [PostVacancyController::class, 'vacancyApplicationExport'])->name("applications-vacancy.export");
+
+
 
 
 
