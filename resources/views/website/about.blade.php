@@ -133,7 +133,7 @@
               <div class="tab-content ab-tab-cntnt" id="tab2">
                 <div class="d-flex flex-column flex-md-row align-items-start gap-5">
                   <div class="image-container">
-                    <img src="{{ $learAboutUs->EmployeeImageName->url ?? 'assets/img/applicant-cta.png' }}">
+                    <img src="{{ $learAboutUs->EmployerImageName->url ?? 'assets/img/applicant-cta.png' }}">
                   </div>
 
                   <div>
