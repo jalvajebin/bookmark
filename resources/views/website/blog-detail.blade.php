@@ -51,40 +51,10 @@
                                     @endforeach
                                 </div>
                             </div>
-                            {{-- <!-- Comments -->
-                            <div class="comments-section">
-                                <h3>2 Comments</h3>
-                                <div class="comment">
-                                    <div class="comment-avatar">
-                                        <img src="assets/img/team-1.png" alt="User">
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5>John Doe</h5>
-                                        <span class="date">March 24, 2025</span>
-                                        <p>Great article! Very informative and well-written.</p>
-                                        <a href="#" class="reply-btn">Reply</a>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <!-- Comment Form -->
+
                             <div class="comment-form">
                                 <h3>Leave a Comment</h3>
-                                {{-- <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" placeholder="Name" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="email" placeholder="Email" required>
-                                        </div>
-                                        <div class="col-12">
-                                            <textarea placeholder="Your Comment" required></textarea>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="submit-btn">Post Comment</button>
-                                        </div>
-                                    </div>
-                                </form> --}}
+
                                 <form id="commentForm">
                                     @csrf
                                     <input type="hidden" name="blog_id" value="{{ $blog->id ?? null }}">
@@ -182,162 +152,161 @@
                 </div>
             </div>
         </section>
-    </div>
-@endsection
-@push('js')
-    <script>
-        AOS.init({
-            duration: 2000,
-            once: false
-        });
-    </script>
-    <script>
-        function postComment(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $("#loader").show();
-
-            $('#commentForm').validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    message: {
-                        required: true
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
-                    email: {
-                        required: "Email Address is required",
-                    },
-                    message: {
-                        required: "Message is required"
-                    }
-                },
-                errorElement: "span",
-                errorPlacement: function(error, element) {
-                    error.insertAfter($(element).closest('.required_item'));
-                }
+    @endsection
+    @push('js')
+        <script>
+            AOS.init({
+                duration: 2000,
+                once: false
             });
-            if ($('#commentForm').valid()) {
-                $(".error").html('');
-                $("#commentButton").text("Posting...");
+        </script>
+        <script>
+            function postComment(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $("#loader").show();
 
-                var formData = new FormData($("#commentForm")[0]);
-
-                $.ajax({
-                    url: "{{ route('leaveAComment') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        $(".error").html("");
-                        $("#loader").hide();
-                        $("#commentButton").text("Post Comment");
-
-                        if (response.success === true) {
-                            $("#commentForm")[0].reset();
-                            alertify.set('notifier', 'position', 'top-center');
-                            alertify.set('notifier', 'delay', 2);
-                            alertify.success(response.message);
-                        } else {
-                            alertify.set('notifier', 'position', 'top-center');
-                            alertify.set('notifier', 'delay', 2);
-                            alertify.error(response.message);
+                $('#commentForm').validate({
+                    rules: {
+                        name: {
+                            required: true,
+                        },
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        message: {
+                            required: true
                         }
                     },
-                    error: function(xhr) {
-                        $("#loader").hide();
-                        $("#commentButton").text("Post Comment");
-
-                        if (xhr.responseJSON && xhr.responseJSON.errors) {
-                            const errors = xhr.responseJSON.errors;
-
-                            if (errors.name) {
-                                $(".name_validation").html(errors.name[0]);
-                            }
-                            if (errors.email) {
-                                $(".email_validation").html(errors.email[0]);
-                            }
-                            if (errors.message) {
-                                $(".message_validation").html(errors.message[0]);
-                            }
-                        } else {
-                            alertify.set('notifier', 'position', 'top-center');
-                            alertify.set('notifier', 'delay', 2);
-                            alertify.error("Something went wrong. Try again!");
+                    messages: {
+                        name: {
+                            required: "Name is required",
+                        },
+                        email: {
+                            required: "Email Address is required",
+                        },
+                        message: {
+                            required: "Message is required"
                         }
+                    },
+                    errorElement: "span",
+                    errorPlacement: function(error, element) {
+                        error.insertAfter($(element).closest('.required_item'));
                     }
                 });
-            } else {
-                $("#loader").hide();
+                if ($('#commentForm').valid()) {
+                    $(".error").html('');
+                    $("#commentButton").text("Posting...");
 
+                    var formData = new FormData($("#commentForm")[0]);
+
+                    $.ajax({
+                        url: "{{ route('leaveAComment') }}",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        headers: {
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            $(".error").html("");
+                            $("#loader").hide();
+                            $("#commentButton").text("Post Comment");
+
+                            if (response.success === true) {
+                                $("#commentForm")[0].reset();
+                                alertify.set('notifier', 'position', 'top-center');
+                                alertify.set('notifier', 'delay', 2);
+                                alertify.success(response.message);
+                            } else {
+                                alertify.set('notifier', 'position', 'top-center');
+                                alertify.set('notifier', 'delay', 2);
+                                alertify.error(response.message);
+                            }
+                        },
+                        error: function(xhr) {
+                            $("#loader").hide();
+                            $("#commentButton").text("Post Comment");
+
+                            if (xhr.responseJSON && xhr.responseJSON.errors) {
+                                const errors = xhr.responseJSON.errors;
+
+                                if (errors.name) {
+                                    $(".name_validation").html(errors.name[0]);
+                                }
+                                if (errors.email) {
+                                    $(".email_validation").html(errors.email[0]);
+                                }
+                                if (errors.message) {
+                                    $(".message_validation").html(errors.message[0]);
+                                }
+                            } else {
+                                alertify.set('notifier', 'position', 'top-center');
+                                alertify.set('notifier', 'delay', 2);
+                                alertify.error("Something went wrong. Try again!");
+                            }
+                        }
+                    });
+                } else {
+                    $("#loader").hide();
+
+                }
             }
-        }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content');
 
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active classes
-                    tabs.forEach(t => t.classList.remove('active'));
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        // Remove active classes
+                        tabs.forEach(t => t.classList.remove('active'));
 
-                    // Fade out all content
-                    contents.forEach(content => {
-                        content.style.opacity = '0';
-                        content.style.transform = 'translateY(20px)';
+                        // Fade out all content
+                        contents.forEach(content => {
+                            content.style.opacity = '0';
+                            content.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                content.classList.remove('active');
+                            }, 300);
+                        });
+
+                        // Add active class to clicked tab
+                        tab.classList.add('active');
+
+                        // Fade in selected content
+                        const targetContent = document.getElementById(tab.dataset.tab);
                         setTimeout(() => {
-                            content.classList.remove('active');
+                            targetContent.classList.add('active');
+                            setTimeout(() => {
+                                targetContent.style.opacity = '1';
+                                targetContent.style.transform = 'translateY(0)';
+                            }, 50);
                         }, 300);
                     });
-
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-
-                    // Fade in selected content
-                    const targetContent = document.getElementById(tab.dataset.tab);
-                    setTimeout(() => {
-                        targetContent.classList.add('active');
-                        setTimeout(() => {
-                            targetContent.style.opacity = '1';
-                            targetContent.style.transform = 'translateY(0)';
-                        }, 50);
-                    }, 300);
                 });
             });
-        });
-    </script>
-    <script>
-        // Add this at the beginning of your script
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.querySelector('.loader');
+        </script>
+        <script>
+            // Add this at the beginning of your script
+            document.addEventListener('DOMContentLoaded', function() {
+                const loader = document.querySelector('.loader');
 
-            // Hide loader after content loads
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    gsap.to(loader, {
-                        opacity: 0,
-                        duration: 0.5,
-                        onComplete: () => {
-                            loader.style.display = 'none';
-                        }
-                    });
-                }, 2000); // Adjust time as needed
+                // Hide loader after content loads
+                window.addEventListener('load', function() {
+                    setTimeout(() => {
+                        gsap.to(loader, {
+                            opacity: 0,
+                            duration: 0.5,
+                            onComplete: () => {
+                                loader.style.display = 'none';
+                            }
+                        });
+                    }, 2000); // Adjust time as needed
+                });
             });
-        });
-    </script>
-@endpush
+        </script>
+    @endpush

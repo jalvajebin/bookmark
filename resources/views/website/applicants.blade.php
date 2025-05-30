@@ -202,7 +202,7 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="row gy-2">
-                        <div class="col-lg-12 col-md-6 col-6">
+                        <div class="col-lg-12 col-md-6 col-sm-6">
                             <a href="{{ route('web.applicants.submit-cv') }}">
                                 <div
                                     class="expertise-box-white d-flex align-items-center justify-content-center flex-md-column gap-1">
@@ -211,7 +211,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-lg-12 col-md-6 col-6">
+                        <div class="col-lg-12 col-md-6 col-sm-6">
                             <a href="tel:{{ contactUs()->phone }}">
                                 <div
                                     class="expertise-box-white d-flex align-items-center justify-content-center flex-md-column gap-1">

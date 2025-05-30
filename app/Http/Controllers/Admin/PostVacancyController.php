@@ -26,12 +26,12 @@ class PostVacancyController extends Controller
             $data = PostVacancyApplication::select('post_vacancy_applications.*');
 
             return DataTables::of($data)
-                // ->addColumn('passport', function ($row) {
-                //     return $row->country ?? '-';
-                // })
-                // ->addColumn('birth_country', function ($row) {
-                //     return $row->curriculam ?? '-';
-                // })
+                ->addColumn('country', function ($row) {
+                    return $row->destination->name ?? '-';
+                })
+                ->addColumn('curriculsm', function ($row) {
+                    return $row->country ?? '-';
+                })
                 ->make(true);
         }
     }

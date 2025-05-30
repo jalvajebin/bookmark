@@ -37,17 +37,12 @@
             <div class="card-content">
               <h3>{{ $service->title ?? 'Teacher Recruitment'}} </h3>
               <p> {!! $service->description ?? "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis provident totam rem deserunt," !!}</p>
-              {{-- <div class="more-buttons">
-                <a href="{{$service->link ?? "#" }}">{{ $service->read_more ?? "Read more"}} <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-              </div> --}}
             </div>
           </div>
         </div>
         @endforeach  
       </div>
     </section>  
-  </div>
-
   @endsection
 
   @push('js')

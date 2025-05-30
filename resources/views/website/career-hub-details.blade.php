@@ -107,11 +107,6 @@
 
         </section>
         <!-- Testimonials -->
-
-
-
-
-    </div>
 @endsection
 @push('js')
     <script>

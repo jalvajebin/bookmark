@@ -226,14 +226,7 @@
       </div>
     </div>
     </section>
-     {{-- end conter data --}}
 
-
-
-
-
-   
-  </div>
   @endsection
   @push('js')
   <script>

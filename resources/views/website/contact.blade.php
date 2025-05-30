@@ -188,10 +188,6 @@
             </div>
     </div>
     </section>
-
-
-
-    </div>
 @endsection
 @push('js')
     <script>

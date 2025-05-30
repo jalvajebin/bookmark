@@ -6,7 +6,7 @@
     <!-- banner  -->
 
     <div class="banner"
-        style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">>
+        style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
         <div class="banner-overlay"></div>
         <div class="banner-cntnt fade-left">
             <div>
@@ -110,7 +110,7 @@
             </div>
             <div class="row g-3">
                 @foreach ($serviceWeProvides as $serviceWeProvide)
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-xxl-3 col-md-6">
                         <div class="service-box">
                             <div class="service-img-box">
                                 <img src="{{ $serviceWeProvide->Icon->preview ?? asset('assets/img/teacher.png') }}"
@@ -251,7 +251,7 @@
                 <div class="row g-4">
                     @if ($destinations->isNotEmpty())
                         @foreach ($destinations as $destination)
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-sm-6">
                                 <a href="{{ route('destination.details', $destination->slug) }}">
                                     <div class="gallery-item item2">
                                         <img
@@ -272,7 +272,7 @@
         <!-- latest job opening -->
         <section id="resultSection" class="section-padding">
             <div class="custom-container">
-                <div class="d-flex justify-content-between">
+                <div class="d-sm-flex justify-content-between">
                     <div class="section-title">
                         <h2>Latest <span>job openings</span></h2>
                     </div>
@@ -628,9 +628,9 @@
             </div>
         </section> --}}
         <!-- Meet Exprets -->
-        <section class="section-padding">
+        <section class="section-padding pt-0">
             <div class="custom-container">
-                <div class="d-flex justify-content-between">
+                <div class="d-sm-flex justify-content-between">
                     <div class="section-title">
                         <h2>News and Blog</h2>
                         <p>Explore the latest in
@@ -699,7 +699,7 @@
         </section>
         <!-- Testimonials -->
         <!-- Testimonials -->
-        <section class="section-padding">
+        <section class="section-padding pt-0">
 
             <div class="custom-container">
                 <div class="row">
@@ -732,7 +732,6 @@
                 </div>
 
             </div>
-
         </section>
     @endsection
     @push('js')
