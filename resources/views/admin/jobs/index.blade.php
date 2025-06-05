@@ -143,6 +143,9 @@
                                 <li class="tab-list">
                                     <a href="#tab6" class="m-2">Jobs</a>
                                 </li>
+                                 <li class="tab-list">
+                                    <a href="#tab7" class="m-2">Seo</a>
+                                </li>
 
                             </ul>
                         </div>
@@ -157,7 +160,7 @@
                 @include('admin.jobs.specialism')
                 @include('admin.jobs.position-type')
                 @include('admin.jobs.job')
-
+                @include('admin.jobs.seo')
             </div>
         </div>
     </div>

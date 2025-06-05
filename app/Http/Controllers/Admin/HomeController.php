@@ -28,7 +28,8 @@ class HomeController extends Controller
         $why = WhyWorkWith::first();
         $whatWedo =WhatWeDo::first();
         $contactBanner = Banner::where('page', 'homeContact')->first();
-        return view('admin.home.index', compact('banner', 'why', 'whatWedo','contactBanner'));
+        $seo = Seo::where('page','home')->first();
+        return view('admin.home.index', compact('banner', 'why', 'whatWedo','contactBanner','seo'));
     }
 
     public function getData(){

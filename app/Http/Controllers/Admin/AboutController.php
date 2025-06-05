@@ -27,8 +27,9 @@ class AboutController extends Controller
         $learnAboutUs = LearnAboutUs::first();
         $counter = Counter::first();
         $aboutUs = AboutUs::first();
-        // $seo = Seo::where('page', 'about')->first();
-        return view('admin.about.index', compact('banner', 'aboutUs', 'learnAboutUs', 'counter'));
+        $seo = Seo::where('page', 'about')->first();
+        // dd($seo);
+        return view('admin.about.index', compact('banner', 'aboutUs', 'learnAboutUs', 'counter','seo'));
     }
 
     public function getTestimonial()

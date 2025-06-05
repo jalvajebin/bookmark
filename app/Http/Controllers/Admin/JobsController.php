@@ -11,6 +11,7 @@ use App\Models\JobPositionType;
 use App\Models\JobSchoolType;
 use App\Models\JobSpecialism;
 use App\Models\JobTag;
+use App\Models\Seo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,8 @@ class JobsController extends Controller
 {
     public function index()
     {
-        return view('admin.jobs.index');
+        $seo = Seo::where('page','job')->first();
+        return view('admin.jobs.index', compact('seo'));
     }
 
     public function create()

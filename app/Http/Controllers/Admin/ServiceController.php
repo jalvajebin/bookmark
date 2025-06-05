@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Seo;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +15,9 @@ class ServiceController extends Controller
     {
         $logedUserData = auth()->user(); 
         $banner = Banner::where('page', 'service')->first();
-        // dd($banner);
         $service = Service::first();
-        return view('admin.services.index', compact('logedUserData', 'banner' , 'service'));
+        $seo = Seo::where('page','service')->first();
+        return view('admin.services.index', compact('logedUserData', 'banner' , 'service','seo'));
 
     }
 

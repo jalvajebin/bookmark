@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Destination;
+use App\Models\Seo;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,10 +20,9 @@ class DestinationController extends Controller
     {
         $logedUserData = auth()->user();
         $banner = Banner::where('page', 'destination')->first();
+        $seo = Seo::where('page','destination')->first();
 
-        // $destination = Destination::first();
-
-        return view('admin.destination.index', compact('logedUserData', 'banner'));
+        return view('admin.destination.index', compact('logedUserData', 'banner','seo'));
     }
 
 
@@ -53,6 +53,9 @@ class DestinationController extends Controller
         $destination->inner_image_2_alt = $request->input('inner1_image_alt');
         $destination->description = $request->input('description');
         $destination->description_1 = $request->input('description_1');
+        $destination->meta_title = $request->input('meta_title');
+        $destination->meta_keyword = $request->input('meta_keyword');
+        $destination->meta_description = $request->input('meta_description');
 
         if ($request->hasFile('main_image')) {
             $destination->addMediaFromRequest('main_image')->toMediaCollection('main_images');
@@ -128,6 +131,10 @@ class DestinationController extends Controller
         $destination->inner_image_2_alt = $request->input('inner1_image_alt');
         $destination->description = $request->input('description');
         $destination->description_1 = $request->input('description_1');
+        $destination->meta_title = $request->input('meta_title');
+        $destination->meta_keyword = $request->input('meta_keyword');
+        $destination->meta_description = $request->input('meta_description');
+
 
         if ($request->hasFile('main_image')) {
             $destination->clearMediaCollection('main_images');

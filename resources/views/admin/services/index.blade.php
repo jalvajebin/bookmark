@@ -133,22 +133,11 @@
                                 <li class="tab-list">
                                     <a href="#tab2" class="m-2">Service Us</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Contact Enquiries</a>
-                                </li> --}}
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Social Media</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Contact Enquiries</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab6" class="m-2">Request a quote</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
 
+                                <li class="tab-list">
+                                    <a href="#tab3" class="m-2">Seo</a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -158,6 +147,7 @@
             <div id="tabs-content">
                 @include('admin.services.banner')
                 @include('admin.services.service')
+                @include('admin.services.seo')
             </div>
         </div>
     </div>

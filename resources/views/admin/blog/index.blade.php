@@ -107,7 +107,9 @@
                                 <li class="tab-list">
                                     <a href="#tab4" class="m-2">Blog Comments</a>
                                 </li>
-                               
+                                 <li class="tab-list">
+                                    <a href="#tab5" class="m-2">Seo</a>
+                                </li> 
                             </ul>
                         </div>
                     </div>
@@ -407,6 +409,7 @@
                         </div>
                     </div>
                 </div>
+                @include('admin.blog.seo')
             </div>
         </div>
     </div>

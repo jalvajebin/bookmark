@@ -262,7 +262,7 @@
             var id = $(this).data('id');
             $.ajax({
                 type: 'POST',
-                url: base_url + dataContent + id,
+                url: base_url + 'seo/' + id,
                 data: formData,
                 cache: false,
                 contentType: false,

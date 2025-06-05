@@ -56,7 +56,8 @@ class ApplicantsController extends Controller
             });
         }
 
-        $jobs = $jobs->get();
+        // $jobs = $jobs->paginate();
+        $jobs = $jobs->paginate(5);
         return view('website.findjob', compact('jobs', 'schoolTypes', 'specialisms', 'positionTypes', 'locations'));
     }
     public function list(Request $request)

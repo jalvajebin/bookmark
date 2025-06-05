@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\EmployerContact;
+use App\Models\Seo;
 use App\Models\WeRecruitFor;
 use Illuminate\Http\Request;
 use Exception;
@@ -17,8 +18,8 @@ class EmployerController extends Controller
         $banner = Banner::where('page', 'employer')->first();
         $employerContact = EmployerContact::first();
         $weRecruitFor = WeRecruitFor::first();
-        // $seo = Seo::where('page', 'about')->first();
-        return view('admin.employer.index', compact('banner', 'employerContact', 'weRecruitFor'));
+        $seo = Seo::where('page', 'employer')->first();
+        return view('admin.employer.index', compact('banner', 'employerContact', 'weRecruitFor','seo'));
     }
 
     public function addEmployerContactUs(Request $request)

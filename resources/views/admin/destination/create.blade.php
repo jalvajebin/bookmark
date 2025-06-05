@@ -236,6 +236,33 @@
                                                     style="color:red;"></span>
                                             </div>
                                         </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-4">
+                                                <label for="meta_title">Meta Title</label>
+                                                <input id="meta_title" name="meta_title" type="text"
+                                                    class="form-control meta_title" placeholder="Enter Meta Title">
+                                                <span class="meta_title-validation error-validation"
+                                                    style="color:red;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="mb-4">
+                                                <label for="meta_keyword">Meta Keyword</label>
+                                                <input id="meta_keyword" name="meta_keyword" type="text"
+                                                    class="form-control meta_keyword" placeholder="Enter Meta Keyword">
+                                                <span class="meta_keyword-validation error-validation"
+                                                    style="color:red;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="mb-4">
+                                                <label for="meta_description">Meta Description</label>
+                                                <textarea id="meta_description" name="meta_description" rows="5" class="form-control meta_description"
+                                                    placeholder="Enter Meta Description"></textarea>
+                                                <span class="meta_description-validation error-validation"
+                                                    style="color:red;"></span>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div class="modal-footer p-4">
                                     <a href="{{ route('services.index') }}" style="margin-right: 20px">

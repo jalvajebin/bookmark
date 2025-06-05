@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\PostVacancyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SubmitCvController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\SeoController;
 use App\Http\Controllers\Web\BlogController as WebBlogController;
 use App\Http\Controllers\Web\AboutController as WebAboutController;
 use App\Http\Controllers\Web\ApplicantsController;
@@ -62,6 +63,10 @@ Route::get('career-hub', [ApplicantsController::class, 'careerHub'])->name('web.
 Route::get('Employers', [WebEmployerController::class, 'index'])->name('web.employers.index');
 Route::get('Contact-us', [WebContactController::class, 'index'])->name('web.contact.index');
 
+Route::fallback(function () {
+    return response()->view('website.errors.404', [], 404);
+});
+
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -74,14 +79,14 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
     Route::post('/profile-update', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
     Route::post('/profile-data-update', [ProfileController::class, 'profileDataUpdate'])->name('admin.profiledata.update');
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
+    Route::post('/seo/{id}', [SeoController::class, 'update']);
+
     // Route::post('/seo/{id}', [SeoController::class, 'update']);
 
     Route::prefix("admin")->group(function () {
 
         Route::post('banner-update', [BannerController::class, 'updateBanner'])->name('admin.banner.add');
         Route::post('contact-banner-update', [HomeContactBannerController::class, 'updateBanner'])->name('admin.banner-contact.add');
-
-
         Route::group(['prefix' => 'contact'], function () {
             Route::get('/', [ContactController::class, 'index'])->name('contact.index');
             Route::post('update-contact', [ContactController::class, 'updateContact'])->name('admin.contact.add');
@@ -103,10 +108,6 @@ Route::group(['middleware' => ['auth', 'check_user_status']], function () {
             Route::get('/vacancy-applications', [PostVacancyController::class, 'getVacancyApplication'])->name('get.vacancy-appliaction');
             Route::post('/delete-vacancy-application', [PostVacancyController::class, 'deleteVacancyApplication'])->name('application.vacancy.delete');
             Route::match(['get', 'post'], 'application-vanacy-export', [PostVacancyController::class, 'vacancyApplicationExport'])->name("applications-vacancy.export");
-
-
-
-
 
             // Route::post('update-contact', [ContactController::class, 'updateContact'])->name('admin.contact.add');
             //     Route::post('update-social', [ContactController::class, 'updateSocial'])->name('admin.social.add');

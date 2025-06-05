@@ -131,7 +131,7 @@
                                 <li class="tab-list">
                                     <a href="#tab2" class="m-2">Contact Us</a>
                                 </li>
-                                <li class="tab-list" onclick="jalu(event)">
+                                <li class="tab-list" onclick="">
                                     <a href="#tab3" class="m-2">Contact Enquiries</a>
                                 </li>
                             </ul>

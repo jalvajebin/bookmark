@@ -176,14 +176,34 @@
                         </div>
 
                         <!-- Pagination -->
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <li><a href="#" class="active">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
+                        @if ($jobs->lastPage() > 1)
+                            <div class="pagination-wrap">
+                                <ul class="pagination">
+                
+                                    @if ($jobs->onFirstPage())
+                                        <li><span><i class="fas fa-angle-left"></i></span></li>
+                                    @else
+                                        <li><a href="{{ $jobs->previousPageUrl() }}"><i class="fas fa-angle-left"></i></a>
+                                        </li>
+                                    @endif
+                            
+                                    @for ($i = 1; $i <= $jobs->lastPage(); $i++)
+                                        <li>
+                                            <a href="{{ $jobs->url($i) }}"
+                                                class="{{ $jobs->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                                        </li>
+                                    @endfor {{-- Next Page Link --}}
+                                    @if ($jobs->hasMorePages())
+                                        <li><a href="{{ $jobs->nextPageUrl() }}"><i class="fas fa-angle-right"></i></a>
+                                        </li>
+                                    @else
+                                        <li><span><i class="fas fa-angle-right"></i></span></li>
+                                    @endif
+
+                                </ul>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

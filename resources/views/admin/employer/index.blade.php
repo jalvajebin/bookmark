@@ -135,6 +135,9 @@
                                 <li class="tab-list">
                                     <a href="#tab3" class="m-2">We recruit for</a>
                                 </li>
+                                <li class="tab-list">
+                                    <a href="#tab4" class="m-2">Seo</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -145,9 +148,7 @@
                 @include('admin.employer.banner')
                 @include('admin.employer.contact-us')
                 @include('admin.employer.we-recruit-for')
-
-
-
+                @include('admin.employer.seo')
             </div>
         </div>
     </div>

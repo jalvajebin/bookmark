@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-   {{ 'Destinations | Bookmark' }}
+    {{ 'Destinations | Bookmark' }}
 @endsection
 @section('css')
     <style>
@@ -60,6 +60,7 @@
         .tab-list.active a {
             color: #14b0c4;
         }
+
         .tab-list a {
             font-size: 1rem;
             font-weight: 700;
@@ -128,26 +129,12 @@
                                 <li class="tab-list">
                                     <a href="#tab1" class="m-2">Banner</a>
                                 </li>
-                                
-                                 <li class="tab-list">
+                                <li class="tab-list">
                                     <a href="#tab2" class="m-2">Top Destinations</a>
                                 </li>
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Contact Enquiries</a>
-                                </li> --}}
-                                {{-- <li class="tab-list">
-                                    <a href="#tab3" class="m-2">Social Media</a>
-                                </li>
                                 <li class="tab-list">
-                                    <a href="#tab4" class="m-2">Contact Enquiries</a>
+                                    <a href="#tab3" class="m-2">Seo</a>
                                 </li>
-                                <li class="tab-list">
-                                    <a href="#tab6" class="m-2">Request a quote</a>
-                                </li>
-                                <li class="tab-list">
-                                    <a href="#tab5" class="m-2">Seo</a>
-                                </li> --}}
-
                             </ul>
                         </div>
                     </div>
@@ -157,8 +144,7 @@
             <div id="tabs-content">
                 @include('admin.destination.banner')
                 @include('admin.destination.destination')
-             
-                {{-- @include('admin.services.service') --}}
+                @include('admin.destination.seo')
                 {{-- @include('admin.contact.contact')
                 @include('admin.contact.enquiry') --}}
                 {{-- @include('admin.contact.social')
@@ -166,27 +152,27 @@
                 @include('admin.contact.quote')
                 @include('admin.contact.seo')
             </div> --}}
+            </div>
         </div>
-    </div>
-    <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-info">
-                    <h3 class="modal-title">Email Delivery Details</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="deliveryContent">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close <i
-                            class="far fa-gem ml-1 white-text"></i></button>
+        <div tabindex="-1" class="modal pmd-modal fade come-from-modal right" id="deliveryModal" style="display: none;"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h3 class="modal-title">Email Delivery Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="deliveryContent">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close <i
+                                class="far fa-gem ml-1 white-text"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@section('js')
-@include('admin.destination.js.datatable')
-@include('admin.destination.js.script')
-@endsection
+    @endsection
+    @section('js')
+        @include('admin.destination.js.datatable')
+        @include('admin.destination.js.script')
+    @endsection

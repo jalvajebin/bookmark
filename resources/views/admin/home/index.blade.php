@@ -140,6 +140,9 @@
                                 <li class="tab-list">
                                     <a href="#tab5" class="m-2">Contact Banner</a>
                                 </li>
+                                 <li class="tab-list">
+                                    <a href="#tab6" class="m-2">Seo</a>
+                                </li>
                                 {{-- <li class="tab-list">
                                     <a href="#tab6" class="m-2">Jobs</a>
                                 </li> --}}
@@ -156,7 +159,7 @@
                 @include('admin.home.what-we-do')
                 @include('admin.home.meet-our-team')
                 @include('admin.home.home-contact-banner')
-
+                @include('admin.home.seo')
             </div>
         </div>
     </div>

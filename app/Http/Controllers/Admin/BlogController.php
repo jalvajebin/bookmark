@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use App\Models\LeaveComment;
 use App\Models\MultipleBlogCategory;
 use App\Models\MultipleBlogTag;
+use App\Models\Seo;
 use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        // $seo = Seo::where('page', 'blog')->first();
+        $seo = Seo::where('page', 'blog')->first();
         $blogs = Blog::orderBy('priority', 'ASC')->get();
         $tagLoops = Tag::orderBy('id', 'DESC')->where('status', 1)->get();
         $tags = Tag::orderBy('id', 'DESC')->get();
@@ -34,7 +35,7 @@ class BlogController extends Controller
                 'tagHtml' => $tagHtml,
             ]);
         }
-        return view('admin.blog.index', compact('blogs', 'categories', 'tags', 'tagLoops'));
+        return view('admin.blog.index', compact('blogs', 'categories', 'tags', 'tagLoops','seo'));
     }
 
 
