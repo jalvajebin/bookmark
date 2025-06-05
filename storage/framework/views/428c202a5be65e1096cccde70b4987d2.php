@@ -1,63 +1,61 @@
-@extends('website.layout.app')
-{{-- @section('title', isset($seo->meta_title) ? $seo->meta_title : 'Fit Solution')
-@section('meta_keyword', isset($seo->meta_keyword) ? $seo->meta_keyword : 'Fit Solution')
-@section('meta_description', isset($seo->meta_description) ? $seo->meta_description : 'Fit Solution') --}}
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- banner  -->
 
     <div class="banner"
-        style="background-image: url('{{ $banner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
+        style="background-image: url('<?php echo e($banner->images->preview ?? asset('admin/images/no-image.png')); ?>') !important ; ">
         <div class="banner-overlay"></div>
         <div class="banner-cntnt fade-left">
             <div>
-                <h2>{{ optional($banner)->title }}</h2>
-                <P>{{ optional($banner)->description }}</P>
+                <h2><?php echo e(optional($banner)->title); ?></h2>
+                <P><?php echo e(optional($banner)->description); ?></P>
             </div>
 
-            <form method="GET" action="{{ route('web.find-job.index') }}">
+            <form method="GET" action="<?php echo e(route('web.find-job.index')); ?>">
 
                 <div class="job-search-main">
                     <div class="search-div">
-                        <input type="text" name="search" placeholder="Job Title" value="{{ request('search') }}">
+                        <input type="text" name="search" placeholder="Job Title" value="<?php echo e(request('search')); ?>">
                     </div>
                     <div class="dropdown-div">
-                        {{-- Location Dropdown --}}
+                        
                         <div class="dropdown-container">
                             <button class="btn dropdown-toggle" type="button" id="locationDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span id="selectedLocation">{{ request('location') ?? 'Select Location' }}</span> <i
+                                <span id="selectedLocation"><?php echo e(request('location') ?? 'Select Location'); ?></span> <i
                                     class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                @foreach ($locations as $location)
+                                <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li>
                                         <a class="dropdown-item" href="#"
-                                            onclick="selectDropdown('selectedLocation', 'locationInput', '{{ $location->title }}')">
-                                            {{ $location->title }}
+                                            onclick="selectDropdown('selectedLocation', 'locationInput', '<?php echo e($location->title); ?>')">
+                                            <?php echo e($location->title); ?>
+
                                         </a>
                                     </li>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
-                            <input type="hidden" name="location" id="locationInput" value="{{ request('location') }}">
+                            <input type="hidden" name="location" id="locationInput" value="<?php echo e(request('location')); ?>">
                         </div>
-                        {{-- Category Dropdown --}}
+                        
                         <div class="dropdown-container">
                             <button class="btn dropdown-toggle" type="button" id="categoryDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span id="selectedCategory">{{ request('category') ?? 'Select Category' }}</span> <i
+                                <span id="selectedCategory"><?php echo e(request('category') ?? 'Select Category'); ?></span> <i
                                     class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                @foreach ($categories as $category)
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li>
                                         <a class="dropdown-item" href="#"
-                                            onclick="selectDropdown('selectedCategory', 'categoryInput', '{{ $category->title }}')">
-                                            {{ $category->title }}
+                                            onclick="selectDropdown('selectedCategory', 'categoryInput', '<?php echo e($category->title); ?>')">
+                                            <?php echo e($category->title); ?>
+
                                         </a>
                                     </li>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
-                            <input type="hidden" name="category" id="categoryInput" value="{{ request('category') }}">
+                            <input type="hidden" name="category" id="categoryInput" value="<?php echo e(request('category')); ?>">
                         </div>
 
                         <button type="submit" class="search-button">
@@ -109,18 +107,18 @@
                 <h2>Services We <span>Provide</span></h2>
             </div>
             <div class="row g-3">
-                @foreach ($serviceWeProvides as $serviceWeProvide)
+                <?php $__currentLoopData = $serviceWeProvides; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $serviceWeProvide): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xxl-3 col-md-6">
                         <div class="service-box">
                             <div class="service-img-box">
-                                <img src="{{ $serviceWeProvide->Icon->preview ?? asset('assets/img/teacher.png') }}"
+                                <img src="<?php echo e($serviceWeProvide->Icon->preview ?? asset('assets/img/teacher.png')); ?>"
                                     alt="">
                             </div>
-                            <h5>{{ $serviceWeProvide->title }}</h5>
-                            <p>{!! optional($serviceWeProvide)->description !!}</p>
+                            <h5><?php echo e($serviceWeProvide->title); ?></h5>
+                            <p><?php echo optional($serviceWeProvide)->description; ?></p>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </section>
         <!-- service -->
@@ -130,7 +128,7 @@
             <div class="row gx-5">
                 <div class="col-lg-6 fade-left">
                     <div class="why-img-main">
-                        <img src="{{ $why->Images['preview'] ?? asset('admin/images/no-image.png') }}" alt=""
+                        <img src="<?php echo e($why->Images['preview'] ?? asset('admin/images/no-image.png')); ?>" alt=""
                             class="why-main-img">
                         <div class="job-vacancy-div">
                             <img src="assets/img/briefcase.png" alt="">
@@ -141,9 +139,9 @@
                 </div>
                 <div class="col-lg-6 fade-right">
                     <div class="section-title">
-                        <h2>{{ optional($why)->title }}</span></h2>
+                        <h2><?php echo e(optional($why)->title); ?></span></h2>
                     </div>
-                    <p class="main-para">{{ optional($why)->description }}</p>
+                    <p class="main-para"><?php echo e(optional($why)->description); ?></p>
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="why-points">
@@ -151,8 +149,8 @@
                                     <img src="assets/img/why-offices.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{ $counters->count1 ?? '8' }}</h3>
-                                    <h6>{{ $counters->count1_name ?? '8' }}</h6>
+                                    <h3><?php echo e($counters->count1 ?? '8'); ?></h3>
+                                    <h6><?php echo e($counters->count1_name ?? '8'); ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +160,7 @@
                                     <img src="assets/img/why-consultant.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{ $counters->count2 ?? '16' }}</h3>
+                                    <h3><?php echo e($counters->count2 ?? '16'); ?></h3>
                                     <h6>Consultants across the world</h6>
                                 </div>
                             </div>
@@ -175,7 +173,7 @@
                                     <img src="assets/img/why-country.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{ $counters->count3 ?? '28' }}</h3>
+                                    <h3><?php echo e($counters->count3 ?? '28'); ?></h3>
                                     <h6>Countries placed in 2024</h6>
                                 </div>
                             </div>
@@ -186,7 +184,7 @@
                                     <img src="assets/img/why-teacher.png" alt="">
                                 </div>
                                 <div class="why-contents">
-                                    <h3>{{ $counters->count4 ?? '266' }} </h3>
+                                    <h3><?php echo e($counters->count4 ?? '266'); ?> </h3>
                                     <h6>Teachers placed in 2024</h6>
                                 </div>
                             </div>
@@ -204,30 +202,30 @@
             <div class="row">
                 <div class="col-lg-6 fade-left">
                     <div class="section-title">
-                        <h2>{{ optional($whatWedo)->title }}</span></h2>
+                        <h2><?php echo e(optional($whatWedo)->title); ?></span></h2>
                     </div>
-                    <p class="main-para">{{ optional($whatWedo)->description }}</p>
+                    <p class="main-para"><?php echo e(optional($whatWedo)->description); ?></p>
 
                     <div class="explore-pt">
                         <div>
-                            <h3>{{ optional($whatWedo)->title_one }}</h3>
-                            <h6>{{ optional($whatWedo)->para_one }}</h6>
+                            <h3><?php echo e(optional($whatWedo)->title_one); ?></h3>
+                            <h6><?php echo e(optional($whatWedo)->para_one); ?></h6>
                         </div>
 
                         <div>
-                            <h3>{{ optional($whatWedo)->title_two }}</h3>
-                            <h6>{{ optional($whatWedo)->para_two }}</h6>
+                            <h3><?php echo e(optional($whatWedo)->title_two); ?></h3>
+                            <h6><?php echo e(optional($whatWedo)->para_two); ?></h6>
                         </div>
 
                         <div>
-                            <h3>{{ optional($whatWedo)->title_three }}</h3>
-                            <h6>{{ optional($whatWedo)->para_three }}</h6>
+                            <h3><?php echo e(optional($whatWedo)->title_three); ?></h3>
+                            <h6><?php echo e(optional($whatWedo)->para_three); ?></h6>
                         </div>
                     </div>
 
                 </div>
                 <div class="col-lg-6 fade-right">
-                    <img src="{{ $whatWedo->WhatImages['preview'] ?? asset('admin/images/no-image.png') }}"
+                    <img src="<?php echo e($whatWedo->WhatImages['preview'] ?? asset('admin/images/no-image.png')); ?>"
                         alt="" class="explore-img">
                 </div>
             </div>
@@ -242,29 +240,29 @@
                     <h2>Top Destinations</h2>
                 </div>
                 <div class="more-buttons">
-                    <a href="{{ route('web.destination.index') }}">Show all <span><i
+                    <a href="<?php echo e(route('web.destination.index')); ?>">Show all <span><i
                                 class="fa-solid fa-arrow-right"></i></span></a>
                 </div>
             </div>
 
             <div class="gallery-container">
                 <div class="row g-4">
-                    @if ($destinations->isNotEmpty())
-                        @foreach ($destinations as $destination)
+                    <?php if($destinations->isNotEmpty()): ?>
+                        <?php $__currentLoopData = $destinations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $destination): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-lg-4 col-sm-6">
-                                <a href="{{ route('destination.details', $destination->slug) }}">
+                                <a href="<?php echo e(route('destination.details', $destination->slug)); ?>">
                                     <div class="gallery-item item2">
                                         <img
-                                            src="@if ($destination->MainImages) {{ $destination->MainImages->getUrl('preview') }} @else {{ asset('admin/images/no-image.png') }} @endif">
+                                            src="<?php if($destination->MainImages): ?> <?php echo e($destination->MainImages->getUrl('preview')); ?> <?php else: ?> <?php echo e(asset('admin/images/no-image.png')); ?> <?php endif; ?>">
                                         <div class="city-name">
-                                            <h2>{{ $destination->name }}</h2>
+                                            <h2><?php echo e($destination->name); ?></h2>
 
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                        @endforeach
-                    @endif
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -278,37 +276,37 @@
                     </div>
 
                     <div class="more-buttons">
-                        <a href="{{ route('web.find-job.index') }}">
+                        <a href="<?php echo e(route('web.find-job.index')); ?>">
                             Show all jobs <span><i class="fa-solid fa-arrow-right"></i></span>
                         </a>
                     </div>
                 </div>
                 <div class="row">
-                    @forelse($latestJobs as $job)
+                    <?php $__empty_1 = true; $__currentLoopData = $latestJobs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $job): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="col-lg-3 col-md-6">
-                            <a href="{{ route('web.find-job.index') }}">
+                            <a href="<?php echo e(route('web.find-job.index')); ?>">
                                 <div class="job-card">
                                     <div class="job-header">
-                                        <img src="{{ $job->MainImages->url ?? asset('assets/img/nomad.png') }}"
-                                            alt="{{ $job->alt }}" class="company-logo">
+                                        <img src="<?php echo e($job->MainImages->url ?? asset('assets/img/nomad.png')); ?>"
+                                            alt="<?php echo e($job->alt); ?>" class="company-logo">
                                         <div class="job-info">
-                                            <h3>{{ $job->title }}</h3>
-                                            <p>{{ $job->company_name }}&bull; <span
-                                                    class="location">{{ $job->locationModel->title }}</span></p>
+                                            <h3><?php echo e($job->title); ?></h3>
+                                            <p><?php echo e($job->company_name); ?>&bull; <span
+                                                    class="location"><?php echo e($job->locationModel->title); ?></span></p>
                                             <div class="job-tags">
-                                                <span class="tag active"> {{ $job->job_type }} </span>
+                                                <span class="tag active"> <?php echo e($job->job_type); ?> </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="col-12 text-center py-5">
                             <h4>No job found</h4>
                             <p>Please try adjusting your search filters.</p>
                         </div>
-                    @endforelse
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -319,13 +317,13 @@
     <!-- Excellence -->
     <section class="section-padding">
         <div class="exllence-main"
-            style="background-image: url('{{ $contactBanner->images->preview ?? asset('admin/images/no-image.png') }}') !important ; ">
+            style="background-image: url('<?php echo e($contactBanner->images->preview ?? asset('admin/images/no-image.png')); ?>') !important ; ">
             <div class="ab-rectangle"></div>
             <div class="ab-circle"></div>
             <div class="fade-up">
-                <h3><span>{{ optional($contactBanner)->title }}</h3>
-                <p>{{ optional($contactBanner)->description }}</p>
-                <a href="{{ route('web.contact.index') }}">
+                <h3><span><?php echo e(optional($contactBanner)->title); ?></h3>
+                <p><?php echo e(optional($contactBanner)->description); ?></p>
+                <a href="<?php echo e(route('web.contact.index')); ?>">
                     <button class="head-btn"> <span>Contact US</span>
                     </button>
                 </a>
@@ -431,18 +429,18 @@
                         </div>
                         <div class="explore-pt">
                             <div>
-                                <h3>{{ optional($whatWedo)->title_one }}</h3>
-                                <h6>{{ optional($whatWedo)->para_one }}</h6>
+                                <h3><?php echo e(optional($whatWedo)->title_one); ?></h3>
+                                <h6><?php echo e(optional($whatWedo)->para_one); ?></h6>
                             </div>
 
                             <div>
-                                <h3>{{ optional($whatWedo)->title_two }}</h3>
-                                <h6>{{ optional($whatWedo)->para_two }}</h6>
+                                <h3><?php echo e(optional($whatWedo)->title_two); ?></h3>
+                                <h6><?php echo e(optional($whatWedo)->para_two); ?></h6>
                             </div>
 
                             <div>
-                                <h3>{{ optional($whatWedo)->title_three }}</h3>
-                                <h6>{{ optional($whatWedo)->para_three }}</h6>
+                                <h3><?php echo e(optional($whatWedo)->title_three); ?></h3>
+                                <h6><?php echo e(optional($whatWedo)->para_three); ?></h6>
                             </div>
                         </div>
                     </div>
@@ -533,10 +531,7 @@
                         <div class="stats-number">10,000</div>
                         <div class="stats-text">people are getting hired with us</div>
                     </div>
-                    {{-- <a href="about.html" class="read-more">
-                        <span>READ MORE</span>
-                        <span class="arrow">→</span>
-                    </a> --}}
+                    
                 </div>
             </div>
         </section>
@@ -555,35 +550,35 @@
                 </div>
 
                 <div class="owl-carousel" id="partner-carousel">
-                    @foreach ($meetOurTeams as $key => $meetOurTeam)
+                    <?php $__currentLoopData = $meetOurTeams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $meetOurTeam): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="item">
                             <div class="team-div">
                                 <div class="team-img">
-                                    <img src="{{ optional($meetOurTeam)->TeamImages->url }}" alt="">
+                                    <img src="<?php echo e(optional($meetOurTeam)->TeamImages->url); ?>" alt="">
                                     <img src="assets/img/blue-done.png" alt="" class="team-done">
                                 </div>
-                                <h6>{{ optional($meetOurTeam)->name }}</h6>
-                                <p>{{ optional($meetOurTeam)->description }} </p>
+                                <h6><?php echo e(optional($meetOurTeam)->name); ?></h6>
+                                <p><?php echo e(optional($meetOurTeam)->description); ?> </p>
                                 <div class="team-social-media d-flex gap-2 align-items-center justify-content-center">
-                                    @if (optional($meetOurTeam)->facebook)
-                                        <a href="{{ $meetOurTeam->facebook }}" target="_blank"><i
+                                    <?php if(optional($meetOurTeam)->facebook): ?>
+                                        <a href="<?php echo e($meetOurTeam->facebook); ?>" target="_blank"><i
                                                 class="fab fa-facebook-f"></i></a>
-                                    @endif
+                                    <?php endif; ?>
 
-                                    @if (optional($meetOurTeam)->instagram)
-                                        <a href="{{ $meetOurTeam->instagram }}" target="_blank"><i
+                                    <?php if(optional($meetOurTeam)->instagram): ?>
+                                        <a href="<?php echo e($meetOurTeam->instagram); ?>" target="_blank"><i
                                                 class="fab fa-instagram"></i></a>
-                                    @endif
+                                    <?php endif; ?>
 
-                                    @if (optional($meetOurTeam)->linkedin)
-                                        <a href="{{ $meetOurTeam->linkedin }}" target="_blank"><i
+                                    <?php if(optional($meetOurTeam)->linkedin): ?>
+                                        <a href="<?php echo e($meetOurTeam->linkedin); ?>" target="_blank"><i
                                                 class="fab fa-linkedin-in"></i></a>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
 
@@ -591,42 +586,7 @@
         <!-- Meet Exprets -->
 
         <!-- Meet Exprets -->
-        {{-- <section class="section-padding">
-            <div class="custom-container">
-                <div class="d-flex justify-content-between">
-                    <div class="section-title">
-                        <h2>News and Blog</h2>
-                        <p>Metus faucibus sed turpis lectus feugiat tincidunt. Rhoncus sed tristique in dolor</p>
-                    </div>
-                    <div class="more-buttons">
-                        <a href="">View all <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-                    </div>
-                </div>
-
-
-                <div class="blog-div fade-up">
-                    <div class="blog-img">
-                        <img src="assets/img/blog.png" alt="">
-                    </div>
-                    <div>
-                        <div class="meta-info">
-                            <span>4 Min</span>
-                            <span class="dot"></span>
-                            <span>August 19, 2022</span>
-                        </div>
-
-                        <h6>Revitalizing Workplace Morale: Innovative Tactics for Boosting Employee Engagement in 2024
-                        </h6>
-                        <div class="more-buttons">
-                            <a href="">Read more <span><i class="fa-solid fa-arrow-right"></i> </span></a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </section> --}}
+        
         <!-- Meet Exprets -->
         <section class="section-padding pt-0">
             <div class="custom-container">
@@ -638,25 +598,25 @@
                             and inspire educators and schools alike.</p>
                     </div>
                     <div class="more-buttons">
-                        <a href="{{ route('blogs') }}">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="<?php echo e(route('blogs')); ?>">View all <span><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                 </div>
 
-                @foreach ($blog as $blogs)
-                    <a href="{{ route('blog.details', $blogs->slug) }}" target="_blank" class="blog-link-wrapper">
+                <?php $__currentLoopData = $blog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blogs): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <a href="<?php echo e(route('blog.details', $blogs->slug)); ?>" target="_blank" class="blog-link-wrapper">
                         <div class="blog-div fade-up">
                             <div class="blog-img">
-                                <img src="{{ $blogs->MainImages->url ?? asset('assets/img/blog.png') }}"
-                                    alt="{{ $blogs->alt }}">
+                                <img src="<?php echo e($blogs->MainImages->url ?? asset('assets/img/blog.png')); ?>"
+                                    alt="<?php echo e($blogs->alt); ?>">
                             </div>
                             <div>
                                 <div class="meta-info">
-                                    <span>By {{ $blogs->author }}</span>
+                                    <span>By <?php echo e($blogs->author); ?></span>
                                     <span class="dot"></span>
-                                    <span>{{ \Carbon\Carbon::parse($blogs->date)->format('F d, Y') }}</span>
+                                    <span><?php echo e(\Carbon\Carbon::parse($blogs->date)->format('F d, Y')); ?></span>
                                 </div>
 
-                                <h6>{!! $blogs->title !!}</h6>
+                                <h6><?php echo $blogs->title; ?></h6>
 
                                 <div class="more-buttons">
                                     Read More <span><i class="fa-solid fa-arrow-right"></i></span>
@@ -664,7 +624,7 @@
                             </div>
                         </div>
                     </a>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </section>
         <!-- Testimonials -->
@@ -678,21 +638,21 @@
                     </div>
 
                     <div class="owl-carousel" id="testimonial-carousel">
-                        @foreach ($testimonials as $testimonial)
+                        <?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="item">
                                 <div class="testimonial-box">
                                     <div class="testimonial-img">
-                                        <img src="{{ $testimonial->Images->url }}" alt="{{ $testimonial->alt }}">
+                                        <img src="<?php echo e($testimonial->Images->url); ?>" alt="<?php echo e($testimonial->alt); ?>">
                                     </div>
 
                                     <div class="testmonial-cntnt">
-                                        <h6>{{ \Carbon\Carbon::parse($testimonial->date)->format('F j, Y') }}</h6>
-                                        <h4>{{ $testimonial->heading }}</h4>
-                                        <p>{{ $testimonial->description }}</p>
+                                        <h6><?php echo e(\Carbon\Carbon::parse($testimonial->date)->format('F j, Y')); ?></h6>
+                                        <h4><?php echo e($testimonial->heading); ?></h4>
+                                        <p><?php echo e($testimonial->description); ?></p>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
             </div>
@@ -710,7 +670,7 @@
                                 <p>Find your perfect teaching role
                                     overseas with top schools and full support every step of the
                                     way.</p>
-                                <a href="{{ route('web.applicants.submit-cv') }}"><button type="button"
+                                <a href="<?php echo e(route('web.applicants.submit-cv')); ?>"><button type="button"
                                         class="register-button">Register now <span><i
                                                 class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
@@ -723,7 +683,7 @@
                                 <p>Reach qualified, experienced educators who are ready to
                                     join your school. Share your vacancy and let us help you find
                                     the perfect match.</p>
-                                <a href="{{ route('web.applicants.post-vacancy') }}"><button type="button"
+                                <a href="<?php echo e(route('web.applicants.post-vacancy')); ?>"><button type="button"
                                         class="register-button">Register now <span><i
                                                 class="fa-solid fa-arrow-right-long"></i></span></button></a>
                             </div>
@@ -733,8 +693,8 @@
 
             </div>
         </section>
-    @endsection
-    @push('js')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startPush('js'); ?>
         <script>
             function selectDropdown(displayId, inputId, value) {
                 document.getElementById(displayId).innerText = value;
@@ -755,4 +715,6 @@
                 }
             });
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('website.layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/jal/Herd/bookmark/resources/views/website/home.blade.php ENDPATH**/ ?>

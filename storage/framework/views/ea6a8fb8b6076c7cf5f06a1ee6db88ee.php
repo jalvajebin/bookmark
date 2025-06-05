@@ -1,8 +1,4 @@
-@extends('website.layout.app')
-{{-- @section('title', isset($seo->meta_title) ? $seo->meta_title : 'Fit Solution')
-@section('meta_keyword', isset($seo->meta_keyword) ? $seo->meta_keyword : 'Fit Solution')
-@section('meta_description', isset($seo->meta_description) ? $seo->meta_description : 'Fit Solution') --}}
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- banner  -->
     <div class="inner-banner">
         <div class="inner-banner-overlay"></div>
@@ -39,69 +35,59 @@
                         <!-- Categories Widget -->
                         <div class="sidebar-widget">
                             <h4>Find job</h4>
-                            <form action="{{ route('jobs.list') }}" id="searchForm" class="search-form">
+                            <form action="<?php echo e(route('jobs.list')); ?>" id="searchForm" class="search-form">
                                 <input type="text" id="search_job" name="search"
-                                    value="{{ request()->query('search') }}" placeholder="Enter Keywords">
+                                    value="<?php echo e(request()->query('search')); ?>" placeholder="Enter Keywords">
                                 <button type="submit"><i class="fas fa-search"></i></button>
                             </form>
                         </div>
                         <!-- Recent Posts Widget -->
-                        @php
+                        <?php
                             $currentQuery = request()->query();
-                        @endphp
+                        ?>
 
                         <div class="sidebar-widget">
                             <h4>Refine Your Search</h4>
 
-                            {{-- School Type --}}
-                            {{-- <div>
-                                <h6>School Type</h6>
-                                <div class="tags">
-                                    @foreach ($schoolTypes as $schoolType)
-                                        <a href="#" class="filter-tag" data-filter="school_type"
-                                            data-id="{{ $schoolType->id }}">
-                                            {{ $schoolType->title }} <span>({{ $location->jobs->count() }})</span>
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div> --}}
+                            
+                            
 
-                            {{-- Location --}}
+                            
                             <div>
                                 <h6>Location</h6>
                                 <div class="tags">
-                                    @foreach ($locations as $location)
+                                    <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <a href="#" class="filter-tag" data-filter="location"
-                                            data-id="{{ $location->id }}">
-                                            {{ $location->title }} <span>({{ $location->jobs->count() }})</span>
+                                            data-id="<?php echo e($location->id); ?>">
+                                            <?php echo e($location->title); ?> <span>(<?php echo e($location->jobs->count()); ?>)</span>
                                         </a>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
 
-                            {{-- Specialism --}}
+                            
                             <div>
                                 <h6>Specialism</h6>
                                 <div class="tags">
-                                    @foreach ($specialisms as $specialism)
+                                    <?php $__currentLoopData = $specialisms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $specialism): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <a href="#" class="filter-tag" data-filter="specialism"
-                                            data-id="{{ $specialism->id }}">
-                                            {{ $specialism->title }} <span>({{ $specialism->jobs->count() }})</span>
+                                            data-id="<?php echo e($specialism->id); ?>">
+                                            <?php echo e($specialism->title); ?> <span>(<?php echo e($specialism->jobs->count()); ?>)</span>
                                         </a>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
 
-                            {{-- Position Type --}}
+                            
                             <div>
                                 <h6>Position Type</h6>
                                 <div class="tags">
-                                    @foreach ($positionTypes as $positionType)
+                                    <?php $__currentLoopData = $positionTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $positionType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <a href="#" class="filter-tag" data-filter="position_type"
-                                            data-id="{{ $positionType->id }}">
-                                            {{ $positionType->title }} <span>({{ $positionType->jobs->count() }})</span>
+                                            data-id="<?php echo e($positionType->id); ?>">
+                                            <?php echo e($positionType->title); ?> <span>(<?php echo e($positionType->jobs->count()); ?>)</span>
                                         </a>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
                         </div>
@@ -112,20 +98,11 @@
                     </div>
 
                     <div class="col-lg-8 order-2 order-md-2" data-aos="fade-right">
-                        {{-- @php
-                            $titles = $jobs->pluck('title');
-                            $displayed = $titles->take(2);
-                            $totalCount = $titles->count();
-                            $displayedCount = $displayed->count();
-                        @endphp --}}
+                        
                         <!-- Blog Post Card -->
                         <div class="job-description">
                             <h4>Jobs</h4>
-                            {{-- <p>Boomark has {{ $jobs->count() }} jobs. Our {{ $jobs->count() }} jobs available include the
-                                following types of jobs:
-                                {{ $displayed->join(', ') }}
-                                {{ $totalCount > 2 ? ' and ' . ($totalCount - 2) . ' more' : '' }}</p>
-                                  --}}
+                            
 
                             <p>Bookmark has 225 jobs. Our 225
                                 jobs available include the following types of jobs: Permanent
@@ -137,15 +114,7 @@
                                     <input type="email" class="form-control" placeholder="Your Email*" required>
                                     <span class="focus-border"></span>
                                 </div>
-                                {{-- <div class="form-group mb-2">
-                                    <select class="form-control" required="">
-                                        <option value="" selected="" disabled="">Frequency</option>
-                                        <option value="seeker">Daily</option>
-                                        <option value="client">Weekly</option>
-                                        <option value="client">Monthly</option>
-                                    </select>
-                                    <span class="focus-border"></span>
-                                </div> --}}
+                                
                             </div>
                             <label class="custom-radio square">
                                 <input type="radio" name="teaching_license" value="no">
@@ -160,55 +129,45 @@
                                 <span>Send Message</span>
                             </button>
 
-                            {{-- <div class="sorting mt-4 mb-4">
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-
-                                    <div class="sorting-buttons">
-                                        <span>Sort by:</span>
-                                        <button class="sort-btn" data-sort="date">date</button>
-                                        <button class="sort-btn" data-sort="location">location</button>
-                                        <button class="sort-btn active" data-sort="title">title</button>
-                                    </div>
-                                </div>
-                            </div> --}}
+                            
                             <div id="job-list-container"></div>
                         </div>
 
                         <!-- Pagination -->
-                        @if ($jobs->lastPage() > 1)
+                        <?php if($jobs->lastPage() > 1): ?>
                             <div class="pagination-wrap">
                                 <ul class="pagination">
                 
-                                    @if ($jobs->onFirstPage())
+                                    <?php if($jobs->onFirstPage()): ?>
                                         <li><span><i class="fas fa-angle-left"></i></span></li>
-                                    @else
-                                        <li><a href="{{ $jobs->previousPageUrl() }}"><i class="fas fa-angle-left"></i></a>
+                                    <?php else: ?>
+                                        <li><a href="<?php echo e($jobs->previousPageUrl()); ?>"><i class="fas fa-angle-left"></i></a>
                                         </li>
-                                    @endif
+                                    <?php endif; ?>
                             
-                                    @for ($i = 1; $i <= $jobs->lastPage(); $i++)
+                                    <?php for($i = 1; $i <= $jobs->lastPage(); $i++): ?>
                                         <li>
-                                            <a href="{{ $jobs->url($i) }}"
-                                                class="{{ $jobs->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+                                            <a href="<?php echo e($jobs->url($i)); ?>"
+                                                class="<?php echo e($jobs->currentPage() == $i ? 'active' : ''); ?>"><?php echo e($i); ?></a>
                                         </li>
-                                    @endfor {{-- Next Page Link --}}
-                                    @if ($jobs->hasMorePages())
-                                        <li><a href="{{ $jobs->nextPageUrl() }}"><i class="fas fa-angle-right"></i></a>
+                                    <?php endfor; ?> 
+                                    <?php if($jobs->hasMorePages()): ?>
+                                        <li><a href="<?php echo e($jobs->nextPageUrl()); ?>"><i class="fas fa-angle-right"></i></a>
                                         </li>
-                                    @else
+                                    <?php else: ?>
                                         <li><span><i class="fas fa-angle-right"></i></span></li>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </ul>
                             </div>
-                        @endif
+                        <?php endif; ?>
 
                     </div>
                 </div>
             </div>
         </section>
-    @endsection
-    @push('js')
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startPush('js'); ?>
         <script>
             AOS.init({
                 duration: 2000,
@@ -309,7 +268,7 @@
                 // AJAX job loader
                 function loadJobs() {
                     $.ajax({
-                        url: '{{ route('jobs.list') }}',
+                        url: '<?php echo e(route('jobs.list')); ?>',
                         type: 'GET',
                         data: filters,
                         success: function(response) {
@@ -322,4 +281,6 @@
                 }
             });
         </script>
-    @endpush
+    <?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('website.layout.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/jal/Herd/bookmark/resources/views/website/findjob.blade.php ENDPATH**/ ?>
