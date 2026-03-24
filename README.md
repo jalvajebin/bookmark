@@ -82,9 +82,9 @@ My contributions include:
 
 ![Job Form](screenshots/cv-application-admin-acces.png)
 
-![home web](home-page-with-job-search.png)
+![home web](screenshots/home-page-with-job-search.png)
 
-![home admin](home.png)
+![home admin](screenshots/home.png)
 
 ![submission form validation](submission-form-validation.png)
 
