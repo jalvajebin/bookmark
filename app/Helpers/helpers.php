@@ -53,7 +53,7 @@ if (!function_exists('userImage')) {
     function userImage()
     {
         $user = User::where('id', Auth::id())->first();
-        // $imagePath =  asset("admin/images/images.png");
+        $imagePath =  asset("admin/images/images.png");
         if (isset($user->image) && !empty($user->image)) {
             $imagePath = env('APP_URL') . Storage::url($user->image);
         }
