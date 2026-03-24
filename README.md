@@ -86,9 +86,9 @@ My contributions include:
 
 ![home admin](screenshots/home.png)
 
-![submission form validation](submission-form-validation.png)
+![submission form validation](screenshots/submission-form-validation.png)
 
-![submission form ](submission-form.png)
+![submission form ](screenshots/submission-form.png)
 
 ---
 
